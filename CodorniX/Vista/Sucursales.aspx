@@ -13,7 +13,7 @@
                     <div class="panel-heading text-center">
                         Sucursales
                     </div>
-                    <!-- Botones de busqueda -->
+                    <!-- Botones de busqueda --><!---Manuel se la come-->
                     <div class="btn-toolbar">
                         <div class="btn-group pull-right">
                             <asp:LinkButton ID="btnMostrarBusqueda" runat="server" Text="Mostrar" CssClass="btn btn-default btn-sm" OnClick="btnMostrarBusqueda_Click" />
