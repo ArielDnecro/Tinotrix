@@ -27,7 +27,7 @@ namespace CodorniX
                 string conn = ConfigProviderManager.GetConfigProviderManager().GetConnectionString();
 
                 if (string.IsNullOrEmpty(conn)) 
-                    return " Data Source = AMON; User ID = sa; Password = 123; Initial Catalog = CodorniXBase; Connection Timeout = 0; Persist Security Info = True; Connect Timeout = 0";
+                    return " ";
                
                 return conn;
             }
