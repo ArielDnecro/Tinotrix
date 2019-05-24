@@ -27,7 +27,7 @@ namespace CodorniX
                 string conn = ConfigProviderManager.GetConfigProviderManager().GetConnectionString();
 
                 if (string.IsNullOrEmpty(conn)) 
-                    return " ";
+                    return "Data Source=DESKTOP-L3HTH7N\HECTORSERVER;Initial Catalog=CodorniX;User ID=sa";
                
                 return conn;
             }
