@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Tipo] (
+    [UidTipo] UNIQUEIDENTIFIER NOT NULL,
+    [VchTipo] NVARCHAR (50)    NOT NULL,
+    CONSTRAINT [PK_Tipo] PRIMARY KEY CLUSTERED ([UidTipo] ASC)
+);
+

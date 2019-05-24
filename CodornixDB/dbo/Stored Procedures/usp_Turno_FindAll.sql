@@ -1,0 +1,6 @@
+﻿CREATE PROCEDURE [dbo].[usp_Turno_FindAll]
+AS
+
+SET NOCOUNT ON
+
+SELECT * FROM Turno;

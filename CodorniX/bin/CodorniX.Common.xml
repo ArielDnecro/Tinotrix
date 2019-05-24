@@ -1,0 +1,429 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CodorniX.Common</name>
+    </assembly>
+    <members>
+        <member name="T:CodorniX.Config">
+            <summary>
+            Global configuration class for CodorniX Common Library, this class specifies some configurations that can change.
+            </summary>
+        </member>
+        <member name="P:CodorniX.Config.ConnectionString">
+            <summary>
+            Cadena de conexión para <see cref="T:CodorniX.Modelo.Connection"/>
+            </summary>
+            <value>
+            La cadena de conexión por defecto tiene un valor fijo, sin embargo, en caso de registrar
+            algun proveedor de configuración, este es invocado con el fin de obtener la cadena de conexión
+            adecuada. Esto permite una reutilización de este código como una librería independiente.
+            </value>
+        </member>
+        <member name="T:CodorniX.ConfigProviderManager">
+            <summary>
+            Configuration provider for <see cref="T:CodorniX.Config"/> class.
+            </summary>
+        </member>
+        <member name="M:CodorniX.ConfigProviderManager.GetConfigProviderManager">
+            <summary>
+            Get a shared instance of <see cref="T:CodorniX.ConfigProviderManager"/>.
+            </summary>
+            <returns>The shared instance</returns>
+        </member>
+        <member name="M:CodorniX.ConfigProviderManager.RegisterConfigProvider(CodorniX.IConfigProvider)">
+            <summary>
+            Register a new <see cref="T:CodorniX.IConfigProvider"/>.
+            Only accepts one object per type.
+            </summary>
+            <param name="obj">A instance of a IConfigProvider implementation class</param>
+        </member>
+        <member name="M:CodorniX.ConfigProviderManager.GetConnectionString">
+            <summary>
+            Get the connection string 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:CodorniX.IConfigProvider">
+            <summary>
+            Interfaz de proveedor de configuración
+            </summary>
+        </member>
+        <member name="M:CodorniX.IConfigProvider.GetConnectionString">
+            <summary>
+            Obtiene la cadena de conexión.
+            </summary>
+            <returns>una cadena de texto con la cadena de configuración.</returns>
+        </member>
+        <member name="T:CodorniX.Common.Orden">
+            <summary>
+            Indica el orden en el que se ordenan los resultados de una consulta.
+            </summary>
+        </member>
+        <member name="T:CodorniX.Common.Accion">
+            <summary>
+            Indica la Acción actual a realizar.
+            </summary>
+        </member>
+        <member name="T:CodorniX.Modelo.Acceso">
+            <summary>
+            Clase de control de acceso y permisos del usuario. Permite obtener información necesaria del usuario
+            para iniciar sesión y acceso granular por módulos.
+            </summary>
+            <seealso cref="T:CodorniX.Modelo.Usuario"/>
+            <seealso cref="T:CodorniX.Modelo.Modulo"/>
+        </member>
+        <member name="P:CodorniX.Modelo.Acceso.UidPerfil">
+            <summary>
+            Identificador único de un perfil, sea nivel Backend o Frontend.
+            </summary>
+        </member>
+        <member name="P:CodorniX.Modelo.Acceso.UidModulo">
+            <summary>
+            Identificador único de un módulo.
+            </summary>
+        </member>
+        <member name="M:CodorniX.Modelo.Acceso.TieneAccesoAModulo(System.String,System.Guid,System.Guid)">
+            <summary>
+            Revisa si el usuario tiene permiso para acceder a un módulo específico.
+            </summary>
+            <param name="modulo">Nombre corto del Módulo</param>
+            <param name="usuario">Identificador único del usuario</param>
+            <param name="perfil">Identificador único del perfil</param>
+            <returns>true si el <see cref="T:CodorniX.Modelo.Usuario"/> tiene acceso al <see cref="T:CodorniX.Modelo.Modulo"/>, en caso contrario retornará false.</returns>
+        </member>
+        <member name="M:CodorniX.Modelo.Acceso.ObtenerAppWeb(System.Guid)">
+            <summary>
+            Obtiene el nivel de acceso (WebApp) que posee un usuario, basado en su perfil activo.
+            </summary>
+            <param name="perfil">Identificador único del perfil.</param>
+            <returns>Alguno de los tres niveles de acceso: "Backsite", "Backend" o "Frontend".</returns>
+        </member>
+        <member name="M:CodorniX.Modelo.Acceso.ObtenerHomePerfil(System.Guid)">
+            <summary>
+            Obtiene el Home (módulo o página de inicio) de un usuario, basado en el perfil.
+            </summary>
+            <param name="perfil">Identificador único del perfil.</param>
+            <returns>URL del módulo o página correspondiente.</returns>
+        </member>
+        <member name="M:CodorniX.Modelo.Acceso.ObtenerModulosPorPerfil(System.Guid,System.Nullable{System.Guid})">
+            <summary>
+            Obtiene los módulos que tiene acceso un perfil en específico. Solo debe utilizarse para el
+            control de permisos. En caso de comprobar acceso a un módulo, debe usar <see cref="M:CodorniX.Modelo.Acceso.TieneAccesoAModulo(System.String,System.Guid,System.Guid)"/>.
+            </summary>
+            <param name="perfil">Identificador único del perfil.</param>
+            <param name="nivelAcceso"></param>
+            <returns>Una lista de objetos <see cref="T:CodorniX.Modelo.Modulo"/> accesibles por el perfil especificado.</returns>
+        </member>
+        <member name="M:CodorniX.Modelo.Acceso.ObtenerModulosPorNivel(System.Guid)">
+            <summary>
+            Obtiene los módulos que tiene acceso un nivel de acceso en específico. Solo debe utilizarse para el
+            control de permisos. En caso de comprobar acceso a un módulo, debe usar <see cref="M:CodorniX.Modelo.Acceso.TieneAccesoAModulo(System.String,System.Guid,System.Guid)"/>.
+            </summary>
+            <param name="nivelAcceso">Identificador único del nivel de acceso (WebApp).</param>
+            <returns>Una lista de objetos <see cref="T:CodorniX.Modelo.Modulo"/> accesibles por el nivel especificado.</returns>
+        </member>
+        <member name="M:CodorniX.Modelo.Acceso.ObtenerModulosPorUsuario(System.Guid)">
+            <summary>
+            Obtiene los módulos que tiene acceso un usuario en específico. Solo debe utilizarse para el
+            control de permisos. En caso de comprobar acceso a un módulo, debe usar <see cref="M:CodorniX.Modelo.Acceso.TieneAccesoAModulo(System.String,System.Guid,System.Guid)"/>.
+            </summary>
+            <param name="nivelAcceso">Identificador único del usuario.</param>
+            <returns>Una lista de objetos <see cref="T:CodorniX.Modelo.Modulo"/> accesibles por el usuario especificado.</returns>
+        </member>
+        <member name="M:CodorniX.Modelo.Acceso.ActualizarModulosDelUsuario(System.Guid,System.Collections.Generic.List{System.Guid})">
+            <summary>
+            Realiza una actualización de los módulos autorizados para cierto usuario. Esta operación
+            debe realizarse con mucho cuidado, debio a que puede denegar totalmente el acceso a todos los
+            módulos si la lista de módulos esta vacía.
+            </summary>
+            <param name="uidUsuario">Identificador único del usuario.</param>
+            <param name="modulos">Lista de objetos <see cref="T:CodorniX.Modelo.Modulo"/> autorizados.</param>
+            <returns>true en caso de una actualización completa, en caso de error retorna false.</returns>
+        </member>
+        <member name="T:CodorniX.Modelo.Connection">
+            <summary>
+            Clase de conexión configurable. Permite realizar de forma transparente conexiones a una base de datos
+            SQL Server y activar modos de transacciones sin necesidad de intervención extra.
+            Es necesario tener configurada la clase <see cref="T:CodorniX.Config"/> o registrar un proveedor <see cref="T:CodorniX.IConfigProvider"/>
+            a la instancia global <see cref="T:CodorniX.ConfigProviderManager"/>.
+            </summary>
+        </member>
+        <member name="F:CodorniX.Modelo.Connection._Connection">
+            <summary>
+            Instancia privada de la conexión SQL Server. Se crea con cada nuevo objeto basado en la configuración
+            proveeida en <see cref="T:CodorniX.Config"/> o en los proveedores registrados.
+            </summary>
+        </member>
+        <member name="F:CodorniX.Modelo.Connection.CurrentTransaction">
+            <summary>
+            Transacción actual de la conexión, usada solamente en caso de inicio de transacciones.
+            </summary>
+        </member>
+        <member name="M:CodorniX.Modelo.Connection.Dispose">
+            <summary>
+            Libera los recursos utilizados por <see cref="T:CodorniX.Modelo.Connection"/>.
+            </summary>
+        </member>
+        <member name="M:CodorniX.Modelo.Connection.StartTransaction">
+            <summary>
+            Inicia una transacción SQL.
+            </summary>
+        </member>
+        <member name="M:CodorniX.Modelo.Connection.FinishTransaction">
+            <summary>
+            Finaliza y confirma la transacción SQL.
+            </summary>
+        </member>
+        <member name="M:CodorniX.Modelo.Connection.CancelTransaction">
+            <summary>
+            Finaliza y revierte los cambios hechos durante la transacción SQL.
+            </summary>
+        </member>
+        <member name="M:CodorniX.Modelo.Connection.ExecuteCommand(System.Data.SqlClient.SqlCommand,System.Boolean)">
+            <summary>
+            Execute a SQL DML statement. This method not returns a <seealso cref="T:System.Data.DataTable"/> only bool variable indicating the correct execution.
+            </summary>
+            <param name="command"><seealso cref="T:System.Data.SqlClient.SqlCommand"/> statement</param>
+            <param name="disponse">If it's true, disponse the <seealso cref="T:System.Data.SqlClient.SqlCommand"/> statement; otherwise the caller must free it. By default it's true.</param>
+            <returns>true if the statement executed successfully, otherwise false.</returns>
+        </member>
+        <member name="M:CodorniX.Modelo.Connection.ExecuteQuery(System.Data.SqlClient.SqlCommand)">
+            <summary>
+            Ejecuta una consulta de datos y retorna una instancia <see cref="T:System.Data.DataTable"/> con la información obtenida.
+            Esta variante solo trabaja con la primera tabla de datos que retorna la consulta.
+            </summary>
+            <param name="command">Objeto <see cref="T:System.Data.SqlClient.SqlCommand"/> con la consulta preparada.</param>
+            <returns>Una instancia <see cref="T:System.Data.DataTable"/> con los resultados.</returns>
+        </member>
+        <member name="M:CodorniX.Modelo.Connection.ExecuteQuery(System.String)">
+            <summary>
+            Ejecuta una consulta de datos y retorna una instancia <see cref="T:System.Data.DataTable"/> con la información obtenida.
+            Esta variante solo trabaja con la primera tabla de datos que retorna la consulta.
+            </summary>
+            <param name="command">Cadena de texto con la consulta preparada.</param>
+            <returns>Una instancia <see cref="T:System.Data.DataTable"/> con los resultados.</returns>
+        </member>
+        <member name="T:CodorniX.Modelo.Dias">
+            <summary>
+            Clase que representa los días de la semana.
+            </summary>
+        </member>
+        <member name="P:CodorniX.Modelo.Dias.UidDias">
+            <summary>
+            Identificador único del día.
+            </summary>
+        </member>
+        <member name="P:CodorniX.Modelo.Dias.StrDias">
+            <summary>
+            Cadena de texto representativa del día, por ejemplo: lunes, martes, etc.
+            </summary>
+        </member>
+        <member name="T:CodorniX.Modelo.Dias.Repositorio">
+            <summary>
+            Clase repositorio de <see cref="T:CodorniX.Modelo.Dias"/>.
+            </summary>
+        </member>
+        <member name="M:CodorniX.Modelo.Dias.Repositorio.ConsultarDias">
+            <summary>
+            Obtiene todos los días registrados.
+            </summary>
+            <returns>Lista de los días.</returns>
+        </member>
+        <member name="M:CodorniX.Modelo.Dias.Repositorio.ObtenerDias(System.String)">
+            <summary>
+            Obtiene un día a partir del nombre.
+            </summary>
+            <param name="Dias">cadena de texto con el día</param>
+            <returns>Objeto <see cref="T:CodorniX.Modelo.Dias"/>.</returns>
+        </member>
+        <member name="T:CodorniX.Modelo.Direccion">
+            <summary>
+            Clase que representa las direcciones.
+            </summary>
+        </member>
+        <member name="F:CodorniX.Modelo.Direccion._IsUserCreated">
+            <summary>
+            Indica el estado del objeto. true si es creado por el usuario, false si fue extraido de la base de datos.
+            </summary>
+        </member>
+        <member name="F:CodorniX.Modelo.Direccion._UidDireccion">
+            <summary>
+            Identificador único de dirección
+            </summary>
+        </member>
+        <member name="P:CodorniX.Modelo.Direccion.UidDireccion">
+            <summary>
+            Identificador único de dirección
+            </summary>
+        </member>
+        <member name="F:CodorniX.Modelo.Direccion._UidPais">
+            <summary>
+            Identificador único del país.
+            </summary>
+        </member>
+        <member name="P:CodorniX.Modelo.Direccion.UidPais">
+            <summary>
+            Identificador único del país.
+            </summary>
+        </member>
+        <member name="F:CodorniX.Modelo.Direccion._UidEstado">
+            <summary>
+            Identificador único del estado.
+            </summary>
+        </member>
+        <member name="P:CodorniX.Modelo.Direccion.UidEstado">
+            <summary>
+            Identificador único del estado.
+            </summary>
+        </member>
+        <member name="F:CodorniX.Modelo.Direccion._StrMunicipio">
+            <summary>
+            Nombre del municipio.
+            </summary>
+        </member>
+        <member name="P:CodorniX.Modelo.Direccion.StrMunicipio">
+            <summary>
+            Nombre del municipio.
+            </summary>
+        </member>
+        <member name="F:CodorniX.Modelo.Direccion._StrCiudad">
+            <summary>
+            Nombre de la ciudad.
+            </summary>
+        </member>
+        <member name="P:CodorniX.Modelo.Direccion.StrCiudad">
+            <summary>
+            Nombre de la ciudad.
+            </summary>
+        </member>
+        <member name="F:CodorniX.Modelo.Direccion._StrColonia">
+            <summary>
+            Nombre de la colonia.
+            </summary>
+        </member>
+        <member name="P:CodorniX.Modelo.Direccion.StrColonia">
+            <summary>
+            Nombre de la colonia.
+            </summary>
+        </member>
+        <member name="F:CodorniX.Modelo.Direccion._StrCalle">
+            <summary>
+            Calle sobre la que se encuentra
+            </summary>
+        </member>
+        <member name="P:CodorniX.Modelo.Direccion.StrCalle">
+            <summary>
+            Calle sobre la que se encunetra.
+            </summary>
+        </member>
+        <member name="F:CodorniX.Modelo.Direccion._StrConCalle">
+            <summary>
+            Calle lateral
+            </summary>
+        </member>
+        <member name="P:CodorniX.Modelo.Direccion.StrConCalle">
+            <summary>
+            Calle lateral
+            </summary>
+        </member>
+        <member name="F:CodorniX.Modelo.Direccion._StrYCalle">
+            <summary>
+            Calle lateral
+            </summary>
+        </member>
+        <member name="P:CodorniX.Modelo.Direccion.StrYCalle">
+            <summary>
+            Calle lateral
+            </summary>
+        </member>
+        <member name="F:CodorniX.Modelo.Direccion._StrNoExt">
+            <summary>
+            Número exterior.
+            </summary>
+        </member>
+        <member name="P:CodorniX.Modelo.Direccion.StrNoExt">
+            <summary>
+            Número exterior.
+            </summary>
+        </member>
+        <member name="F:CodorniX.Modelo.Direccion._StrNoInt">
+            <summary>
+            Número interior.
+            </summary>
+        </member>
+        <member name="P:CodorniX.Modelo.Direccion.StrNoInt">
+            <summary>
+            Número interior.
+            </summary>
+        </member>
+        <member name="F:CodorniX.Modelo.Direccion._StrReferencia">
+            <summary>
+            Referencia para la ubicación.
+            </summary>
+        </member>
+        <member name="P:CodorniX.Modelo.Direccion.StrReferencia">
+            <summary>
+            Referencia para la ubicación.
+            </summary>
+        </member>
+        <member name="P:CodorniX.Modelo.Direccion.LongDirection">
+            <summary>
+            Dirección en formato largo.
+            </summary>
+        </member>
+        <member name="T:CodorniX.Modelo.Direccion.Repository">
+            <summary>
+            Clase repositorio de <see cref="T:CodorniX.Modelo.Direccion"/>.
+            </summary>
+        </member>
+        <member name="F:CodorniX.Modelo.Direccion.Repository._Conexion">
+            <summary>
+            Instancia de conexión.
+            </summary>
+        </member>
+        <member name="M:CodorniX.Modelo.Direccion.Repository.InternalUpdate(CodorniX.Modelo.Direccion)">
+            <summary>
+            Actualización de una dirección.
+            </summary>
+            <param name="direccion">objeto dirección a actualizar.</param>
+            <returns>true si se realizo correctamente, false en caso contrario.</returns>
+        </member>
+        <member name="M:CodorniX.Modelo.Direccion.Repository.Save(CodorniX.Modelo.Direccion)">
+            <summary>
+            Guarda una dirección en la base de datos. En este caso solo actualiza.
+            </summary>
+            <param name="direccion">objeto dirección a actualizar.</param>
+            <returns>true si se guardo correctamente, false en caso contrario.</returns>
+        </member>
+        <member name="M:CodorniX.Modelo.Direccion.Repository.Find(System.Guid)">
+            <summary>
+            Obtiene una dirección a partir de su identificador único.
+            </summary>
+            <param name="uid">Identificador único.</param>
+            <returns>objeto dirección.</returns>
+        </member>
+        <member name="T:CodorniX.Util.DatabaseException">
+            <summary>
+            Represet all error while a table is populating.
+            </summary>
+        </member>
+        <member name="M:CodorniX.Util.DatabaseException.#ctor">
+            <summary>
+            Create a new <seealso cref="T:CodorniX.Util.DatabaseException"/>.
+            </summary>
+        </member>
+        <member name="M:CodorniX.Util.DatabaseException.#ctor(System.String)">
+            <summary>
+            Create a new <seealso cref="T:CodorniX.Util.DatabaseException"/> with a error message.
+            </summary>
+            <param name="message">Message than contains the reason or error.</param>
+        </member>
+        <member name="M:CodorniX.Util.DatabaseException.#ctor(System.String,System.Exception)">
+            <summary>
+            Create a new <seealso cref="T:CodorniX.Util.DatabaseException"/> with a error message.
+            </summary>
+            <param name="message">Message than contains the reason or error.</param>
+            <param name="baseException">The base exception, usually a <seealso cref="T:System.Data.SqlClient.SqlException"/></param>
+        </member>
+    </members>
+</doc>

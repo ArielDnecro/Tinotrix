@@ -1,0 +1,270 @@
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\SqlServerTypes\x64\msvcr120.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\SqlServerTypes\x64\SqlServerSpatial140.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\SqlServerTypes\x86\msvcr120.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\SqlServerTypes\x86\SqlServerSpatial140.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\roslyn\csc.exe
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\roslyn\vbc.exe
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\roslyn\VBCSCompiler.exe
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\CodorniX.WebApp.dll.config
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\CodorniX.WebApp.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\CodorniX.WebApp.pdb
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\CodorniX.Common.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.ReportViewer.DataVisualization.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.ReportViewer.Design.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.ReportViewer.WebDesign.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.ReportViewer.WebForms.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.ReportViewer.WinForms.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.SqlServer.Types.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\EnvDTE.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.VisualStudio.Shell.Interop.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.VisualStudio.Shell.Interop.8.0.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\stdole.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.VisualStudio.OLE.Interop.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.VisualStudio.TextManager.Interop.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.VisualStudio.VSHelp.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.VisualStudio.Shell.Interop.9.0.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.VisualStudio.ProjectAggregator.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.VisualStudio.ComponentModelHost.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.VisualStudio.TemplateWizardInterface.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.VisualStudio.Debugger.InteropA.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\EnvDTE80.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.Build.Tasks.Core.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.VisualStudio.Data.Services.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\VSLangProj.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.VisualStudio.Shell.Interop.11.0.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.VisualStudio.Data.Core.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.VisualStudio.Shell.Interop.10.0.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\VSLangProj80.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.VisualStudio.ManagedInterfaces.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.VisualStudio.WCFReference.Interop.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.VisualStudio.Debugger.Interop.11.0.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Newtonsoft.Json.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.VisualStudio.GraphModel.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.MSXML.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.Build.Utilities.Core.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.VisualStudio.TextManager.Interop.10.0.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.Build.Framework.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\VSLangProj2.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\System.Collections.Immutable.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\CodorniX.Common.pdb
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\CodorniX.Common.xml
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\Microsoft.VisualStudio.TemplateWizardInterface.xml
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\de\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\es\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\fr\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\it\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\ja\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\ko\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\pt\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\ru\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\zh-CHS\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\zh-CHT\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\es\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\de\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\es\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\fr\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\it\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\ja\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\ko\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\pt\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\ru\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\de\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\es\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\fr\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\it\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\ja\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\ko\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\pt\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\ru\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\zh-CHS\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\zh-CHT\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\de\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\es\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\fr\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\it\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\ja\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\ko\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\pt\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\ru\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\zh-CHS\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\zh-CHT\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\de\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\es\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\fr\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\it\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\ja\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\ko\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\pt\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\ru\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\es\Microsoft.VisualStudio.Data.Services.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\bin\es\Microsoft.VisualStudio.Data.Core.resources.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\obj\Debug\CodorniX.WebApp.csprojResolveAssemblyReference.cache
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\obj\Debug\CodorniX.WebApp.dll
+C:\Users\chess\Documents\Source\Repos\codornix\CodorniX\obj\Debug\CodorniX.WebApp.pdb
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\SqlServerTypes\x64\msvcr120.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\SqlServerTypes\x64\SqlServerSpatial140.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\SqlServerTypes\x86\msvcr120.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\SqlServerTypes\x86\SqlServerSpatial140.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\roslyn\csc.exe
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\roslyn\vbc.exe
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\roslyn\VBCSCompiler.exe
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\CodorniX.WebApp.dll.config
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\CodorniX.WebApp.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\CodorniX.WebApp.pdb
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\CodorniX.Common.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.ReportViewer.DataVisualization.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.ReportViewer.Design.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.ReportViewer.WebDesign.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.ReportViewer.WebForms.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.ReportViewer.WinForms.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.SqlServer.Types.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\EnvDTE.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.Shell.Interop.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.Shell.Interop.8.0.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\stdole.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.OLE.Interop.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.TextManager.Interop.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.VSHelp.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.Shell.Immutable.11.0.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.Shell.Immutable.10.0.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.Shell.Immutable.14.0.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.Shell.Interop.9.0.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.ProjectAggregator.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.Shell.Immutable.12.0.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.ComponentModelHost.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.Designer.Interfaces.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.TemplateWizardInterface.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.Debugger.InteropA.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\EnvDTE80.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.Build.Tasks.Core.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.Data.Services.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\VSLangProj.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.Shell.Interop.11.0.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.Data.Core.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.Shell.Interop.10.0.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\VSLangProj80.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.ManagedInterfaces.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.WCFReference.Interop.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.Debugger.Interop.11.0.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Newtonsoft.Json.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.GraphModel.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.MSXML.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.Build.Utilities.Core.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.TextManager.Interop.10.0.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.Build.Framework.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\VSLangProj2.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\System.Collections.Immutable.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\CodorniX.Common.pdb
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\CodorniX.Common.xml
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.Shell.Immutable.11.0.xml
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.Shell.Immutable.10.0.xml
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.Shell.Immutable.14.0.xml
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.Shell.Immutable.12.0.xml
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.Designer.Interfaces.xml
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\Microsoft.VisualStudio.TemplateWizardInterface.xml
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\de\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\es\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\fr\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\it\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\ja\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\ko\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\pt\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\ru\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\zh-CHS\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\zh-CHT\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\es\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\de\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\es\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\fr\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\it\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\ja\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\ko\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\pt\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\ru\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\de\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\es\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\fr\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\it\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\ja\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\ko\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\pt\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\ru\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\zh-CHS\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\zh-CHT\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\de\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\es\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\fr\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\it\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\ja\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\ko\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\pt\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\ru\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\zh-CHS\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\zh-CHT\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\de\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\es\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\fr\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\it\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\ja\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\ko\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\pt\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\ru\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\es\Microsoft.VisualStudio.Data.Services.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\bin\es\Microsoft.VisualStudio.Data.Core.resources.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\obj\Debug\CodorniX.WebApp.csprojResolveAssemblyReference.cache
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\obj\Debug\CodorniX.WebApp.dll
+C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\CodorniX\obj\Debug\CodorniX.WebApp.pdb

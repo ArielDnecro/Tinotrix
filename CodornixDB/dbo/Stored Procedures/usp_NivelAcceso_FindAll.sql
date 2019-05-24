@@ -1,0 +1,6 @@
+﻿CREATE PROCEDURE usp_NivelAcceso_FindAll
+AS
+
+SET NOCOUNT ON
+
+SELECT * FROM NivelAcceso

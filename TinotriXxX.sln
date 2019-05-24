@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodorniX.WebApp", "CodorniX\CodorniX.WebApp.csproj", "{CC6A5954-FC3C-4750-AF90-623FB35779AD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{949FB113-9029-46C9-811E-481148A336DC} = {949FB113-9029-46C9-811E-481148A336DC}
+	EndProjectSection
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CodornixDB", "CodornixDB\CodornixDB.sqlproj", "{267EE95D-7E03-4195-98B4-82D42D8C820C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodorniX.Common", "LibCodorniX\CodorniX.Common.csproj", "{949FB113-9029-46C9-811E-481148A336DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinoTriXxX", "TinoTriXxX\TinoTriXxX.csproj", "{9E193885-E6D9-44C6-B820-A7753313F49A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinoTriXxX Server", "TinoTriXxX Server\TinoTriXxX Server.csproj", "{6DA54790-4E77-429A-907E-A2377AA0E8A5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC6A5954-FC3C-4750-AF90-623FB35779AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC6A5954-FC3C-4750-AF90-623FB35779AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC6A5954-FC3C-4750-AF90-623FB35779AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC6A5954-FC3C-4750-AF90-623FB35779AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{267EE95D-7E03-4195-98B4-82D42D8C820C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{267EE95D-7E03-4195-98B4-82D42D8C820C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{267EE95D-7E03-4195-98B4-82D42D8C820C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{267EE95D-7E03-4195-98B4-82D42D8C820C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{267EE95D-7E03-4195-98B4-82D42D8C820C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{267EE95D-7E03-4195-98B4-82D42D8C820C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{949FB113-9029-46C9-811E-481148A336DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{949FB113-9029-46C9-811E-481148A336DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{949FB113-9029-46C9-811E-481148A336DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{949FB113-9029-46C9-811E-481148A336DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E193885-E6D9-44C6-B820-A7753313F49A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E193885-E6D9-44C6-B820-A7753313F49A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E193885-E6D9-44C6-B820-A7753313F49A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E193885-E6D9-44C6-B820-A7753313F49A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DA54790-4E77-429A-907E-A2377AA0E8A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DA54790-4E77-429A-907E-A2377AA0E8A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DA54790-4E77-429A-907E-A2377AA0E8A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DA54790-4E77-429A-907E-A2377AA0E8A5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

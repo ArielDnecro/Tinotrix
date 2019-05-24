@@ -1,0 +1,84 @@
+06/07/2017 10:06:32	Este registro contiene información acerca de la operación de importación de esquema en el proyecto 'CodornixDB' del equipo 'LAPTOP-M0KTBVTU' por el usuario 'chess'.
+06/07/2017 10:06:33	Se inició la importación del esquema de la base de datos.
+06/07/2017 10:07:10	Recopilando credenciales de la base de datos
+06/07/2017 10:07:10	Recopilando opciones de base de datos
+06/07/2017 10:07:10	Recopilando usuarios
+06/07/2017 10:07:10	Recopilando roles
+06/07/2017 10:07:10	Recopilando roles de aplicación
+06/07/2017 10:07:10	Recopilando pertenencias a roles
+06/07/2017 10:07:10	Recopilando grupos de archivos
+06/07/2017 10:07:10	Recopilando catálogos de texto completo
+06/07/2017 10:07:10	Recopilando ensamblados
+06/07/2017 10:07:10	Recopilando certificados
+06/07/2017 10:07:10	Recopilando claves asimétricas
+06/07/2017 10:07:10	Recopilando claves simétricas
+06/07/2017 10:07:10	Recopilando claves simétricas cifradas
+06/07/2017 10:07:10	Recopilando esquemas
+06/07/2017 10:07:10	Recopilando colecciones de esquemas XML
+06/07/2017 10:07:10	Recopilando tipos de datos definidos por el usuario
+06/07/2017 10:07:10	Recopilando tipos definidos por el usuario
+06/07/2017 10:07:10	Recopilando tipos de tabla
+06/07/2017 10:07:10	Recopilando claves únicas para tipos de tabla
+06/07/2017 10:07:10	Recopilando claves principales para tipos de tabla
+06/07/2017 10:07:10	Recopilando índices para tipos de tablas
+06/07/2017 10:07:10	Recopilando restricciones CHECK para tipos de tabla
+06/07/2017 10:07:10	Recopilando restricciones DEFAULT para tipos de tabla
+06/07/2017 10:07:10	Recopilando funciones de partición
+06/07/2017 10:07:10	Recopilando esquemas de partición
+06/07/2017 10:07:10	Recopilando funciones
+06/07/2017 10:07:10	Recopilando funciones cifradas
+06/07/2017 10:07:10	Recopilando agregados
+06/07/2017 10:07:10	Recopilando procedimientos
+06/07/2017 10:07:11	Recopilando procedimientos cifrados
+06/07/2017 10:07:11	Recopilando tablas
+06/07/2017 10:07:11	Recopilando claves principales
+06/07/2017 10:07:11	Recopilando restricciones UNIQUE
+06/07/2017 10:07:11	Recopilando claves externas
+06/07/2017 10:07:11	Recopilando restricciones DEFAULT
+06/07/2017 10:07:11	Recopilando restricciones CHECK
+06/07/2017 10:07:11	Recopilando vistas
+06/07/2017 10:07:11	Recopilando vistas cifradas
+06/07/2017 10:07:11	Recopilando índices
+06/07/2017 10:07:11	Recopilando estadísticas
+06/07/2017 10:07:11	Recopilando listas de palabras irrelevantes de índices de texto completo
+06/07/2017 10:07:11	Recopilando listas de propiedades de búsqueda
+06/07/2017 10:07:11	Recopilando propiedades de búsqueda
+06/07/2017 10:07:11	Recopilando índices de texto completo
+06/07/2017 10:07:11	Recopilando índices de almacenamiento de columnas
+06/07/2017 10:07:11	Recopilando índices espaciales
+06/07/2017 10:07:27	Recopilando índices XML
+06/07/2017 10:07:27	Recopilando índices XML selectivos
+06/07/2017 10:07:27	Recopilando desencadenadores cifrados
+06/07/2017 10:07:27	Recopilando desencadenadores
+06/07/2017 10:07:27	Recopilando DDL triggers cifrados y de CLR
+06/07/2017 10:07:27	Recopilando DDL triggers
+06/07/2017 10:07:27	Recopilando sinónimos
+06/07/2017 10:07:27	Recopilando valores predeterminados
+06/07/2017 10:07:27	Recopilando enlaces UDDT de restricción de datos
+06/07/2017 10:07:27	Recopilando reglas
+06/07/2017 10:07:27	Recopilando enlaces UDDT de restricción de datos
+06/07/2017 10:07:27	Recopilando tipos de mensaje
+06/07/2017 10:07:27	Recopilando colas
+06/07/2017 10:07:27	Recopilando contratos
+06/07/2017 10:07:27	Recopilando servicios
+06/07/2017 10:07:27	Recopilando notificaciones de eventos
+06/07/2017 10:07:27	Recopilando enlaces de servicio remoto
+06/07/2017 10:07:27	Recopilando prioridades de Broker
+06/07/2017 10:07:27	Recopilando firmas
+06/07/2017 10:07:27	Recopilando opciones de compresión de datos
+06/07/2017 10:07:27	Recopilando tipos de secuencia
+06/07/2017 10:07:27	Recopilando directivas de seguridad
+06/07/2017 10:07:27	Recopilar claves de cifrado de columna
+06/07/2017 10:07:27	Recopilando claves maestras de columna
+06/07/2017 10:07:27	Recopilando orígenes de datos externos
+06/07/2017 10:07:27	Recopilando formatos de archivo externos
+06/07/2017 10:07:27	Recopilando tablas externas
+06/07/2017 10:07:27	Recopilando propiedades extendidas
+06/07/2017 10:07:27	Recopilando credenciales
+06/07/2017 10:07:27	Recopilando inicios de sesión
+06/07/2017 10:07:27	Recopilando auditorías de servidor
+06/07/2017 10:07:28	Buscando elementos duplicados en el proyecto
+06/07/2017 10:07:28	Ha finalizado el procesamiento de los elementos duplicados
+06/07/2017 10:07:29	Finalizó la importación de la base de datos.
+06/07/2017 10:07:29	Se guardó un resumen de la importación en la siguiente ubicación: C:\Users\chess\Documents\Source\Repos\codornix\CodornixDB\Registros de importación de esquemas\CodornixDB_20170706030632.log
+06/07/2017 10:07:29	Haga clic en Finalizar para continuar...

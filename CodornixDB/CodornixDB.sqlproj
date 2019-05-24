@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>CodornixDB</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{267ee95d-7e03-4195-98b4-82d42d8c820c}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>CodornixDB</RootNamespace>
+    <AssemblyName>CodornixDB</AssemblyName>
+    <ModelCollation>3082,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>Modern_Spanish_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Android Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\EmpresaPerfil.sql" />
+    <Build Include="dbo\Tables\Perfil.sql" />
+    <Build Include="dbo\Tables\Acceso.sql" />
+    <Build Include="dbo\Tables\AccesoUsuario.sql" />
+    <Build Include="dbo\Tables\AppUser.sql" />
+    <Build Include="dbo\Tables\Area.sql" />
+    <Build Include="dbo\Tables\Departamento.sql" />
+    <Build Include="dbo\Tables\Direccion.sql" />
+    <Build Include="dbo\Tables\Empresa.sql" />
+    <Build Include="dbo\Tables\EmpresaDireccion.sql" />
+    <Build Include="dbo\Tables\EmpresaTelefono.sql" />
+    <Build Include="dbo\Tables\Estado.sql" />
+    <Build Include="dbo\Tables\Estatus.sql" />
+    <Build Include="dbo\Tables\Modulo.sql" />
+    <Build Include="dbo\Tables\ModuloTemporal.sql" />
+    <Build Include="dbo\Tables\NivelAcceso.sql" />
+    <Build Include="dbo\Tables\NivelModulo.sql" />
+    <Build Include="dbo\Tables\Pais.sql" />
+    <Build Include="dbo\Tables\PerfilModulo.sql" />
+    <Build Include="dbo\Tables\Periodo.sql" />
+    <Build Include="dbo\Tables\Sucursal.sql" />
+    <Build Include="dbo\Tables\SucursalDireccion.sql" />
+    <Build Include="dbo\Tables\SucursalTelefono.sql" />
+    <Build Include="dbo\Tables\Telefono.sql" />
+    <Build Include="dbo\Tables\Tipo.sql" />
+    <Build Include="dbo\Tables\TipoSucursal.sql" />
+    <Build Include="dbo\Tables\TipoTelefono.sql" />
+    <Build Include="dbo\Tables\Turno.sql" />
+    <Build Include="dbo\Tables\URL.sql" />
+    <Build Include="dbo\Tables\Usuario.sql" />
+    <Build Include="dbo\Tables\UsuarioDireccion.sql" />
+    <Build Include="dbo\Tables\UsuarioEmpresa.sql" />
+    <Build Include="dbo\Tables\UsuarioPerfilEmpresa.sql" />
+    <Build Include="dbo\Tables\UsuarioPerfilSucursal.sql" />
+    <Build Include="dbo\Tables\UsuarioSucursal.sql" />
+    <Build Include="dbo\Tables\UsuarioTelefono.sql" />
+    <Build Include="dbo\Tables\Encargado.sql" />
+    <Build Include="dbo\Functions\CSVtoTable.sql" />
+    <Build Include="dbo\Stored Procedures\usp_NivelAcceso_FindAll.sql" />
+    <Build Include="dbo\Stored Procedures\sp_BuscarEmpresa.sql" />
+    <Build Include="dbo\Stored Procedures\sp_CargarHome.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Modulo_FindByNivel.sql" />
+    <Build Include="dbo\Stored Procedures\usp_NivelAcceso_FindByName.sql" />
+    <Build Include="dbo\Stored Procedures\PerfilesEmpresa.sql" />
+    <Build Include="dbo\Stored Procedures\sp_AgregarNivelAccesoModulo.sql" />
+    <Build Include="dbo\Stored Procedures\sp_AgregarUsuarioPerfilEmpresa.sql" />
+    <Build Include="dbo\Stored Procedures\sp_AgregarUsuarioPerfilSucursal.sql" />
+    <Build Include="dbo\Stored Procedures\sp_BuscarEncargado.sql" />
+    <Build Include="dbo\Stored Procedures\sp_BuscarUsuario.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ConsultarModulo.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ConsultarNivelAcceso.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ConsultarPerfil.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ConsultarTodoslosModulos.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ConsultarUSuario.sql" />
+    <Build Include="dbo\Stored Procedures\sp_InsertarPerfil.sql" />
+    <Build Include="dbo\Stored Procedures\sp_InsertarPerfilsinempresa.sql" />
+    <Build Include="dbo\Stored Procedures\sp_InsertarUsuario.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ModificarPerfil.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ModificarPerfiles.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ModificarUsuario.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ModificarUsuarioPerfilEmpresa.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ModificarUsuarioPerfilSucursal.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ModuloPorAcceso.sql" />
+    <Build Include="dbo\Stored Procedures\sp_PerfilBackside.sql" />
+    <Build Include="dbo\Stored Procedures\sp_PerfilEmpresa.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Perfiles.sql" />
+    <Build Include="dbo\Stored Procedures\sp_PerfilModulos.sql" />
+    <Build Include="dbo\Stored Procedures\sp_PerfilPorEmpresa.sql" />
+    <Build Include="dbo\Stored Procedures\sp_PerfilSucursal.sql" />
+    <Build Include="dbo\Stored Procedures\sp_UsuarioPerfilEmpresa.sql" />
+    <Build Include="dbo\Stored Procedures\sp_UsuarioPerfilSucursal.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Acceso.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AccesoUsuario.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AccesoUsuario_AddEntry.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AccesoUsuario_FindByUsuario.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AccesoUsuario_RemoveAll.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AppUser_Add.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AppUser_Find.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AppUser_Search.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AppUser_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AppWeb.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Area_Add.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Area_Find.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Area_Search.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Area_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Departamento_Add.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Departamento_Find.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Departamento_Search.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Departamento_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Direccion_Find.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Direccion_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Empresa_Add.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Empresa_Find.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Empresa_Search.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Empresa_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_EmpresaDireccion_Add.sql" />
+    <Build Include="dbo\Stored Procedures\usp_EmpresaDireccion_FindAll.sql" />
+    <Build Include="dbo\Stored Procedures\usp_EmpresaDireccion_Remove.sql" />
+    <Build Include="dbo\Stored Procedures\usp_EmpresaTelefono_Add.sql" />
+    <Build Include="dbo\Stored Procedures\usp_EmpresaTelefono_FindAll.sql" />
+    <Build Include="dbo\Stored Procedures\usp_EmpresaTelefono_Remove.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Estado_FindAll.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Modulo_FindByPerfil.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ObtenerHomePerfil.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Pais_FindAll.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Periodo_Find.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Periodo_Search.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Sucursal_Add.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Sucursal_Find.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Sucursal_FindAll.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Sucursal_Search.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Sucursal_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_SucursalDireccion_Add.sql" />
+    <Build Include="dbo\Stored Procedures\usp_SucursalDireccion_FindAll.sql" />
+    <Build Include="dbo\Stored Procedures\usp_SucursalDireccion_Remove.sql" />
+    <Build Include="dbo\Stored Procedures\usp_SucursalTelefono_Add.sql" />
+    <Build Include="dbo\Stored Procedures\usp_SucursalTelefono_FindAll.sql" />
+    <Build Include="dbo\Stored Procedures\usp_SucursalTelefono_Remove.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Telefono_Find.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Telefono_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Tipo_FindAll.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TipoSucursal_FindAll.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TipoTelefono_FindAll.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Turno_FindAll.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UsuarioDireccion_Add.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UsuarioDireccion_FindAll.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UsuarioDireccion_Remove.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UsuarioEmpresa_FindAll.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UsuarioTelefono_Add.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UsuarioTelefono_FindAll.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UsuarioTelefono_Remove.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Periodo_Add.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Turno_Find.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Periodo_Usuario_Search.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Periodo_Last.sql" />
+    <Build Include="dbo\Stored Procedures\usp_NivelAcceso_Find.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ConsultarModuloBackend.sql" />
+    <Build Include="dbo\Stored Procedures\sp_CargarTodoslosModulosBackend.sql" />
+    <Build Include="dbo\Stored Procedures\usp_BuscarSucursal.sql" />
+    <Build Include="dbo\Tables\UnidadMedida.sql" />
+    <Build Include="dbo\Tables\TipoFrecuencia.sql" />
+    <Build Include="dbo\Tables\Tarea.sql" />
+    <Build Include="dbo\Tables\PeriodicidadSemanal.sql" />
+    <Build Include="dbo\Tables\PeriodicidadMensual.sql" />
+    <Build Include="dbo\Tables\Periodicidad.sql" />
+    <Build Include="dbo\Tables\Evaluacion.sql" />
+    <Build Include="dbo\Tables\EstadoCumplimiento.sql" />
+    <Build Include="dbo\Tables\DepartamentoTarea.sql" />
+    <Build Include="dbo\Tables\Cumplimiento.sql" />
+    <Build Include="dbo\Tables\Actividad.sql" />
+    <Build Include="dbo\Tables\PeriodicidadAnual.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Tarea_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Tarea_Add.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PeriodicidadSemanal.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PeriodicidadMensual.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PeriodicidadAnual.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Periodicidad_Add.sql" />
+    <Build Include="dbo\Functions\f_Periodicidad.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Tarea_FindByUser.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ConsultarUnidadMedida.sql" />
+    <Build Include="dbo\Tables\Ordinal.sql" />
+    <Build Include="dbo\Tables\Meses.sql" />
+    <Build Include="dbo\Tables\Dias.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Tarea_Find.sql" />
+    <Build Include="dbo\Stored Procedures\usp_DepartamentoTarea_Add.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ConsultarTipoFrecuencia.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ConsultarOrdinal.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ConsultarMeses.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ConsultarDias.sql" />
+    <Build Include="dbo\Stored Procedures\usp_BuscarTarea.sql" />
+    <Build Include="dbo\Stored Procedures\usp_User_FindByName.sql" />
+    <Build Include="dbo\Stored Procedures\usp_BuscarPeriodicidad.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ConsultarDepartamentoTarea.sql" />
+    <Build Include="dbo\Stored Procedures\usp_BuscarPeriodicidadSemanal.sql" />
+    <Build Include="dbo\Stored Procedures\usp_BuscarPeriodicidadMensual.sql" />
+    <Build Include="dbo\Stored Procedures\usp_BuscarPeriodicidadAnual.sql" />
+    <Build Include="dbo\Stored Procedures\usp_BuscarOrdinal.sql" />
+    <Build Include="dbo\Stored Procedures\usp_BuscarMeses.sql" />
+    <Build Include="dbo\Stored Procedures\usp_BuscarDias.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ModificarTarea.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ConsultarTarea.sql" />
+    <Build Include="dbo\Tables\Opciones.sql" />
+    <Build Include="dbo\Tables\Medicion.sql" />
+    <Build Include="dbo\Functions\f_PeriodicidadRango.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Tarea_ListOfDayUser.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Tarea_ListOfDay.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ModificarPeriodicidad.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Empresa_SearchF.sql" />
+    <Build Include="dbo\Stored Procedures\usp_DepartamentoTarea_Eliminar.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ConsultarMedicion.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TareaTelefono_Buscar.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TareaOpcion_Add.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ModificarOpciones.sql" />
+    <Build Include="dbo\Tables\TipoTarea.sql" />
+    <Build Include="dbo\Functions\fn_PeriodicidadSemanal.sql" />
+    <Build Include="dbo\Functions\fn_PeriodicidadDiaria.sql" />
+    <Build Include="dbo\Functions\_fn_PeriodicidadSemanal_Eval.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Cumplimiento_FindBy.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Cumplimiento_Find.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Cumplimiento_Add.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ConsultarTipoTarea.sql" />
+    <Build Include="dbo\Functions\fn_PeriodicidadMensual.sql" />
+    <Build Include="dbo\Tables\TareaArea.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TareaArea_Add.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Cumplimiento_ListByUser.sql" />
+    <Build Include="dbo\Functions\f_ObtenerPeriodicidad.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Cumplimiento_Do.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ConsultarAreaTarea.sql" />
+    <Build Include="dbo\Tables\InicioTurno.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ObtenerInicioTurno.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ModificarInicioTurno.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ModificarCaducado.sql" />
+    <Build Include="dbo\Stored Procedures\usp_IniciarTurno_Add.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Cumplimiento_NumeroTareas.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ActualizarCumplimiento.sql" />
+    <Build Include="dbo\Stored Procedures\usp_HistorialDepartamento_Consultar.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ConsultarInicioTurno.sql" />
+    <Build Include="dbo\Stored Procedures\usp_BuscarPeriodo.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TareasRequeridasNoCumplidas.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TareasNoCumplidas.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TareasCumplidas.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ContarTareas_Consultar.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Cumplimiento_Reporte.sql" />
+    <Build Include="dbo\Tables\Revision.sql" />
+    <Build Include="dbo\Tables\AsignacionSupervision.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Revision_ListByUser.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Revision_Do.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AsignacionSupervision_Search.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AsignacionSupervision_Last.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AsignacionSupervision_Find.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AsignacionSupervision_Add.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ObtenerTurno_Usuario.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ObtenerPeriodoTurno.sql" />
+    <Build Include="dbo\Stored Procedures\Usp_obtenerCumplimiento.sql" />
+    <Build Include="dbo\Stored Procedures\usp_BuscarCumplimiento.sql" />
+    <Build Include="dbo\Stored Procedures\usp_InicioTurnoPorPeriodo.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Revision_Find.sql" />
+    <Build Include="dbo\Stored Procedures\usp_DepartamentoSeleccionado.sql" />
+  </ItemGroup>
+</Project>

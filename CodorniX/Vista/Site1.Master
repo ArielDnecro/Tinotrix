@@ -1,0 +1,166 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.Master.cs" Inherits="CodorniX.Vista.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <title>TinotriX</title>
+    
+    <!---->
+    <script src="../Scripts/jquery-3.1.1.js"></script>
+    <script src="../Scripts/bootstrap.js"></script>
+    <link href="../Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <link href="../Content/pager.css" rel="stylesheet" />
+    <link href="../Content/style.css" rel="stylesheet" />
+
+    <link href="../Content/bootstrap-datepicker3.css" rel="stylesheet" />
+    <script src="../Scripts/bootstrap-datepicker.js"></script>
+    <script src="../Scripts/locales/bootstrap-datepicker.es.min.js"></script>
+    <link href="../Content/bootstrap-clockpicker.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-clockpicker.min.js"></script>
+    <script src="../Scripts/bootstrap-clockpicker.min.js"></script>
+
+   
+    <script src="../Scripts/DialogBoxService.js"></script>
+    <script src="../Assets/Login/jquery.backstretch.min.js"></script>
+    <script src="../Scripts/scripts.js"></script>
+
+</head>
+<body class="container-fluid" style="padding-bottom: 70px; padding-top: 70px;">
+    <form id="form1" runat="server">
+        <asp:ScriptManager runat="server">
+        </asp:ScriptManager>
+        <asp:UpdatePanel runat="server">
+            <ContentTemplate>
+                <!-- confirmaciosalir -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Tinotrix confirmacion</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                ¿Desea usted salir de Tinotrix?
+                            </div>
+                            <div class="modal-footer">
+                                <asp:Button runat="server" ID="btnCancelar" Cssclass="btn btn-secondary" Text="Cancelar" data-dismiss="modal" />
+                                <asp:Button runat="server" ID="btnConfirmar" Cssclass="btn btn-primary" Text="Confirmar" OnClick="btnCerrarSession_Click" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Barra superior -->
+                <div class="navbar navbar-fixed-top panel-primary navbar-inverse form-top ">
+                    <div class="container-fluid">
+                        <div class="navbar-header" style=" margin-left: 5px;   margin-right: 40px;" >
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar1" aria-expanded="false">
+                                <span class="sr-only">Toggle</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <asp:LinkButton ID="btnHome" runat="server" OnClick="btnHome_Click"  CssClass="navbar-brand btn btn-primary"  ForeColor="White"  > 
+                                 <span class="glyphicon glyphicon-camera"></span>
+                                 TINOTRIX
+                            </asp:LinkButton>
+                        </div>
+                        <div class="collapse navbar-collapse" id="navbar1">
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown" id="menuEmpresas" runat="server">
+                                     <a class="btn btn-primary" data-toggle="dropdown" href="#"  style="margin-right: 5px; color:white"  >
+                                       <span class="glyphicon glyphicon-globe"></span>
+                                             Empresas
+                                       <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li id="activoEmpresa" runat="server"><a href="Empresas.aspx">Datos</a></li>
+                                        <li id="activoAdmin" runat="server"><a href="Usuarios.aspx">Usuarios</a></li>
+                                        <li id="activoPerfiles" runat="server"><a href="Perfiles.aspx">Perfiles</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown" id="menuSucursales" runat="server">
+                                    <a class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="#"  style="color:white">
+                                         <span class="glyphicon glyphicon-home"></span>
+                                        Sucursales
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li id="activoSucursales" runat="server">
+                                            <a href="Sucursales.aspx">Datos</a>
+                                        </li>
+                                        <li id="activoEncargados" runat="server">
+                                            <a href="Encargados.aspx">Encargados</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li id="empresaActual" runat="server">
+                                    <a href="#" style="color:white; margin-right: 5px;"  >
+                                         <span class="glyphicon glyphicon-globe"></span>
+                                        Empresa:
+                                        <asp:Label ID="lblEmpresa" runat="server" Text="(ninguna)" />
+                                    </a>
+                                </li>
+                                <li id="sucursalActual" runat="server">
+                                    <a href="#" style="color:white; margin-right: 5px;">Sucursal:
+                                        <asp:Label ID="lblSucursal" runat="server" Text="(ninguna)" /></a>
+                                </li>
+                                <li>
+                                    <button type="button" class=" navbar-brand btn btn-danger " data-toggle="modal" data-target="#exampleModal" style="color:white;" >
+                                        <span class="glyphicon glyphicon-off"></span>
+                                    </button>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                      
+                </div>
+
+                <asp:ContentPlaceHolder ID="ContenidoDelSitio" runat="server">
+                </asp:ContentPlaceHolder>
+                <!-- Barra inferior -->
+
+                <!--<div class="navbar navbar-default navbar-fixed-bottom navbar-inverse">-->
+                <div class="navbar navbar-fixed-bottom panel-primary navbar-inverse form-bottom">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar2" aria-expanded="false">
+                                <span class="sr-only">Toggle</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a href="DatosUsuario.aspx" class="navbar-brand" style="color:white">
+                                <span class="glyphicon glyphicon-user"></span>
+                               <label> : </label>
+                                <asp:Label ID="lblUsuario" runat="server" /></a>
+                        </div>
+                        <!--<div class="collapse navbar-collapse" id="navbar2" hidden="hidden">
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <a href="HomeBS.aspx"><span class="glyphicon glyphicon-home"></span></a>
+                                </li>
+                                <li>
+                                    <a href="Empresas.aspx"><span class="glyphicon glyphicon-briefcase"></span></a>
+                                </li>
+                                <li>
+                                    <a href="Usuario.aspx"><span class="glyphicon glyphicon-user"></span></a>
+                                </li>
+                            </ul>
+                        </div>-->
+                    </div>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </form>
+</body>
+</html>
