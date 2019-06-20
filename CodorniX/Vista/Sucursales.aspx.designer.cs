@@ -1534,6 +1534,24 @@ namespace CodorniX.Vista {
         protected global::System.Web.UI.WebControls.TextBox txtFxColumna;
         
         /// <summary>
+        /// Control lbOrdenFPPor.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbOrdenFPPor;
+        
+        /// <summary>
+        /// Control lbOrdenFP.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbOrdenFP;
+        
+        /// <summary>
         /// Control dvgFotosPapel.
         /// </summary>
         /// <remarks>

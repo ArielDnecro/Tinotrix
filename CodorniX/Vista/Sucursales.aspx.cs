@@ -628,6 +628,8 @@ namespace CodorniX.Vista
             DesHabilitarFormularioFotoPapel();
             DesHabilitarFormularioPapel();
             LimpiarFormularioFotoPapel();
+            btnOKFotoPapel.Visible = false;
+            btnCancelarFotoPapel.Visible = false;
             #endregion Rellenar Papel
         }
         protected void ddPais_SelectedIndexChanged(object sender, EventArgs e)//19/10/17
@@ -3766,6 +3768,22 @@ namespace CodorniX.Vista
             {
                 e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(dvgFotosPapel, "Select$" + e.Row.RowIndex);
             }
+            if (e.Row.RowType == DataControlRowType.Header) {
+
+                switch (lbOrdenFPPor.Text)
+                {
+                    case "Descripcion":
+                        if (lbOrdenFP.Text =="ASC")
+                        {
+                            ((HtmlGenericControl)e.Row.FindControl("IcoDescripcionFP")).Attributes["class"] = Global.OrdenDescendente;
+                        }
+                        else
+                        {
+                            ((HtmlGenericControl)e.Row.FindControl("IcoDescripcionFP")).Attributes["class"] = Global.OrdenAscendente;
+                        }
+                        break;
+                }
+            }
         }
         protected void dvgFotosPapel_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -3777,7 +3795,8 @@ namespace CodorniX.Vista
             txtFxColumna.Text = foto.VchColumna.ToString();
             CbRotarImagenPapel.Checked = foto.BooRotarEnPapel;
             DdlFoto.Items.Insert(0, new ListItem(foto.StrDescripcion, foto.UidFoto.ToString() ));
-            
+            btnEditarFotoPapel.Text = "Editar";
+            DesHabilitarFormularioFotoPapel();
             if (EditingMode)
             {
                 btnEditarFotoPapel.RemoveCssClass("disabled").RemoveCssClass("hidden");
@@ -3819,6 +3838,12 @@ namespace CodorniX.Vista
             {
                 return;
             }
+            ToolAltoPapel.Visible = false;
+            ToolAnchoPapel.Visible = false;
+            ToolMDerecho.Visible = false;
+            ToolMInferior.Visible = false;
+            ToolMIzquierdo.Visible = false;
+            ToolMSuperior.Visible = false;
             List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
             SucursalFoto foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == DdlFoto.SelectedValue.ToString()).First();
             //dgvFotos.SelectedDataKey.Value.ToString()).First();
@@ -3826,7 +3851,7 @@ namespace CodorniX.Vista
             double FEspdisponible = ConMMFila(foto);
             NumberFormatInfo punto = new NumberFormatInfo(); punto.NumberDecimalSeparator = ".";
 
-
+            //tarea pendiente validar si estan vacios columna y fila
             if (CbRotarImagenPapel.Checked == false)
             {
                 if (CEspdisponible - (double.Parse(txtFxColumna.Text, punto) * double.Parse(foto.VchAncho, punto)) <= 0)
@@ -3921,7 +3946,7 @@ namespace CodorniX.Vista
         {
             btnEditarPapel.AddCssClass("disabled");
             HabilitarFormularioPapel();
-            HabilitarFormularioFotoPapel();
+            //HabilitarFormularioFotoPapel();
             LimpiarFormularioFotoPapel();
             LimpiarFormularioPapel();
             //btnOkPapel
@@ -3943,8 +3968,7 @@ namespace CodorniX.Vista
             //DdlFoto.DataTextField = "StrDescripcion";
             //DdlFoto.DataBind();
 
-            btnOKFotoPapel.Visible = true;
-            btnCancelarFotoPapel.Visible = true;
+          
             //  ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#VConfimacionNuevoPapel').modal('hide');", true);
             //  ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#VConfimacionNuevoPapel').modal('hide');", true);
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#VConfimacionNuevoPapel", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#VConfimacionNuevoPapel').hide();", true);
@@ -3976,6 +4000,8 @@ namespace CodorniX.Vista
                 btnEditarFotoPapel.Enabled = false;
                 UidFotoPapel.Text = "";
             }
+            DesHabilitarFormularioFotoPapel();
+            btnEditarFotoPapel.Text = "Nuevo";
             btnOKFotoPapel.AddCssClass("disabled").AddCssClass("hidden");
             btnOKFotoPapel.Enabled = false;
             btnCancelarFotoPapel.AddCssClass("disabled").AddCssClass("hidden");
@@ -4022,6 +4048,32 @@ namespace CodorniX.Vista
             }
             return Dou;
         }
+        protected void dvgFotosPapel_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
+            if (e.SortExpression == lbOrdenFPPor.Text)
+            {
+                if (lbOrdenFP.Text == Orden.ASC.ToString())
+                {
+                    lbOrdenFP.Text = Orden.DESC.ToString();
+                }
+                else
+                {
+                    lbOrdenFP.Text = Orden.ASC.ToString();
+                }
+            }
+            else
+            {
+                lbOrdenFPPor.Text = e.SortExpression;
+                lbOrdenFP.Text = Orden.ASC.ToString();
+            }
+            Orden Ordenn = (Orden)Enum.Parse(typeof(Orden), lbOrdenFP.Text, true);
+            //var txt = (HtmlInputText)dvgFotosPapel.FindControl("txt");
+            List<SucursalFoto> fotosOrdenNueva = VM.OrdenarListaFP(e.SortExpression, Ordenn, fotos);
+            ViewState["Fotos"] = fotosOrdenNueva;
+            DataBindFotografiasPapel();
+        }
+
         #endregion Panel derecho (Papel)
 
 

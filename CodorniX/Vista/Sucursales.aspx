@@ -727,11 +727,27 @@
 
                              <div class="row" style="padding-top: 10px;">
                                 <div class="col-xs-12">
-                                    <asp:GridView ID="dvgFotosPapel" runat="server" CssClass="table table-bordered" AutoGenerateColumns="false" DataKeyNames="UidFoto" OnRowDataBound="dvgFotosPapel_RowDataBound" OnSelectedIndexChanged="dvgFotosPapel_SelectedIndexChanged">
+                                    <asp:Label ID="lbOrdenFPPor" runat="server" CssClass="hidden" Visible="false"></asp:Label>
+                                    <asp:Label ID="lbOrdenFP" runat="server" CssClass="hidden" Visible="false"></asp:Label>
+                                    <asp:GridView ID="dvgFotosPapel" runat="server" CssClass="table table-bordered" AutoGenerateColumns="false"
+                                        DataKeyNames="UidFoto" OnRowDataBound="dvgFotosPapel_RowDataBound"
+                                        OnSelectedIndexChanged="dvgFotosPapel_SelectedIndexChanged"  AllowSorting="true"
+                                         OnSorting="dvgFotosPapel_Sorting">
                                         <EmptyDataTemplate>No hay Fotografias en Papel asignados a está sucursal</EmptyDataTemplate>
                                         <Columns>
                                             <asp:ButtonField CommandName="Select" HeaderStyle-CssClass="hide" FooterStyle-CssClass="hide" ItemStyle-CssClass="hide" />
-                                            <asp:BoundField DataField="StrDescripcion" HeaderText="Descripcion" />
+                                            <%--<asp:BoundField DataField="StrDescripcion" HeaderText="Descripcion" />--%>
+
+                                            <asp:TemplateField>
+                                                    <HeaderTemplate>
+                                                           <asp:LinkButton ID="LBnOrdenaColonia" runat="server" CommandName="Sort" CommandArgument="Descripcion" >
+                                                                    <span runat="server" >Descripcion  <i ID="IcoDescripcionFP" runat="server"  ></i> </span>
+                                                           </asp:LinkButton>
+                                                  </HeaderTemplate>
+                                                  <ItemTemplate>
+                                                             <asp:Label ID="LbDirDescripcionFP" runat="server" Text='<%# Bind("StrDescripcion") %>'></asp:Label>
+                                                  </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:BoundField DataField="VchFila" HeaderText="# Foto X Fila" />
                                             <asp:BoundField DataField="VchColumna" HeaderText="# Foto X Columna" />
                                             
