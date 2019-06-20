@@ -4,11 +4,214 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TinoTriXxX"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="PagePrincipal">
 
-    <Grid>
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF3580BF" FontSize="30">Menu principal</Label>
+    <Grid Background="#424242">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!--<Label HorizontalAlignment="Center" Grid.Row="0" VerticalAlignment="Top" Foreground="#FFa000" FontSize="30" Margin="0">Menu principal</Label>-->
+        <!--<Rectangle Margin="0,-135,0,-60" RadiusX="8" RadiusY="8"  Grid.Row="1" >
+            <Rectangle.Fill >
+                <ImageBrush ImageSource="../Assets/logo2019.720x990.png" />
+            </Rectangle.Fill>
+        </Rectangle>-->
+        <TextBlock Text="Bienvenido a TINOTRIX" Foreground="White" FontSize="30" FontWeight="Bold"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" Margin="0 0 0 0"/>
+        <Grid Margin="5" Grid.Row="2" Grid.Column="0">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FFEEEEEE" ShadowDepth="1"/>
+            </Grid.Effect>
+            <Image Source="../Imagenes/usuarioejemplo/userejemplo1.jpg" Stretch="UniformToFill"/>
+            <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <materialDesign:PackIcon Kind="Heart" Foreground="#FFFBFBFB"/>
+                <TextBlock Text="25" Foreground="#FFFBFBFB"/>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="5" Grid.Row="2" Grid.Column="1">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FFEEEEEE" ShadowDepth="1"/>
+            </Grid.Effect>
+            <Image Source="../Imagenes/usuarioejemplo/userejemplo2.jpg" Stretch="UniformToFill"/>
+            <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <materialDesign:PackIcon Kind="Heart" Foreground="#FFFBFBFB"/>
+                <TextBlock Text="50" Foreground="#FFFBFBFB"/>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="5" Grid.Row="2" Grid.Column="2">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FFEEEEEE" ShadowDepth="1"/>
+            </Grid.Effect>
+            <Image Source="../Imagenes/usuarioejemplo/userejemplo3.jpg" Stretch="UniformToFill"/>
+            <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <materialDesign:PackIcon Kind="Heart" Foreground="#FFFBFBFB"/>
+                <TextBlock Text="18" Foreground="#FFFBFBFB"/>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="5" Grid.Row="3" Grid.Column="0">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FFEEEEEE" ShadowDepth="1"/>
+            </Grid.Effect>
+            <Image Source="../Imagenes/usuarioejemplo/userejemplo4.jpg" Stretch="UniformToFill"/>
+            <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <materialDesign:PackIcon Kind="Heart" Foreground="#FFFBFBFB"/>
+                <TextBlock Text="32" Foreground="#FFFBFBFB"/>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="5" Grid.Row="3" Grid.Column="1">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FFEEEEEE" ShadowDepth="1"/>
+            </Grid.Effect>
+            <Image Source="../Imagenes/usuarioejemplo/userejemplo5.jpg" Stretch="UniformToFill"/>
+            <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <materialDesign:PackIcon Kind="Heart" Foreground="#FFFBFBFB"/>
+                <TextBlock Text="32" Foreground="#FFFBFBFB"/>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="5" Grid.Row="3" Grid.Column="2">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FFEEEEEE" ShadowDepth="1"/>
+            </Grid.Effect>
+            <Image Source="../Imagenes/usuarioejemplo/userejemplo6.jpg" Stretch="UniformToFill"/>
+            <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <materialDesign:PackIcon Kind="Heart" Foreground="#FFFBFBFB"/>
+                <TextBlock Text="32" Foreground="#FFFBFBFB"/>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="5" Grid.Row="2" Grid.Column="3">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FFEEEEEE" ShadowDepth="1"/>
+            </Grid.Effect>
+            <Image Source="../Imagenes/usuarioejemplo/userejemplo7.jpg" Stretch="UniformToFill"/>
+            <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <materialDesign:PackIcon Kind="Heart" Foreground="#FFFBFBFB"/>
+                <TextBlock Text="25" Foreground="#FFFBFBFB"/>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="5" Grid.Row="2" Grid.Column="4">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FFEEEEEE" ShadowDepth="1"/>
+            </Grid.Effect>
+            <Image Source="../Imagenes/usuarioejemplo/userejemplo8.jpg" Stretch="UniformToFill"/>
+            <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <materialDesign:PackIcon Kind="Heart" Foreground="#FFFBFBFB"/>
+                <TextBlock Text="50" Foreground="#FFFBFBFB"/>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="5" Grid.Row="2" Grid.Column="5">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FFEEEEEE" ShadowDepth="1"/>
+            </Grid.Effect>
+            <Image Source="../Imagenes/usuarioejemplo/userejemplo9.jpg" Stretch="UniformToFill"/>
+            <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <materialDesign:PackIcon Kind="Heart" Foreground="#FFFBFBFB"/>
+                <TextBlock Text="18" Foreground="#FFFBFBFB"/>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="5" Grid.Row="3" Grid.Column="3">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FFEEEEEE" ShadowDepth="1"/>
+            </Grid.Effect>
+            <Image Source="../Imagenes/usuarioejemplo/userejemplo10.jpg" Stretch="UniformToFill"/>
+            <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <materialDesign:PackIcon Kind="Heart" Foreground="#FFFBFBFB"/>
+                <TextBlock Text="32" Foreground="#FFFBFBFB"/>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="5" Grid.Row="3" Grid.Column="4">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FFEEEEEE" ShadowDepth="1"/>
+            </Grid.Effect>
+            <Image Source="../Imagenes/usuarioejemplo/userejemplo11.jpg" Stretch="UniformToFill"/>
+            <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <materialDesign:PackIcon Kind="Heart" Foreground="#FFFBFBFB"/>
+                <TextBlock Text="32" Foreground="#FFFBFBFB"/>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="5" Grid.Row="3" Grid.Column="5">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FFEEEEEE" ShadowDepth="1"/>
+            </Grid.Effect>
+            <Image Source="../Imagenes/usuarioejemplo/userejemplo12.jpg" Stretch="UniformToFill"/>
+            <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <materialDesign:PackIcon Kind="Heart" Foreground="#FFFBFBFB"/>
+                <TextBlock Text="32" Foreground="#FFFBFBFB"/>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="5" Grid.Row="4" Grid.Column="0">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FFEEEEEE" ShadowDepth="1"/>
+            </Grid.Effect>
+            <Image Source="../Imagenes/usuarioejemplo/userejemplo13.jpg" Stretch="UniformToFill"/>
+            <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <materialDesign:PackIcon Kind="Heart" Foreground="#FFFBFBFB"/>
+                <TextBlock Text="25" Foreground="#FFFBFBFB"/>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="5" Grid.Row="4" Grid.Column="1">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FFEEEEEE" ShadowDepth="1"/>
+            </Grid.Effect>
+            <Image Source="../Imagenes/usuarioejemplo/userejemplo14.jpg" Stretch="UniformToFill"/>
+            <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <materialDesign:PackIcon Kind="Heart" Foreground="#FFFBFBFB"/>
+                <TextBlock Text="50" Foreground="#FFFBFBFB"/>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="5" Grid.Row="4" Grid.Column="2">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FFEEEEEE" ShadowDepth="1"/>
+            </Grid.Effect>
+            <Image Source="../Imagenes/usuarioejemplo/userejemplo15.jpg" Stretch="UniformToFill"/>
+            <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <materialDesign:PackIcon Kind="Heart" Foreground="#FFFBFBFB"/>
+                <TextBlock Text="18" Foreground="#FFFBFBFB"/>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="5" Grid.Row="4" Grid.Column="3">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FFEEEEEE" ShadowDepth="1"/>
+            </Grid.Effect>
+            <Image Source="../Imagenes/usuarioejemplo/userejemplo16.jpg" Stretch="UniformToFill"/>
+            <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <materialDesign:PackIcon Kind="Heart" Foreground="#FFFBFBFB"/>
+                <TextBlock Text="32" Foreground="#FFFBFBFB"/>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="5" Grid.Row="4" Grid.Column="4">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FFEEEEEE" ShadowDepth="1"/>
+            </Grid.Effect>
+            <Image Source="../Imagenes/usuarioejemplo/userejemplo17.jpg" Stretch="UniformToFill"/>
+            <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <materialDesign:PackIcon Kind="Heart" Foreground="#FFFBFBFB"/>
+                <TextBlock Text="32" Foreground="#FFFBFBFB"/>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="5" Grid.Row="4" Grid.Column="5">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FFEEEEEE" ShadowDepth="1"/>
+            </Grid.Effect>
+            <Image Source="../Imagenes/usuarioejemplo/userejemplo18.jpg" Stretch="UniformToFill"/>
+            <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <materialDesign:PackIcon Kind="Heart" Foreground="#FFFBFBFB"/>
+                <TextBlock Text="32" Foreground="#FFFBFBFB"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

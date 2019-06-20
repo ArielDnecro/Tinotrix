@@ -45,7 +45,6 @@ namespace TinoTriXxX.Modelo
             get { return _StrPrecio; }
             set { _StrPrecio = value; }
         }
-
         protected double _IntAncho;
         public double IntAncho
         {
@@ -58,15 +57,31 @@ namespace TinoTriXxX.Modelo
             get { return _IntAlto; }
             set { _IntAlto = value; }
         }
-
         protected String _StrMedida;
         public String StrMedida
         {
             get { return _StrMedida; }
             set { _StrMedida = value; }
         }
-
-#endregion propiedades
+        protected string _VchFila;
+        public string VchFila
+        {
+            get { return _VchFila; }
+            set { _VchFila = value; }
+        }
+        protected string _VchColumna;
+        public string VchColumna
+        {
+            get { return _VchColumna; }
+            set { _VchColumna = value; }
+        }
+        protected bool _BooRotarEnPapel;
+        public bool BooRotarEnPapel
+        {
+            get { return _BooRotarEnPapel; }
+            set { _BooRotarEnPapel = value; }
+        }
+        #endregion propiedades
         public new class Repository
         {
             Conexion Conexionhost = new Conexion();
@@ -103,6 +118,9 @@ namespace TinoTriXxX.Modelo
                             IntAlto =  double.Parse(item["VchAlto"].ToString(), ni),
                             IntAncho = double.Parse(item["VchAncho"].ToString(), ni),
                             StrMedida = item["VchMedida"].ToString(),
+                            _VchColumna = item["VchColumna"].ToString(),
+                            _VchFila = item["VchFila"].ToString(),
+                            _BooRotarEnPapel = Convert.ToBoolean(item["BitRotarEnPapel"]),
                             StrDescripcionDetalle ="$ " + item["VchPrecio"].ToString()+ " c/u ( "+ item["VchAlto"].ToString()+" x "+ item["VchAncho"].ToString()+" " + item["VchMedida"].ToString()+ " ) "
 
                         };

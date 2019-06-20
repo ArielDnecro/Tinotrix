@@ -25,7 +25,9 @@ namespace TinoTriXxX.Vista
     /// </summary>
     public partial class Camara : Window
     {
-       public System.Windows.Controls.Image _imagenfinal;
+        String filePathElegidaImprimir = null;
+        string path = System.IO.Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
+        public System.Windows.Controls.Image _imagenfinal = null;
         System.Windows.Media.Color TemaAzulEstandar = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#FF3580BF");
         System.Windows.Media.Color TemaVerdeEstandar = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#00bb2d");
         System.Windows.Media.Color TemaRojoEstandar = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#f00800");
@@ -85,6 +87,7 @@ namespace TinoTriXxX.Vista
         {
             System.Windows.Media.Imaging.BitmapImage _bitmap = new System.Windows.Media.Imaging.BitmapImage();
             _bitmap.BeginInit();
+            _bitmap.CacheOption = BitmapCacheOption.OnLoad;
             _bitmap.UriSource = new Uri(path);
             _bitmap.EndInit();
             return _bitmap;
@@ -144,9 +147,17 @@ namespace TinoTriXxX.Vista
             BtnConfirmar.Fill = new SolidColorBrush(TemaVerdeEstandar);
             EDerecho.Fill = new SolidColorBrush(TemaVerdeEstandar);
 
+            
             this.Close();
         }
-
+        //public System.Windows.Media.Imaging.BitmapImage ToImageSource(string path)
+        //{
+        //    System.Windows.Media.Imaging.BitmapImage _bitmap = new System.Windows.Media.Imaging.BitmapImage();
+        //    _bitmap.BeginInit();
+        //    _bitmap.UriSource = new Uri(path);
+        //    _bitmap.EndInit();
+        //    return _bitmap;
+        //}
         private void BtnCerrarCamara_Click(object sender, RoutedEventArgs e)
         {
             TerminarFuenteDeVideo();
@@ -162,7 +173,6 @@ namespace TinoTriXxX.Vista
         private bool ExisteDispositivo = false;
         private FilterInfoCollection DispositivoDeVideo;
         private VideoCaptureDevice FuenteDeVideo = null;
-
         public void CargarDispositivos(FilterInfoCollection Dispositivos)
         {
             CbDispositivos.Items.Clear();
@@ -179,8 +189,6 @@ namespace TinoTriXxX.Vista
                 Boo1eraVDispositivo = false;
             }
         }
-
-
         public void BuscarDispositivos()
         {
             DispositivoDeVideo = new FilterInfoCollection(FilterCategory.VideoInputDevice);
@@ -199,7 +207,6 @@ namespace TinoTriXxX.Vista
                 CargarDispositivos(DispositivoDeVideo);
             }
         }
-
         //void SaveToBmp(FrameworkElement visual, string fileName)
         //{
         //    var encoder = new BmpBitmapEncoder();
@@ -218,7 +225,6 @@ namespace TinoTriXxX.Vista
         //        encoder.Save(stream);
         //    }
         //}
-
         public void Video_NuevoFrame(object sender, NewFrameEventArgs eventArgs)
         {
             System.Drawing.Image imgforms = (Bitmap)eventArgs.Frame.Clone();
@@ -241,12 +247,10 @@ namespace TinoTriXxX.Vista
             }));
             //AjustarVentana();
         }
-
         private void IniciarCamara()
         {
             IniciarFunenteVideo();
         }
-
         //private void btnCapturarFoto_Click(object sender, RoutedEventArgs e)
         //{
         //    string AccionCamara = btnCapturarFoto.Content.ToString();
@@ -262,7 +266,6 @@ namespace TinoTriXxX.Vista
         //            break;
         //    }
         //}
-
         public void IniciarFunenteVideo()
         {
             if (CbDispositivos.SelectedIndex != -1)
@@ -273,7 +276,6 @@ namespace TinoTriXxX.Vista
                 //btnCapturarFoto.Content = "Capturar Foto";
             }
         }
-
         public void TerminarFuenteDeVideo()
         {
             if (!(FuenteDeVideo == null))
@@ -283,10 +285,7 @@ namespace TinoTriXxX.Vista
                     FuenteDeVideo = null;
                 }
         }
-
-
-
-
+        
         #endregion
 
         private void CbDispositivos_SelectionChanged(object sender, SelectionChangedEventArgs e)

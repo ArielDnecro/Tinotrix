@@ -7,7 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         
-        Title="TinotiXxX" Height="600" Width="1024" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+        Title="TinotiXxX" Height="600" Width="1024" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None"  Loaded="Window_Loaded" >
     <Window.Resources>
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="GridMain">
@@ -88,8 +88,8 @@
             <BeginStoryboard x:Name="CloseMenu_BeginStoryboard" Storyboard="{StaticResource CloseMenu}"/>
         </EventTrigger>
     </Window.Triggers>
-    <Border BorderBrush="Black" BorderThickness="0.3">
-        <Grid  Background="#FF3580BF"  >
+    <Border BorderBrush="#00e676" BorderThickness="1" x:Name="BCuerpoTinotrix" >
+        <Grid  Background="DarkSlateGray" x:Name="GCuerpoTinotrix" >
             <StackPanel x:Name="StackPanelMenu" Width="250" HorizontalAlignment="Left" Margin="-250 0 0 0" RenderTransformOrigin="0.5,0.5">
                 <StackPanel.RenderTransform>
                     <TransformGroup>
@@ -113,15 +113,15 @@
                             </TransformGroup>
                         </Button.RenderTransform>
                         <Button.Background>
-                            <ImageBrush ImageSource="../Assets/sinusuario.png" Stretch="UniformToFill"></ImageBrush>
+                            <ImageBrush ImageSource="../Assets/logotipo2019.150x150.png" Stretch="UniformToFill" x:Name="imgMenuPrincipal"></ImageBrush>
                         </Button.Background>
                     </Button>
                     <Button  Visibility="Hidden" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"  Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Width="60" Height="60"  Margin="10">
                         <materialDesign:PackIcon Kind="InformationOutline"  Width="20" Height="20"/>
                     </Button>
                 </StackPanel>
-                <ListView>
-                    <ListViewItem x:Name="LVIMenu" Height="60" RenderTransformOrigin="0.5,0.5">
+                <ListView >
+                    <ListViewItem x:Name="LVIMenu" Height="60" RenderTransformOrigin="0.5,0.5" Background="#00e676" >
                         <ListViewItem.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -130,12 +130,16 @@
                                 <TranslateTransform/>
                             </TransformGroup>
                         </ListViewItem.RenderTransform>
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Home"  Width="30" Height="30" VerticalAlignment="Center"/>
-                            <Button Name="BtnMenuHome" Content="Home" Click="BtnMenuHome_Click"  Height="60" Width="247" Padding="0" Margin="-45 -10 0 -10" HorizontalAlignment="Center"  Background="Transparent"  VerticalAlignment="Center" FontSize="20"></Button>
+                        <StackPanel Orientation="Horizontal"  >
+                            <Button Name="BtnMenuHome"  Click="BtnMenuHome_Click"  Height="60" Width="247" Padding="0" Margin="-15 -10 0 -10" HorizontalAlignment="Center"   BorderBrush="#00e676" Background="#424242"  VerticalAlignment="Center" FontSize="20">
+                                <StackPanel  Orientation="Horizontal">
+                                    <TextBlock>Home</TextBlock>
+                                    <materialDesign:PackIcon Kind="Home"  Margin="-135 0 0 0" Width="30" Height="30" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem x:Name="LVILicencia" Height="60" RenderTransformOrigin="0.5,0.5">
+                    <ListViewItem x:Name="LVILicencia" Height="60" RenderTransformOrigin="0.5,0.5" >
                         <ListViewItem.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -145,8 +149,12 @@
                             </TransformGroup>
                         </ListViewItem.RenderTransform>
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Key"  Width="30" Height="30" VerticalAlignment="Center" />
-                            <Button Name="BtnMenuLicencia" Content="Licencia" Click="BtnMenuLicencia_Click"  Height="60" Width="247" Padding="0" Margin="-45 -10 0 -10" HorizontalAlignment="Center"  Background="Transparent"  VerticalAlignment="Center" FontSize="20"></Button>
+                            <Button Name="BtnMenuLicencia"  Click="BtnMenuLicencia_Click"  Height="60" Width="247" Padding="0" Margin="-15 -10 0 -10" HorizontalAlignment="Center" BorderBrush="#00e676" Background="#424242"   VerticalAlignment="Center" FontSize="20">
+                                <StackPanel  Orientation="Horizontal">
+                                    <TextBlock>Licencia</TextBlock>
+                                    <materialDesign:PackIcon Kind="Key"  Margin="-140 0 0 0" Width="30" Height="30" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem x:Name="LVIFotos" Height="60" RenderTransformOrigin="0.5,0.5">
@@ -159,8 +167,12 @@
                             </TransformGroup>
                         </ListViewItem.RenderTransform>
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Camera"  Width="30" Height="30" VerticalAlignment="Center"/>
-                            <Button Name="BtnMenuFotos" Content="Fotos" Click="BtnMenuFotos_Click"  Height="60" Width="247" Padding="0" Margin="-45 -10 0 -10" HorizontalAlignment="Center"  Background="Transparent"  VerticalAlignment="Center" FontSize="20"></Button>
+                            <Button Name="BtnMenuFotos" Click="BtnMenuFotos_Click"  Height="60" Width="247" Padding="0" Margin="-15 -10 0 -10" HorizontalAlignment="Center"  BorderBrush="#00e676" Background="#424242" VerticalAlignment="Center" FontSize="20">
+                                <StackPanel  Orientation="Horizontal">
+                                    <TextBlock>Fotografias</TextBlock>
+                                    <materialDesign:PackIcon Kind="Camera"  Margin="-153 0 0 0" Width="30" Height="30" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem x:Name="LVIConfiguracion" Height="60" RenderTransformOrigin="0.5,0.5">
@@ -173,8 +185,12 @@
                             </TransformGroup>
                         </ListViewItem.RenderTransform>
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Settings"  Width="30" Height="30" VerticalAlignment="Center"/>
-                            <Button Name="BtnMenuConfiguracion" Click="BtnMenuConfiguracion_Click" Content="Configuracion"   Height="60" Width="247" Padding="0" Margin="-45 -10 0 -10" HorizontalAlignment="Center"  Background="Transparent"  VerticalAlignment="Center" FontSize="20"></Button>
+                            <Button Name="BtnMenuConfiguracion" Click="BtnMenuConfiguracion_Click"   Height="60" Width="247" Padding="0" Margin="-15 -10 0 -10"  HorizontalAlignment="Center" BorderBrush="#00e676" Background="#424242"  VerticalAlignment="Center" FontSize="20">
+                                <StackPanel  Orientation="Horizontal">
+                                    <TextBlock>Configuracion</TextBlock>
+                                    <materialDesign:PackIcon Kind="Settings"  Margin="-168 0 0 0" Width="30" Height="30" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
                     </ListViewItem>
                 </ListView>
@@ -192,7 +208,7 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
 
                 </Grid.ColumnDefinitions>
-                <Border Name="blicencia" BorderBrush="#e9e9e9"  BorderThickness="6" Background="White">
+                <Border Name="blicencia" BorderBrush="#69f0ae"  BorderThickness="2" Background="#424242">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"></RowDefinition>
@@ -206,7 +222,7 @@
                             <ColumnDefinition Width="*" ></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <!--aqui iba antes el open menu-->
-                        <TextBlock Text="Licencia" Foreground="#FF3580BF" FontSize="30" FontWeight="Bold" Margin="5" Grid.Row="1" ></TextBlock>
+                        <TextBlock x:Name="lbTituloLicencia" Text="Licencia" Foreground="White" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" ></TextBlock>
 
                         <StackPanel Grid.Row="2" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3">
                             <Grid Height="auto" Margin="20 10 20 0">
@@ -231,26 +247,26 @@
                                     <RowDefinition Height="30"></RowDefinition>
                                     <RowDefinition Height="30"></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <TextBlock Name="LbTitleCodigo" Text="Codigo:" VerticalAlignment="Bottom" Foreground="#FF3580BF" FontSize="18" FontWeight="Bold" Margin="5,0,5,5" Visibility="Visible"></TextBlock>
-                                <TextBlock Name="LbLicenciaCodigo" Text="No disponible" VerticalAlignment="Top" Foreground="#FF3580BF" FontSize="18" FontWeight="Bold" Grid.Row="0" Grid.Column="1" Margin="10, 0, -50, 0" Visibility="Visible"></TextBlock>
-                                <TextBox Name="txtLicenciaCodigo" Margin="0,-15,0,0"   Foreground="#FF3580BF"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Visibility="Hidden"   Text="00000000-0000-0000-0000-000000000000"  Grid.Row="0" Grid.Column="1"/>
+                                <TextBlock Name="LbTitleCodigo" Text="Codigo:" VerticalAlignment="Bottom" Foreground="White" FontSize="18" FontWeight="Bold" Margin="5,0,5,5" Visibility="Visible"></TextBlock>
+                                <TextBlock Name="LbLicenciaCodigo" Text="No disponible" VerticalAlignment="Top" Foreground="White" FontSize="18" FontWeight="Bold" Grid.Row="0" Grid.Column="1" Margin="10, 0, -50, 0" Visibility="Visible"></TextBlock>
+                                <TextBox Name="txtLicenciaCodigo" Margin="0,-15,0,0"   Foreground="white"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Visibility="Hidden"   Text="00000000-0000-0000-0000-000000000000"  Grid.Row="0" Grid.Column="1"/>
 
-                                <Button Name="BtnRevocarLicencia" Foreground="White" Grid.Row="4" Height="30" Width="100" HorizontalAlignment="Left" Click="BtnRevocarLicencia_Click" Background="#FF3580BF">Revocar</Button>
-                                <Button Name="BtnAgregarLicencia"  Foreground="White" Grid.Row="4" Height="30" Width="100" HorizontalAlignment="Left" Click="BtnAgregarLicencia_Click" Visibility="Hidden" Background="#FF3580BF" >Agregar</Button>
-                                <Button Name="BtnFinalizarCancelarActualizacionLicencia"   Foreground="White" Grid.Row="4" Height="30" Width="100" HorizontalAlignment="Left" Content="Cancelar" Visibility="Hidden" Background="#FF3580BF" Click="BtnFinalizarCancelarActualizacionLicencia_Click"></Button>
-                                <Button Name="BtnActualizarLicencia"  Foreground="White" Grid.Row="4" Grid.Column="1" Height="30" Width="100" HorizontalAlignment="Left" Click="BtnActualizarLicencia_Click" Background="#FF3580BF">Actualizar</Button>
-                                <Button Name="BtnComprovarLicencia"  Foreground="White" Grid.Row="4" Grid.Column="1" Height="30" Width="105" HorizontalAlignment="Left" Visibility="Hidden" Click="BtnComprovarLicencia_Click" Background="#FF3580BF">Comprobar</Button>
+                                <Button Name="BtnRevocarLicencia" Foreground="White" Grid.Row="4" Height="30" Width="100" HorizontalAlignment="Left" Click="BtnRevocarLicencia_Click" Background="Transparent" BorderBrush="#00e676">Revocar</Button>
+                                <Button Name="BtnAgregarLicencia"  Foreground="White" Grid.Row="4" Height="30" Width="100" HorizontalAlignment="Left" Click="BtnAgregarLicencia_Click" Visibility="Hidden" Background="Transparent" BorderBrush="#00e676" >Agregar</Button>
+                                <Button Name="BtnFinalizarCancelarActualizacionLicencia"   Foreground="White" Grid.Row="4" Height="30" Width="100" HorizontalAlignment="Left" Content="Cancelar" Visibility="Hidden" Background="Transparent" BorderBrush="#00e676" Click="BtnFinalizarCancelarActualizacionLicencia_Click"></Button>
+                                <Button Name="BtnActualizarLicencia"  Foreground="White" Grid.Row="4" Grid.Column="1" Height="30" Width="100" HorizontalAlignment="Left" Click="BtnActualizarLicencia_Click" Background="Transparent" BorderBrush="#00e676">Actualizar</Button>
+                                <Button Name="BtnComprovarLicencia"  Foreground="White" Grid.Row="4" Grid.Column="1" Height="30" Width="105" HorizontalAlignment="Left" Visibility="Hidden" Click="BtnComprovarLicencia_Click" Background="Transparent" BorderBrush=" #00e676">Comprobar</Button>
 
 
-                                <TextBlock Text="Status:" VerticalAlignment="Bottom" Foreground="#FF3580BF" FontSize="18" FontWeight="Bold" Grid.Row="1" Margin="5,0,5,5"></TextBlock>
-                                <TextBlock Name="LbLicenciaStatus" Text="No disponible" VerticalAlignment="Top" Foreground="#FF3580BF" FontSize="18" FontWeight="Bold" Grid.Row="1" Grid.Column="1" Margin="10, 0"></TextBlock>
+                                <TextBlock Name="lbStatusLicencia" Text="Status:" VerticalAlignment="Bottom" Foreground="White" FontSize="18" FontWeight="Bold" Grid.Row="1" Margin="5,0,5,5"></TextBlock>
+                                <TextBlock Name="LbLicenciaStatus" Text="No disponible" VerticalAlignment="Top" Foreground="White" FontSize="18" FontWeight="Bold" Grid.Row="1" Grid.Column="1" Margin="10, 0"></TextBlock>
                                 <!--<Button Name="BtnActualizarStatusLicencia" Grid.Row="1" Grid.Column="1" Height="30" Width="105" HorizontalAlignment="Right">Actualizar</Button>-->
 
-                                <TextBlock Visibility="Collapsed" Text="Total maquinas:" VerticalAlignment="Bottom" Foreground="#FF3580BF" FontSize="18" FontWeight="Bold" Grid.Row="2" Margin="5,0,5,5"></TextBlock>
-                                <TextBlock Visibility="Collapsed" Name="LbLicenciaNoMaquinas" Text="No disponible" VerticalAlignment="Top" Foreground="#FF3580BF" FontSize="18" FontWeight="Bold" Grid.Row="2" Grid.Column="1" Margin="10, 0"></TextBlock>
+                                <TextBlock Visibility="Collapsed" x:Name="lbNoMaquinasLicencia" Text="Total maquinas:" VerticalAlignment="Bottom" Foreground="White" FontSize="18" FontWeight="Bold" Grid.Row="2" Margin="5,0,5,5"></TextBlock>
+                                <TextBlock Visibility="Collapsed" Name="LbLicenciaNoMaquinas" Text="No disponible" VerticalAlignment="Top" Foreground="White" FontSize="18" FontWeight="Bold" Grid.Row="2" Grid.Column="1" Margin="10, 0"></TextBlock>
 
-                                <TextBlock Text="No maquina(PC):" VerticalAlignment="Bottom" Foreground="#FF3580BF" FontSize="18" FontWeight="Bold" Grid.Row="2" Margin="5,0,5,5"></TextBlock>
-                                <TextBlock Name="LbLicenciaNoPc" Text="No disponible" VerticalAlignment="Top" Foreground="#FF3580BF" FontSize="18" FontWeight="Bold" Grid.Row="2" Grid.Column="1" Margin="10, 0"></TextBlock>
+                                <TextBlock x:Name="lbNoPcLicencia" Text="No maquina(PC):" VerticalAlignment="Bottom" Foreground="White" FontSize="18" FontWeight="Bold" Grid.Row="2" Margin="5,0,5,5"></TextBlock>
+                                <TextBlock Name="LbLicenciaNoPc" Text="No disponible" VerticalAlignment="Top" Foreground="White" FontSize="18" FontWeight="Bold" Grid.Row="2" Grid.Column="1" Margin="10, 0"></TextBlock>
                                 <!--<Grid Grid.Row="8"  Grid.ColumnSpan="2" Grid.RowSpan="6">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
@@ -274,87 +290,89 @@
                         </StackPanel>
                     </Grid>
                 </Border>
-                <Border Name="bframe" BorderBrush="#e9e9e9"   BorderThickness="6" Background="White">
+                <Border Name="bframe" BorderBrush="#69f0ae"   BorderThickness="2" Background="White">
                     <Frame Name="frame" NavigationUIVisibility="Hidden"></Frame>
                 </Border>
             </Grid>
-            <Border  BorderBrush="#e9e9e9" VerticalAlignment="Bottom"  Width="1024" Height="50"  BorderThickness="6" Background="White">
-                <Grid Name="GBestado">
-                    <!--<TextBlock Text="Licencia"  Foreground="#FF3580BF" Background="White"  FontSize="16" FontFamily="Nirmala UI Semilight" Margin="-2 -2"   FontWeight="Bold"/>-->
-                    <Label BorderBrush="{x:Null}" Background="White"></Label>
 
-                    <materialDesign:PackIcon Kind="Account"  Foreground="#FF3580BF" Width="30" Height="30" Margin="2 2 2 2"/>
-                    <TextBlock Name="lbUsuario" Text=": User 1" Foreground="#FF3580BF"  FontSize="18" FontFamily="Nirmala UI Semilight" Margin="30 2" VerticalAlignment="Top" FontWeight="Bold" Width="80"  HorizontalAlignment="Left"/>
+            <Border  BorderBrush="#69f0ae"  VerticalAlignment="Bottom"    Width="1024" Height="50"  BorderThickness="2" >
+                <Grid Name="GBestado"  >
+                        <!--<TextBlock Text="Licencia"   Background="White"  FontSize="16" FontFamily="Nirmala UI Semilight" Margin="-2 -2"   FontWeight="Bold"/>-->
+                    <Label BorderBrush="{x:Null}"  Background="DarkSlateGray"></Label>
 
-                    <StackPanel Margin="0 150 0 0">
-                        <Grid Height="400" Margin="5 10 20 0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="95"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="30"></RowDefinition>
-                                <RowDefinition Height="30"></RowDefinition>
-                                <RowDefinition Height="30"></RowDefinition>
-                                <RowDefinition Height="30"></RowDefinition>
-                                <RowDefinition Height="30"></RowDefinition>
-                                <RowDefinition Height="30"></RowDefinition>
-                                <RowDefinition Height="30"></RowDefinition>
-                                <RowDefinition Height="30"></RowDefinition>
-                                <RowDefinition Height="30"></RowDefinition>
-                                <RowDefinition Height="30"></RowDefinition>
-                                <RowDefinition Height="30"></RowDefinition>
-                                <RowDefinition Height="30"></RowDefinition>
-                                <RowDefinition Height="30"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <TextBlock Text="Sesion:" VerticalAlignment="Bottom" Foreground="White"  Margin="5,0,5,5" FontSize="16"></TextBlock>
-                            <TextBlock Text="Cerrada" VerticalAlignment="Bottom"  Foreground="White" Grid.Column="1" Margin="5,0,5,5" FontSize="16"></TextBlock>
+                        <materialDesign:PackIcon x:Name="IcoUsuario" Kind="Account"  Foreground="White" Width="30" Height="30" Margin="2 2 2 2"/>
+                        <TextBlock Name="lbUsuario" Text=": User 1" Foreground="White"  FontSize="18" FontFamily="Nirmala UI Semilight" Margin="30 2" VerticalAlignment="Top" FontWeight="Bold" Width="80"  HorizontalAlignment="Left"/>
 
-                            <TextBlock Text="Turno:" VerticalAlignment="Bottom" Foreground="White" Grid.Row="1" Margin="5,0,5,5" FontSize="16"></TextBlock>
-                            <TextBlock Text="Cerrada" VerticalAlignment="Bottom"  Foreground="White"  Grid.Row="1" Margin="5,0,5,5" FontSize="16"  Grid.Column="1"></TextBlock>
+                        <StackPanel Margin="0 150 0 0">
+                            <Grid Height="400" Margin="5 10 20 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="95"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Sesion:" VerticalAlignment="Bottom" Foreground="White"  Margin="5,0,5,5" FontSize="16"></TextBlock>
+                                <TextBlock Text="Cerrada" VerticalAlignment="Bottom"  Foreground="White" Grid.Column="1" Margin="5,0,5,5" FontSize="16"></TextBlock>
+
+                                <TextBlock Text="Turno:" VerticalAlignment="Bottom" Foreground="White" Grid.Row="1" Margin="5,0,5,5" FontSize="16"></TextBlock>
+                                <TextBlock Text="Cerrada" VerticalAlignment="Bottom"  Foreground="White"  Grid.Row="1" Margin="5,0,5,5" FontSize="16"  Grid.Column="1"></TextBlock>
 
 
 
-                            <TextBlock Text="Empresa:" Margin="-3,0,-12,5" Background="White" VerticalAlignment="Bottom" TextAlignment="Center" Foreground="#FF3580BF" Grid.Row="2" Grid.ColumnSpan="2"  ></TextBlock>
-                            <TextBlock Text="Nombre(alias):" VerticalAlignment="Top" Foreground="White"  Grid.Row="3" Margin="10 0" ></TextBlock>
-                            <TextBlock Name="LbLicenciaNombreEmpresa" Text="No disponible:" VerticalAlignment="Top" Foreground="White"  Grid.Row="3" Grid.Column="1" Margin="10 0" ></TextBlock>
-                            <TextBlock Text="Status:" VerticalAlignment="Top" Foreground="White"  Grid.Row="4"  Margin="10 0" ></TextBlock>
-                            <TextBlock Name="LbLicenciaStatusEmpresa" Text="No disponible:" VerticalAlignment="Top" Foreground="White"  Grid.Row="4" Grid.Column="1" Margin="10 0" ></TextBlock>
+                                <TextBlock Text="Empresa:" Margin="-3,0,-12,5" Background="White" VerticalAlignment="Bottom" TextAlignment="Center" Foreground="#FF3580BF" Grid.Row="2" Grid.ColumnSpan="2"  ></TextBlock>
+                                <TextBlock Text="Nombre(alias):" VerticalAlignment="Top" Foreground="White"  Grid.Row="3" Margin="10 0" ></TextBlock>
+                                <TextBlock Name="LbLicenciaNombreEmpresa" Text="No disponible:" VerticalAlignment="Top" Foreground="White"  Grid.Row="3" Grid.Column="1" Margin="10 0" ></TextBlock>
+                                <TextBlock Text="Status:" VerticalAlignment="Top" Foreground="White"  Grid.Row="4"  Margin="10 0" ></TextBlock>
+                                <TextBlock Name="LbLicenciaStatusEmpresa" Text="No disponible:" VerticalAlignment="Top" Foreground="White"  Grid.Row="4" Grid.Column="1" Margin="10 0" ></TextBlock>
 
-                            <TextBlock Text="Sucursal:" Margin="-3,0,-12,5" Background="#FFD3D3D3" VerticalAlignment="Bottom" TextAlignment="Center" Foreground="Black"  Grid.Row="5" Grid.ColumnSpan="2"  ></TextBlock>
-                            <TextBlock Text="Nombre(alias):" VerticalAlignment="Top" Foreground="White"  Grid.Row="6" Margin="10 0" ></TextBlock>
-                            <TextBlock Name="LbLicenciaNombreSucursal" Text="No disponible:" VerticalAlignment="Top" Foreground="White"  Grid.Row="6" Grid.Column="1" Margin="10 0" ></TextBlock>
-                            <TextBlock Text="Status:" VerticalAlignment="Top" Foreground="White"  Grid.Row="7"  Margin="10 0" ></TextBlock>
-                            <TextBlock Name="LbLicenciaStatusSucursal" Text="No disponible" VerticalAlignment="Top" Foreground="White"  Grid.Row="7" Grid.Column="1" Margin="10 0" ></TextBlock>
-                            <TextBlock Text="Direccion:" VerticalAlignment="Top" Foreground="White"  Grid.Row="8" Margin="10 0" ></TextBlock>
-                            <TextBlock Name="LbLicenciaDireccionSucursal" TextWrapping="Wrap"  Text="No disponible" VerticalAlignment="Top" Foreground="White"  Grid.Row="9" Grid.ColumnSpan="2" Margin="10 0" ></TextBlock>
-                        </Grid>
-                    </StackPanel>
-                </Grid>
-            </Border>
+                                <TextBlock Text="Sucursal:" Margin="-3,0,-12,5" Background="#FFD3D3D3" VerticalAlignment="Bottom" TextAlignment="Center" Foreground="Black"  Grid.Row="5" Grid.ColumnSpan="2"  ></TextBlock>
+                                <TextBlock Text="Nombre(alias):" VerticalAlignment="Top" Foreground="White"  Grid.Row="6" Margin="10 0" ></TextBlock>
+                                <TextBlock Name="LbLicenciaNombreSucursal" Text="No disponible:" VerticalAlignment="Top" Foreground="White"  Grid.Row="6" Grid.Column="1" Margin="10 0" ></TextBlock>
+                                <TextBlock Text="Status:" VerticalAlignment="Top" Foreground="White"  Grid.Row="7"  Margin="10 0" ></TextBlock>
+                                <TextBlock Name="LbLicenciaStatusSucursal" Text="No disponible" VerticalAlignment="Top" Foreground="White"  Grid.Row="7" Grid.Column="1" Margin="10 0" ></TextBlock>
+                                <TextBlock Text="Direccion:" VerticalAlignment="Top" Foreground="White"  Grid.Row="8" Margin="10 0" ></TextBlock>
+                                <TextBlock Name="LbLicenciaDireccionSucursal" TextWrapping="Wrap"  Text="No disponible" VerticalAlignment="Top" Foreground="White"  Grid.Row="9" Grid.ColumnSpan="2" Margin="10 0" ></TextBlock>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="60" HorizontalAlignment="Left"  Margin="5">
                 <Button x:Name="BtnOpenMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="50" Height="50" Padding="0" Background="White"  BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Click="BtnOpenMenu_Click">
-                    <materialDesign:PackIcon Name="IcoOpenMenu" Kind="Menu" Foreground="#FF3580BF" Width="30" Height="30" />
+                    <materialDesign:PackIcon Name="IcoOpenMenu" Kind="Menu" Foreground="DarkSlateGray" Width="30" Height="30" />
                 </Button>
                 <Button x:Name="BtnCloseMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="50" Height="50" Padding="0" Background="White"  BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Click="BtnCloseMenu_Click" Visibility="Collapsed">
-                    <materialDesign:PackIcon Name="IcoCloseMenu" Kind="Menu" Foreground="#FF3580BF" Width="30" Height="30" />
+                    <materialDesign:PackIcon Name="IcoCloseMenu" Kind="Menu" Foreground="DarkSlateGray" Width="30" Height="30" />
                 </Button>
             </StackPanel>
                 
             <StackPanel Width="150" Name="sPMenu" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="10 10 25 10">
-                <Button x:Name="btnInicioSession" Click="btnInicioSession_Click" ToolTip="Iniciar Sesion" Width="30" Height="30" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="#FF3580BF"  BorderBrush="{x:Null}" Padding="0">
+                <Button x:Name="btnInicioSession" Click="btnInicioSession_Click" ToolTip="Iniciar Sesion" Width="30" Height="30" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background=" #424242"  BorderBrush="#00e676" Padding="0">
                     <materialDesign:PackIcon Kind="Account" Width="30" Height="30"/>
                 </Button>
-                <Button x:Name="btnCierreSession" Click="btnCierreSession_Click" ToolTip="Cerrar Sesion"  Width="30" Height="30" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="red"  BorderBrush="{x:Null}" Padding="0">
-                    <materialDesign:PackIcon Kind="Account" Width="30" Height="30"/>
+                <Button x:Name="btnCierreSession" Click="btnCierreSession_Click" ToolTip="Cerrar Sesion"  Width="30" Height="30" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="#424242"  BorderBrush="#00e676" Padding="0">
+                    <materialDesign:PackIcon Kind="AccountOff"  Foreground="#ffa000" Width="30" Height="30"/>
                 </Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40" HorizontalAlignment="Right" Margin="10">
                 <!--paso 1-->
-                <Button Name="BtnMin" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="20" Height="20" Margin="0 0 10 0" Padding="0" Background="#FF3580BF" BorderBrush="{x:Null}" Click="BtnMin_Click">
+                <Button Name="BtnMin" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="20" Height="20" Margin="0 0 10 0" Padding="0" Background="#00e676" BorderBrush="{x:Null}" Click="BtnMin_Click">
                     <materialDesign:PackIcon Kind="Minus"  Width="20" Height="20"/>
                 </Button>
-                <Button x:Name="BtnSesion" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"  Width="20" Height="20" Padding="0" Background="#FF3580BF"  BorderBrush="{x:Null}" Click="BtnSesion_Click">
+                <Button x:Name="BtnSesion" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"  Width="20" Height="20" Padding="0" Background="Red"  BorderBrush="{x:Null}" Click="BtnSesion_Click">
                     <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
                 </Button>
 

@@ -8,7 +8,7 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="PageConfiguracion">
 
-    <Grid>
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF3580BF" FontSize="30">Configuracion</Label>
+    <Grid Background="#424242">
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="30">Configuracion</Label>
     </Grid>
 </Page>

@@ -15,6 +15,10 @@ using System.Windows.Shapes;
 using TinoTriXxX.VistaModelo;
 using System.Windows.Threading;
 using System.Windows.Media.Animation;
+using TinoTriXxX.Vista;
+using System.Threading;
+using System.ComponentModel;
+using System.IO;
 
 namespace TinoTriXxX
 {
@@ -23,18 +27,38 @@ namespace TinoTriXxX
     /// </summary>
     public partial class MainWindow : Window
     {
-       
 
+        CargandoAplicacion LoadApp;
+        BackgroundWorker bg;
         VM_Escritorio VM = new VM_Escritorio();
-
+        string path = System.IO.Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
         //var converter = new System.Windows.Media.BrushConverter();
         //var brush = (Brush)converter.ConvertFromString("#FFFFFF90");
         Color TemaAzulEstandar = (Color)ColorConverter.ConvertFromString("#FF3580BF");
+
+        Color verde4 = (Color)ColorConverter.ConvertFromString("#00c853");
+        Color verde3 = (Color)ColorConverter.ConvertFromString("#00e676");
+        Color verde2 = (Color)ColorConverter.ConvertFromString("#69f0ae");
+        Color verde1 = (Color)ColorConverter.ConvertFromString("#b9f6ca");
         Boolean CumpleConTodoRequisito;
         public MainWindow()
         {
-          
+            bg = new BackgroundWorker();
+            bg.DoWork += new DoWorkEventHandler(bg_DoWork);
+            bg.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bg_RunWorkerCompleted);
+            Ca();
+            //Thread t = new Thread(new ThreadStart(Ca));
+            //t.SetApartmentState(ApartmentState.STA);
+            //t.IsBackground = true;
+            //t.Start();
+            //CargandoAplicacion Load = new CargandoAplicacion();
+            //Load.Show();
             InitializeComponent();
+
+            //string StrIniciando = string.Empty;
+            //for (int i=0; i<100000; i++) { StrIniciando += i.ToString(); }
+            //t.Abort();
+            //Load.Close();
             ComprovarValidacionLicencia();
             //DispatcherTimer time = new DispatcherTimer();  
             //time.Interval = TimeSpan.FromSeconds(150);
@@ -43,12 +67,56 @@ namespace TinoTriXxX
             frame.NavigationService.Navigate(new PagePrincipal());
             bframe.Visibility = Visibility.Visible;
             blicencia.Visibility = Visibility.Hidden;
-
-
-
+            LimpiarApp();
         }
-
-      
+        void LimpiarApp(){
+            //var extensions = new List<string> { ".txt", ".xml" };
+            //string[] files = Directory.GetFiles(sDir, "*.*", SearchOption.AllDirectories)
+            //                    .Where(f => extensions.IndexOf(Path.GetExtension(f)) >= 0).ToArray();
+            String Directorio = path + "\\Imagenes\\usuario\\";
+            
+            string[] filePathsWebCam = Directory.GetFiles(Directorio, "*WebCamUsuario_*.png", SearchOption.AllDirectories);
+            foreach (string archivoWebCam in filePathsWebCam)
+            {
+                File.Delete(archivoWebCam);
+            }
+            string[] filePathsOriginales = Directory.GetFiles(Directorio, "*FotoOriginalUsuario_*.*", SearchOption.AllDirectories);
+            foreach (string archivoOriginal in filePathsOriginales)
+            {
+                File.Delete(archivoOriginal);
+            }
+            string[] filePathsFinales = Directory.GetFiles(Directorio, "*FotoFinalUsuario_*.*", SearchOption.AllDirectories);
+            foreach (string archivoFinal in filePathsFinales)
+            {
+                File.Delete(archivoFinal);
+            }
+        }
+        void bg_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            //LoadApp.Hide();
+            LoadApp.Close();
+            //this.Visibility = Visibility.Visible;
+        }
+        void bg_DoWork(object sender, DoWorkEventArgs e)
+        {
+            System.Threading.Thread.Sleep(10000);
+            //this.Hide();
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            //////LoadApp = new CargandoAplicacion();
+            //////LoadApp.Show();
+            //////bg.RunWorkerAsync();
+           
+        }
+        void Ca() {
+            //CargandoAplicacion Load = new CargandoAplicacion();
+            //Load.Show();
+            //System.Windows.Threading.Dispatcher.Run();
+            LoadApp = new CargandoAplicacion();
+            LoadApp.Show();
+            bg.RunWorkerAsync();
+        }
         private void Time_Tick(object sender, EventArgs e)
         {
             //comprovar Licencia en el hodting
@@ -61,8 +129,8 @@ namespace TinoTriXxX
         void TemaAppDesabilitado()
         {
             GridMain.Visibility = Visibility.Hidden;
-            BtnOpenMenu.Background = Brushes.White;
-            IcoOpenMenu.Foreground = new SolidColorBrush(TemaAzulEstandar);
+            //BtnOpenMenu.Background = Brushes.White;
+            //IcoOpenMenu.Foreground = new SolidColorBrush(TemaAzulEstandar);
             BtnMenuFotos.IsEnabled = false;
             BtnMenuHome.IsEnabled = false;
             GBestado.Visibility = Visibility.Hidden;
@@ -88,7 +156,6 @@ namespace TinoTriXxX
         {
             OpenMenuclick();
         }
-
         private void BtnCloseMenu_Click(object sender, RoutedEventArgs e)
         {
             CloseMenuClick();
@@ -96,30 +163,47 @@ namespace TinoTriXxX
 
         private void BtnMenuLicencia_Click(object sender, RoutedEventArgs e)
         {
+            LVIMenu.Background = Brushes.Transparent;
+            LVILicencia.Background = new SolidColorBrush(verde3);
+            LVIFotos.Background = Brushes.Transparent;
+            LVIConfiguracion.Background = Brushes.Transparent;
+
             GridMain.Visibility = Visibility.Visible;
             blicencia.Visibility = Visibility.Visible;
             bframe.Visibility = Visibility.Hidden;
             cerrarmenu();
         }
-
         private void BtnMenuHome_Click(object sender, RoutedEventArgs e)
         {
+            LVIMenu.Background = new SolidColorBrush(verde3);
+            LVILicencia.Background = Brushes.Transparent;
+            LVIFotos.Background = Brushes.Transparent;
+            LVIConfiguracion.Background = Brushes.Transparent;
+
             blicencia.Visibility = Visibility.Hidden;
             bframe.Visibility = Visibility.Visible;
             frame.NavigationService.Navigate(new PagePrincipal());
             cerrarmenu();
         }
-
         private void BtnMenuFotos_Click(object sender, RoutedEventArgs e)
         {
+            LVIMenu.Background = Brushes.Transparent;
+            LVILicencia.Background = Brushes.Transparent;
+            LVIFotos.Background = new SolidColorBrush(verde3);
+            LVIConfiguracion.Background = Brushes.Transparent;
+
             blicencia.Visibility = Visibility.Hidden;
             bframe.Visibility = Visibility.Visible;
             frame.NavigationService.Navigate(new PageFotos(VM));
             cerrarmenu();
         }
-
         private void BtnMenuConfiguracion_Click(object sender, RoutedEventArgs e)
         {
+            LVIMenu.Background = Brushes.Transparent;
+            LVILicencia.Background = Brushes.Transparent;
+            LVIFotos.Background = Brushes.Transparent;
+            LVIConfiguracion.Background = new SolidColorBrush(verde3);
+
             blicencia.Visibility = Visibility.Hidden;
             bframe.Visibility = Visibility.Visible;
             frame.NavigationService.Navigate(new PageConfiguracion());
@@ -136,16 +220,16 @@ namespace TinoTriXxX
             BtnOpenMenu.Visibility = Visibility.Visible;
             BtnCloseMenu.Visibility = Visibility.Collapsed;
 
-            BtnOpenMenu.Background = new SolidColorBrush(TemaAzulEstandar);
-            IcoOpenMenu.Foreground = Brushes.White;
+            //BtnOpenMenu.Background = new SolidColorBrush(TemaAzulEstandar);
+            //IcoOpenMenu.Foreground = Brushes.White;
         }
         void OpenMenuclick()
         {
             BtnOpenMenu.Visibility = Visibility.Collapsed;
             BtnCloseMenu.Visibility = Visibility.Visible;
 
-            BtnCloseMenu.Background = Brushes.White;
-            IcoCloseMenu.Foreground = new SolidColorBrush(TemaAzulEstandar);
+            //BtnCloseMenu.Background = Brushes.White;
+            //IcoCloseMenu.Foreground = new SolidColorBrush(TemaAzulEstandar);
 
         }
         
@@ -559,6 +643,6 @@ namespace TinoTriXxX
             }
         }
 
-        
+       
     }
 }

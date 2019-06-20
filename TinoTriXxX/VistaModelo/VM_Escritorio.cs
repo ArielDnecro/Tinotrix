@@ -28,6 +28,7 @@ namespace TinoTriXxX.VistaModelo
         private Session.Repository SessionLocalRepository = new Session.Repository();
         private EmpresaLocal.Repository EmpresaLocalRepository = new EmpresaLocal.Repository();
         private Foto.Repository FotoRepository = new Foto.Repository();
+        private Papel.Repository PapelRepository = new Papel.Repository();
         DBLogin login = new DBLogin();
 
         #region empresa
@@ -154,6 +155,15 @@ namespace TinoTriXxX.VistaModelo
         #region foto
         public List<Foto> ListaFotos = new List<Foto>();
         #endregion foto
+
+        #region Papel
+        private Papel _Papel;
+        public Papel Papel
+        {
+            get { return _Papel; }
+            set { _Papel = value; }
+        }
+        #endregion Papel
         #endregion Propiedades
 
 
@@ -266,6 +276,12 @@ namespace TinoTriXxX.VistaModelo
           return FotoRepository.CargarMedidaLocal(StrMedida);
         }
         #endregion FOTO
+
+        #region Papel
+        public void CargarPapel(Guid UIDSucursal) {
+            _Papel = PapelRepository.Find(UIDSucursal);
+        }
+        #endregion Papel
         #endregion funciones 
         #region Excepciones
         public class VM_EscritorioException : Exception

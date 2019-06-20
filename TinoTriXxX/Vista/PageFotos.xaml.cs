@@ -19,6 +19,10 @@ using TinoTriXxX.Modelo;
 using TinoTriXxX.VistaModelo;
 using System.Drawing;
 using TinoTriXxX.Vista;
+using TinoTriXxX.Informe;
+using System.Drawing.Drawing2D;
+using System.Drawing.Printing;
+using ImageMagick;
 
 namespace TinoTriXxX
 {
@@ -30,33 +34,35 @@ namespace TinoTriXxX
         System.Windows.Point? lastCenterPositionOnTarget;
         System.Windows.Point? lastMousePositionOnTarget;
         System.Windows.Point? lastDragPoint;
-
         CroppingAdorner _clp;
         FrameworkElement _felCur = null;
         System.Windows.Media.Brush _brOriginal;
-
         VM_Escritorio VM;
-        //BitmapImage bi = new BitmapImage();
-        
         string path = System.IO.Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
         //reportDocument.Load(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName,"Reporte_Peliculas.rpt"));
         string ImageName;
         double IntCropChanged;
         double Alto;
         double Ancho;
+        double AltoRecorte;
+        double AnchoRecorte;
         double AltoReal;
         double AnchoReal;
         double X;
         double Y;
-        int IntZoom;
+        //int IntZoom;
         int CropVH;
         int IntRotation;
+        Foto foto = null;
+        string sourceFileOriginal = null;
+        String filePathElegidaImprimir = null;
+        //System.Drawing.Image imagenfinal = null;
         public PageFotos(VM_Escritorio vm)
         {
             InitializeComponent();
             VM = vm;
             cargarfotos();
-
+            cargarPapel();
             scrollViewer.ScrollChanged += OnScrollViewerScrollChanged;
             //scrollViewer.MouseLeftButtonUp += OnMouseLeftButtonUp;
             //scrollViewer.PreviewMouseLeftButtonUp += OnMouseLeftButtonUp;
@@ -73,22 +79,7 @@ namespace TinoTriXxX
             }
       
         #region Crop
-        //private void CropImage_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    //if (dckControls != null && imgChurch != null)
-        //    Cropimage();
-        //}
-
-        //void Cropimage() {
-           
-        //    if (ImgFotoUsuario != null)
-        //    {
-        //        //dckControls.Visibility = Visibility.Hidden;
-        //        SetClipColorRed();
-        //        AddCropToElement(ImgFotoUsuario);
-        //        RefreshCropImage();
-        //    }
-        //}
+        
         private void SetClipColorRed()
         {
             if (_clp != null)
@@ -133,10 +124,10 @@ namespace TinoTriXxX
             Rect rcInterior = new Rect(0, 0, 0, 0);
           
                 rcInterior = new Rect(
-                            X - (AnchoReal / 2),
-                            Y - (AltoReal / 2),
-                           AnchoReal,
-                            AltoReal);
+                            X - (AnchoRecorte / 2),
+                            Y - (AltoRecorte / 2),
+                           AnchoRecorte,
+                            AltoRecorte);
             
             AdornerLayer aly = AdornerLayer.GetAdornerLayer(fel);
             _clp = new CroppingAdorner(fel, rcInterior);
@@ -172,12 +163,10 @@ namespace TinoTriXxX
                 _clp.Fill = new SolidColorBrush(clr);
             }
         }
-
         private void ImgFotoUsuario_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             UbicarMarcoSobreImagen();
         }
-
         private void ImgFotoUsuario_MouseMove(object sender, MouseEventArgs e)
         {
             //Point position = Mouse.GetPosition(ImgFotoUsuario);
@@ -205,13 +194,13 @@ namespace TinoTriXxX
                 }
                 if (_clp.IntHandle == 1 || _clp.IntHandle == 4)
                 {
-                    AnchoReal = EmpAncho * _clp.BpsCrop().Height;
-                    AltoReal = _clp.BpsCrop().Height;
+                    AnchoRecorte = EmpAncho * _clp.BpsCrop().Height;
+                    AltoRecorte = _clp.BpsCrop().Height;
                 }
                 if (_clp.IntHandle == 2 || _clp.IntHandle == 3)
                 {
-                    AltoReal = EmpAlto * _clp.BpsCrop().Width;
-                    AnchoReal = _clp.BpsCrop().Width;
+                    AltoRecorte = EmpAlto * _clp.BpsCrop().Width;
+                    AnchoRecorte = _clp.BpsCrop().Width;
                 }
                 UbicarMarcoSobreImagen();
                 _clp.IntHandle = 0;
@@ -220,7 +209,6 @@ namespace TinoTriXxX
             }
 
         }
-
         void UbicarMarcoSobreImagen()
         {
 
@@ -228,21 +216,21 @@ namespace TinoTriXxX
             //p.Text = "Ubicacion de la imagen X: " + position.X + ", Y: " + position.Y;
             X = position.X;
             Y = position.Y;
-            if (position.X < (AnchoReal / 2))
+            if (position.X < (AnchoRecorte / 2))
             {
-                X = AnchoReal / 2;
+                X = AnchoRecorte / 2;
             }
-            if (position.X > ImgFotoUsuario.ActualWidth - (AnchoReal / 2))
+            if (position.X > ImgFotoUsuario.ActualWidth - (AnchoRecorte / 2))
             {
-                X = ImgFotoUsuario.ActualWidth - (AnchoReal / 2);
+                X = ImgFotoUsuario.ActualWidth - (AnchoRecorte / 2);
             }
-            if (position.Y < (AltoReal / 2))
+            if (position.Y < (AltoRecorte / 2))
             {
-                Y = AltoReal / 2;
+                Y = AltoRecorte / 2;
             }
-            if (position.Y > ImgFotoUsuario.ActualHeight - (AltoReal / 2))
+            if (position.Y > ImgFotoUsuario.ActualHeight - (AltoRecorte / 2))
             {
-                Y = ImgFotoUsuario.ActualHeight - (AltoReal / 2);
+                Y = ImgFotoUsuario.ActualHeight - (AltoRecorte / 2);
             }
             AddCropToElement(ImgFotoUsuario);
             RefreshCropImage();
@@ -368,21 +356,20 @@ namespace TinoTriXxX
             
             LbFotos.ItemsSource = VM.ListaFotos;
         }
-
         private void btnRecargarListaFotos_Click(object sender, RoutedEventArgs e)
         {
             cargarfotos();
         }
-
         private void btnTomarFoto_Click(object sender, RoutedEventArgs e)
         {
 
 
             Button bt = (Button)sender;
             Grid parent = (Grid)bt.Parent;
-            Foto foto = (Foto)parent.DataContext;
+             foto = (Foto)parent.DataContext;
             if (foto != null) {
                 LbFotos.Visibility = Visibility.Hidden;
+                lbTituloFotografias.Visibility = Visibility.Hidden;
                 btnRecargarListaFotos.Visibility = Visibility.Hidden;
 
                 GFotoSeleccionada.Visibility = Visibility.Visible;
@@ -401,8 +388,11 @@ namespace TinoTriXxX
                 ImgFotoUsuario.Visibility = Visibility.Collapsed;
 
                 double PM = VM.MedidafotoConversor(foto.StrMedida);
-                AltoReal = foto.IntAlto * PM ;
+                AltoRecorte = foto.IntAlto * PM ;
+                AnchoRecorte = foto.IntAncho * PM;
+                AltoReal = foto.IntAlto * PM;
                 AnchoReal = foto.IntAncho * PM;
+
                 Alto = foto.IntAlto;
                 Ancho = foto.IntAncho;
                 GridMenu.Visibility = Visibility.Visible;
@@ -412,12 +402,12 @@ namespace TinoTriXxX
                 //btnRotacion90.Visibility = Visibility.Visible;
             }
         }
-
         private void btnRegresarListaFotos_Click(object sender, RoutedEventArgs e)
         {
             cargarfotos();
             LbFotos.Visibility = Visibility.Visible;
             btnRecargarListaFotos.Visibility = Visibility.Visible;
+            lbTituloFotografias.Visibility = Visibility.Visible;
 
             btnCapturarFoto.Visibility = Visibility.Hidden;
             btnCargarFoto.Visibility = Visibility.Hidden;
@@ -441,10 +431,10 @@ namespace TinoTriXxX
             //btnSeleccionFoto.Visibility = Visibility.Hidden;
             GridMenu.Visibility = Visibility.Hidden;
             GridMenu.IsEnabled = false;
-            btnRegresarEscogerFoto.Visibility = Visibility.Hidden;
+            //btnRegresarEscogerFoto.Visibility = Visibility.Hidden;
+            //BtnImprimir.Visibility = Visibility.Hidden;
             //RecSombraSeleccionadora.Visibility = Visibility.Collapsed;
         }
-
         private void btnCargarFoto_Click(object sender, RoutedEventArgs e)
         {
             cargarfoto();
@@ -464,18 +454,27 @@ namespace TinoTriXxX
             {
                 //BitmapImage bi = new BitmapImage();
                 ImageName = dlg.SafeFileName;
-                string sourceFile = dlg.FileName;
+                 sourceFileOriginal = dlg.FileName;
                 lbNombreFotoUsuario.Visibility = Visibility.Visible;
-                lbNombreFotoUsuario.Content = sourceFile;
+                lbNombreFotoUsuario.Content = sourceFileOriginal;
                 //System.Windows.Controls.Image  _image = new System.Windows.Controls.Image();
                 //bi.BeginInit();
                 //bi.UriSource = new System.Uri(sourceFile);
                 //bi.EndInit();
                 //_image.Source = bi;
                 //ImgFotoUsuario.Source = _image.Source;
-                ImgFotoUsuario.Source = ToImageSource(dlg.FileName);
+                string archivoOriginal = System.IO.Path.GetFileName(dlg.FileName);
+               string ExtencionOriginalArchivo = System.IO.Path.GetExtension(dlg.FileName);
+                string archivoNuevo = "FotoOriginalUsuario_" + DateTime.Now.ToString(" MM-dd-yyyy HH-mm-ss") + ExtencionOriginalArchivo;
+                String DirectorioDestino = path + "\\Imagenes\\usuario\\";
+                string ArchivoDescargado = DirectorioDestino + archivoNuevo;
+                File.Copy(dlg.FileName, ArchivoDescargado,true);
+
+                ImgFotoUsuario.Source = ToImageSource(ArchivoDescargado);
                 ImgFotoUsuario.Visibility = Visibility.Visible;
                 tblkClippingRectangle.Visibility = Visibility.Visible;
+                btnRotacionMenos90.Visibility = Visibility.Visible;
+                btnRotacion90.Visibility = Visibility.Visible;
             }
 
         }
@@ -483,13 +482,18 @@ namespace TinoTriXxX
         {
             System.Windows.Media.Imaging.BitmapImage _bitmap = new System.Windows.Media.Imaging.BitmapImage();
             _bitmap.BeginInit();
+           // _bitmap.CacheOption = BitmapCacheOption.OnLoad;
             _bitmap.UriSource = new Uri(path);
             _bitmap.EndInit();
+            //using (var stream = File.OpenRead(path))
+            //{
+            //    _bitmap.BeginInit();
+            //    //_bitmap.CacheOption = BitmapCacheOption.OnLoad;
+            //    _bitmap.StreamSource = stream;
+            //    _bitmap.EndInit();
+            //}
             return _bitmap;
         }
-
-
-
         private void btnCapturarFoto_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -500,10 +504,30 @@ namespace TinoTriXxX
                 //AplicarEfecto(this, 0);
                 Nullable<bool> result  = c.ShowDialog();
                 //if (result == true) {
+                if (c._imagenfinal.Source!=null) {
                     ImgFotoUsuario.Source = c._imagenfinal.Source;
-                ImgFotoUsuario.Visibility = Visibility.Visible;
-                //}
+                    ImgFotoUsuario.Visibility = Visibility.Visible;
+                    //}
+                    tblkClippingRectangle.Visibility = Visibility.Visible;
+                    btnRotacionMenos90.Visibility = Visibility.Visible;
+                    btnRotacion90.Visibility = Visibility.Visible;
+                    
+                    String Directorio = path + "\\Imagenes\\usuario\\";
+                    string archivoWebCam = Directorio + "WebCamUsuario_" + DateTime.Now.ToString(" MM-dd-yyyy HH-mm-ss") + ".png";
 
+                    //if (File.Exists(archivoWebCam))
+                    //{
+                    //    File.SetAttributes(archivoWebCam, FileAttributes.Normal);
+                    //    File.Delete(archivoWebCam);//elimina la foto de otras sesiones
+                    //}
+
+                    var encoder = new PngBitmapEncoder();
+                    //"JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+                    encoder.Frames.Add(BitmapFrame.Create((BitmapSource)ImgFotoUsuario.Source));
+                    using (FileStream stream = new FileStream(archivoWebCam, FileMode.Create)) encoder.Save(stream);
+                    ImgFotoUsuario.Source = ToImageSource(archivoWebCam);
+                    // File.Delete(archivoWebCam);
+                }
             } catch (Exception et) {
                 MessageBox.Show("¡No hay ninguna camara disponible! \r\n \r\n" + et.Message , "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
@@ -516,15 +540,6 @@ namespace TinoTriXxX
             objBlur.Radius = NivelDegradado;
             win.Effect = objBlur;
         }
-        //private void btnSeleccionFoto_Click(object sender, RoutedEventArgs e)
-        //{
-        //    AddCropToElement(ImgFotoUsuario);
-        //    RefreshCropImage();
-        //    BtnAfirmarElegirFoto.Visibility = Visibility.Visible;
-        //    BtnCancelarElegirFoto.Visibility = Visibility.Visible;
-
-        //}
-
         private void BtnCancelarElegirFoto_Click(object sender, RoutedEventArgs e)
         {
             //btnSeleccionFoto.Visibility = Visibility.Hidden;
@@ -534,20 +549,16 @@ namespace TinoTriXxX
             //imgCrop.Visibility = Visibility.Hidden;
             GridMenu.IsEnabled = false;
         }
-
-
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
         {
             ButtonCloseMenu.Visibility = Visibility.Visible;
             ButtonOpenMenu.Visibility = Visibility.Collapsed;
         }
-
         private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
         {
             ButtonCloseMenu.Visibility = Visibility.Collapsed;
             ButtonOpenMenu.Visibility = Visibility.Visible;
         }
-
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //UserControl usc = null;
@@ -567,44 +578,82 @@ namespace TinoTriXxX
             //        break;
             //}
         }
-
         private void BtnAfirmarElegirFoto_Click(object sender, RoutedEventArgs e)
         {
-            GridMenu.IsEnabled = true;
-            //-imgCrop.Visibility = Visibility.Visible;
-            btnRotacionMenos90.Visibility = Visibility.Hidden;
-            btnRotacion90.Visibility = Visibility.Hidden;
-            BtnAfirmarElegirFoto.Visibility = Visibility.Hidden;
-            BtnCancelarElegirFoto.Visibility = Visibility.Hidden;
-            //RecSombraSeleccionadora.Visibility = Visibility.Hidden;
-            ImgFotoUsuario.Visibility = Visibility.Collapsed;
-            tblkClippingRectangle.Visibility = Visibility.Collapsed;
-            //btnSeleccionFoto.Visibility = Visibility.Hidden;
-            btnCargarFoto.Visibility = Visibility.Hidden;
-            btnCapturarFoto.Visibility = Visibility.Hidden;
-            btnRegresarEscogerFoto.Visibility = Visibility.Visible;
+            //GridMenu.IsEnabled = true;
+            ////-imgCrop.Visibility = Visibility.Visible;
+            //btnRotacionMenos90.Visibility = Visibility.Hidden;
+            //btnRotacion90.Visibility = Visibility.Hidden;
+            //BtnAfirmarElegirFoto.Visibility = Visibility.Hidden;
+            //BtnCancelarElegirFoto.Visibility = Visibility.Hidden;
+            ////RecSombraSeleccionadora.Visibility = Visibility.Hidden;
+            //ImgFotoUsuario.Visibility = Visibility.Collapsed;
+            //tblkClippingRectangle.Visibility = Visibility.Collapsed;
+            ////btnSeleccionFoto.Visibility = Visibility.Hidden;
+            //btnCargarFoto.Visibility = Visibility.Hidden;
+            //btnCapturarFoto.Visibility = Visibility.Hidden;
+            //btnRegresarEscogerFoto.Visibility = Visibility.Visible;
+            //BtnImprimir.Visibility = Visibility.Visible;
+
+
+
+            String Directorio = path + "\\Imagenes\\usuario\\"; //"C:\\Users\\Iudex\\Documents\\TinoTrix\\Clone\\Tinotrix\\TinoTriXxX"
+                                                                // C: \Users\Iudex\Documents\TinoTrix\Clone\Tinotrix\TinoTriXxX\Imagenes\usuario
+            String Extencion = System.IO.Path.GetExtension(sourceFileOriginal);
+            String Archivo = "FotoFinalUsuario_" + DateTime.Now.ToString(" MM-dd-yyyy HH-mm-ss") + ".png";
+            filePathElegidaImprimir = Directorio + Archivo ;
+            System.Windows.Controls.Image UserImage = imgCrop;
+
+            //System.Drawing.Image imgd = System.Drawing.Image.FromFile(@"C:\Users\...\Pictures\book.jpg");
+
+            //Bitmap bmp = (Bitmap)Bitmap.FromFile(@"C:\testimage.bmp");
+            //Bitmap newImage = ResizeBitmap(bmp, Ancho, Alto);
+            //Bitmap bmp = (Bitmap)Bitmap.FromFile(@"C:\testimage.bmp");
+            //bmp += new System.Windows.Forms.PaintEventHandler(ResizeImagen);
+
+            // System.Windows.Controls.Image image = System.Windows.Controls.Image.filw("foo.png");
+            //Bitmap bitmap = new Bitmap(imgCrop, new System.Windows.Size(320, 480)); // or some math to resize it to 1/2
+            //bitmap.Save("foo2.png", System.Drawing.Imaging.ImageFormat.Png);
+
+            var encoder = new PngBitmapEncoder();
+            //"JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+            encoder.Frames.Add(BitmapFrame.Create((BitmapSource)UserImage.Source));
+            using (FileStream stream = new FileStream(filePathElegidaImprimir, FileMode.Create)) encoder.Save(stream);
+
+            RedimencionarImagenElegida();
+
+            VInfFotosCliente frm = new VInfFotosCliente(filePathElegidaImprimir, imgCrop, foto, VM.Papel);
+            frm.ShowDialog();
+            //FotoFinal ff = new FotoFinal(filePathElegidaImprimir, imgCrop, foto, VM.Papel);
+            //ff.ShowDialog();
+            //File.Delete(filePathElegidaImprimir);
         }
 
-        private void btnRegresarEscogerFoto_Click(object sender, RoutedEventArgs e)
+        void RedimencionarImagenElegida()
         {
-            GridMenu.IsEnabled = false;
-            //-imgCrop.Visibility = Visibility.Hidden;
-            btnRotacionMenos90.Visibility = Visibility.Visible;
-            btnRotacion90.Visibility = Visibility.Visible;
-            BtnAfirmarElegirFoto.Visibility = Visibility.Visible;
-            BtnCancelarElegirFoto.Visibility = Visibility.Visible;
-            //RecSombraSeleccionadora.Visibility = Visibility.Visible;
-            ImgFotoUsuario.Visibility = Visibility.Visible;
-            tblkClippingRectangle.Visibility = Visibility.Visible;
-            //btnSeleccionFoto.Visibility = Visibility.Visible;
-            btnCargarFoto.Visibility = Visibility.Visible;
-            btnCapturarFoto.Visibility = Visibility.Visible;
-            btnRegresarEscogerFoto.Visibility = Visibility.Hidden;
+            MagickImage OImage = new MagickImage(filePathElegidaImprimir);
+            // OImage.
+            OImage.Resize(0, (int)AltoReal);
+            File.Delete(filePathElegidaImprimir);
+            OImage.Write(filePathElegidaImprimir);
         }
-
-       
-
-
+        //private void btnRegresarEscogerFoto_Click(object sender, RoutedEventArgs e)
+        //{
+        //    GridMenu.IsEnabled = false;
+        //    //-imgCrop.Visibility = Visibility.Hidden;
+        //    btnRotacionMenos90.Visibility = Visibility.Visible;
+        //    btnRotacion90.Visibility = Visibility.Visible;
+        //    BtnAfirmarElegirFoto.Visibility = Visibility.Visible;
+        //    BtnCancelarElegirFoto.Visibility = Visibility.Visible;
+        //    //RecSombraSeleccionadora.Visibility = Visibility.Visible;
+        //    ImgFotoUsuario.Visibility = Visibility.Visible;
+        //    tblkClippingRectangle.Visibility = Visibility.Visible;
+        //    //btnSeleccionFoto.Visibility = Visibility.Visible;
+        //    btnCargarFoto.Visibility = Visibility.Visible;
+        //    btnCapturarFoto.Visibility = Visibility.Visible;
+        //    btnRegresarEscogerFoto.Visibility = Visibility.Hidden;
+        //    BtnImprimir.Visibility = Visibility.Hidden;
+        //}
 
         #endregion fotos
 
@@ -692,107 +741,124 @@ namespace TinoTriXxX
 
             }
         }
-        // rotacion
-
-        //double LeftC = rc.Left;
-        //double RightC = rc.Right;
-        //double TopC=rc.Top;
-        //double BottomC=rc.Bottom;
-
-
-        //WinLoaded();
-        //X = YC;
-        //Y = XC;
-        //var bi = ImgFotoUsuario.Source as BitmapImage;
-        //bi.BeginInit();
-        //bi.Rotation = Rotation.Rotate90;
-        //bi.EndInit();
-        //set image source
-        //ImgFotoUsuario.Source = bi;
-
-
-
-
-        //string j = new Uri( @"pack://application:,,").ToString();
-
-        //BitmapImage bi = new BitmapImage(bit.UriSource);
-        //BitmapImage properties must be in a BeginInit/EndInit block
-        //BitmapImage _bit = new BitmapImage(bi.UriSource);
-        //_bit = bi;
-        //bi.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
-        //bi.CacheOption = BitmapCacheOption.OnLoad;
-        //bi.StreamSource.Position = 0;
-
-
-        //string DirectorioImage = path + "Assets\UserImage\"";
-        //_bit.UriSource = new Uri(path+ "/Assets/UserImage/"+ ImageName);
-        //Set image rotation
-
-        //EliminarImagenUsuario();
-        //bi.DownloadCompleted += ImageDownloadCompleted;
-        //bi=_bit;
-        //private static byte[] ReadImageMemory()
-        //{
-        //    //ImageSource img = ImgFotoUsuario.Source;
-        //    //BitmapSource bmp = (BitmapSource)img;
-
-
-        //    BitmapSource bitmapSource = BitmapConversion.ToBitmapSource(Clipboard.GetImage());
-        //    JpegBitmapEncoder encoder = new JpegBitmapEncoder();
-        //    MemoryStream memoryStream = new MemoryStream();
-        //    encoder.Frames.Add(BitmapFrame.Create(bitmapSource));
-        //    encoder.Save(memoryStream);
-        //    return memoryStream.GetBuffer();
-        //}
-
-        //public BitmapImage ImageFromBuffer(Byte[] bytes)
-        //{
-        //    MemoryStream stream = new MemoryStream(bytes);
-        //    BitmapImage image = new BitmapImage();
-        //    image.BeginInit();
-        //    image.StreamSource = stream;
-        //    image.EndInit();
-        //    return image;
-        //}
-        //public BitmapImage Convert(Image img)
-        //{
-        //    using (var memory = new MemoryStream())
-        //    {
-
-        //        img.Save(memory, ImageFormat.Png);
-        //        memory.Position = 0;
-
-        //        var bitmapImage = new BitmapImage();
-        //        bitmapImage.BeginInit();
-        //        bitmapImage.StreamSource = memory;
-        //        bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-        //        bitmapImage.EndInit();
-
-        //        return bitmapImage;
-        //    }
-        //}
-
-        //private void ImageDownloadCompleted(object sender,EventArgs e)
-        //{
-        //    JpegBitmapEncoder encoder = new JpegBitmapEncoder();
-        //    Guid photoID = System.Guid.NewGuid();
-        //    String photolocation = photoID.ToString() + ".jpg";  //file name 
-
-        //    encoder.Frames.Add(BitmapFrame.Create((BitmapImage)sender));
-
-        //    using (var filestream = new FileStream(photolocation, FileMode.Create))
-        //        encoder.Save(filestream);
-        //}
-        //void EliminarImagenUsuario()
-        //{
-        //    List<string> strFiles = Directory.GetFiles(@"..\..\Assets\UserImage\", "*", SearchOption.AllDirectories).ToList();
-
-        //    foreach (string fichero in strFiles)
-        //    {
-        //        File.Delete(fichero);
-        //    }
-        //}
+        
         #endregion Rotacion
 
+        #region papel
+        private void cargarPapel()
+        {
+            VM.CargarPapel(VM.Sucursal.UidSucursal);
+            //LbFotos.ItemsSource = VM.ListaFotos;
+        }
+
+        #endregion
+
+        //private void BtnImprimir_Click(object sender, RoutedEventArgs e)
+        //{ 
+
+
+        //}
+        // public System.Windows.Forms.PictureBox pictureBox1 = new System.Windows.Forms.PictureBox();
+
+        //pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
+        //private void GetPixel_Example(System.Windows.Forms.PaintEventArgs e)
+        //{
+        //    System.Drawing.Image image = new Bitmap("Apple.gif");
+        //    // Draw the image unaltered with its upper-left corner at (0, 0).
+        //    e.Graphics.DrawImage(image, 0, 0);
+        //    // Make the destination rectangle 30 percent wider and
+        //    // 30 percent taller than the original image.
+        //    // Put the upper-left corner of the destination
+        //    // rectangle at (150, 20).
+        //    int width = image.Width;
+        //    int height = image.Height;
+        //    RectangleF destinationRect = new RectangleF(150, 20, 1.3f * width, 1.3f * height);
+        //    // Draw a portion of the image. Scale that portion of the image
+        //    // so that it fills the destination rectangle.
+        //    RectangleF sourceRect = new RectangleF(0, 0, .75f * width, .75f * height);
+        //    e.Graphics.DrawImage(image, destinationRect, sourceRect, GraphicsUnit.Pixel);
+        //}
+        //private void pictureBox1_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
+        //{
+        //    GetPixel_Example(e);
+        //}
+
+        //public Bitmap ResizeBitmap(Bitmap bmp, int width, int height)
+        //{
+        //    Bitmap result = new Bitmap(width, height);
+        //    using (Graphics g = Graphics.FromImage(result))
+        //    {
+        //        g.DrawImage(bmp, 0, 0, width, height);
+        //    }
+
+        //    return result;
+        //}
+
+        //public static Bitmap ResizeImage(System.Drawing.Image image, int width, int height)
+        //{
+        //    //Image imgPhoto = Image.FromFile(@"C:\Users\...\Pictures\book.jpg");
+        //    //Bitmap image = ResizeImage(imgPhoto, 100, 150);
+        //    //image.Save(@"C:\Users\...\Pictures\books.jpg");
+        //    var destRect = new System.Drawing.Rectangle(0, 0, width, height);
+        //    var destImage = new Bitmap(width, height);
+
+        //    destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+        //    using (var graphics = Graphics.FromImage(destImage))
+        //    {
+        //        graphics.CompositingMode = CompositingMode.SourceCopy;
+        //        graphics.CompositingQuality = CompositingQuality.HighQuality;
+        //        graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+        //        graphics.SmoothingMode = SmoothingMode.HighQuality;
+        //        graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+        //        using (var wrapMode = new System.Drawing.Imaging.ImageAttributes())
+        //        {
+        //            wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+        //            graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+        //        }
+        //    }
+        //    return destImage;
+        //}
+        //PrintPageEventArgs
+        //private void ResizeImagen(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        //{
+        //    Bitmap bmp = new Bitmap(@"c:\miqui\tomate.png");
+
+        //    float anchoImagen = 25.4F * bmp.Width / bmp.HorizontalResolution; // en milímetros
+        //    float alturaImagen = 25.4F * bmp.Height / bmp.VerticalResolution;
+
+        //    e.Graphics.DrawImage(bmp, 0, 0);
+        //    e.Graphics.PageUnit = GraphicsUnit.Millimeter;
+
+        //    // pinto el texto un cm debajo de la imagen
+        //   // string texto = "Dimensiones de la imagen en milímetros: " + anchoImagen + "x" + alturaImagen;
+        //    e.Graphics.TranslateTransform(0, alturaImagen + 10);
+        //   // e.Graphics.DrawString(texto, Font, System.Drawing.Brushes.Black, 0, 0);
+        //}
+
+        //public static Bitmap Resize(string filePath)
+        //{
+        //    Bitmap image = (Bitmap)Bitmap.FromFile(filePath);
+        //    int destinoWidth = (int)(image.Width);
+        //    int destinoHeight = (int)(image.Height);
+
+        //    Bitmap Imagen2 = new Bitmap(destinoWidth, destinoHeight);
+        //    using (Graphics g = Graphics.FromImage((System.Drawing.Image)Imagen2)) { g.DrawImage(image, 0, 0, destinoWidth, destinoHeight); }
+        //    image.Dispose();
+        //    return (Imagen2);
+        //}
+
+        
+
+        // FrameWithinGrid.Navigate(new System.Uri("Page1.xaml",UriKind.RelativeOrAbsolute));
+        //Process.start();
+        // System.Diagnostics.Process.Start("http://mydomain.com/Default.aspx");
+
+        //     NavigationWindow window = new NavigationWindow();
+
+        // Uri source = new Uri("http://www.c-sharpcorner.com/Default.aspx", UriKind.Absolute);
+
+        // window.Source = source; window.Show();
     }
 }

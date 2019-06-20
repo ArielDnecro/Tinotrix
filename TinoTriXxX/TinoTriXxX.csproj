@@ -48,6 +48,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logotipo2019.72x72.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
       <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
@@ -67,15 +70,41 @@
     <Reference Include="Dragablz, Version=0.0.3.203, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dragablz.0.0.3.203\lib\net45\Dragablz.dll</HintPath>
     </Reference>
+    <Reference Include="Magick.NET-Q16-AnyCPU, Version=7.13.1.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL">
+      <HintPath>..\packages\Magick.NET-Q16-AnyCPU.7.13.1\lib\net40\Magick.NET-Q16-AnyCPU.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
     <Reference Include="MaterialDesignThemes.Wpf, Version=2.4.1.1101, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.2.4.1.1101\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Imaging, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="SplashScreen, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SplashScreen.Winforms.1.0.0\lib\SplashScreen.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -85,9 +114,11 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -96,11 +127,24 @@
     </ApplicationDefinition>
     <Compile Include="CroppingAdorner\CroppingAdorner.cs" />
     <Compile Include="CroppingAdorner\PuncturedRect.cs" />
+    <Compile Include="Informe\VInfFotosCliente.xaml.cs">
+      <DependentUpon>VInfFotosCliente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Imagen.cs" />
+    <Compile Include="Modelo\Img.cs" />
+    <Compile Include="Modelo\Papel.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Vista\Autentificacion.xaml.cs">
       <DependentUpon>Autentificacion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\Camara.xaml.cs">
       <DependentUpon>Camara.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\CargandoAplicacion.xaml.cs">
+      <DependentUpon>CargandoAplicacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\FotoFinal.xaml.cs">
+      <DependentUpon>FotoFinal.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\mainwindow.xaml.cs">
       <DependentUpon>mainwindow.xaml</DependentUpon>
@@ -118,11 +162,23 @@
       <DependentUpon>PagePrincipal.xaml</DependentUpon>
     </Compile>
     <Compile Include="VistaModelo\VM_Escritorio.cs" />
+    <Page Include="Informe\VInfFotosCliente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\Autentificacion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Vista\Camara.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\CargandoAplicacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\FotoFinal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,11 +226,35 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Informe\Credencial\Credencial2.rdlc" />
+    <EmbeddedResource Include="Informe\Credencial\Credencial3.rdlc" />
+    <EmbeddedResource Include="Informe\Credencial\Credencial4.rdlc" />
+    <EmbeddedResource Include="Informe\Credencial\Credencial5.rdlc" />
+    <EmbeddedResource Include="Informe\Foto1.rdlc" />
+    <EmbeddedResource Include="Informe\Foto2.rdlc" />
+    <EmbeddedResource Include="Informe\Foto3.rdlc" />
+    <EmbeddedResource Include="Informe\Foto4.rdlc" />
+    <EmbeddedResource Include="Informe\Foto5.rdlc" />
+    <EmbeddedResource Include="Informe\Foto6.rdlc" />
+    <EmbeddedResource Include="Informe\Foto7.rdlc" />
+    <EmbeddedResource Include="Informe\Infantil\Infantil2.rdlc" />
+    <EmbeddedResource Include="Informe\Infantil\Infantil3.rdlc" />
+    <EmbeddedResource Include="Informe\Infantil\Infantil4.rdlc" />
+    <EmbeddedResource Include="Informe\Infantil\Infantil5.rdlc" />
+    <EmbeddedResource Include="Informe\Infantil\Infantil6.rdlc" />
+    <EmbeddedResource Include="Informe\Militar\Militar2.rdlc" />
+    <EmbeddedResource Include="Informe\Militar\Militar3.rdlc" />
+    <EmbeddedResource Include="Informe\Militar\Militar4.rdlc" />
+    <EmbeddedResource Include="Informe\Militar\Militar5.rdlc" />
+    <EmbeddedResource Include="Informe\Titulo\Titulo2.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\TinoTriXxX.Modelo.Imagen.datasource" />
+    <None Include="Properties\DataSources\TinoTriXxX.Modelo.Img.datasource" />
+    <None Include="Properties\DataSources\TinoTriXxX.Modelo.Img1.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -214,6 +294,57 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\AppLoadBackGround.png" />
+    <Resource Include="Assets\IrisCamera.png" />
+    <Resource Include="Assets\IrisCameraBlancoTransparente.png" />
+    <Resource Include="Assets\logo2019.png" />
+    <Resource Include="Assets\logoBlanco2019.png" />
+    <Resource Include="Assets\logocoloresNegro2019.png" />
+    <Resource Include="Assets\logo2019.200x275.png" />
+    <Resource Include="Assets\logo2019.400x550.png" />
+    <Resource Include="Assets\logo2019.720x990.png" />
+    <Resource Include="Assets\logoBlanco2019.200x275.png" />
+    <Resource Include="Assets\logoBlanco2019.400x550.png" />
+    <Resource Include="Assets\logocolores2019.200x275.png" />
+    <Resource Include="Assets\logocolores2019.400x550.png" />
+    <Resource Include="Assets\logocolores2019.720x990.png" />
+    <Resource Include="Assets\logocolores2019.png" />
+    <Resource Include="Assets\logotipo2019.72x72.png" />
+    <Resource Include="Assets\logotipo2019.150x150.png" />
+    <Resource Include="logotipo2019.72x72.ico" />
+    <Resource Include="Imagenes\vacio.png" />
+    <Resource Include="Imagenes\usuarioejemplo\userejemplo1.jpg" />
+    <Resource Include="Imagenes\usuarioejemplo\userejemplo2.jpg" />
+    <Resource Include="Imagenes\usuarioejemplo\userejemplo3.jpg" />
+    <Resource Include="Imagenes\usuarioejemplo\userejemplo4.jpg" />
+    <Resource Include="Imagenes\usuarioejemplo\userejemplo5.jpg" />
+    <Resource Include="Imagenes\usuarioejemplo\userejemplo6.jpg" />
+    <Resource Include="Imagenes\usuarioejemplo\userejemplo10.jpg" />
+    <Resource Include="Imagenes\usuarioejemplo\userejemplo11.jpg" />
+    <Resource Include="Imagenes\usuarioejemplo\userejemplo12.jpg" />
+    <Resource Include="Imagenes\usuarioejemplo\userejemplo13.jpg" />
+    <Resource Include="Imagenes\usuarioejemplo\userejemplo14.jpg" />
+    <Resource Include="Imagenes\usuarioejemplo\userejemplo15.jpg" />
+    <Resource Include="Imagenes\usuarioejemplo\userejemplo16.jpg" />
+    <Resource Include="Imagenes\usuarioejemplo\userejemplo17.jpg" />
+    <Resource Include="Imagenes\usuarioejemplo\userejemplo18.jpg" />
+    <Resource Include="Imagenes\usuarioejemplo\userejemplo7.jpg" />
+    <Resource Include="Imagenes\usuarioejemplo\userejemplo8.jpg" />
+    <Resource Include="Imagenes\usuarioejemplo\userejemplo9.jpg" />
+    <Resource Include="Assets\logotipo2019.72x72.ico" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Assets\lt2.png" />
     <Resource Include="Assets\FondoEditor.png" />
     <Content Include="BdTinotrix.mdf">
@@ -238,6 +369,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\UserImage\" />
+    <Folder Include="Imagenes\usuario\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
