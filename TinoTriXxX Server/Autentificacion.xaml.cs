@@ -23,12 +23,14 @@ namespace TinoTriXxX
         
         VM_Escritorio _CVMServer;
         //string strperfil = "";
-
-        public Autentificacion(VM_Escritorio vm)
+        bool _BooInicioApp;
+        public Autentificacion(VM_Escritorio vm, bool BooInicioApp )
         {
             InitializeComponent();
             _CVMServer = vm;
             txtusuario.Focus();
+            _BooInicioApp = BooInicioApp;
+            //if (BooInicioApp==false) { BtnSalir.Visibility = Visibility.Hidden; }
         }
         
         private void btnEntrar_Click(object sender, RoutedEventArgs e)
@@ -104,8 +106,15 @@ namespace TinoTriXxX
 
         private void BtnSalir_Click(object sender, RoutedEventArgs e)
         {
-            _CVMServer.Usuario = null;
-            this.Close();
+            if (_BooInicioApp == true)
+            {
+                _CVMServer.Usuario = null;
+                this.Close();
+            }
+            else {
+                App.Current.Shutdown();
+            }
+            
         }
 
         private void btnRegresarUsuario_Click(object sender, RoutedEventArgs e)

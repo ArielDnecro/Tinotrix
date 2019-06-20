@@ -31,10 +31,18 @@ namespace TinoTriXxX
         {
             InitializeComponent();
 
+            
             acceso();
             frame.NavigationService.Navigate(new PagePrincipal());
             bframe.Visibility = Visibility.Visible;
             blicencia.Visibility = Visibility.Hidden;
+            VM.ObtenerSession();
+            if (VM.Session.UidUsusario == Guid.Empty)
+            {
+                Autentificacion au = new Autentificacion(VM, false);
+                au.ShowDialog();
+                SessionConf();
+            }
         }
         
         #region Eventos de la vista
@@ -435,7 +443,6 @@ namespace TinoTriXxX
                 VM.RevocarLicenciaLocal();
                 ComprovarValidacionLicencia();
         }
-
         private void BtnAgregarLicencia_Click(object sender, RoutedEventArgs e)
         {
             HabilitarActualizacionLicencia();
@@ -588,7 +595,7 @@ namespace TinoTriXxX
         #region Session
             private void btnInicioSesion_Click(object sender, RoutedEventArgs e)
             {
-                Autentificacion au = new Autentificacion(VM);
+                Autentificacion au = new Autentificacion(VM, true);
                 au.Owner = this; AplicarEfecto(this, 5);
                 au.ShowDialog();
                 au.Owner = this; AplicarEfecto(this, 0);
