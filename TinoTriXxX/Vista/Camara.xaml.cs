@@ -25,7 +25,7 @@ namespace TinoTriXxX.Vista
     /// </summary>
     public partial class Camara : Window
     {
-        String filePathElegidaImprimir = null;
+        //String filePathElegidaImprimir = null;
         string path = System.IO.Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
         public System.Windows.Controls.Image _imagenfinal = null;
         System.Windows.Media.Color TemaAzulEstandar = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#FF3580BF");

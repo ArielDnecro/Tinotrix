@@ -49,7 +49,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>logotipo2019.72x72.ico</ApplicationIcon>
+    <ApplicationIcon>logotipo2019.2.0.64x67.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
@@ -104,6 +107,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -133,6 +137,7 @@
     <Compile Include="Modelo\Imagen.cs" />
     <Compile Include="Modelo\Img.cs" />
     <Compile Include="Modelo\Papel.cs" />
+    <Compile Include="Modelo\ServiceHelper.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Vista\Autentificacion.xaml.cs">
       <DependentUpon>Autentificacion.xaml</DependentUpon>
@@ -143,8 +148,8 @@
     <Compile Include="Vista\CargandoAplicacion.xaml.cs">
       <DependentUpon>CargandoAplicacion.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vista\FotoFinal.xaml.cs">
-      <DependentUpon>FotoFinal.xaml</DependentUpon>
+    <Compile Include="Vista\DBLocal.xaml.cs">
+      <DependentUpon>DBLocal.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\mainwindow.xaml.cs">
       <DependentUpon>mainwindow.xaml</DependentUpon>
@@ -178,11 +183,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vista\FotoFinal.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Vista\Login.xaml">
+    <Page Include="Vista\DBLocal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -195,9 +196,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ConexionBaseDatos\Konection.cs" />
-    <Compile Include="Vista\Login.xaml.cs">
-      <DependentUpon>Login.xaml</DependentUpon>
-    </Compile>
     <Page Include="Vista\PageConfiguracion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -251,6 +249,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.manifest" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\TinoTriXxX.Modelo.Imagen.datasource" />
     <None Include="Properties\DataSources\TinoTriXxX.Modelo.Img.datasource" />
@@ -298,19 +297,10 @@
     <Resource Include="Assets\IrisCamera.png" />
     <Resource Include="Assets\IrisCameraBlancoTransparente.png" />
     <Resource Include="Assets\logo2019.png" />
-    <Resource Include="Assets\logoBlanco2019.png" />
-    <Resource Include="Assets\logocoloresNegro2019.png" />
     <Resource Include="Assets\logo2019.200x275.png" />
     <Resource Include="Assets\logo2019.400x550.png" />
     <Resource Include="Assets\logo2019.720x990.png" />
-    <Resource Include="Assets\logoBlanco2019.200x275.png" />
-    <Resource Include="Assets\logoBlanco2019.400x550.png" />
-    <Resource Include="Assets\logocolores2019.200x275.png" />
-    <Resource Include="Assets\logocolores2019.400x550.png" />
-    <Resource Include="Assets\logocolores2019.720x990.png" />
-    <Resource Include="Assets\logocolores2019.png" />
     <Resource Include="Assets\logotipo2019.72x72.png" />
-    <Resource Include="Assets\logotipo2019.150x150.png" />
     <Resource Include="logotipo2019.72x72.ico" />
     <Resource Include="Imagenes\vacio.png" />
     <Resource Include="Imagenes\usuarioejemplo\userejemplo1.jpg" />
@@ -332,6 +322,22 @@
     <Resource Include="Imagenes\usuarioejemplo\userejemplo8.jpg" />
     <Resource Include="Imagenes\usuarioejemplo\userejemplo9.jpg" />
     <Resource Include="Assets\logotipo2019.72x72.ico" />
+    <Resource Include="Assets\TinotrixBlanco.162x550.png" />
+    <Resource Include="Assets\logo2019.2.0.200X275.png" />
+    <Resource Include="Assets\logo2019.2.0.400X550.png" />
+    <Resource Include="Assets\logo2019.2.0.720X990.png" />
+    <Resource Include="Assets\logotipo2019.2.0.150x157.png" />
+    <Resource Include="Assets\logotipo2019.2.0.72x75.ico" />
+    <Resource Include="Assets\logotipo2019.2.0.72x75.png" />
+    <Resource Include="Assets\TinotrixBlanco2019.2.0.99x550.png" />
+    <Resource Include="Assets\AppMainBackGround.jpg" />
+    <Resource Include="Assets\AppMainNewYorkBackGround.jpg" />
+    <Resource Include="Assets\logotipo2019.2.0.64x67.ico" />
+    <Resource Include="Assets\logotipo2019.2.0.64x67.png" />
+    <Resource Include="Assets\logotipoconfondo2019.2.0.80x84.png" />
+    <Content Include="BaseDeDatos\script.sql" />
+    <Resource Include="logotipo2019.2.0.72x75.ico" />
+    <Resource Include="logotipo2019.2.0.64x67.ico" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -347,13 +353,6 @@
     </Content>
     <Resource Include="Assets\lt2.png" />
     <Resource Include="Assets\FondoEditor.png" />
-    <Content Include="BdTinotrix.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="BdTinotrix_log.ldf">
-      <DependentUpon>BdTinotrix.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

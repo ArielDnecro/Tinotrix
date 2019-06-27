@@ -19,6 +19,8 @@ using TinoTriXxX.Vista;
 using System.Threading;
 using System.ComponentModel;
 using System.IO;
+using Microsoft.Win32;
+using System.Data.SqlClient;
 
 namespace TinoTriXxX
 {
@@ -31,7 +33,8 @@ namespace TinoTriXxX
         CargandoAplicacion LoadApp;
         BackgroundWorker bg;
         VM_Escritorio VM = new VM_Escritorio();
-        string path = System.IO.Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
+      
+        string path;
         //var converter = new System.Windows.Media.BrushConverter();
         //var brush = (Brush)converter.ConvertFromString("#FFFFFF90");
         Color TemaAzulEstandar = (Color)ColorConverter.ConvertFromString("#FF3580BF");
@@ -43,31 +46,63 @@ namespace TinoTriXxX
         Boolean CumpleConTodoRequisito;
         public MainWindow()
         {
-            bg = new BackgroundWorker();
-            bg.DoWork += new DoWorkEventHandler(bg_DoWork);
-            bg.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bg_RunWorkerCompleted);
-            Ca();
-            //Thread t = new Thread(new ThreadStart(Ca));
-            //t.SetApartmentState(ApartmentState.STA);
-            //t.IsBackground = true;
-            //t.Start();
-            //CargandoAplicacion Load = new CargandoAplicacion();
-            //Load.Show();
-            InitializeComponent();
+            try
+            {
+                bg = new BackgroundWorker();
+                bg.DoWork += new DoWorkEventHandler(bg_DoWork);
+                bg.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bg_RunWorkerCompleted);
+                Ca();
+                //Thread t = new Thread(new ThreadStart(Ca));
+                //t.SetApartmentState(ApartmentState.STA);
+                //t.IsBackground = true;
+                //t.Start();
+                //CargandoAplicacion Load = new CargandoAplicacion();
+                //Load.Show();
+                InitializeComponent();
 
-            //string StrIniciando = string.Empty;
-            //for (int i=0; i<100000; i++) { StrIniciando += i.ToString(); }
-            //t.Abort();
-            //Load.Close();
-            ComprovarValidacionLicencia();
-            //DispatcherTimer time = new DispatcherTimer();  
-            //time.Interval = TimeSpan.FromSeconds(150);
-            //time.Tick += Time_Tick;
-            //time.Start();
-            frame.NavigationService.Navigate(new PagePrincipal());
-            bframe.Visibility = Visibility.Visible;
-            blicencia.Visibility = Visibility.Hidden;
-            LimpiarApp();
+                //string StrIniciando = string.Empty;
+                //for (int i=0; i<100000; i++) { StrIniciando += i.ToString(); }
+                //t.Abort();
+                //Load.Close();
+
+                //DispatcherTimer time = new DispatcherTimer();  
+                //time.Interval = TimeSpan.FromSeconds(150);
+                //time.Tick += Time_Tick;
+                //time.Start();
+
+                AplicarCultura();
+                RedireccionarBasico();
+                ComprovarValidacionLicencia();
+                frame.NavigationService.Navigate(new PagePrincipal());
+                bframe.Visibility = Visibility.Visible;
+                blicencia.Visibility = Visibility.Hidden;
+                ObtenerDirectorioRaiz();
+                LimpiarApp();
+            }
+
+            catch (FileNotFoundException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            catch (IOException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            catch ( Exception e) {
+                MessageBox.Show(e.Message);
+            }
+        }
+        void ObtenerDirectorioRaiz() {
+            path = System.IO.Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
+            if (!Directory.Exists(path + "\\Imagenes\\usuario\\")) {
+                path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+               // MessageBox.Show("sTRING PATH CHANGE");
+            }
+           
         }
         void LimpiarApp(){
             //var extensions = new List<string> { ".txt", ".xml" };
@@ -90,16 +125,18 @@ namespace TinoTriXxX
             {
                 File.Delete(archivoFinal);
             }
+            //MessageBox.Show("DELETE ALL TEMP USER IMAGES");
         }
         void bg_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             //LoadApp.Hide();
             LoadApp.Close();
+
             //this.Visibility = Visibility.Visible;
         }
         void bg_DoWork(object sender, DoWorkEventArgs e)
         {
-            System.Threading.Thread.Sleep(10000);
+            System.Threading.Thread.Sleep(20000);
             //this.Hide();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -107,7 +144,7 @@ namespace TinoTriXxX
             //////LoadApp = new CargandoAplicacion();
             //////LoadApp.Show();
             //////bg.RunWorkerAsync();
-           
+            LoadApp.Close();
         }
         void Ca() {
             //CargandoAplicacion Load = new CargandoAplicacion();
@@ -643,6 +680,68 @@ namespace TinoTriXxX
             }
         }
 
-       
+        private void AplicarCultura()
+        {
+            System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("ES-Mx");
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+        }
+
+        public void RedireccionarBasico()
+        {
+            string sourceRegistro = string.Empty;
+            try
+            {
+                sourceRegistro = Registry.GetValue(@"HKEY_CURRENT_USER\Tinotrix", "Source", "NULL").ToString();
+            }
+            catch (Exception) { sourceRegistro = string.Empty; }
+
+            //Validar si el registro no existe o tiene un valor nulo 
+            if (!string.IsNullOrEmpty(sourceRegistro))
+            {
+                //Prueba la conexión con el source guardado en el registro de windows 
+                if (PruebaConexionRegistro(sourceRegistro))
+                {
+                    TinoTriXxX.Properties.Settings.Default["Source"] = sourceRegistro;
+
+                    
+                }
+                else
+                {
+                    DBLocal wBDLocal = new DBLocal();
+                    wBDLocal.ShowDialog();
+                }
+            }
+            //Validar si el registro existe o tiene un valor nulo 
+            else
+            {
+                DBLocal wBDLocal = new DBLocal();
+                wBDLocal.ShowDialog();
+            }
+        }
+
+        public bool PruebaConexionRegistro(string source)
+        {
+            int intentos = 3;
+            bool aux = false;
+            SqlConnection _sqlConeccion;
+            string stringConnection = string.Empty;
+
+            stringConnection = @"Data Source=" + source + ";Initial Catalog=TinotrixCliente;Integrated Security=True;Connection Timeout=1";
+
+            for (int i = 0; i < intentos; i++)
+                try
+                {
+                    _sqlConeccion = new SqlConnection(stringConnection);
+                    _sqlConeccion.Open();
+                    aux = true;
+                    _sqlConeccion.Close();
+                    break;
+                }
+                catch (Exception) { }
+
+            return aux;
+        }
+
     }
 }

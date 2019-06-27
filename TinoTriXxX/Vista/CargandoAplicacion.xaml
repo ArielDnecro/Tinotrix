@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="CargandoAplicacion" Height="400" Width="600" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
     <Grid>
-        
+
         <!--<Image Source="../Assets/AppLoadBackGround.png" Stretch="UniformToFill"  />-->
         <Rectangle Margin="0,0,0,0" RadiusX="8" RadiusY="8" >
             <Rectangle.Fill >
@@ -20,13 +20,13 @@
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#CC935E12" Offset="1"/>
                     <GradientStop Color="#CCEA4646"/>
-                    <GradientStop Color="#CCB89128" Offset="0.566"/>
+                    <GradientStop Color="#52c2" Offset="0.566"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Margin="0,-150,0,0" RadiusX="8" RadiusY="8"  Height="400" Width="550" >
+        <Rectangle Margin="30,55,39,194" RadiusX="8" RadiusY="8 " Height="99" >
             <Rectangle.Fill >
-                <ImageBrush ImageSource="../Assets/logocolores2019.400x550.png" />
+                <ImageBrush ImageSource="../Assets/TinotrixBlanco2019.2.0.99x550.png" />
             </Rectangle.Fill>
         </Rectangle>
         <Label Content="Version 1.0"></Label>
@@ -39,7 +39,7 @@
         <TextBlock TextWrapping="Wrap" Margin="10 10 10 100" Foreground="#FFFBFBFB" FontSize="14" VerticalAlignment="Bottom">
               CONTACTO
         </TextBlock>
-        
+
         <TextBlock TextWrapping="Wrap" Margin="10 10 10 80" Foreground="#FFFBFBFB" FontSize="12" VerticalAlignment="Bottom">
             	+(52) 984-147-3888
         </TextBlock>

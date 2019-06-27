@@ -89,7 +89,21 @@
         </EventTrigger>
     </Window.Triggers>
     <Border BorderBrush="#00e676" BorderThickness="1" x:Name="BCuerpoTinotrix" >
-        <Grid  Background="DarkSlateGray" x:Name="GCuerpoTinotrix" >
+        
+        <Grid   x:Name="GCuerpoTinotrix" >
+            <Rectangle Margin="0,0,0,0" >
+                <Rectangle.Fill >
+                    <ImageBrush ImageSource="../Assets/AppMainNewYorkBackGround.jpg" />
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="0,0,0,0" >
+                <Rectangle.Fill >
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#52c2" Offset="0.566"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            
             <StackPanel x:Name="StackPanelMenu" Width="250" HorizontalAlignment="Left" Margin="-250 0 0 0" RenderTransformOrigin="0.5,0.5">
                 <StackPanel.RenderTransform>
                     <TransformGroup>
@@ -103,7 +117,7 @@
                     <Button Visibility="Hidden" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"  Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Width="50" Height="50"  Margin="10">
                         <materialDesign:PackIcon Kind="Settings" Width="20" Height="20"/>
                     </Button>
-                    <Button x:Name="button" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" BorderBrush="{x:Null}" Padding="0" Width="70" Height="70"  Margin="10" RenderTransformOrigin="0.5,0.5" >
+                    <Button x:Name="button" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" BorderBrush="Green"  Padding="0" Width="80" Height="80"  Margin="10" RenderTransformOrigin="0.5,0.5" >
                         <Button.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -113,7 +127,7 @@
                             </TransformGroup>
                         </Button.RenderTransform>
                         <Button.Background>
-                            <ImageBrush ImageSource="../Assets/logotipo2019.150x150.png" Stretch="UniformToFill" x:Name="imgMenuPrincipal"></ImageBrush>
+                            <ImageBrush ImageSource="../Assets/logotipo2019.2.0.72x75.png" Stretch="UniformToFill"  x:Name="imgMenuPrincipal"></ImageBrush>
                         </Button.Background>
                     </Button>
                     <Button  Visibility="Hidden" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"  Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Width="60" Height="60"  Margin="10">
@@ -294,62 +308,67 @@
                     <Frame Name="frame" NavigationUIVisibility="Hidden"></Frame>
                 </Border>
             </Grid>
-
             <Border  BorderBrush="#69f0ae"  VerticalAlignment="Bottom"    Width="1024" Height="50"  BorderThickness="2" >
                 <Grid Name="GBestado"  >
-                        <!--<TextBlock Text="Licencia"   Background="White"  FontSize="16" FontFamily="Nirmala UI Semilight" Margin="-2 -2"   FontWeight="Bold"/>-->
-                    <Label BorderBrush="{x:Null}"  Background="DarkSlateGray"></Label>
+                    <Rectangle Margin="0,0,0,0" >
+                        <Rectangle.Fill >
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color=" #52c2" Offset="18"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <!--<TextBlock Text="Licencia"   Background="White"  FontSize="16" FontFamily="Nirmala UI Semilight" Margin="-2 -2"   FontWeight="Bold"/>-->
+                    <!--<Label BorderBrush="{x:Null}"  Background="DarkSlateGray"></Label>-->
 
-                        <materialDesign:PackIcon x:Name="IcoUsuario" Kind="Account"  Foreground="White" Width="30" Height="30" Margin="2 2 2 2"/>
-                        <TextBlock Name="lbUsuario" Text=": User 1" Foreground="White"  FontSize="18" FontFamily="Nirmala UI Semilight" Margin="30 2" VerticalAlignment="Top" FontWeight="Bold" Width="80"  HorizontalAlignment="Left"/>
+                    <materialDesign:PackIcon x:Name="IcoUsuario" Kind="Account"  Foreground="White" Width="30" Height="30" Margin="2 2 2 2"/>
+                    <TextBlock Name="lbUsuario" Text=": User 1" Foreground="White"  FontSize="18" FontFamily="Nirmala UI Semilight" Margin="30 2" VerticalAlignment="Top" FontWeight="Bold" Width="80"  HorizontalAlignment="Left"/>
 
-                        <StackPanel Margin="0 150 0 0">
-                            <Grid Height="400" Margin="5 10 20 0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="95"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="30"></RowDefinition>
-                                    <RowDefinition Height="30"></RowDefinition>
-                                    <RowDefinition Height="30"></RowDefinition>
-                                    <RowDefinition Height="30"></RowDefinition>
-                                    <RowDefinition Height="30"></RowDefinition>
-                                    <RowDefinition Height="30"></RowDefinition>
-                                    <RowDefinition Height="30"></RowDefinition>
-                                    <RowDefinition Height="30"></RowDefinition>
-                                    <RowDefinition Height="30"></RowDefinition>
-                                    <RowDefinition Height="30"></RowDefinition>
-                                    <RowDefinition Height="30"></RowDefinition>
-                                    <RowDefinition Height="30"></RowDefinition>
-                                    <RowDefinition Height="30"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <TextBlock Text="Sesion:" VerticalAlignment="Bottom" Foreground="White"  Margin="5,0,5,5" FontSize="16"></TextBlock>
-                                <TextBlock Text="Cerrada" VerticalAlignment="Bottom"  Foreground="White" Grid.Column="1" Margin="5,0,5,5" FontSize="16"></TextBlock>
+                    <StackPanel Margin="0 150 0 0">
+                        <Grid Height="400" Margin="5 10 20 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="95"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Sesion:" VerticalAlignment="Bottom" Foreground="White"  Margin="5,0,5,5" FontSize="16"></TextBlock>
+                            <TextBlock Text="Cerrada" VerticalAlignment="Bottom"  Foreground="White" Grid.Column="1" Margin="5,0,5,5" FontSize="16"></TextBlock>
 
-                                <TextBlock Text="Turno:" VerticalAlignment="Bottom" Foreground="White" Grid.Row="1" Margin="5,0,5,5" FontSize="16"></TextBlock>
-                                <TextBlock Text="Cerrada" VerticalAlignment="Bottom"  Foreground="White"  Grid.Row="1" Margin="5,0,5,5" FontSize="16"  Grid.Column="1"></TextBlock>
+                            <TextBlock Text="Turno:" VerticalAlignment="Bottom" Foreground="White" Grid.Row="1" Margin="5,0,5,5" FontSize="16"></TextBlock>
+                            <TextBlock Text="Cerrada" VerticalAlignment="Bottom"  Foreground="White"  Grid.Row="1" Margin="5,0,5,5" FontSize="16"  Grid.Column="1"></TextBlock>
 
 
 
-                                <TextBlock Text="Empresa:" Margin="-3,0,-12,5" Background="White" VerticalAlignment="Bottom" TextAlignment="Center" Foreground="#FF3580BF" Grid.Row="2" Grid.ColumnSpan="2"  ></TextBlock>
-                                <TextBlock Text="Nombre(alias):" VerticalAlignment="Top" Foreground="White"  Grid.Row="3" Margin="10 0" ></TextBlock>
-                                <TextBlock Name="LbLicenciaNombreEmpresa" Text="No disponible:" VerticalAlignment="Top" Foreground="White"  Grid.Row="3" Grid.Column="1" Margin="10 0" ></TextBlock>
-                                <TextBlock Text="Status:" VerticalAlignment="Top" Foreground="White"  Grid.Row="4"  Margin="10 0" ></TextBlock>
-                                <TextBlock Name="LbLicenciaStatusEmpresa" Text="No disponible:" VerticalAlignment="Top" Foreground="White"  Grid.Row="4" Grid.Column="1" Margin="10 0" ></TextBlock>
+                            <TextBlock Text="Empresa:" Margin="-3,0,-12,5" Background="White" VerticalAlignment="Bottom" TextAlignment="Center" Foreground="#FF3580BF" Grid.Row="2" Grid.ColumnSpan="2"  ></TextBlock>
+                            <TextBlock Text="Nombre(alias):" VerticalAlignment="Top" Foreground="White"  Grid.Row="3" Margin="10 0" ></TextBlock>
+                            <TextBlock Name="LbLicenciaNombreEmpresa" Text="No disponible:" VerticalAlignment="Top" Foreground="White"  Grid.Row="3" Grid.Column="1" Margin="10 0" ></TextBlock>
+                            <TextBlock Text="Status:" VerticalAlignment="Top" Foreground="White"  Grid.Row="4"  Margin="10 0" ></TextBlock>
+                            <TextBlock Name="LbLicenciaStatusEmpresa" Text="No disponible:" VerticalAlignment="Top" Foreground="White"  Grid.Row="4" Grid.Column="1" Margin="10 0" ></TextBlock>
 
-                                <TextBlock Text="Sucursal:" Margin="-3,0,-12,5" Background="#FFD3D3D3" VerticalAlignment="Bottom" TextAlignment="Center" Foreground="Black"  Grid.Row="5" Grid.ColumnSpan="2"  ></TextBlock>
-                                <TextBlock Text="Nombre(alias):" VerticalAlignment="Top" Foreground="White"  Grid.Row="6" Margin="10 0" ></TextBlock>
-                                <TextBlock Name="LbLicenciaNombreSucursal" Text="No disponible:" VerticalAlignment="Top" Foreground="White"  Grid.Row="6" Grid.Column="1" Margin="10 0" ></TextBlock>
-                                <TextBlock Text="Status:" VerticalAlignment="Top" Foreground="White"  Grid.Row="7"  Margin="10 0" ></TextBlock>
-                                <TextBlock Name="LbLicenciaStatusSucursal" Text="No disponible" VerticalAlignment="Top" Foreground="White"  Grid.Row="7" Grid.Column="1" Margin="10 0" ></TextBlock>
-                                <TextBlock Text="Direccion:" VerticalAlignment="Top" Foreground="White"  Grid.Row="8" Margin="10 0" ></TextBlock>
-                                <TextBlock Name="LbLicenciaDireccionSucursal" TextWrapping="Wrap"  Text="No disponible" VerticalAlignment="Top" Foreground="White"  Grid.Row="9" Grid.ColumnSpan="2" Margin="10 0" ></TextBlock>
-                            </Grid>
-                        </StackPanel>
-                    </Grid>
-                </Border>
-            
+                            <TextBlock Text="Sucursal:" Margin="-3,0,-12,5" Background="#FFD3D3D3" VerticalAlignment="Bottom" TextAlignment="Center" Foreground="Black"  Grid.Row="5" Grid.ColumnSpan="2"  ></TextBlock>
+                            <TextBlock Text="Nombre(alias):" VerticalAlignment="Top" Foreground="White"  Grid.Row="6" Margin="10 0" ></TextBlock>
+                            <TextBlock Name="LbLicenciaNombreSucursal" Text="No disponible:" VerticalAlignment="Top" Foreground="White"  Grid.Row="6" Grid.Column="1" Margin="10 0" ></TextBlock>
+                            <TextBlock Text="Status:" VerticalAlignment="Top" Foreground="White"  Grid.Row="7"  Margin="10 0" ></TextBlock>
+                            <TextBlock Name="LbLicenciaStatusSucursal" Text="No disponible" VerticalAlignment="Top" Foreground="White"  Grid.Row="7" Grid.Column="1" Margin="10 0" ></TextBlock>
+                            <TextBlock Text="Direccion:" VerticalAlignment="Top" Foreground="White"  Grid.Row="8" Margin="10 0" ></TextBlock>
+                            <TextBlock Name="LbLicenciaDireccionSucursal" TextWrapping="Wrap"  Text="No disponible" VerticalAlignment="Top" Foreground="White"  Grid.Row="9" Grid.ColumnSpan="2" Margin="10 0" ></TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+            </Border>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="60" HorizontalAlignment="Left"  Margin="5">
                 <Button x:Name="BtnOpenMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="50" Height="50" Padding="0" Background="White"  BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Click="BtnOpenMenu_Click">
                     <materialDesign:PackIcon Name="IcoOpenMenu" Kind="Menu" Foreground="DarkSlateGray" Width="30" Height="30" />
@@ -358,7 +377,6 @@
                     <materialDesign:PackIcon Name="IcoCloseMenu" Kind="Menu" Foreground="DarkSlateGray" Width="30" Height="30" />
                 </Button>
             </StackPanel>
-                
             <StackPanel Width="150" Name="sPMenu" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="10 10 25 10">
                 <Button x:Name="btnInicioSession" Click="btnInicioSession_Click" ToolTip="Iniciar Sesion" Width="30" Height="30" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background=" #424242"  BorderBrush="#00e676" Padding="0">
                     <materialDesign:PackIcon Kind="Account" Width="30" Height="30"/>
@@ -369,10 +387,10 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40" HorizontalAlignment="Right" Margin="10">
                 <!--paso 1-->
-                <Button Name="BtnMin" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="20" Height="20" Margin="0 0 10 0" Padding="0" Background="#00e676" BorderBrush="{x:Null}" Click="BtnMin_Click">
+                <Button Name="BtnMin" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Margin="0 0 10 0" Padding="0" Background="#00e676" BorderBrush="{x:Null}" Click="BtnMin_Click">
                     <materialDesign:PackIcon Kind="Minus"  Width="20" Height="20"/>
                 </Button>
-                <Button x:Name="BtnSesion" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"  Width="20" Height="20" Padding="0" Background="Red"  BorderBrush="{x:Null}" Click="BtnSesion_Click">
+                <Button x:Name="BtnSesion" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"  Width="25" Height="25"  Background="Red" FontWeight="Bold" BorderBrush="{x:Null}" Click="BtnSesion_Click">
                     <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
                 </Button>
 

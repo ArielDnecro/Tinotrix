@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace TinoTriXxX.ConexionBaseDatos
         //public static readonly string ConnectionString = "Data Source=.;Initial Catalog=CodorniX;User ID=sa;Password=12345678";
         //Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename="C:\Users\Iudex\Documents\Visual Studio 2017\Projects\CodorniX\TinoTrix Escritorio\BdTinotrixLocal.mdf";Integrated Security = True
         //return " Data Source = AMON; User ID = sa; Password = 123; Initial Catalog = CodorniXBase; Connection Timeout = 0; Persist Security Info = True; Connect Timeout = 0";
-        
+
 
         /// <summary>
         /// Cadena de conexión para <see cref="Connection"/>
@@ -30,7 +31,7 @@ namespace TinoTriXxX.ConexionBaseDatos
                 string conn = ConfigProviderManager.GetConfigProviderManager().GetConnectionString();
 
                 if (string.IsNullOrEmpty(conn))
-                    return " Data Source = (LocalDB)/MSSQLLocalDB;AttachDbFilename=C:\\Users\\Iudex\\Documents\\Visual Studio 2017\\Projects\\CodorniX\\TinoTriXxX\\BdTinotrix.mdf;Integrated Security = True;Connect Timeout=30";
+                    return " Data Source = (LocalDB)/MSSQLLocalDB;AttachDbFilename=" + "BdTinotrix.mdf" + "; Integrated Security = True;Connect Timeout=30";
 
                 return conn;
             }
@@ -95,20 +96,24 @@ namespace TinoTriXxX.ConexionBaseDatos
     }
     public class Konection
     {
+
         //private SqlConnection _Connection = new SqlConnection(Config.ConnectionString);
-        private SqlConnection _Connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Iudex\\Documents\\Visual Studio 2017\\Projects\\CodorniX\\TinoTriXxX\\BdTinotrix.mdf;Integrated Security=True;Connect Timeout=30");
+
+        private SqlConnection _Connection = new SqlConnection();
         private SqlTransaction CurrentTransaction = null;
         public void Dispose()
         {
+            _Connection = new SqlConnection(@"Data Source=" + TinoTriXxX.Properties.Settings.Default["Source"].ToString() + ";Initial Catalog=TinotrixCliente;Integrated Security=True");
             _Connection.Dispose();
             if (CurrentTransaction != null)
                 CurrentTransaction.Dispose();
         }
         public DataTable ExecuteQuery(SqlCommand command)
         {
+            _Connection = new SqlConnection(@"Data Source=" + TinoTriXxX.Properties.Settings.Default["Source"].ToString() + ";Initial Catalog=TinotrixCliente;Integrated Security=True");
             DataTable table = new DataTable();
             //SqlDataReader reader;
-            
+
             try
             {
                 _Connection.Open();
@@ -131,6 +136,7 @@ namespace TinoTriXxX.ConexionBaseDatos
         }
         public bool ExecuteCommand(SqlCommand command, bool disponse = true)
         {
+            _Connection = new SqlConnection(@"Data Source=" + TinoTriXxX.Properties.Settings.Default["Source"].ToString() + ";Initial Catalog=TinotrixCliente;Integrated Security=True");
             int result = 0;
             try
             {

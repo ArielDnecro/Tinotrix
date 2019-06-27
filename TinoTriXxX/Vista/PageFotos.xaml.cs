@@ -38,7 +38,7 @@ namespace TinoTriXxX
         FrameworkElement _felCur = null;
         System.Windows.Media.Brush _brOriginal;
         VM_Escritorio VM;
-        string path = System.IO.Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
+        string path;
         //reportDocument.Load(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName,"Reporte_Peliculas.rpt"));
         string ImageName;
         double IntCropChanged;
@@ -76,10 +76,21 @@ namespace TinoTriXxX
             //Cropimage();
             CropVH = 0;
             IntRotation = 0;
+            ObtenerDirectorioRaiz();
             }
-      
+
+        void ObtenerDirectorioRaiz()
+            {
+                path = System.IO.Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
+                if (!Directory.Exists(path + "\\Imagenes\\usuario\\"))
+                {
+                    path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                   // MessageBox.Show("sTRING PATH CHANGE");
+                }
+
+            }
         #region Crop
-        
+
         private void SetClipColorRed()
         {
             if (_clp != null)
@@ -628,7 +639,6 @@ namespace TinoTriXxX
             //ff.ShowDialog();
             //File.Delete(filePathElegidaImprimir);
         }
-
         void RedimencionarImagenElegida()
         {
             MagickImage OImage = new MagickImage(filePathElegidaImprimir);
