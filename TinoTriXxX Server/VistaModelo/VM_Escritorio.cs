@@ -27,6 +27,9 @@ namespace TinoTriXxX.VistaModelo
         private Usuario.Repository UsuarioRepositiry = new Usuario.Repository();
         private Turno.Repository TurnoRepository = new Turno.Repository();
         DBLogin login = new DBLogin();
+        private Impresora.Repository ImpresoraRepository = new Impresora.Repository();
+        private _Foto.Repository FotoRepository = new _Foto.Repository();
+        private Servicio.Repository ServicioRepository = new Servicio.Repository();
         #region empresa
         private Empresa _Empresa;
         public Empresa Empresa
@@ -152,6 +155,24 @@ namespace TinoTriXxX.VistaModelo
         }
         #endregion Usuario
 
+        #region Impresora
+        private string _StrDescImpresora;
+        public string StrDesImpresora
+        {
+            get { return _StrDescImpresora; }
+            set { _StrDescImpresora = value; }
+        }
+        #endregion Impresora
+
+        #region foto
+        private List<_Foto> _FotosVendidas;
+        public List<_Foto> FotosVendidas
+        {
+            get { return _FotosVendidas; }
+            set { _FotosVendidas = value; }
+        }
+        #endregion foto
+
         #region varios
         private IList<Status> _ListaStatus;
         public IList<Status> ListaStatus
@@ -169,10 +190,20 @@ namespace TinoTriXxX.VistaModelo
         }
         #endregion varios
 
+        #region red
+        public String UserName { get; set; }
+        public string ServerURI = "";
+        // http://localhost:8000/signalr
+        public string IpServidor = "";
+        public string PuertoConexion = "";
+        //public IHubProxy HubProxy { get; set; }
+        //public HubConnection Connection { get; set; }
+        #endregion red
+
         #endregion Propiedades
-
-
         #region funciones
+
+        #region Licencia
         public void ObtenerLicenciaLocal()
         {
             _LicenciaLocal = LicenciaLocalRepository.Find();
@@ -237,7 +268,8 @@ namespace TinoTriXxX.VistaModelo
         {
             LicenciaLocalRepository.Revocar();
         }
-
+        #endregion Licencia
+     
         #region Turno
         public Guid ExisteEncargadoHost(string usuario)
         {
@@ -276,13 +308,21 @@ namespace TinoTriXxX.VistaModelo
             TurnoRepository.RevocarEncargado();
             TurnoRepository.Revocar();
             TurnoRepository.RevocarHost(UidTurno, HrSalida,  FhSalida,  TFotos,  TCosto);
-            Turno = null;
-            Encargado = null;
+            
+            //Turno = null;
+            //Encargado = null;
         }
         public void IniciarTurno(Guid uidsucursal, Guid uidfolio, Guid uidusuario, String hrentrada, String fhentrada)//host y local
         {
            _Turno.IntNoFolio = TurnoRepository.IniciarTurnoHost( uidsucursal, uidfolio, uidusuario, hrentrada, fhentrada);
             TurnoRepository.IniciarTurnoLocal(uidfolio,Turno.IntNoFolio, hrentrada, fhentrada);
+        }
+        public void ActualizarVentaGeneral()
+        {
+            Turno TurnitoX3 = new Turno();
+            TurnitoX3= TurnoRepository.ActualizarVentaGeneral(Turno.UidFolio);
+            _Turno.IntTCosto = TurnitoX3.IntTCosto;
+            _Turno.IntTFotos = TurnitoX3.IntTFotos;
         }
         #endregion turno
 
@@ -335,6 +375,66 @@ namespace TinoTriXxX.VistaModelo
         }
         #endregion usuario
 
+        #region Impresora
+        public void ObtenerImpresora()
+        {
+            _StrDescImpresora= ImpresoraRepository.Find().StrDescripcion;
+        }
+
+        public void ActualizarImpresora(string StrDescripcion)
+        {
+            try
+            {
+                ImpresoraRepository.ActualizarImpresora(StrDescripcion);
+            }
+            catch (Exception e)
+            {
+                throw new VM_EscritorioException("(ConvertirCriterioAImpresora)" + e.Message);
+            }
+        }
+        #endregion Impresora
+
+        #region Foto
+        public void ReporteVentaFotos(Guid UIDTURNO) {
+            _FotosVendidas = FotoRepository.CargarFotos(UIDTURNO);
+        }
+        #endregion Foto
+
+        #region Servicios
+        public string ObtenerPuerto()
+        {
+            //string StrPuerto= "";
+            if (ServicioRepository.VerificarExistenciaPuerto() == true)
+            {
+                PuertoConexion = ServicioRepository.FindPuerto();
+            }
+            else
+            {
+            }
+            return PuertoConexion;
+        }
+        //public string ObtenerIPServidor()
+        //{
+        //    // string StrIP = "";
+        //    if (ServicioRepository.VerificarExistenciaIPServidor() == true)
+        //    {
+        //        IpServidor = ServicioRepository.FindIPServidor();
+        //    }
+        //    else
+        //    {
+
+        //    }
+        //    return IpServidor;
+        //}
+        //public void ActualizarIpServidor(string StrIpServer)
+        //{
+        //    ServicioRepository.ActualizarIPServidor(StrIpServer);
+        //}
+        public void ActualizarPuerto(string StrPuerto)
+        {
+            ServicioRepository.ActualizarPuerto(StrPuerto);
+        }
+        #endregion Servicios
         #endregion funciones 
         #region Excepciones
         public class VM_EscritorioException : Exception

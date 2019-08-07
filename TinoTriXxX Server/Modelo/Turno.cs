@@ -43,6 +43,12 @@ namespace TinoTriXxX.Modelo
             set { _DtHrInicio = value; }
         }
 
+        protected DateTime _DtHrFin;
+        public DateTime DtHrFin
+        {
+            get { return _DtHrFin; }
+            set { _DtHrFin = value; }
+        }
         protected DateTime _DtFhInicio;
         public DateTime DtFhInicio
         {
@@ -50,6 +56,12 @@ namespace TinoTriXxX.Modelo
             set { _DtFhInicio = value; }
         }
 
+        protected DateTime _DtFhFin;
+        public DateTime DtFhFin
+        {
+            get { return _DtFhFin; }
+            set { _DtFhFin = value; }
+        }
         protected int _IntTFotos;
         public int IntTFotos
         {
@@ -94,7 +106,7 @@ namespace TinoTriXxX.Modelo
                 }
                 catch (Exception e)
                 {
-                    throw new UsuarioLocalException("(Obtener El usuario local)" + e.Message);
+                    throw new TurnoLocalException("(Obtener El usuario local)" + e.Message);
                 }
 
                 return Turno;
@@ -111,7 +123,7 @@ namespace TinoTriXxX.Modelo
                 }
                 catch (Exception e)
                 {
-                    throw new UsuarioLocalException("(Revocar Encargado local) " + e.Message);
+                    throw new TurnoLocalException("(Revocar Encargado local) " + e.Message);
                 }
 
 
@@ -127,12 +139,11 @@ namespace TinoTriXxX.Modelo
                 }
                 catch (Exception e)
                 {
-                    throw new UsuarioLocalException("(Cerrar Turno local) " + e.Message);
+                    throw new TurnoLocalException("(Cerrar Turno local) " + e.Message);
                 }
 
 
             }
-            
             public bool ActualizarUsuario(Guid UsuarioNuevo)
             {
                 try
@@ -146,11 +157,10 @@ namespace TinoTriXxX.Modelo
                 }
                 catch (Exception e)
                 {
-                    throw new UsuarioLocalException("(Actualizar el usuario local) " + e.Message);
+                    throw new TurnoLocalException("(Actualizar el usuario local) " + e.Message);
                 }
 
             }
-
             public bool IniciarTurnoLocal( Guid uidfolio, int nofolio, String hrentrada, String fhentrada) {
                 try {
                     SqlCommand comando = new SqlCommand();
@@ -164,9 +174,8 @@ namespace TinoTriXxX.Modelo
                     comando.AddParameter("@IntTCosto", 0, SqlDbType.Int);
                     return _Conexion.ExecuteCommand(comando);
                 }
-                catch (Exception e) { throw new UsuarioLocalException("(IniciarTurnoLocal) " + e.Message); }
+                catch (Exception e) { throw new TurnoLocalException("(IniciarTurnoLocal) " + e.Message); }
             }
-
             Conexion Conexionhost = new Conexion();
             public int IniciarTurnoHost(Guid uidsucursal, Guid uidfolio, Guid uidusuario, String hrentrada, String fhentrada) {
                 Turno turno = null;
@@ -193,7 +202,6 @@ namespace TinoTriXxX.Modelo
 
                 return turno.IntNoFolio;
             }
-
             public bool RevocarHost(Guid UidTurno,  String HrSalida, String FhSalida, int TFotos, int TCosto)
             {
                 try
@@ -212,17 +220,34 @@ namespace TinoTriXxX.Modelo
 
                     Resultado = Conexionhost.ManipilacionDeDatos(command);
 
+
                     return Resultado;
                 }
                 catch (Exception e)
                 {
-                    throw new UsuarioLocalException("(Revocar Encargado Host) " + e.Message);
+                    throw new TurnoLocalException("(Revocar Encargado Host) " + e.Message);
                 }
             }
+            public Turno ActualizarVentaGeneral(Guid UidTurno) {
+                DataTable table = new DataTable();
+                Turno Turno = new Turno();
+                try {
+                    SqlCommand comando = new SqlCommand();
+                        comando.CommandType = CommandType.StoredProcedure;
+                        comando.AddParameter("@UidTurno", UidTurno, SqlDbType.UniqueIdentifier);
+                        comando.CommandText = "Wpf_Turno_ActualizarVentaGeneral";
+                        table = Conexionhost.Busquedas(comando);
+                        Turno._IntTFotos = int.Parse(table.Rows[0]["IntTotalFotos"].ToString());
+                        Turno._IntTCosto = int.Parse(table.Rows[0]["IntTotalCosto"].ToString());
+                } catch (Exception e) {
+                    throw new TurnoLocalException("(ActualizarVentaGeneral)" + e.Message);
+                }
+                return Turno;
+            }
             #region Excepciones
-            public class UsuarioLocalException : Exception
+            public class TurnoLocalException : Exception
             {
-                public UsuarioLocalException(string mensaje) : base("(UsuarioLocalException):  " + mensaje) { }
+                public TurnoLocalException(string mensaje) : base("(TurnoLocalException):  " + mensaje) { }
             }
             #endregion Excepciones
         }

@@ -62,6 +62,9 @@ namespace TinoTriXxX
                         PnPassword.Visibility = Visibility.Visible;
                         txtcontrasena.Focus();
                         btnRegresarUsuario.Visibility = Visibility.Visible;
+                        txtcontrasena.Focus();
+                        btnEntrar.Visibility = Visibility.Visible;
+                        btnSiguiente.Visibility = Visibility.Collapsed;
                     }
                 }
             }
@@ -85,6 +88,8 @@ namespace TinoTriXxX
             PnPassword.Visibility = Visibility.Hidden;
             txtEncargado.Focus();
             btnRegresarUsuario.Visibility = Visibility.Hidden;
+            btnEntrar.Visibility = Visibility.Collapsed;
+            btnSiguiente.Visibility = Visibility.Visible;
         }
 
         private void txtcontrasena_KeyDown(object sender, KeyEventArgs e)
@@ -111,11 +116,21 @@ namespace TinoTriXxX
                     myDt = DateTime.SpecifyKind(saveNow, DateTimeKind.Utc);
                     Guid uidfolio =  Guid.NewGuid();
                     
-                    _CVMServer.IniciarTurno(_CVMServer.Sucursal.UidSucursal,uidfolio, _CVMServer.Encargado.UIDUSUARIO, myDt.ToString("T"), myDt.ToString("d"));
+                    _CVMServer.IniciarTurno(_CVMServer.Sucursal.UidSucursal,uidfolio, _CVMServer.Encargado.UIDUSUARIO, myDt.ToString("HH:mm:ss"), myDt.ToString("dd/MM/yyyy"));
                     _CVMServer.ActualizarTurno(_CVMServer.Encargado.UIDUSUARIO);
                     this.Close();
                 }
             }
+        }
+
+        private void BtnSiguiente_Click(object sender, RoutedEventArgs e)
+        {
+            EncargadoEnter();
+        }
+
+        private void BtnEntrar_Click(object sender, RoutedEventArgs e)
+        {
+            contrasenaenter();
         }
     }
 }

@@ -96,19 +96,28 @@ namespace TinoTriXxX.ConexionBaseDatos
     public class Konection
     {
         //private SqlConnection _Connection = new SqlConnection(Config.ConnectionString);
-        private SqlConnection _Connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Iudex\\Documents\\Visual Studio 2017\\Projects\\CodorniX\\TinoTriXxX Server\\BdTinotrixServer.mdf;Integrated Security=True;Connect Timeout=30");
+        //private SqlConnection _Connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Iudex\\Documents\\Visual Studio 2017\\Projects\\CodorniX\\TinoTriXxX Server\\BdTinotrixServer.mdf;Integrated Security=True;Connect Timeout=30");
+        //private SqlTransaction CurrentTransaction = null;
+        private SqlConnection _Connection = new SqlConnection();
         private SqlTransaction CurrentTransaction = null;
         public void Dispose()
         {
+            //_Connection.Dispose();
+            //if (CurrentTransaction != null)
+            //    CurrentTransaction.Dispose();
+            _Connection = new SqlConnection(@"Data Source=" + TinoTriXxX.Properties.Settings.Default["Source"].ToString() + ";Initial Catalog=TinotrixServer;Integrated Security=True");
             _Connection.Dispose();
             if (CurrentTransaction != null)
                 CurrentTransaction.Dispose();
         }
         public DataTable ExecuteQuery(SqlCommand command)
         {
+            //DataTable table = new DataTable();
+            string p = TinoTriXxX.Properties.Settings.Default["Source"].ToString();
+            _Connection = new SqlConnection(@"Data Source=" +  TinoTriXxX.Properties.Settings.Default["Source"].ToString() + ";Initial Catalog=TinotrixServer;Integrated Security=True");
             DataTable table = new DataTable();
             //SqlDataReader reader;
-            
+
             try
             {
                 _Connection.Open();
@@ -131,6 +140,31 @@ namespace TinoTriXxX.ConexionBaseDatos
         }
         public bool ExecuteCommand(SqlCommand command, bool disponse = true)
         {
+            //int result = 0;
+            //try
+            //{
+            //    if (CurrentTransaction == null)
+            //        _Connection.Open();
+
+            //    command.Connection = _Connection;
+            //    if (CurrentTransaction != null)
+            //        command.Transaction = CurrentTransaction;
+            //    result = command.ExecuteNonQuery();
+            //    if (disponse)
+            //        command.Dispose();
+            //}
+            //catch (SqlException e)
+            //{
+            //    throw e;
+            //}
+            //finally
+            //{
+            //    if (CurrentTransaction == null)
+            //        _Connection.Close();
+            //}
+
+            //return true;
+            _Connection = new SqlConnection(@"Data Source=" + TinoTriXxX.Properties.Settings.Default["Source"].ToString() + ";Initial Catalog=TinotrixServer;Integrated Security=True");
             int result = 0;
             try
             {

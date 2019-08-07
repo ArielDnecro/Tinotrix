@@ -15,6 +15,21 @@ using System.Windows.Shapes;
 using TinoTriXxX.VistaModelo;
 using System.Windows.Threading;
 using System.Windows.Media.Animation;
+using System.Threading;
+using Microsoft.Win32;
+using System.Data.SqlClient;
+using TinoTriXxX.Vista;
+using TestLib;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
+using System.IO;
+using Servidor;
+using System.Reflection;
+using Microsoft.Owin.Hosting;
+using Owin;
+using Microsoft.Owin.Cors;
+using Microsoft.AspNet.SignalR;
 
 namespace TinoTriXxX
 {
@@ -25,27 +40,161 @@ namespace TinoTriXxX
     {
         VM_Escritorio VM = new VM_Escritorio();
         Color TemaAzulEstandar = (Color)ColorConverter.ConvertFromString("#FF3580BF");
-       
+        Color TemaDoradoEstandar = (Color)ColorConverter.ConvertFromString("#ffc107");
         Boolean CumpleConTodoRequisito;
+        bool arranquesesionapp = false;//con esta variable controlo la forma en que se cierra la ventana de inicio de sesion, se cierra solo la ventana o la app completa
+
+        //private TcpListener server;
+        //private TcpClient client = new TcpClient();
+        //private IPEndPoint ipendpoint = new IPEndPoint(IPAddress.Any, 8000);
+        //private List<Connection> list = new List<Connection>();
+
+        //Connection con;
+        //private struct Connection
+        //{
+        //    public NetworkStream stream;
+        //    public StreamWriter streamw;
+        //    public StreamReader streamr;
+        //    public string nick;
+        //}
+
+        public IDisposable SignalR { get; set; }
+        const string ServerURI = "http://127.0.0.1:8000";
+        string localIP = "";
         public MainWindow()
         {
-            InitializeComponent();
+            AplicarCultura();
+            RedireccionarBasico();
 
-            
-            acceso();
+
+            InitializeComponent();
+            //arranquesesionapp = true;
             frame.NavigationService.Navigate(new PagePrincipal());
+            acceso();
+            
             bframe.Visibility = Visibility.Visible;
             blicencia.Visibility = Visibility.Hidden;
-            VM.ObtenerSession();
-            if (VM.Session.UidUsusario == Guid.Empty)
+
+            ////VariablesGlobal.FontName = "Arial";
+            //VariablesGlobal.FontSize = 6.5F;
+            //VariablesGlobal.FontSizeItemIndividual = 8;
+            //VariablesGlobal.FontSizePosicionLlave = 10;
+            ////VariablesGlobal.FontSizeCierreTurno = 7.5F;
+            //VariablesGlobal.WidthImagen = 180;
+            //VariablesGlobal.HeightImagen = 40;
+            //VariablesGlobal.CentrarGoParkiX = "        ";
+
+            VariablesGlobal.FontName = "Lucida Console";
+            VariablesGlobal.FontSize = 9F;
+            VariablesGlobal.FontSizeItemIndividual = 9;
+            VariablesGlobal.FontSizePosicionLlave = 12F;
+            VariablesGlobal.FontSizeCierreTurno = 9;
+            VariablesGlobal.WidthImagen = 270;
+            VariablesGlobal.HeightImagen = 50;
+            VariablesGlobal.CentrarGoParkiX = "          ";
+
+            //SaberIpServidor();
+
+            Task.Run(() => StartServer());
+        }
+
+        #region interaccion en la red
+        private void AplicarCultura()
+        {
+            System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("ES-Mx");
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+        }
+        public void RedireccionarBasico()
+        {
+            string sourceRegistro = string.Empty;
+            try
             {
-                Autentificacion au = new Autentificacion(VM, false);
-                au.ShowDialog();
-                SessionConf();
+                sourceRegistro = Registry.GetValue(@"HKEY_CURRENT_USER\TinotrixServer", "Source", "NULL").ToString();
+            }
+            catch (Exception) { sourceRegistro = string.Empty; }
+
+            //Validar si el registro no existe o tiene un valor nulo 
+            if (!string.IsNullOrEmpty(sourceRegistro))
+            {
+                //Prueba la conexión con el source guardado en el registro de windows 
+                if (PruebaConexionRegistro(sourceRegistro))
+                {
+                    TinoTriXxX.Properties.Settings.Default["Source"] = sourceRegistro;
+                }
+                else
+                {
+                    DBLocal wBDLocal = new DBLocal();
+                    wBDLocal.ShowDialog();
+                }
+            }
+            //Validar si el registro existe o tiene un valor nulo 
+            else
+            {
+                DBLocal wBDLocal = new DBLocal();
+                wBDLocal.ShowDialog();
             }
         }
-        
+        public bool PruebaConexionRegistro(string source)
+        {
+            int intentos = 3;
+            bool aux = false;
+            SqlConnection _sqlConeccion;
+            string stringConnection = string.Empty;
+
+            stringConnection = @"Data Source=" + source + ";Initial Catalog=TinotrixServer;Integrated Security=True;Connection Timeout=1";
+
+            for (int i = 0; i < intentos; i++)
+                try
+                {
+                    _sqlConeccion = new SqlConnection(stringConnection);
+                    _sqlConeccion.Open();
+                    aux = true;
+                    _sqlConeccion.Close();
+                    break;
+                }
+                catch (Exception) { }
+
+            return aux;
+        }
+        void acceso()
+        {
+            Boolean valido = ComprovarValidacionLicencia();
+
+            #region error 71218
+            //if (valido == true)
+            //{
+
+            //    if (VM.Usuario == null)
+            //    {
+            //        time.Interval = TimeSpan.FromSeconds(2);
+            //        time.Tick += Time_Tick;
+            //        time.Start();
+            //    }
+            //    else
+            //    {
+            //        time.Stop();
+            //        AplicarEfecto(this, 0);
+
+            //    }
+            //}
+            //else
+            //{
+
+            //}
+            #endregion
+        }
+        #endregion interaccion en la red
+
         #region Eventos de la vista
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            //InicioConexionRedLocal();
+            //this.Dispatcher.Invoke(DispatcherPriority.Normal, new ThreadStart(delegate { InicioConexionRedLocal();  }));
+            //Dispatcher.Invoke(DispatcherPriority.Send, new ThreadStart(delegate { InicioConexionRedLocal(); }));
+            //Servidor_Chat chat = new Servidor_Chat();
+
+        }
         private void AplicarEfecto(Window win, int NivelDegradado)
         {
             var objBlur = new System.Windows.Media.Effects.BlurEffect();
@@ -66,7 +215,9 @@ namespace TinoTriXxX
             IcoOpenMenu.Foreground = new SolidColorBrush(TemaAzulEstandar);
             CMenu.Background = Brushes.White;
             popmenu.Foreground = new SolidColorBrush(TemaAzulEstandar);
-            listViewItem.IsEnabled = false;
+            LVIMenu.IsEnabled = false;
+            LVIMenu.Background = Brushes.Transparent;
+            LVILicencia.Background = Brushes.Transparent;
         }
         void TemaAppHabilitado()
         {
@@ -74,9 +225,16 @@ namespace TinoTriXxX
             sPbtnsMenuPrincipal.Visibility = Visibility.Visible;
             GridBarraEstado.Visibility = Visibility.Visible;
 
-            listViewItem.IsEnabled = true;
-
+            LVIMenu.IsEnabled = true;
+            LVIMenu.Background = new SolidColorBrush(TemaDoradoEstandar); //esta parte se movera debido a que es llamado por varias funciones
             //sPMenu.Children.Add(btniniciarturno);
+            //VM.ObtenerSession();
+            //if (VM.Session.UidUsusario == Guid.Empty)
+            //{
+            //    Autentificacion au = new Autentificacion(VM, arranquesesionapp);
+            //    au.ShowDialog();
+            //    //SessionConf();
+            //}
         }
         private void BtnOpenMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -93,6 +251,8 @@ namespace TinoTriXxX
 
             CMenu.Background = Brushes.White;
             popmenu.Foreground = new SolidColorBrush(TemaAzulEstandar);
+
+            
         }
         private void BtnCloseMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -108,20 +268,23 @@ namespace TinoTriXxX
             CMenu.Background = new SolidColorBrush(TemaAzulEstandar);
             popmenu.Foreground = Brushes.White;
         }
-
         private void btnCerrarApp_Click(object sender, RoutedEventArgs e)
         {
             //this.Close();
             Application.Current.Shutdown();
         }
-
         private void btnMinimizarApp_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
         }
-
         private void BtnMenuLicencia_Click(object sender, RoutedEventArgs e)
         {
+            //imprimirturno();
+            LVIMenu.Background = Brushes.Transparent;
+            LVILicencia.Background = new SolidColorBrush(TemaDoradoEstandar);
+            LVICliente.Background = Brushes.Transparent;
+            LVIConfiguracion.Background = Brushes.Transparent;
+
             GridMain.Visibility = Visibility.Visible;
             CMenu.Background = new SolidColorBrush(TemaAzulEstandar);
             popmenu.Foreground = Brushes.White;
@@ -129,13 +292,66 @@ namespace TinoTriXxX
             blicencia.Visibility = Visibility.Visible;
             bframe.Visibility = Visibility.Hidden;
             cerrarmenu();
+            
         }
-
         private void BtnMenuHome_Click(object sender, RoutedEventArgs e)
         {
-            // frame.NavigationService.Navigate(new PagePrincipal());
+            LVIMenu.Background = new SolidColorBrush(TemaDoradoEstandar);
+            LVILicencia.Background = Brushes.Transparent;
+            LVICliente.Background = Brushes.Transparent;
+            LVIConfiguracion.Background = Brushes.Transparent;
+            frame.NavigationService.Navigate(new PagePrincipal());
+            CMenu.Background = new SolidColorBrush(TemaAzulEstandar);
+            popmenu.Foreground = Brushes.White;
+
             blicencia.Visibility = Visibility.Hidden;
             bframe.Visibility = Visibility.Visible;
+            cerrarmenu();
+            
+        }
+        private void BtnMenuFotografiasCliente_Click(object sender, RoutedEventArgs e)
+        {
+            LVIMenu.Background = Brushes.Transparent;
+            LVILicencia.Background = Brushes.Transparent;
+            LVICliente.Background = new SolidColorBrush(TemaDoradoEstandar);
+            LVIConfiguracion.Background = Brushes.Transparent;
+            // frame.NavigationService.Navigate(new PagePrincipal());
+            CMenu.Background = new SolidColorBrush(TemaAzulEstandar);
+            popmenu.Foreground = Brushes.White;
+
+            blicencia.Visibility = Visibility.Hidden;
+            bframe.Visibility = Visibility.Visible;
+            frame.NavigationService.Navigate(new PageFotosCliente());
+            cerrarmenu();
+        }
+        private void BtnMenuImpresoras_Click(object sender, RoutedEventArgs e)
+        {
+            LVIMenu.Background = Brushes.Transparent;
+            LVILicencia.Background = Brushes.Transparent;
+            LVICliente.Background = Brushes.Transparent;
+            LVIConfiguracion.Background = new SolidColorBrush(TemaDoradoEstandar);
+            // frame.NavigationService.Navigate(new PagePrincipal());
+            CMenu.Background = new SolidColorBrush(TemaAzulEstandar);
+            popmenu.Foreground = Brushes.White;
+
+            blicencia.Visibility = Visibility.Hidden;
+            bframe.Visibility = Visibility.Visible;
+            frame.NavigationService.Navigate(new PageImpresoras());
+            cerrarmenu();
+        }
+        private void BtnMenuConexionServidor_Click(object sender, RoutedEventArgs e)
+        {
+            LVIMenu.Background = Brushes.Transparent;
+            LVILicencia.Background = Brushes.Transparent;
+            LVICliente.Background = Brushes.Transparent;
+            LVIConfiguracion.Background = new SolidColorBrush(TemaDoradoEstandar);
+            // frame.NavigationService.Navigate(new PagePrincipal());
+            CMenu.Background = new SolidColorBrush(TemaAzulEstandar);
+            popmenu.Foreground = Brushes.White;
+
+            blicencia.Visibility = Visibility.Hidden;
+            bframe.Visibility = Visibility.Visible;
+            frame.NavigationService.Navigate(new PageConfConexionServicio());
             cerrarmenu();
         }
         void cerrarmenu()
@@ -162,7 +378,13 @@ namespace TinoTriXxX
         private void BtnActualizarLicencia_Click(object sender, RoutedEventArgs e)
         {
             //HabilitarActualizacionLicencia();//06 oct 18
-            ComprovarValidacionLicencia();
+            VM.ObtenerLicenciaLocal();
+            if (VM.LicenciaLocal.UidLicencia != Guid.Empty)
+            {
+                ComprovarValidacionLicencia();
+            }
+            LVIMenu.Background = Brushes.Transparent;
+            LVILicencia.Background = new SolidColorBrush(TemaDoradoEstandar);
         }
         void CancelarActulizacionLicencia()
         {
@@ -322,7 +544,7 @@ namespace TinoTriXxX
                     }
                 }
             }
-            SessionConf();
+             SessionConf();//este paso no se hace porque ya esta en temaapphabilitado();
             TurnoConf();
             //prueba aun
             //VM.LicenciaLocal = null;
@@ -386,7 +608,7 @@ namespace TinoTriXxX
                         else
                         {
                             //ActualizacionExitosaYFuncional();
-
+                            arranquesesionapp = true;
                             MessageBox.Show("¡Actualizacion de Licencia exitosa!", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                         }
                     }
@@ -400,6 +622,8 @@ namespace TinoTriXxX
             }
 
             ComprovarValidacionLicencia();
+            LVIMenu.Background = Brushes.Transparent;
+            LVILicencia.Background = new SolidColorBrush(TemaDoradoEstandar);
         }
         private void BtnRevocarLicencia_Click(object sender, RoutedEventArgs e)
         {
@@ -450,35 +674,103 @@ namespace TinoTriXxX
 
         #endregion Actualizar Licencia
 
-        void acceso() {
-            Boolean valido = ComprovarValidacionLicencia();
-
-            #region error 71218
-            //if (valido == true)
-            //{
-
-            //    if (VM.Usuario == null)
-            //    {
-            //        time.Interval = TimeSpan.FromSeconds(2);
-            //        time.Tick += Time_Tick;
-            //        time.Start();
-            //    }
-            //    else
-            //    {
-            //        time.Stop();
-            //        AplicarEfecto(this, 0);
-                   
-            //    }
-            //}
-            //else
-            //{
-
-            //}
-            #endregion
-        }
-
         #region Turno
-            private void btnInicioTurno_Click(object sender, RoutedEventArgs e)
+        void imprimirturno()
+        {
+            #region codigo original
+            ////Ticket CorteCaja = new Ticket();
+            //Ticket2 CorteCaja = new Ticket2();
+
+            //CorteCaja.FontName = VariablesGlobal.FontName;
+            //CorteCaja.FontSize = VariablesGlobal.FontSizeCierreTurno;
+
+            //CorteCaja.AddHeaderLine("*****CIERRE DE TURNO*****");
+            //CorteCaja.AddHeaderLine(" ");
+            //CorteCaja.AddHeaderLine("REIMPRESO");
+            //CorteCaja.AddHeaderLine(txbEmpresa.Text);
+            //CorteCaja.AddHeaderLine(txbSucursal.Text);
+            //CorteCaja.AddHeaderLine("         CAJA: " + txbCaja.Text);
+
+            //CorteCaja.AddHeaderLine("        FOLIO: " + it.StrFolio);
+            //CorteCaja.AddHeaderLine("     OPERADOR: " + it.StrUsuario);
+            //CorteCaja.AddHeaderLine("   F/H INICIO: " + Convert.ToDateTime(it.DTFHoraInicio).ToString("dd/MM/yyyy HH:mm:ss"));
+            //CorteCaja.AddHeaderLine("      F/H FIN: " + Convert.ToDateTime(it.DTFHoraCierre).ToString("dd/MM/yyyy HH:mm:ss"));
+            //CorteCaja.AddHeaderLine(" ");
+            //CorteCaja.AddHeaderLine("   BOLETOS EMITIDOS: " + item.IntBoletosEmitidosTC);
+            //CorteCaja.AddHeaderLine("   BOLETOS COBRADOS: " + item.IntBoletosCobrados);
+
+            //CorteCaja.Cabecera("CANT", "DESC", "       IMPORTE");
+            //CorteCaja.AddItem(item.IntTotalBoletosCobrados.ToString(), "ROTACIÓN", "$" + item.DcmlimporteBoletosCobrados.ToString());
+            //CorteCaja.AddItem(item.IntBoletosPerdidosCobrados.ToString(), "PERDIDO", "$" + item.DcmlimporteBoletosPerdidosCobrados.ToString());
+            //CorteCaja.AddItem(item.IntTotalPensionadosCobrados.ToString(), "PENSIONADO", "$" + item.DcmlimportePensionadosCobrados.ToString());
+            //CorteCaja.AddItem(item.IntBoletosToleranciaCobrados.ToString(), "TOLERANCIA", "$" + item.DcmlImporteBoletosToleranciaCobrados.ToString());
+            //CorteCaja.AddItem("===================================", "", "");
+            //CorteCaja.AddItem("", "IMPORTE", "$" + it.DcmlImporteTotalTurno.ToString());
+            //CorteCaja.AddItem("", "DESCUENTOS", "$" + it.DcmDescuento.ToString());
+            //CorteCaja.AddItem("", "TOTAL", "$" + it.DcmTotalConDescuento.ToString());
+
+            //CorteCaja.PrintTicket(VariablesGlobal.ImpresoraSeleccionada);//Nombre de la impresora de tickets para imprimir
+
+            #endregion codigo original
+
+            double costototalfotos = 0;
+            double totalfotos = 0;
+            foreach (var fot in VM.FotosVendidas)
+            {
+                costototalfotos = costototalfotos + double.Parse(fot.StrCosto);
+                totalfotos = totalfotos + double.Parse(fot.StrCantidad);
+            }
+
+            //Ticket CorteCaja = new Ticket();
+            Ticket2 CorteCaja = new Ticket2();
+
+            CorteCaja.FontName = VariablesGlobal.FontName;
+            CorteCaja.FontSize = VariablesGlobal.FontSizeCierreTurno;
+
+            CorteCaja.AddHeaderLine("**********CIERRE DE TURNO**********");
+            CorteCaja.AddHeaderLine(" ");
+            CorteCaja.AddHeaderLine(VM.Empresa.StrNombreComercial.ToUpper());
+            CorteCaja.AddHeaderLine(VM.Sucursal.StrNombre.ToUpper());
+            CorteCaja.AddHeaderLine(" ");
+            // CorteCaja.AddHeaderLine("         CAJA: " + txbCaja.Text);
+
+            //CorteCaja.AddHeaderLine("             FOLIO: " + VM.Turno.IntNoFolio);
+            //CorteCaja.AddHeaderLine(" ENCARGADO: " + VM.Encargado.STRNOMBRE);
+            //CorteCaja.AddHeaderLine("      F/H INICIO: " + VM.Turno.DtHrInicio);
+            //CorteCaja.AddHeaderLine("           F/H FIN: " + VM.Turno.DtHrFin);
+            //CorteCaja.AddHeaderLine(" ");
+            //CorteCaja.AddHeaderLine("     FOTOS VENDIDAS: " + totalfotos.ToString());
+
+            CorteCaja.AddHeaderLine("     FOLIO:" + VM.Turno.IntNoFolio);
+            CorteCaja.AddHeaderLine(" ENCARGADO:" + VM.Encargado.STRNOMBRE);
+            CorteCaja.AddHeaderLine("F/H INICIO:" + VM.Turno.DtHrInicio.ToString("dd/MM/yyyy").Replace(" ","")+" "+ VM.Turno.DtHrInicio.ToString("HH:mm:ss").Replace(" ", ""));
+            CorteCaja.AddHeaderLine("   F/H FIN:" + VM.Turno.DtHrFin.ToString("dd/MM/yyyy").Replace(" ", "")+" "+ VM.Turno.DtHrFin.ToString("HH:mm:ss").Replace(" ", ""));
+            CorteCaja.AddHeaderLine(" ");
+            CorteCaja.AddHeaderLine("       FOTOS VENDIDAS: " + totalfotos.ToString());
+
+            CorteCaja.AddHeaderLine(" ");
+            // CorteCaja.AddHeaderLine("   COSTO TOTAL DEL DIA: "+ costototalfotos.ToString());
+
+            CorteCaja.Cabecera("CANT", "FOTO", "IMPORTE");
+
+            foreach (var fot in VM.FotosVendidas)
+            {
+                CorteCaja.AddItem("[" + fot.StrCantidad + "]", "" + fot.StrDescripcion, "$:" + fot.StrCosto);
+            }
+            //CorteCaja.AddItem(item.IntTotalBoletosCobrados.ToString(), "ROTACIÓN", "$" + item.DcmlimporteBoletosCobrados.ToString());
+            //CorteCaja.AddItem(item.IntBoletosPerdidosCobrados.ToString(), "PERDIDO", "$" + item.DcmlimporteBoletosPerdidosCobrados.ToString());
+            //CorteCaja.AddItem(item.IntTotalPensionadosCobrados.ToString(), "PENSIONADO", "$" + item.DcmlimportePensionadosCobrados.ToString());
+            //CorteCaja.AddItem(item.IntBoletosToleranciaCobrados.ToString(), "TOLERANCIA", "$" + item.DcmlImporteBoletosToleranciaCobrados.ToString());
+            CorteCaja.AddItem("===================================", "", "");
+            // CorteCaja.AddItem("", "IMPORTE", "$" );
+            // CorteCaja.AddItem("", "DESCUENTOS", "$" );
+
+            CorteCaja.AddItem("", "TOTAL", "$" + costototalfotos.ToString());
+
+            CorteCaja.PrintTicket("Microsoft Print to PDF");//Nombre de la impresora de tickets para imprimir
+
+        }
+        private void btnInicioTurno_Click(object sender, RoutedEventArgs e)
             {
                 Login lo = new Login(VM);
                 lo.Owner = this; AplicarEfecto(this, 5);
@@ -561,7 +853,7 @@ namespace TinoTriXxX
                             lbFolio.Text = VM.Turno.IntNoFolio.ToString("D12");
                             lbFotos.Text = VM.Turno.IntTFotos.ToString();
                             lbVenta.Text = VM.Turno.IntTCosto.ToString();
-                    
+                            ActualizarVentasClientes();
 
                 }
                      //VM.Turno = null;
@@ -569,7 +861,7 @@ namespace TinoTriXxX
                 }
             }
             private void btnCierreTurno_Click(object sender, RoutedEventArgs e)
-        {
+            {
             MessageBoxResult result = MessageBox.Show("¿Seguro de cerrar turno?",
              "Confirmacion", MessageBoxButton.YesNoCancel);
             if (result == MessageBoxResult.Yes)
@@ -578,7 +870,13 @@ namespace TinoTriXxX
                 DateTime saveNow = DateTime.Now;
                 DateTime myDt;
                 myDt = DateTime.SpecifyKind(saveNow, DateTimeKind.Utc);
-                VM.RevocarTurno(VM.Turno.UidFolio,  myDt.ToString("T"), myDt.ToString("d"), VM.Turno.IntTFotos, VM.Turno.IntTCosto);
+                VM.Turno.DtHrFin = DateTime.Parse( myDt.ToString("HH:mm:ss"));
+                VM.Turno.DtFhInicio = DateTime.Parse(myDt.ToString("dd/MM/yyyy"));
+                VM.RevocarTurno(VM.Turno.UidFolio,  myDt.ToString("HH:mm:ss"), myDt.ToString("dd/MM/yyyy"), VM.Turno.IntTFotos, VM.Turno.IntTCosto);
+                VM.ReporteVentaFotos(VM.Turno.UidFolio);
+                imprimirturno();
+                VM.Turno = null;
+                VM.Encargado = null;
                 TurnoConf();
             }
             else if (result == MessageBoxResult.No)
@@ -687,9 +985,166 @@ namespace TinoTriXxX
                 // Cancel code here  
             }
         }
+
+
+
         #endregion Session
 
+
+        #region codigo prototipo
+        //void SaberIpServidor() {
+        //    IPHostEntry host;
+
+        //    host = Dns.GetHostEntry(Dns.GetHostName());
+        //    foreach (IPAddress ip in host.AddressList)
+        //    {
+        //        if (ip.AddressFamily.ToString() == "InterNetwork")
+        //        {
+        //            localIP = ip.ToString();
+        //        }
+        //    }
+        //    MessageBox.Show("Tú IP Local Es: " + localIP);
+        //}
+
+        //public void InicioConexionRedLocal()
+        //{
+
+        //   // Console.WriteLine("Servidor OK!");
+        //    server = new TcpListener(ipendpoint);
+        //    server.Start();
+
+        //    while (true)
+        //    {
+        //        client = server.AcceptTcpClient();
+
+        //        con = new Connection();
+        //        con.stream = client.GetStream();
+        //        con.streamr = new StreamReader(con.stream);
+        //        con.streamw = new StreamWriter(con.stream);
+
+        //        con.nick = con.streamr.ReadLine();
+
+        //        list.Add(con);
+        //        //Console.WriteLine(con.nick + " se a conectado.");
+        //        lbFotos.Text = con.nick + " se a conectado.";
+
+
+        //        Thread t = new Thread(Escuchar_conexion);
+
+        //        t.Start();
+        //    }
+
+
+        //}
+
+        //void Escuchar_conexion()
+        //{
+        //    Connection hcon = con;
+
+        //    do
+        //    {
+        //        try
+        //        {
+        //            string tmp = hcon.streamr.ReadLine();
+        //            //Console.WriteLine(hcon.nick + ": " + tmp);
+        //            lbVenta.Text = hcon.nick + ": " + tmp;
+        //            foreach (Connection c in list)
+        //            {
+        //                try
+        //                {
+        //                    c.streamw.WriteLine(hcon.nick + ": " + tmp);
+        //                    c.streamw.Flush();
+        //                }
+        //                catch
+        //                {
+        //                }
+        //            }
+        //        }
+        //        catch
+        //        {
+        //            list.Remove(hcon);
+        //            //Console.WriteLine(con.nick + " se a desconectado.");
+        //            lbFotos.Text = con.nick + " se a desconectado.";
+        //            break;
+        //        }
+        //    } while (true);
+        //}
+
+        #endregion codigo prototipo
+
+        private void StartServer()
+        {
+            try
+            {
+                SignalR = WebApp.Start(ServerURI);
+            }
+            catch (TargetInvocationException)
+            {
+                //WriteToConsole("A server is already running at " + ServerURI);
+                //this.Dispatcher.Invoke(() => ButtonStart.IsEnabled = true);
+                MessageBox.Show("¡Error al conectar en la red, un servidor ya esta conectado!", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                return;
+            }
+            //MessageBox.Show("¡Servidor comenzo a conectarse!", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            //this.Dispatcher.Invoke(() => ButtonStop.IsEnabled = true);
+            //WriteToConsole("Server started at " + ServerURI);
+        }
+
+        public void ActualizarVentasClientes() {
+            try
+            {
+                VM.ActualizarVentaGeneral();
+                lbFotos.Text = VM.Turno.IntTFotos.ToString();
+                lbVenta.Text = VM.Turno.IntTCosto.ToString();
+            }
+            catch (Exception e) {
+                MessageBox.Show("¡Error al actualizar las ventas!"+e, "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            }
+        }
+
        
+    }
+    #region clases conexion red local
+    
+    class Startup
+    {
+        public void Configuration(IAppBuilder app)
+        {
+            app.UseCors(CorsOptions.AllowAll);
+            app.MapSignalR();
+        }
+    }
+    public class MyHub : Hub
+    {
+        public void Send(string name, string message)
+        {
+            Clients.All.addMessage(name, message);
+            Application.Current.Dispatcher.Invoke(() =>
+                ((MainWindow)Application.Current.MainWindow).lbFotos.Text= message);
+            
+        }
+        public void NuevaImpresionVenta() {
+            Application.Current.Dispatcher.Invoke(() =>
+                ((MainWindow)Application.Current.MainWindow).ActualizarVentasClientes());
+           // Clients.All.addMessage(name, "Se confirmo actualizacion de venta");
+        }
+        public override Task OnConnected()
+        {
+            ////Use Application.Current.Dispatcher to access UI thread from outside the MainWindow class
+            //Application.Current.Dispatcher.Invoke(() =>
+            //    ((MainWindow)Application.Current.MainWindow).WriteToConsole("Client connected: " + Context.ConnectionId));
+
+            return base.OnConnected();
+        }
+        public override Task OnDisconnected()
+        {
+            ////Use Application.Current.Dispatcher to access UI thread from outside the MainWindow class
+            //Application.Current.Dispatcher.Invoke(() =>
+            //    ((MainWindow)Application.Current.MainWindow).WriteToConsole("Client disconnected: " + Context.ConnectionId));
+           
+            return base.OnDisconnected();
+        }
 
     }
+    #endregion  clases conexion red local
 }

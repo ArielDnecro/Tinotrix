@@ -35,7 +35,7 @@ namespace TinoTriXxX
         
         private void btnEntrar_Click(object sender, RoutedEventArgs e)
         {
-            
+            contrasenaenter();
         }
 
         private void txtusuario_KeyDown(object sender, KeyEventArgs e)
@@ -75,6 +75,8 @@ namespace TinoTriXxX
                             PnPassword.Visibility = Visibility.Visible;
                             txtcontrasena.Focus();
                             btnRegresarUsuario.Visibility = Visibility.Visible;
+                        btnEntrar.Visibility = Visibility.Visible;
+                        btnSiguiente.Visibility = Visibility.Collapsed;
                     }
                 }
                 _CVMServer.EmpresaLocal = null;
@@ -103,7 +105,6 @@ namespace TinoTriXxX
                 }
             }
         }
-
         private void BtnSalir_Click(object sender, RoutedEventArgs e)
         {
             if (_BooInicioApp == true)
@@ -116,7 +117,6 @@ namespace TinoTriXxX
             }
             
         }
-
         private void btnRegresarUsuario_Click(object sender, RoutedEventArgs e)
         {
             _CVMServer.Usuario= null;
@@ -126,6 +126,13 @@ namespace TinoTriXxX
             PnPassword.Visibility = Visibility.Hidden;
             txtusuario.Focus();
             btnRegresarUsuario.Visibility = Visibility.Hidden;
+            btnSiguiente.Visibility = Visibility.Visible;
+            btnEntrar.Visibility = Visibility.Collapsed;
+        }
+
+        private void BtnSiguiente_Click(object sender, RoutedEventArgs e)
+        {
+            usuarioenter();
         }
     }
 }
