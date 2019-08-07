@@ -12,21 +12,26 @@
       SizeChanged="Window_SizeChanged"
       >
     <Page.Resources>
-        <!--<ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Recursos.xaml"></ResourceDictionary>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>-->
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
-                <EasingDoubleKeyFrame KeyTime="0" Value="70"/>
+                <EasingDoubleKeyFrame KeyTime="0" Value="80"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="CloseMenu" >
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
                 <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="80"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="AbrirAnuncioInformativo">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="BtnInformativo">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="290"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CerrarAnuncioInformativo">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="BtnInformativo">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-290"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Page.Resources>
@@ -36,6 +41,21 @@
         </EventTrigger>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
             <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btnCargarFoto">
+            <BeginStoryboard Storyboard="{StaticResource AbrirAnuncioInformativo}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btnCapturarFoto">
+            <BeginStoryboard Storyboard="{StaticResource AbrirAnuncioInformativo}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="BtnInformativo">
+            <BeginStoryboard Storyboard="{StaticResource CerrarAnuncioInformativo}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btnDescargarFoto">
+            <BeginStoryboard Storyboard="{StaticResource AbrirAnuncioInformativo}"/>
+        </EventTrigger>
+        <EventTrigger  RoutedEvent="Image.MouseLeftButtonDown" SourceName="ImgFotoUsuario">
+            <BeginStoryboard Storyboard="{StaticResource CerrarAnuncioInformativo}"/>
         </EventTrigger>
     </Page.Triggers>
     <Grid Background="#424242" >
@@ -48,10 +68,8 @@
         <Button x:Name="btnRegresarListaFotos" Click="btnRegresarListaFotos_Click" Visibility="Hidden" ToolTip="Regresa a escoger que foto para tramite necesitas"  Margin="220 25 0 0" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" VerticalAlignment="Top"  Width="40" Height="40"  Background="White"  BorderBrush="{x:Null}" FontWeight="Bold">
             <materialDesign:PackIcon Kind="ArrowLeftThick"  Foreground="DarkSlateGray"  Height="30" Width="30" />
         </Button>
-        <!--<Button x:Name="btnRegresarEscogerFoto" Click="btnRegresarEscogerFoto_Click"  Margin="200 0 0 0" HorizontalAlignment="Left" Grid.Row="1"   Width="40" Height="40"  ToolTip="Regresa a escoger tu foto" Background="#FF3580BF"  BorderBrush="{x:Null}" FontWeight="Bold" Visibility="Hidden">
-            <materialDesign:PackIcon Kind="ArrowLeftThick"  Foreground="White"  Height="30" Width="30" Margin="-12 -5 -5 -5" />
-        </Button>-->
-        <Grid Name="GFotoSeleccionada" Visibility="Hidden" ><!--mfpg-->
+        <Grid Name="GFotoSeleccionada" Visibility="Hidden" >
+            <!--mfpg-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"></ColumnDefinition>
                 <ColumnDefinition Width="3*"></ColumnDefinition>
@@ -64,16 +82,16 @@
             <Label Name="lbDescripcionFoto" HorizontalAlignment="Left"  Foreground="White" FontWeight="Bold" FontSize="32" Grid.Column="1"></Label>
             <Label Name="lbStatusFoto" HorizontalAlignment="Center"  Foreground="white" FontWeight="Bold" FontSize="14" Grid.Column="1"></Label>
             <Label Name="lbDescripcionDetalleFoto" HorizontalAlignment="Left"  Foreground="white" FontWeight="Bold" FontSize="14" Grid.Column="1" Grid.Row="1" ></Label>
-            <Label Name="lbNombreFotoUsuario" HorizontalAlignment="Left"  Margin="0 30 0 0"  Foreground="white" FontWeight="Bold" FontSize="16" Grid.Column="2" Grid.RowSpan="2"></Label>
+            <TextBlock Name="lbNombreFotoUsuario" HorizontalAlignment="Left"  Margin="250 30 0 0"  Foreground="white" FontWeight="Bold" FontSize="16" Grid.Column="1" Width="500" Grid.RowSpan="4" Grid.ColumnSpan="2" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto"></TextBlock>
         </Grid>
         <Button Name="btnCapturarFoto" Click="btnCapturarFoto_Click" Content="Tomar foto" Background="Transparent" BorderBrush="#00e676" Grid.Row="1" Width="110" Margin="300 -50 0 0" HorizontalAlignment="Left" Visibility="Hidden" ></Button>
-        <Button Name="btnCargarFoto" Click="btnCargarFoto_Click" Content="Cargar foto" Background="Transparent" BorderBrush="#00e676" Grid.Row="1" Width="110" Margin="600 -50 0 0" HorizontalAlignment="Left" Visibility="Hidden"></Button>
+        <Button Name="btnCargarFoto" Click="btnCargarFoto_Click" Content="Cargar foto" Background="Transparent" BorderBrush="#00e676" Grid.Row="1" Width="110" Margin="450 -50 0 0" HorizontalAlignment="Left" Visibility="Hidden"></Button>
+        <Button  Name="btnDescargarFoto" Content="Descargar foto" Background="Transparent" BorderBrush="#00e676" Grid.Row="1" Width="130" Margin="600 -50 0 0" HorizontalAlignment="Left" Visibility="Hidden"></Button>
         <!--<Button Name="btnSeleccionFoto" Click="btnSeleccionFoto_Click" Content="Seleccionar" Grid.Row="1" Width="110" Margin="750 -50 0 0" HorizontalAlignment="Left" Visibility="Hidden"></Button>-->
         <!--<Button Name="BtnImprimir" Click="BtnImprimir_Click"  Grid.Row="1" Content="Imprimir" Width="110" Margin="400 5 0 0" Visibility="Hidden"></Button>-->
         <Button Name="BtnAfirmarElegirFoto" Click="BtnAfirmarElegirFoto_Click" Grid.Row="1" Width="50" Margin="790 -50 0 0" Background="#00bb2d" BorderBrush="Green" Visibility="Hidden">
             <materialDesign:PackIcon Kind="Check" Width="20" Height="20" />
         </Button>
-        
         <Button Name="BtnCancelarElegirFoto" Click="BtnCancelarElegirFoto_Click" Grid.Row="1" Width="50" Margin="900 -50 0 0" Background="#f00800" BorderBrush="#a80600" Visibility="Hidden">
             <materialDesign:PackIcon Kind="Close" Width="20" Height="20" />
         </Button>
@@ -103,18 +121,12 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        
         <ScrollViewer Name="SvFotoUsuario" Visibility="Hidden" Height="370" Margin="0 -70 0 0" HorizontalScrollBarVisibility="Auto" Grid.Row="3" VerticalScrollBarVisibility="Auto">
-            
         </ScrollViewer>
         <Image Name="ImgFondoEditor1" Visibility="Hidden" HorizontalAlignment="Left" Source="../Assets/FondoEditor.png" Grid.Row="2"  Margin="90 -50 10 10"  Height="380"  ></Image>
         <Image Name="ImgFondoEditor2" Visibility="Hidden" HorizontalAlignment="Center" Source="../Assets/FondoEditor.png" Grid.Row="2"  Margin="10 -50 10 10"  Height="380"  ></Image>
         <Image Name="ImgFondoEditor3" Visibility="Hidden" HorizontalAlignment="Right" Source="../Assets/FondoEditor.png" Grid.Row="2"  Margin="10 -50 10 10"  Height="380"  ></Image>
-        <TextBlock HorizontalAlignment="Left" Grid.Row="2" Margin="90,-20,0,5" x:Name="tblkClippingRectangle" VerticalAlignment="Top" Width="910" Height="Auto" Foreground="#00e676"  Background="Transparent"  Text="ClippingRectangle" TextWrapping="Wrap" Visibility="Hidden" />
-        <!--<TextBlock HorizontalAlignment="Left" Grid.Row="2" Margin="550,-20,0,5" x:Name="p" VerticalAlignment="Top" Width="350" Height="Auto" Foreground="#ffff00"  Background="#FF3580BF"  Text="Ubicacion mouse" TextWrapping="Wrap"  />-->
-        <!--<TextBlock HorizontalAlignment="Left" Grid.Row="1" Margin="50,20,0,5" x:Name="txthandposition" VerticalAlignment="Top" Width="350" Height="Auto" Foreground="#ffff00"  Background="#FF3580BF"  Text="prueba" TextWrapping="Wrap"  />-->
-        <!--<TextBox HorizontalAlignment="Left" Grid.Row="1" Margin="50,20,0,5" x:Name="txthandposition" VerticalAlignment="Top" Width="350" Height="Auto" Foreground="#ffff00"  Background="#FF3580BF"  Text="prueba" TextWrapping="Wrap" ></TextBox>-->
-
+        <TextBlock HorizontalAlignment="Left" Grid.Row="2" Margin="90,-20,0,5" x:Name="tblkClippingRectangle" VerticalAlignment="Top" Width="910" Height="Auto" Foreground="#00e676"  Background="Transparent"  Text="Area de recorte: (0,0,0,0)" TextWrapping="Wrap" Visibility="Hidden" />
         <Border Name="BFotoUsuario" Visibility="Hidden" Grid.Row="3"   Margin="90 -50 10 10"  Height="380"   HorizontalAlignment="Stretch" BorderBrush="#00c853" BorderThickness="3">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -131,7 +143,7 @@
                         </Grid.LayoutTransform>
                         <Viewbox Grid.Column="0" Grid.Row="0">
                             <!--<ContentPresenter Content="{StaticResource  Kompass}"/>-->
-                            <Image Name="ImgFotoUsuario"  MouseMove="ImgFotoUsuario_MouseMove"  MouseLeftButtonDown="ImgFotoUsuario_MouseLeftButtonDown" Source="../Assets/ciudadnoche.png" ></Image>
+                            <Image Name="ImgFotoUsuario"  MouseMove="ImgFotoUsuario_MouseMove"   MouseLeftButtonDown="ImgFotoUsuario_MouseLeftButtonDown" Source="../Assets/ciudadnoche.png" ></Image>
                         </Viewbox>
                     </Grid>
 
@@ -139,67 +151,73 @@
 
             </Grid>
         </Border>
-        <Border Name="GridMenu" BorderThickness="2" BorderBrush="#00c853"  Width="70" Height="380" HorizontalAlignment="Left" Background="#424242" Grid.Row="2" Margin="13 -60 0 0" Visibility="Hidden" >
-            <Grid>
-                <StackPanel>
-                <Grid Height="70" Background="White" RenderTransformOrigin="0.5,0.5">
-                    <Grid.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Grid.RenderTransform>
-                    <Button x:Name="ButtonOpenMenu" Height="60" Width="60" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF31577E" Click="ButtonOpenMenu_Click">
-                        <materialDesign:PackIcon Kind="Menu" Width="25" Height="25"/>
-                    </Button>
-                    <Button x:Name="ButtonCloseMenu" Visibility="Collapsed" Height="60" Width="60" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF31577E" Click="ButtonCloseMenu_Click">
-                        <materialDesign:PackIcon Kind="ArrowLeft" Width="25" Height="25"/>
-                    </Button>
+        <Border Name="GridMenu"  BorderThickness="2" BorderBrush="#00c853"  Width="80" Height="380" HorizontalAlignment="Left" Background="#424242" Grid.Row="2" Margin="5 -60 0 0" Visibility="Hidden" >
+            <Grid >
+                <StackPanel Orientation="Vertical" >
+                    <Grid Height="70" Background="White" RenderTransformOrigin="0.5,0.5">
+                        <Grid.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Grid.RenderTransform>
+                        <Button x:Name="ButtonOpenMenu" Height="60" Width="60" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF31577E" Click="ButtonOpenMenu_Click">
+                            <materialDesign:PackIcon Kind="Menu" Width="25" Height="25"/>
+                        </Button>
+                        <Button x:Name="ButtonCloseMenu" Visibility="Collapsed" Height="60" Width="60" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF31577E" Click="ButtonCloseMenu_Click">
+                            <materialDesign:PackIcon Kind="ArrowLeft" Width="25" Height="25"/>
+                        </Button>
 
-                    <Image Height="80" VerticalAlignment="Bottom"/>
-                </Grid>
-                <ListView x:Name="ListViewMenu" Background="White" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListViewMenu_SelectionChanged">
-                    <ListViewItem x:Name="ItemHome" Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="LightbulbOn" ToolTip="Brillo" Height="25" Width="25" Margin="10" Foreground="White" />
-                            <TextBlock Text="Brillo" VerticalAlignment="Center" Margin="20 10" Foreground="White"/>
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem x:Name="ItemCreate" Height="60">
-                        <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="Filter" ToolTip="Filtro" Height="25" Width="25" Margin="10" Foreground="White"/>
-                            <TextBlock Text="Filtro" VerticalAlignment="Center" Margin="20 10" Foreground="White" />
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem Height="60">
-                        <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="Gradient" Height="25" ToolTip="Nitidez" Width="25" Margin="10" Foreground="White"/>
-                            <TextBlock Text="Nitidez" VerticalAlignment="Center"  Margin="20 10" Foreground="White"/>
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem Height="60">
-                        <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="Eye" ToolTip="Ojos rojos" Height="25" Width="25" Margin="10" Foreground="White"/>
-                            <TextBlock Text="Ojos rojos" VerticalAlignment="Center"  Margin="20 10" Foreground="White"/>
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem Height="60">
-                        <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="BlurLinear" ToolTip="Saturacion" Height="25" Width="25" Margin="10" Foreground="White"/>
-                            <TextBlock Text="Saturacion" VerticalAlignment="Center"  Margin="20 10" Foreground="White"/>
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem Height="60">
-                        <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="FormatRotate90" ToolTip="Rotacion de 90 grados" Height="25" Width="25" Margin="10" Foreground="White"/>
-                            <TextBlock Text="Rotacion 90°" VerticalAlignment="Center"  Margin="20 10" Foreground="White"/>
-                        </StackPanel>
-                    </ListViewItem>
-                </ListView>
-            </StackPanel>
-        </Grid>
+                        <Image Height="80" VerticalAlignment="Bottom"/>
+                    </Grid>
+                   
+                    <!--<ScrollViewer  ScrollViewer.VerticalScrollBarVisibility="Visible">-->
+                        <!--<Viewbox >-->
+                        <ListView x:Name="ListViewMenu" Height="300"  Background="White" Foreground="White"  ScrollViewer.HorizontalScrollBarVisibility="Disabled"  SelectionChanged="ListViewMenu_SelectionChanged" >
+                           
+                            <ListViewItem x:Name="ItemHome" Height="60">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="LightbulbOn" ToolTip="Brillo" Height="25" Width="25" Margin="10" Foreground="White" />
+                                    <TextBlock Text="Brillo" VerticalAlignment="Center" Margin="20 10" Foreground="White"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem x:Name="ItemCreate" Height="60">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Filter" ToolTip="Filtro" Height="25" Width="25" Margin="10" Foreground="White"/>
+                                    <TextBlock Text="Filtro" VerticalAlignment="Center" Margin="20 10" Foreground="White" />
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Height="60">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Gradient" Height="25" ToolTip="Nitidez" Width="25" Margin="10" Foreground="White"/>
+                                    <TextBlock Text="Nitidez" VerticalAlignment="Center"  Margin="20 10" Foreground="White"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Height="60">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Eye" ToolTip="Ojos rojos" Height="25" Width="25" Margin="10" Foreground="White"/>
+                                    <TextBlock Text="Ojos rojos" VerticalAlignment="Center"  Margin="20 10" Foreground="White"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Height="60">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="BlurLinear" ToolTip="Saturacion" Height="25" Width="25" Margin="10" Foreground="White"/>
+                                    <TextBlock Text="Saturacion" VerticalAlignment="Center"  Margin="20 10" Foreground="White"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Height="60">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="FormatRotate90" ToolTip="Rotacion de 90 grados" Height="25" Width="25" Margin="10" Foreground="White"/>
+                                    <TextBlock Text="Rotacion 90°" VerticalAlignment="Center"  Margin="20 10" Foreground="White"/>
+                                </StackPanel>
+                            </ListViewItem>
+                        </ListView>
+                        <!--</Viewbox>-->
+                    <!--</ScrollViewer>-->
+                </StackPanel>
+            </Grid>
         </Border>
         <Button x:Name="btnRotacionMenos90" Visibility="Hidden" Margin="800 -380 0 0" Click="btnRotacionMenos90_Click" HorizontalAlignment="Left" Grid.Row="3"   Width="40" Height="40"  ToolTip="Rotacion de 90 grados" Background="#424242"  BorderBrush="#00e676" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" >
             <materialDesign:PackIcon Kind="RotateLeft"  Foreground="White"  Height="30" Width="30" Margin="-5 -5 -5 -5" />
@@ -207,13 +225,34 @@
         <Button x:Name="btnRotacion90" Visibility="Hidden" Margin="850 -380 0 0" Click="btnRotacion90_Click"  HorizontalAlignment="Left" Grid.Row="3"   Width="40" Height="40"  ToolTip="Rotacion de 90 grados" Background="#424242"  BorderBrush="#00e676" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" >
             <materialDesign:PackIcon Kind="RotateRight"  Foreground="White"  Height="30" Width="30" Margin="-5 -5 -5 -5" />
         </Button>
-        <!--<Image x:Name="imgCrop" Width="130" Grid.Row="2" Height="100" Margin="0,5,5,50" HorizontalAlignment="Center"  VerticalAlignment="Center"  Visibility="Hidden" />-->
         <Image x:Name="imgCrop" Width="130" Grid.Row="2" Height="100" Margin="800,-100,5,50" HorizontalAlignment="Center"  VerticalAlignment="Center"   />
-        <Image RenderTransformOrigin="0.722,0.713" Visibility="Hidden" x:Name="imgChurch" Grid.Row="2" Stretch="Fill"  Height="300" Source="../Assets/paisajeverde.jpg" Margin="5,5,5,5"/>
-        <!--<Image Width="150" Margin="5" Grid.Column="0" Grid.Row="1">
-            <Image.Source>
-                <BitmapImage UriSource="/../Assets/ciudadnoche.png" Rotation="Rotate90" />
-            </Image.Source>
-        </Image>-->
+        <Image RenderTransformOrigin="0.722,0.713" Visibility="Hidden" x:Name="imgChurch" Grid.Row="2" Stretch="Fill"  Height="300" Source="../Assets/ciudadnoche.png" Margin="5,5,5,5"/>
+        <Button Name="BtnInformativo"  Height="60" Width="290" RenderTransformOrigin="0.5,0.5" Padding="0" Margin="-290 -60 0 -10" HorizontalAlignment="Left" BorderBrush="#ffc107" Background="#ffa000"  FontSize="16" Grid.Row="1">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <StackPanel  Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Information"  Width="30" Height="30" VerticalAlignment="Center" />
+                <TextBlock x:Name="LbInformativo"  Width="260" Margin="0 4 0 0"  TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto">Para continuar haz click sobre la imagen</TextBlock>
+            </StackPanel>
+        </Button>
+        <Border x:Name="BCargando"  Visibility="Hidden" Margin="0,0,0,0" Grid.ColumnSpan="10" Grid.RowSpan="10">
+            <Grid>
+                <Rectangle>
+                    <Rectangle.Fill >
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#52c2" Offset="0.566"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <TextBlock x:Name="txtLoading"  Foreground="White" FontSize="36" FontWeight="Bold" Margin="400 0 0 0"   VerticalAlignment="Center" >Cargando</TextBlock>
+            </Grid>
+        </Border>
     </Grid>
+
 </Page>

@@ -24,36 +24,32 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Margin="30,55,39,194" RadiusX="8" RadiusY="8 " Height="99" >
+        <Rectangle  Visibility="Collapsed"  RadiusX="8" RadiusY="8 " Height="100" Width="354" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-120 70 0 0" >
             <Rectangle.Fill >
-                <ImageBrush ImageSource="../Assets/TinotrixBlanco2019.2.0.99x550.png" />
+                <ImageBrush ImageSource="../Assets/Tinotrix2019.3.0.155x550.png" />
             </Rectangle.Fill>
         </Rectangle>
+        <TextBlock Margin="115 80 0 0" Foreground="White"  FontSize="80" FontFamily="Lucida Sans">TINOTRIX</TextBlock>
         <Label Content="Version 1.0"></Label>
-        <Label Content="Todos los derecho reservados" HorizontalAlignment="Right"></Label>
+        <Label Content="Todos los derechos reservados" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="9"></Label>
         <StackPanel Margin="0,170,0,50"  Visibility="Collapsed">
             <TextBlock Text="Tinotrix" Foreground="White" HorizontalAlignment="Center" FontSize="48" FontWeight="Bold"/>
             <TextBlock Text="GESTION DE SERVICIO FOTOGRAFICO" Foreground="White" HorizontalAlignment="Center" Width="280" FontSize="24" TextWrapping="Wrap" TextAlignment="Center" Margin="0,10,0,0"/>
             <TextBlock Text="Servidor" Foreground="White" FontSize="18" TextWrapping="Wrap" TextAlignment="Right" Margin="10"/>
         </StackPanel>
-        <TextBlock TextWrapping="Wrap" Margin="10 10 10 100" Foreground="#FFFBFBFB" FontSize="14" VerticalAlignment="Bottom">
-              CONTACTO
-        </TextBlock>
-
-        <TextBlock TextWrapping="Wrap" Margin="10 10 10 80" Foreground="#FFFBFBFB" FontSize="12" VerticalAlignment="Bottom">
-            	+(52) 984-147-3888
-        </TextBlock>
-        <TextBlock TextWrapping="Wrap" Margin="10 10 10 60" Foreground="#FFFBFBFB" FontSize="12" VerticalAlignment="Bottom">
-             	+(52) 984-803-4002
-        </TextBlock>
-        <TextBlock TextWrapping="Wrap" Margin="10 10 10 40" Foreground="#FFFBFBFB" FontSize="12" VerticalAlignment="Bottom">
-            		gerencia@compuandsoft.com
+        <TextBlock TextWrapping="Wrap" Margin="10 10 10 25" Foreground="#FFFBFBFB" FontSize="24" VerticalAlignment="Bottom">
+              CompuAndSoft
         </TextBlock>
         <TextBlock TextWrapping="Wrap" Margin="10 10 10 5" Foreground="#FFFBFBFB" FontSize="12" VerticalAlignment="Bottom">
+            Contacto: +(52) 984-147-3888, +(52) 984-803-4002 y gerencia@compuandsoft.com
+        </TextBlock>
+        <TextBlock TextWrapping="Wrap" Margin="10 10 10 5" Foreground="#FFFBFBFB" FontSize="12" VerticalAlignment="Bottom" Visibility="Hidden">
          
             AVE 30 MZ 37 LT 14 entre 26 Y 28 Norte, 
             Código Postal: 77710, Colonia: GONZALO GUERRERO, 
             PLAYA DEL CARMEN, SOLIDARIDAD, QUINTANA ROO, MEXICO
         </TextBlock>
+        <ProgressBar
+  IsIndeterminate="True" Margin="0 250 0 0" />
     </Grid>
 </Window>

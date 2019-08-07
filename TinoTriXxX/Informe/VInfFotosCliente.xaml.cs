@@ -44,8 +44,10 @@ namespace TinoTriXxX.Informe
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            #region version 1
             if (int.Parse(_foto.VchColumna) <= 10 && int.Parse(_foto.VchColumna) != 0)
             {
+
                 //if (int.Parse(_foto.VchColumna) == 1)
                 //{
                 //    this.ReportFotosUsuario.LocalReport.ReportEmbeddedResource = "TinoTriXxX.Informe.Foto1.rdlc";
@@ -55,13 +57,13 @@ namespace TinoTriXxX.Informe
                 //        if (_foto.StrDescripcion.Contains("Cartilla Militar")) { Militar(); } else {
                 //            if (_foto.StrDescripcion.Contains("Titulo")) { Titulo(); } else {
                 //                if (_foto.StrDescripcion.Contains("Credencial")) { Credencial(); } else {
-                                    General();
+                General();
                 //                }
                 //            }
                 //        }
                 //    }
                 //}
-               
+
                 //FileInfo fi = new FileInfo(_imageUrl);
                 // ReportFotosUsuario.SetPageSettings = 1000;
                 System.Drawing.Printing.PageSettings pg = new System.Drawing.Printing.PageSettings();
@@ -141,7 +143,7 @@ namespace TinoTriXxX.Informe
                 //        if (o == 5) { rpl.Add(pImageUrl5); }
                 //    }
                 //}
-                
+
                 #endregion
                 Rp = rpl.ToArray();
                 ReportDataSource dat = new ReportDataSource("dsurl", _fotos);
@@ -151,15 +153,20 @@ namespace TinoTriXxX.Informe
 
                 this.ReportFotosUsuario.RefreshReport();
             }
-            else {
-                
-                if (int.Parse(_foto.VchColumna) > 10) {
+            else
+            {
+
+                if (int.Parse(_foto.VchColumna) > 10)
+                {
                     MessageBoxResult result = MessageBox.Show("El numero de fotos es muy grande ", "Informe de impresion");
                 }
-                if (int.Parse(_foto.VchColumna) == 0) {
+                if (int.Parse(_foto.VchColumna) == 0)
+                {
                     MessageBoxResult result = MessageBox.Show("La impresion NO contiene 'FOTOS' n/ favor de informar al administrador ", "Informe de impresion");
                 }
             }
+            #endregion version 1
+
         }
 
         private void ReportFotosUsuario_Load(object sender, EventArgs e)

@@ -33,7 +33,7 @@ namespace TinoTriXxX
         
         private void btnEntrar_Click(object sender, RoutedEventArgs e)
         {
-            
+            contrasenaenter();
         }
 
         private void txtusuario_KeyDown(object sender, KeyEventArgs e)
@@ -72,6 +72,8 @@ namespace TinoTriXxX
                         PnPassword.Visibility = Visibility.Visible;
                         txtcontrasena.Focus();
                         btnRegresarUsuario.Visibility = Visibility.Visible;
+                        btnSiguiente.Visibility = Visibility.Collapsed;
+                        btnEntrar.Visibility = Visibility.Visible;
                     }
                 }
             }
@@ -115,6 +117,13 @@ namespace TinoTriXxX
             PnPassword.Visibility = Visibility.Hidden;
             txtusuario.Focus();
             btnRegresarUsuario.Visibility = Visibility.Hidden;
+            btnSiguiente.Visibility = Visibility.Visible;
+            btnEntrar.Visibility = Visibility.Collapsed;
+        }
+
+        private void BtnSiguiente_Click(object sender, RoutedEventArgs e)
+        {
+            usuarioenter();
         }
     }
 }

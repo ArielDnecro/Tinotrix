@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:TinoTriXxX"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="600" d:DesignWidth="1024"
       Title="PagePrincipal">
 
     <Grid Background="#424242">
@@ -26,13 +26,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <!--<Label HorizontalAlignment="Center" Grid.Row="0" VerticalAlignment="Top" Foreground="#FFa000" FontSize="30" Margin="0">Menu principal</Label>-->
-        <!--<Rectangle Margin="0,-135,0,-60" RadiusX="8" RadiusY="8"  Grid.Row="1" >
-            <Rectangle.Fill >
-                <ImageBrush ImageSource="../Assets/logo2019.720x990.png" />
-            </Rectangle.Fill>
-        </Rectangle>-->
-        <TextBlock Text="Bienvenido a TINOTRIX" Foreground="White" FontSize="30" FontWeight="Bold"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" Margin="0 0 0 0"/>
+        <Image Source="../Assets/BienvenidoATinotrix2019.3.0.112x1000.png" Height="70" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center"  VerticalAlignment="Center" ></Image>
         <Grid Margin="5" Grid.Row="2" Grid.Column="0">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="20" Color="#FFEEEEEE" ShadowDepth="1"/>

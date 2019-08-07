@@ -1,11 +1,14 @@
 ﻿using CodorniX.ConexionDB;
 using CodorniX.Modelo;
+using Microsoft.AspNet.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+
 using TinoTriXxX.Modelo;
 
 namespace TinoTriXxX.VistaModelo
@@ -29,8 +32,9 @@ namespace TinoTriXxX.VistaModelo
         private EmpresaLocal.Repository EmpresaLocalRepository = new EmpresaLocal.Repository();
         private Foto.Repository FotoRepository = new Foto.Repository();
         private Papel.Repository PapelRepository = new Papel.Repository();
+        private Turno.Repository TurnoRepository = new Turno.Repository();
         DBLogin login = new DBLogin();
-
+        private Servicio.Repository ServicioRepository = new Servicio.Repository();
         #region empresa
         private Empresa _Empresa;
         public Empresa Empresa
@@ -164,10 +168,47 @@ namespace TinoTriXxX.VistaModelo
             set { _Papel = value; }
         }
         #endregion Papel
+
+        #region red
+        public String UserName { get; set; }
+        public string ServerURI = "";
+        // http://localhost:8000/signalr
+        public string IpServidor = "";
+        public string PuertoConexion = "";
+        public IHubProxy HubProxy { get; set; }
+        public HubConnection Connection { get; set; }
+        #endregion red
         #endregion Propiedades
-
-
         #region funciones
+        public async void ConnectAsync()
+        {
+            Connection = new HubConnection(ServerURI);
+            //VM.Connection.Closed += Connection_Closed;//FUNCION ORIGINAL
+            HubProxy = Connection.CreateHubProxy("MyHub");
+            //Handle incoming event from server: use Invoke to write to console from SignalR's thread
+            //HubProxy.On<string, string>("AddMessage", (name, message) =>
+            //    this.Dispatcher.Invoke(() =>
+            //        RichTextBoxConsole.AppendText(String.Format("{0}: {1}\r", name, message))
+            //    )
+            //);
+            try
+            {
+                await Connection.Start();
+            }
+            catch (HttpRequestException)
+            {
+                //StatusText.Content = "Unable to connect to server: Start server before connecting clients.";
+                //No connection: Don't enable Send button or show chat UI
+                return;
+            }
+
+            //Show chat UI; hide login UI
+            //SignInPanel.Visibility = Visibility.Collapsed;
+            //ChatPanel.Visibility = Visibility.Visible;
+            //ButtonSend.IsEnabled = true;
+            //TextBoxMessage.Focus();
+            //RichTextBoxConsole.AppendText("Connected to server at " + ServerURI + "\r");
+        }
         public void ActualizarEmpresaLocal(Guid UIDEmpresa)
             {
                 try
@@ -245,7 +286,6 @@ namespace TinoTriXxX.VistaModelo
                 {
                     _Usuario = UsuarioRepositiry.Find(idusuario);
                 }
-
                 public void ActualizarSession(Guid UIDSession)
                 {
                     try
@@ -275,13 +315,57 @@ namespace TinoTriXxX.VistaModelo
         public double MedidafotoConversor(string StrMedida) {
           return FotoRepository.CargarMedidaLocal(StrMedida);
         }
+        public void NuevaImpresion(Guid UidSucursal, Guid UidFoto, string DtTmVenta, int IntFotos, int IntCosto) {
+            FotoRepository.NuevaImpresion( UidSucursal,  UidFoto,  DtTmVenta,  IntFotos, IntCosto);
+        }
         #endregion FOTO
-
         #region Papel
         public void CargarPapel(Guid UIDSucursal) {
             _Papel = PapelRepository.Find(UIDSucursal);
         }
         #endregion Papel
+        #region turno
+        public bool TurnoServidorAbierto(Guid sucursal)
+        {
+            return TurnoRepository.TurnoServidorAbierto(sucursal);
+        }
+
+
+        #endregion turno
+        #region Servicios
+        public string ObtenerPuerto()
+        {
+            //string StrPuerto= "";
+            if (ServicioRepository.VerificarExistenciaPuerto()==true)
+            {
+                PuertoConexion = ServicioRepository.FindPuerto();
+            }
+            else
+            {
+            }
+            return PuertoConexion;
+        }
+        public string ObtenerIPServidor()
+        {
+           // string StrIP = "";
+            if (ServicioRepository.VerificarExistenciaIPServidor()==true)
+            {
+                IpServidor = ServicioRepository.FindIPServidor();
+            }
+            else
+            {
+
+            }
+            return IpServidor;
+        }
+        public void ActualizarIpServidor(string StrIpServer) {
+            ServicioRepository.ActualizarIPServidor(StrIpServer);
+        }
+        public void ActualizarPuerto(string StrPuerto)
+        {
+            ServicioRepository.ActualizarPuerto(StrPuerto);
+        }
+        #endregion Servicios
         #endregion funciones 
         #region Excepciones
         public class VM_EscritorioException : Exception

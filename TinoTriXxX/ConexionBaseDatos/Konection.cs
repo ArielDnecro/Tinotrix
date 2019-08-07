@@ -110,6 +110,7 @@ namespace TinoTriXxX.ConexionBaseDatos
         }
         public DataTable ExecuteQuery(SqlCommand command)
         {
+            string p = TinoTriXxX.Properties.Settings.Default["Source"].ToString();
             _Connection = new SqlConnection(@"Data Source=" + TinoTriXxX.Properties.Settings.Default["Source"].ToString() + ";Initial Catalog=TinotrixCliente;Integrated Security=True");
             DataTable table = new DataTable();
             //SqlDataReader reader;

@@ -5,10 +5,53 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TinoTriXxX"
       mc:Ignorable="d" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+       xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
       d:DesignHeight="300" d:DesignWidth="300"
       Title="PageConfiguracion">
 
     <Grid Background="#424242">
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="30">Configuracion</Label>
+        <!--<Label HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="30">Configuracion</Label>-->
+        <Grid Margin="0 60 0 0">
+            <dragablz:TabablzControl>
+                <!--<dragablz:TabablzControl.InterTabController>
+                    <dragablz:InterTabController/>
+                </dragablz:TabablzControl.InterTabController>-->
+                <TabItem Header="Conexion servidor" >
+                    <Grid>
+                        <TextBlock Foreground="White" Margin="0 60 0 0"
+                            Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                         Puerto
+                        </TextBlock>
+                        <TextBox x:Name="TxtPuertoServer"
+                              materialDesign:HintAssist.Hint="Ejemplo: 8000" Margin="0 85 0 0 "
+                              materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                              materialDesign:HintAssist.FloatingScale="0.50"
+                              Text="" VerticalAlignment="Top"  Foreground="White"
+                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                              FontSize="20" />
+                        <TextBlock Foreground="White" Margin="0 130 0 0"
+                            Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                         Direccion IP servidor
+                        </TextBlock>
+                        <TextBox x:Name="TxtIpServer"
+                              materialDesign:HintAssist.Hint="Ejemplo: 192.168.0.1" Margin="0 155 0 0 "
+                              materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                              materialDesign:HintAssist.FloatingScale="0.50"
+                              Text="" VerticalAlignment="Top"  Foreground="White"
+                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                              FontSize="20" />
+                        <Button  Name="btnGuardarConfServidor" Content="Guardar todo" Click="BtnGuardarConfServidor_Click" Background="Transparent" BorderBrush="#00e676"  Width="130" Margin="0 220 10 0" VerticalAlignment="Top" HorizontalAlignment="Right" ></Button>
+
+                    </Grid>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <materialDesign:PackIcon Kind="Help" Foreground="{DynamicResource PrimaryHueLightBrush}"/>
+                    </TabItem.Header>
+                    <TextBlock Text="github.com/Abel13/TabMenu2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </TabItem>
+            </dragablz:TabablzControl>
+        </Grid>
     </Grid>
 </Page>
