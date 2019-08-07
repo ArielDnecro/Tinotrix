@@ -964,10 +964,11 @@ namespace CodorniX.Vista
                 btnEditarFoto.Enable();
                 //btnEliminarFoto.Enable();
             }
-            if (UidPapel.Text.Length > 0)
-            {
+            //if (UidPapel.Text.Length > 0)
+            //{
                 btnEditarPapel.Enable();
-            }
+            
+                        //}
             //btnOkPapel.Visible = true;
             //btnCancelarPapel.Visible = true;
             //btnEditarPapel.AddCssClass("disabled");
@@ -1246,6 +1247,8 @@ namespace CodorniX.Vista
             DesHabilitarFormularioPapel();
             LimpiarFormularioFotoPapel();
             DesHabilitarFormularioFotoPapel();
+            btnEditarPapel.Disable();
+            
             #endregion Papel
 
 

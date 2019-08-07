@@ -187,6 +187,20 @@ namespace CodorniX.VistaDelModelo
             get { return _Papel; }
             set { _Papel = value; }
         }
+
+        //string _StrOrdenaFPPor = string.Empty;
+        //public string StrOrdenaFPPor
+        //{
+        //    get { return _StrOrdenaFPPor; }
+        //    set { _StrOrdenaFPPor = value; }
+        //}
+
+        //Orden _EnuOrdenFP = Orden.ASC;
+        //public Orden EnuOrdenFP
+        //{
+        //    get { return _EnuOrdenFP; }
+        //    set { _EnuOrdenFP= value; }
+        //}
         #endregion Papel
 
         #region varios
@@ -197,6 +211,8 @@ namespace CodorniX.VistaDelModelo
             get { return _ListaStatus; }
             set { _ListaStatus = value; }
         }
+
+
         #endregion varios
 
 
@@ -494,6 +510,69 @@ namespace CodorniX.VistaDelModelo
         public void ObtenerPapel(Guid uid)
         {
             _Papel = PapelRepository.Find(uid);
+        }
+
+        //public List<SucursalFoto> OrdenarListaFP(string ordenarpor, Orden OrdenFP, List<SucursalFoto> fotos )
+        //{
+        //    try
+        //    {
+        //        if (ordenarpor == _StrOrdenaFPPor)
+        //        {
+        //            if (_EnuOrdenFP == Orden.ASC)
+        //            {
+        //                _EnuOrdenFP = Orden.DESC;
+        //            }
+        //            else
+        //            {
+        //                _EnuOrdenFP = Orden.ASC;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            _StrOrdenaFPPor = ordenarpor;
+        //            _EnuOrdenFP = Orden.ASC;
+        //        }
+        //       return OrdenarListaFP(fotos, ordenarpor);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new VMSucursalesException("(OrdenarLista de fotos papel(string))" + ex.Message);
+        //    }
+        //}
+        public List<SucursalFoto> OrdenarListaFP(string ordenarpor, Orden OrdenFP, List<SucursalFoto> fotos)
+        {
+            try
+            {
+                if (OrdenFP == Orden.ASC)
+                {
+                    switch (ordenarpor)
+                    {
+                        case "Descripcion":
+                            fotos = new List<SucursalFoto>(fotos.OrderBy(Descripcion => Descripcion.StrDescripcion));
+                            break;
+                        default:
+                            fotos = new List<SucursalFoto>(fotos.OrderBy(Descripcion => Descripcion.StrDescripcion));
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (ordenarpor)
+                    {
+                        case "Descripcion":
+                            fotos = new List<SucursalFoto>(fotos.OrderByDescending(Descripcion => Descripcion.StrDescripcion));
+                            break;
+                        default:
+                            fotos = new List<SucursalFoto>(fotos.OrderByDescending(Descripcion => Descripcion.StrDescripcion));
+                            break;
+                    }
+                }
+                return fotos;
+            }
+            catch (Exception ex)
+            {
+                throw new VMSucursalesException("(OrdenarListaFOTOSPAPEL)" + ex.Message);
+            }
         }
         #endregion Papel
         //ObtenerStatus -> funcion que sirve en impresoras y fotografias.
