@@ -77,6 +77,7 @@
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -95,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Assets\Login\bootstrap.min.css" />
     <Content Include="Assets\Login\bootstrap.min.js" />
     <Content Include="Assets\Login\font-awesome.min.css" />
@@ -236,12 +238,9 @@
     <Content Include="Vista\Empresas.aspx" />
     <Content Include="Vista\Encargados.aspx" />
     <Content Include="Vista\Global.asax" />
+    <Content Include="Vista\HistoricoVentas.aspx" />
     <Content Include="Vista\Home.aspx" />
     <Content Include="Vista\HomeBS.aspx" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
@@ -261,6 +260,14 @@
     <Content Include="Assets\fonts\fontawesome-webfont.woff" />
     <Content Include="Assets\fonts\fontawesome-webfont.woff2" />
     <Content Include="Assets\fonts\FontAwesome.otf" />
+    <Content Include="Assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Limpieza.bat" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
@@ -270,6 +277,7 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Vista\Imagenes\logotipo2019.1.0.400x400.png" />
     <Content Include="Vista\PerfilEmpresa.aspx" />
     <Content Include="Vista\Perfiles.aspx" />
     <Content Include="Vista\Site1.Master" />
@@ -319,6 +327,7 @@
     <Compile Include="Util\HtmlGenericControlExtensions.cs" />
     <Compile Include="Util\WebControlExtensions.cs" />
     <Compile Include="VistaDelModelo\VMEncargados.cs" />
+    <Compile Include="VistaDelModelo\VMHistoricoVentas.cs" />
     <Compile Include="VistaDelModelo\VMLogin.cs" />
     <Compile Include="VistaDelModelo\VMPerfiles.cs" />
     <Compile Include="VistaDelModelo\VMPerfilesEmpresa.cs" />
@@ -349,6 +358,13 @@
     </Compile>
     <Compile Include="Vista\Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\HistoricoVentas.aspx.cs">
+      <DependentUpon>HistoricoVentas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\HistoricoVentas.aspx.designer.cs">
+      <DependentUpon>HistoricoVentas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -416,9 +432,7 @@
       <DependentUpon>Usuarios.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Vista\Imagenes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\LibCodorniX\TinotriX.Common.csproj">
       <Project>{949fb113-9029-46c9-811e-481148a336dc}</Project>

@@ -27,7 +27,7 @@
                             </asp:LinkButton>
                         </div>
                     </div>
-                     <div class="row" style="padding-top: 10px;">
+                    <div class="row" style="padding-top: 10px;">
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                  <asp:Label ID="LbErrorSucursales" Text="" runat="server" Visible="false" ForeColor="Red"  />
                             </div>
@@ -73,7 +73,7 @@
                                     <PagerSettings Mode="NumericFirstLast" Position="Top" PageButtonCount="4" />
                                     <PagerStyle CssClass="pagination-ys" HorizontalAlign="Center" />
                                     <EmptyDataTemplate>
-                                        No hay empresas registradas
+                                        No hay sucursales registradas
                                     </EmptyDataTemplate>
                                     <Columns>
                                         <asp:ButtonField CommandName="Select" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" FooterStyle-CssClass="hidden" />
@@ -224,6 +224,8 @@
                             <asp:LinkButton ID="tabPapel" runat="server" Text="Papel" OnClick="tabPapel_Click" /></li>
                         <li id="activeLicencias" runat="server">
                             <asp:LinkButton ID="tabLicencias" runat="server" Text="Licencias" OnClick="tabLicencias_Click" /></li>
+                        <li id="activeServidor" runat="server">
+                            <asp:LinkButton ID="tabServidor" runat="server" Text="Servidor" OnClick="tabServidor_Click" /></li>
                     </ul>
 
                     <asp:PlaceHolder ID="panelDatosSucursal" Visible="true" runat="server">
@@ -380,7 +382,7 @@
                             </div>
                             <div class="col-xs-12 col-md-6">
                                 <asp:Panel ID="frmGrpTelefono" runat="server" CssClass="form-group">
-                                    <asp:TextBox ID="txtTelefono" MaxLength="15" runat="server" Enabled="false" CssClass="form-control disabled" placeholder="Teléfono" />
+                                    <asp:TextBox ID="txtTelefono" MaxLength="15" runat="server" Enabled="false" CssClass="form-control disabled" placeholder="Ejemplo: 9841233234" />
                                 </asp:Panel>
                             </div>
                         </div>
@@ -442,23 +444,23 @@
                             <asp:TextBox ID="uidImpresora" runat="server" CssClass="hidden disabled" />
                             <div class="col-xs-12 col-md-12">
                                 <h6 class="control-label">Descripcion:</h6>
-                                <asp:Panel ID="frmGrpDescripcionImpresora" runat="server" CssClass="form-group">
-                                    <asp:TextBox ID="txtDescripcionImpresora" MaxLength="100" runat="server" Enabled="false" CssClass="form-control disabled" placeholder="Descripcion" />
-                                 </asp:Panel>
+                                <%--<asp:Panel ID="frmGrpDescripcionImpresora" runat="server" CssClass="form-group">--%>
+                                    <asp:TextBox ID="txtDescripcionImpresora" MaxLength="100" runat="server" Enabled="false" CssClass="form-control disabled" placeholder="Ejemplo: EPSON-420-K16" />
+                                 <%--</asp:Panel>--%>
                             </div>
                         </div>
                         <div class="row" style="padding-top: 10px;">
                             <div class="col-xs-12 col-md-6">
                                 <h6 class="control-label">Marca:</h6>
-                                <asp:Panel ID="frmGrpMarca" runat="server" CssClass="form-group">
-                                    <asp:TextBox ID="txtMarca" MaxLength="15" runat="server" Enabled="false" CssClass="form-control disabled" placeholder="Marca" />
-                                 </asp:Panel>
+                                <%--<asp:Panel ID="frmGrpMarca" runat="server" CssClass="form-group">--%>
+                                    <asp:TextBox ID="txtMarca" MaxLength="15" runat="server" Enabled="false" CssClass="form-control disabled" placeholder="Ejemplo: EPSON" />
+                                <%-- </asp:Panel>--%>
                             </div>
                             <div class="col-xs-12 col-md-6">
                                 <h6 class="control-label">Modelo:</h6>
-                                <asp:Panel ID="frmGrpModelo" runat="server" CssClass="form-group">
-                                   <asp:TextBox ID="txtModelo" MaxLength="15" runat="server" Enabled="false" CssClass="form-control disabled" placeholder="Modelo" />
-                                </asp:Panel>
+                                <%--<asp:Panel ID="frmGrpModelo" runat="server" CssClass="form-group">--%>
+                                   <asp:TextBox ID="txtModelo" MaxLength="15" runat="server" Enabled="false" CssClass="form-control disabled" placeholder="Ejemplo: 420" />
+                                <%--</asp:Panel>--%>
                             </div>
                         </div>
                         <div class="row" style="padding-top: 10px;">
@@ -542,11 +544,11 @@
                             </div>
                              <div class="col-md-3 col-sm-4 col-xs-12">
                                     <h6 class="control-label">Descripcion:</h6>
-                                    <asp:TextBox ID="txtDescripcionFoto" CausesValidation="false" MaxLength="100" runat="server" Enabled="false" CssClass="form-control disabled" placeholder="Descripcion" />
+                                    <asp:TextBox ID="txtDescripcionFoto" CausesValidation="false" MaxLength="100" runat="server" Enabled="false" CssClass="form-control disabled" placeholder="Ejemplo: Infantil" />
                             </div>
                              <div class="col-md-3 col-sm-4 col-xs-12">
                                    <h6 class="control-label">Precio:</h6>
-                                   <asp:TextBox ID="txtPrecioFoto" MaxLength="15" runat="server" Enabled="false" CssClass="form-control disabled" placeholder="Precio" />
+                                   <asp:TextBox ID="txtPrecioFoto" MaxLength="15" runat="server" Enabled="false" CssClass="form-control disabled" placeholder="Ejemplo: 10" />
                             </div>
                              <div class="col-md-3 col-sm-4 col-xs-12">
                                 <h6 class="control-label">Status:</h6>
@@ -557,11 +559,11 @@
                             </div>
                             <div class="col-md-3 col-sm-4 col-xs-12">
                                     <h6 class="control-label">Alto:</h6>
-                                    <asp:TextBox ID="txtAltoFoto" MaxLength="15" runat="server" Enabled="false" CssClass="form-control disabled" placeholder="Altura" />
+                                    <asp:TextBox ID="txtAltoFoto" MaxLength="15" runat="server" Enabled="false" CssClass="form-control disabled" placeholder="Ejemplo: 3" />
                             </div>
                             <div class="col-md-3 col-sm-4 col-xs-12">
                                    <h6 class="control-label">Ancho:</h6>
-                                   <asp:TextBox ID="txtAnchoFoto" MaxLength="15" runat="server" Enabled="false" CssClass="form-control disabled" placeholder="Ancho" />
+                                   <asp:TextBox ID="txtAnchoFoto" MaxLength="15" runat="server" Enabled="false" CssClass="form-control disabled" placeholder="Ejemplo: 2.5" />
                             </div>
                             <div class="col-md-3 col-sm-4 col-xs-12">
                                 <h6 class="control-label">Unidad de medida:</h6>
@@ -810,7 +812,7 @@
                         </div>
                         <div class="panel panel-info">
                         <asp:Panel ID="Panel1" runat="server" CssClass="panel-body table-responsive">
-                        <div class="table-responsive" style="margin:auto auto 55px">
+                        <div class="table-responsive" style="margin:auto auto auto">
                        
                             <asp:GridView 
                                 ID="dgvLicencias" 
@@ -825,7 +827,8 @@
                                 OnRowCommand="dgvLicencias_RowCommand"
                                 OnRowDataBound="dvgLicencias_RowDataBound"
                                 OnSorting="dgvLicencias_Sorting"
-                                PageSize="5">
+                                 OnSelectedIndexChanged="dgvLicencias_SelectedIndexChanged"
+                                >
                                     <EmptyDataTemplate>No hay Licencias asignados a está sucursal</EmptyDataTemplate>
                                     <Columns>
                                         <asp:ButtonField CommandName="Select" ItemStyle-CssClass="hidden" HeaderStyle-CssClass="hidden" FooterStyle-CssClass="hidden" />
@@ -845,15 +848,15 @@
                                                            <asp:TextBox ID="tbNuevoFootDirColonia" runat="server" ReadOnly="true" CssClass="form-control input-sm"></asp:TextBox>
                                                          </FooterTemplate>--%>
                                         </asp:TemplateField>
-                                        <asp:TemplateField>
+                                        <asp:TemplateField >
                                                          <HeaderTemplate>
                                                              <asp:LinkButton ID="LBnOrdenaUidLicencia" runat="server" CommandName="Sort" CommandArgument="Licencia">
                                                                     <span> Licencia <i id="IcoLicencia" runat="server"></i></span>
                                                              </asp:LinkButton>
                                                          </HeaderTemplate>
                                                          <ItemTemplate>
-                                                          <asp:LinkButton ID="BtnUidLicencia" OnClientClick="CopyGridView();" runat="server" CommandName="CopiarLicencia" CommandArgument="<%#((GridViewRow) Container).RowIndex %>">
-                                                             <asp:Label ID="LbDirLicencia" runat="server" Text='<%# Bind("UidLicencia") %>'></asp:Label>
+                                                          <asp:LinkButton ID="BtnUidLicencia" OnClientClick="Copiar(this);" runat="server" Text='<%# Bind("UidLicencia") %>' CommandName="Select" CommandArgument="<%#((GridViewRow) Container).RowIndex %>">
+                                                             
                                                           </asp:LinkButton>
                                                          </ItemTemplate>
                                         </asp:TemplateField>
@@ -911,6 +914,24 @@
                             </div>
                             </asp:Panel>
                             </div>
+                    </asp:PlaceHolder>
+
+                    <asp:PlaceHolder ID="panelServidor" Visible="false" runat="server">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <asp:Label ID="lblErrorServer" Text="" runat="server" />
+                            </div>
+                        </div>
+                        <div class="row"  style="padding-top: 10px;" >
+                            <div class="col-md-3 col-sm-4 col-xs-12">
+                                    <h6 class="control-label">Nombre ò direccion IP:</h6>
+                                    <asp:TextBox ID="txtServidorIp" CausesValidation="false" MaxLength="100" runat="server" Enabled="false" CssClass="form-control disabled" placeholder="Ejemplo: 192.168.0.1" />
+                            </div>
+                            <div class="col-md-3 col-sm-4 col-xs-12">
+                                    <h6 class="control-label">Puerto:</h6>
+                                    <asp:TextBox ID="txtPuerto" CausesValidation="false" MaxLength="100" runat="server" Enabled="false" CssClass="form-control disabled" placeholder="Ejemplo: 2378" />
+                            </div>
+                        </div>
                     </asp:PlaceHolder>
                 </div> 
             </div>
@@ -1020,6 +1041,54 @@
         }
     </script>
     
+     <!-- Copiar licencias -->
+ <%--<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>--%>
+<script>
+
+    //$(document).ready(function () {
+    //    AgregarClaseCeldaGrid('dgvLicencias');
+    //    $('.tdCopy').click(function () {
+    //        CopiarTexto($(this).text());
+    //    });
+    //});
+
+    //function AgregarClaseCeldaGrid(GridId) {
+    //    $('[id*=' + GridId + '] td').each(function () {
+    //        $(this).addClass('tdCopy');
+    //    });
+    //}
+
+    //function CopiarTexto(text) {
+    //    var textArea = document.createElement("textarea");
+    //    // Si se renderiza por alguna razón
+    //    textArea.style.background = 'transparent';
+    //    textArea.value = text;
+    //    document.body.appendChild(textArea);
+    //    textArea.select();
+    //    try {
+    //        var ok = document.execCommand('copy');
+    //        //console.log('La copia del texto es correcta ' + ok);
+    //    } catch (err) {
+    //        //console.log('No se pudo copiar');
+    //    }
+    //    document.body.removeChild(textArea);
+    //}
+    function Copiar(element) {
+        //creamos un input que nos ayudara a guardar el texto temporalmente
+        var $temp = $("<input>");
+        //lo agregamos a nuestro body
+        $("body").append($temp);
+        //agregamos en el atributo value del input el contenido html encontrado
+        //en el td que se dio click
+        //y seleccionamos el input temporal
+        $temp.val($(element).html()).select();
+        //ejecutamos la funcion de copiado
+        document.execCommand("copy");
+        //eliminamos el input temporal
+        $temp.remove();
+    }
+</script>
+
     <script>
         //<![CDATA[
         function enableDatapicker() {
@@ -1067,6 +1136,4 @@
              }
          }
       </script>
-
-  
 </asp:Content>
