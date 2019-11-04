@@ -79,7 +79,7 @@ namespace TinoTriXxX.Modelo
         public new class Repository
         {
             protected Konection _Conexion = new Konection();
-            public Turno Find()
+            public Turno Find() 
             {
                 DataTable table = new DataTable();
                 Turno Turno = new Turno();
@@ -218,15 +218,50 @@ namespace TinoTriXxX.Modelo
                     command.AddParameter("@DtHrSalida", HrSalida, SqlDbType.Time);
                     command.AddParameter("@DtFhSalida", FhSalida, SqlDbType.Date);
 
-                    Resultado = Conexionhost.ManipilacionDeDatos(command);
-
+                    //Resultado = Conexionhost.ManipilacionDeDatos(command);
+                    DataTable table = new Connection().ExecuteQuery(command);
+                    if (table.Rows.Count == 1)
+                    {
+                        Resultado = Convert.ToBoolean(table.Rows[0]["IsBTech"]);
+                    }
 
                     return Resultado;
                 }
                 catch (Exception e)
                 {
-                    throw new TurnoLocalException("(Revocar Encargado Host) " + e.Message);
+                    throw new TurnoLocalException("(Revocar turno Host) " + e.Message);
                 }
+            }
+            public Turno Findhost(Guid UidSucursal)
+            {
+                DataTable table = new DataTable();
+                Turno Turno = new Turno();
+
+                try
+                {
+                    SqlCommand comando = new SqlCommand();
+                    comando.CommandType = CommandType.StoredProcedure;
+                    comando.CommandText = "Wpf_TurnoServidor_Find";
+                    comando.AddParameter("@UidSucursal", UidSucursal, SqlDbType.UniqueIdentifier);
+                     table = Conexionhost.Busquedas(comando);
+                   // table = new Connection().ExecuteQuery(comando);
+                    if (table.Rows.Count == 1)
+                    {
+                        Turno._UidUsuario = new Guid(table.Rows[0]["UidEncargado"].ToString());
+                        Turno._IntNoFolio = int.Parse(table.Rows[0]["IntNoFolio"].ToString());
+                        Turno._UidFolio = new Guid(table.Rows[0]["UidFolio"].ToString());
+                        Turno._DtHrInicio = DateTime.Parse(table.Rows[0]["DtHrEntrada"].ToString());
+                        Turno._DtFhInicio = DateTime.Parse(table.Rows[0]["DtFhEntrada"].ToString());
+                        Turno._IntTFotos = int.Parse(table.Rows[0]["IntTFotos"].ToString());
+                        Turno._IntTCosto = int.Parse(table.Rows[0]["IntTCosto"].ToString());
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw new TurnoLocalException("(Obtener turno host)" + e.Message);
+                }
+
+                return Turno;
             }
             public Turno ActualizarVentaGeneral(Guid UidTurno) {
                 DataTable table = new DataTable();

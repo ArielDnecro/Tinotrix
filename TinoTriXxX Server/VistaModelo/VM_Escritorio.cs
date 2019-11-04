@@ -1,11 +1,16 @@
 ﻿using CodorniX.ConexionDB;
 using CodorniX.Modelo;
+using Microsoft.Owin.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TinoTriXxX.Modelo;
 
 namespace TinoTriXxX.VistaModelo
@@ -192,12 +197,15 @@ namespace TinoTriXxX.VistaModelo
 
         #region red
         public String UserName { get; set; }
-        public string ServerURI = "";
+       // public string ServerURI = "";
         // http://localhost:8000/signalr
         public string IpServidor = "";
-        public string PuertoConexion = "";
+        public string PuertoConexion = "0";
         //public IHubProxy HubProxy { get; set; }
         //public HubConnection Connection { get; set; }
+        public IDisposable SignalR { get; set; }
+        public string ServerURI = "http://127.0.0.1:8000";
+        public string localIP = "";
         #endregion red
 
         #endregion Propiedades
@@ -221,8 +229,23 @@ namespace TinoTriXxX.VistaModelo
                 _Sucursal = Sucursalrepository.Find(Licencia.UidSucursal);
                 _StatusSucursal = statusRepository.Find(Sucursal.UidStatus);
                 _SucursalDirecciones = SucursaldireccionRepository.FindAll(Licencia.UidSucursal);
-                _SucursalDireccion = SucursalDirecciones[0];
+                 if (SucursalDirecciones.Count>=1) { _SucursalDireccion = SucursalDirecciones[0]; }
+                else { _SucursalDireccion = new SucursalDireccion(); }
                 _Empresa = EmpresaRepository.Find(Sucursal.UidEmpresa);
+
+            //21-8-19
+            Turno turnito = new Turno();
+            turnito = TurnoRepository.Findhost(Sucursal.UidSucursal);
+            if (turnito != null || turnito != new Turno())
+            {
+                TurnoRepository.IniciarTurnoLocal(turnito.UidFolio, turnito.IntNoFolio, turnito.DtHrInicio.ToString("HH:mm:ss"), turnito.DtFhInicio.ToString("dd/MM/yyyy"));
+                ActualizarTurno(turnito.UidUsusario);
+            }
+            else
+            {
+                TurnoRepository.RevocarEncargado();
+                TurnoRepository.Revocar();
+            }
         }
         public void HabilitarLicenciaAnteriorHost(Guid UIDLicenciaAnterior)
         {
@@ -301,14 +324,18 @@ namespace TinoTriXxX.VistaModelo
         }
         public void ObtenerTurno()//Local
         {
+            //_Turno = 
             _Turno = TurnoRepository.Find();
-        }
-        public void RevocarTurno( Guid UidTurno, String HrSalida, String FhSalida, int TFotos, int TCosto)// local y host
+            //if (Turno.UidUsusario == Guid.Empty)
+            //{
+
+            //}
+      }
+        public bool RevocarTurno( Guid UidTurno, String HrSalida, String FhSalida, int TFotos, int TCosto)// local y host
         {
             TurnoRepository.RevocarEncargado();
             TurnoRepository.Revocar();
-            TurnoRepository.RevocarHost(UidTurno, HrSalida,  FhSalida,  TFotos,  TCosto);
-            
+            return  TurnoRepository.RevocarHost(UidTurno, HrSalida,  FhSalida,  TFotos,  TCosto);//
             //Turno = null;
             //Encargado = null;
         }
@@ -433,6 +460,78 @@ namespace TinoTriXxX.VistaModelo
         public void ActualizarPuerto(string StrPuerto)
         {
             ServicioRepository.ActualizarPuerto(StrPuerto);
+        }
+        void SaberIpServidor()
+        {
+            IPHostEntry host;
+
+            host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (IPAddress ip in host.AddressList)
+            {
+                if (ip.AddressFamily.ToString() == "InterNetwork")
+                {
+                    localIP = ip.ToString();
+                }
+            }
+            // MessageBox.Show("Tú IP Local Es: " + localIP);
+            ServerURI = "http://" + localIP + ":" + PuertoConexion;
+        }
+        public bool StartServer()
+        {
+            bool value = false;
+            try
+            {
+                if (ObtenerPuerto() != "0" )
+                {
+                    SaberIpServidor();
+                    try
+                    {
+                        SignalR = WebApp.Start(ServerURI);
+                        
+                    }
+                    catch (TargetInvocationException)
+                    {
+
+                        //WriteToConsole("A server is already running at " + ServerURI);
+                        //this.Dispatcher.Invoke(() => ButtonStart.IsEnabled = true);
+                        MessageBox.Show("¡Error al conectar en la red, un servidor ya esta conectado!", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                        value= false;
+                    }
+                    // MessageBox.Show("¡Servidor comenzo a conectarse! \n " + ServerURI, "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                    value = true;
+                }
+                else
+                {
+                    MessageBox.Show("¡No tiene un puerto definido \n servicio no inicializado !", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                    value = false;
+                }
+            }
+            catch (FileNotFoundException e)
+            {
+                value = false;
+                MessageBox.Show(e.Message);
+                //Application.Current.Shutdown();
+
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                value = false;
+                MessageBox.Show(e.Message);
+                // Application.Current.Shutdown();
+            }
+            catch (IOException e)
+            {
+                value = false;
+                MessageBox.Show(e.Message);
+                // Application.Current.Shutdown();
+            }
+            catch (Exception e)
+            {
+                value = false;
+                MessageBox.Show(e.Message);
+                //Application.Current.Shutdown();
+            }
+            return value;
         }
         #endregion Servicios
         #endregion funciones 

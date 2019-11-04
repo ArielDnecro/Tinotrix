@@ -4,19 +4,66 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TinoTriXxX"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PageFotosCliente">
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100" ></RowDefinition>
             <RowDefinition Height="50" ></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Name="btnCapturarFoto" Content="Tomar foto" Background="#FF3580BF" BorderBrush="#ffc107" Grid.Row="1" Width="110" Margin="30 0 0 0" HorizontalAlignment="Left"  ></Button>
 
-        <ListBox x:Name="LbFotos"  Margin="10 -10 10 10"   BorderBrush="#FF3580BF" Height="400"  BorderThickness="3" Grid.Row="2" HorizontalAlignment="Stretch">
+        <Button Name="btnCapturarFoto" Click="BtnCapturarFoto_Click" Content="Capturar foto" Background="#FF3580BF" BorderBrush="#ffc107" Grid.Row="1" Width="140" Margin="10 -40 0 0" HorizontalAlignment="Left"  ></Button>
+
+        <Border x:Name="BdEnviarMaquinas" Margin="200 -40 0 0"  IsEnabled="False" Grid.Row="1" BorderBrush="#FF3580BF" BorderThickness="1" Height="40" Width="200" HorizontalAlignment="Left">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <ComboBox Name="CbMaquinas" Height="30" Width="130" Background="Transparent" Grid.Column="0"  
+                      Foreground="#FF3580BF" FontWeight="Bold" FontSize="16" >
+                </ComboBox>
+                <Button x:Name="btnEnviarCliente" Click="BtnEnviarCliente_Click"   Width="33" Height="33" Padding="0" Background="#FF3580BF"  BorderBrush="#ffc107"   Grid.Column="1"
+                 ToolTip="Enviar a la Maquina ..." >
+                    <materialDesign:PackIcon Kind="Send" Width="33" Height="33" />
+                </Button>
+            </Grid>
+        </Border>
+        
+        <Image Name="ImgFondoEditor1"  HorizontalAlignment="Left" Source="Assets/FondoEditor.png" Grid.Row="2"  Margin="10 0 10 10"  Height="400"  Grid.RowSpan="6" ></Image>
+        <Image Name="ImgFondoEditor3"  HorizontalAlignment="Right" Source="Assets/FondoEditor.png" Grid.Row="2"  Margin="10 0 10 10"  Height="400"  Grid.RowSpan="6" ></Image>
+        <materialDesign:PackIcon Kind="ArrowDown" Width="20" Height="20" Margin="10 -10 0 0" Grid.Row="2" Background="#FF3580BF" Foreground="White"/>
+        <TextBlock Foreground="#FF3580BF" Margin="35 -10 0 0" Grid.Row="2"
+             Style="{StaticResource MaterialDesignHeadlineTextBlock}" FontSize="14" TextWrapping="Wrap">
+                         Ajuste aqui la imagen para visualizarlo mejor o bien utilize la rueda de desplazamiento del mouse
+        </TextBlock>
+        <Border Name="BFotoUsuario"  Grid.Row="2" Grid.RowSpan="6"   Margin="10 0 10 10"  Height="400"   HorizontalAlignment="Stretch" BorderBrush="#ffc107" BorderThickness="3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Slider Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left" Minimum="0.1"  x:Name="slider" Foreground="#FF3580BF" />
+                <ScrollViewer Name="scrollViewer" Grid.Column="1" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
+                    <Grid Name="grid" RenderTransformOrigin="0.5,0.5">
+                        <Grid.LayoutTransform>
+                            <TransformGroup>
+                                <ScaleTransform x:Name="scaleTransform"/>
+                            </TransformGroup>
+                        </Grid.LayoutTransform>
+                        <Viewbox Grid.Column="0" Grid.Row="0">
+                            <!--<ContentPresenter Content="{StaticResource  Kompass}"/>-->
+                            <Image Name="ImgFotoUsuario"  Source="Assets/ciudadnoche.png"  Visibility="Hidden" Margin="0 30 0 0"></Image>
+                        </Viewbox>
+                    </Grid>
+
+                </ScrollViewer>
+            </Grid>
+        </Border>
+        <!--<ListBox x:Name="LbFotos"  Margin="10 -10 10 10"   BorderBrush="#FF3580BF" Height="400"  BorderThickness="3" Grid.Row="2" HorizontalAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -38,6 +85,6 @@
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-        </ListBox>
+        </ListBox>-->
     </Grid>
 </Page>

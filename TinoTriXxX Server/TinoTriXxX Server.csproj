@@ -13,6 +13,7 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,7 +26,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -52,10 +52,26 @@
     <ApplicationIcon>logotiposerver2019.3.3.64x64.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Imaging, Version=2.2.5.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Imaging.2.2.5\lib\AForge.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Math, Version=2.2.5.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Math.2.2.5\lib\AForge.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.2.2.5\lib\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
     <Reference Include="Dragablz, Version=0.0.3.203, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dragablz.0.0.3.203\lib\net45\Dragablz.dll</HintPath>
     </Reference>
-    <Reference Include="LibPrintTicket">
+    <Reference Include="LibPrintTicket, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>F:\LibPrintTicket.dll</HintPath>
     </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -94,6 +110,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Web.Cors, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -120,6 +137,12 @@
     <Compile Include="Autentificacion.xaml.cs">
       <DependentUpon>Autentificacion.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Camara.xaml.cs">
+      <DependentUpon>Camara.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CargandoAplicacion.xaml.cs">
+      <DependentUpon>CargandoAplicacion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\Impresora.cs" />
     <Compile Include="Modelo\Servicio.cs" />
     <Compile Include="Modelo\Ticket2.cs" />
@@ -132,6 +155,9 @@
     </Compile>
     <Compile Include="PageImpresoras.xaml.cs">
       <DependentUpon>PageImpresoras.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SinConexionInternet.xaml.cs">
+      <DependentUpon>SinConexionInternet.xaml</DependentUpon>
     </Compile>
     <Compile Include="VistaModelo\Servidor_Chat.cs" />
     <Compile Include="VistaModelo\VariablesGlobal.cs" />
@@ -153,6 +179,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Camara.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CargandoAplicacion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="PageConfConexionServicio.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -164,6 +198,10 @@
     <Page Include="PageImpresoras.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SinConexionInternet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Vista\DBLocal.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -230,25 +268,7 @@
     <Resource Include="Assets\ciudadnoche.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\silueta-hombre-foto.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\login6.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\login5.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\login4.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\leopardoacostadocamara.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\paisajeverde.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\sinusuario.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LibCodorniX\TinotriX.Common.csproj">
@@ -260,12 +280,6 @@
     <Resource Include="logotiposerver2019.3.3.64x64.ico" />
     <Resource Include="logotiposerver2019.3.2.64x64.ico" />
     <Resource Include="logotiposerver2019.3.1.64x64.ico" />
-    <Resource Include="Assets\logotipotinotrix.png" />
-    <Resource Include="Assets\logotinotrix.png" />
-    <Resource Include="Assets\logo.png" />
-    <Resource Include="Assets\lt.png" />
-    <Resource Include="Assets\LTn.png" />
-    <Resource Include="Assets\lt2.png" />
     <Resource Include="Assets\logotiposerver2019.3.3.150x150.png" />
   </ItemGroup>
   <ItemGroup>
@@ -282,6 +296,19 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Imagenes\usuario\" />
+    <Folder Include="pagecliente\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\vacio.png" />
+    <Resource Include="Assets\LogoSinInternet.423x423.png" />
+    <Resource Include="Assets\AppMainNewYorkBackGround.jpg" />
+    <Resource Include="Assets\AppMainBackGround.jpg" />
+    <Resource Include="Assets\AppLoadBackGround.png" />
+    <Resource Include="Assets\FondoEditor.png" />
+    <Content Include="BaseDeDatos\script.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

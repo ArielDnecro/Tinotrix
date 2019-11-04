@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TinoTriXxX.VistaModelo;
+using System.Management;
 
 namespace TinoTriXxX
 {
@@ -23,6 +25,12 @@ namespace TinoTriXxX
     public partial class PageImpresoras : Page
     {
         VM_Escritorio VM = new VM_Escritorio();
+        MainWindow parentWindow;
+        public MainWindow ParentWindow
+        {
+            get { return parentWindow; }
+            set { parentWindow = value; }
+        }
         public PageImpresoras()
         {
             InitializeComponent();
@@ -36,53 +44,116 @@ namespace TinoTriXxX
 
         private void CbDispositivos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            VM.ActualizarImpresora(CbDispositivos.SelectedValue.ToString());
+           
         }
 
-        private void cargarImpresoras()
+         void cargarImpresoras()
         {
-            CbDispositivos.Items.Clear();
-            VM.ObtenerImpresora();
-            if (PrinterSettings.InstalledPrinters.Count>=1) {
-                foreach (String strPrinter in PrinterSettings.InstalledPrinters)
+            try
+            {
+                //CbDispositivos.Items.Clear();
+                VM.ObtenerImpresora();
+                if (PrinterSettings.InstalledPrinters.Count >= 1)
                 {
+                    //foreach (String strPrinter in PrinterSettings.InstalledPrinters)
+                    //{
 
-                    CbDispositivos.Items.Add(strPrinter);
+                    //    CbDispositivos.Items.Add(strPrinter);
 
-                }
-                if (!string.IsNullOrEmpty(VM.StrDesImpresora))
-                {
-                    try {
-                        CbDispositivos.Text = VM.StrDesImpresora;
-                    } catch (Exception r) {
+                    //}
+                    CbDispositivos.ItemsSource = PrinterSettings.InstalledPrinters;
+
+                    if (!string.IsNullOrEmpty(VM.StrDesImpresora))
+                    {
+                        try
+                        {
+                            CbDispositivos.Text = VM.StrDesImpresora;
+                            //foreach (ComboBoxItem item in CbDispositivos.Items)
+                            //    if (item.Content.ToString() == VM.StrDesImpresora)
+                            //    {
+                            //        CbDispositivos.SelectedItem = item;
+                            //        //break;
+                            //    }
+                        }
+                        catch (Exception r)
+                        {
+                            CbDispositivos.Text = CbDispositivos.Items[0].ToString();
+                        }
+                    }
+                    else
+                    {
                         CbDispositivos.Text = CbDispositivos.Items[0].ToString();
                     }
                 }
                 else
                 {
-                    CbDispositivos.Text = CbDispositivos.Items[0].ToString();
+                    MessageBox.Show("¡NO hay impresoras!", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 }
-            } else {
-
-                MessageBox.Show("¡NO hay impresoras!", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                //if (vmBoletoConfiguracion.LsBoletoConfigurar.Count != 0)
+                //{
+                //    foreach (var item in vmBoletoConfiguracion.LsBoletoConfigurar)
+                //    {
+                //        if (item.VchTipoCamara == "Impresora")
+                //        {
+                //            UidImpresora = item.UidBoletoConfiguracion.ToString();
+                //            cbxImpresoras.Text = item.VchNombreImpresora;
+                //        }
+                //    }
+                //}
+                //else
+                //{
+                //    CbDispositivos.Text = CbDispositivos.Items[0].ToString();
+                //}
             }
-            //if (vmBoletoConfiguracion.LsBoletoConfigurar.Count != 0)
-            //{
-            //    foreach (var item in vmBoletoConfiguracion.LsBoletoConfigurar)
-            //    {
-            //        if (item.VchTipoCamara == "Impresora")
-            //        {
-            //            UidImpresora = item.UidBoletoConfiguracion.ToString();
-            //            cbxImpresoras.Text = item.VchNombreImpresora;
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    CbDispositivos.Text = CbDispositivos.Items[0].ToString();
-            //}
+            catch (FileNotFoundException e)
+            {
+                MessageBox.Show(e.Message);
 
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                MessageBox.Show(e.Message);
+
+            }
+            catch (IOException e)
+            {
+                MessageBox.Show(e.Message);
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+
+            }
         }
 
+        private void BtnConfirmarCambios_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                VM.ActualizarImpresora(CbDispositivos.SelectedValue.ToString());
+            }
+            catch (FileNotFoundException f)
+            {
+                MessageBox.Show(f.Message);
+
+            }
+            catch (DirectoryNotFoundException f)
+            {
+                MessageBox.Show(f.Message);
+
+            }
+            catch (IOException f)
+            {
+                MessageBox.Show(f.Message);
+
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show(f.Message);
+
+            }
+            parentWindow.MenuHome();
+        }
     }
 }

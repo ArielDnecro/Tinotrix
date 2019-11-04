@@ -26,6 +26,7 @@ namespace TinoTriXxX.Modelo
             {
                 DataTable table = new DataTable();
                 Impresora impresora = new Impresora();
+                impresora._StrDescripcion = "";
                 try
                 {
                     SqlCommand comando = new SqlCommand();
