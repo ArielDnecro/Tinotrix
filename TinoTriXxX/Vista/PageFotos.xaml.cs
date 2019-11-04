@@ -22,6 +22,7 @@ using TinoTriXxX.Vista;
 using TinoTriXxX.Informe;
 using System.Drawing.Drawing2D;
 using System.Drawing.Printing;
+using System.Drawing.Imaging;
 using ImageMagick;
 using System.Threading;
 using System.Windows.Threading;
@@ -33,6 +34,7 @@ namespace TinoTriXxX
     /// </summary>
     public partial class PageFotos : Page
     {
+        #region Propiedades
         System.Windows.Point? lastCenterPositionOnTarget;
         System.Windows.Point? lastMousePositionOnTarget;
         System.Windows.Point? lastDragPoint;
@@ -52,6 +54,7 @@ namespace TinoTriXxX
         double AnchoReal;
         double X;
         double Y;
+        double DouTmPuntoExt;//con  esto especifica el tamaño de los cuadritos en el que se extiende o se achica la imagen
         //int IntZoom;
         int CropVH;
         int IntRotation;
@@ -59,7 +62,17 @@ namespace TinoTriXxX
         string sourceFileOriginal = null;
         String filePathElegidaImprimir = null;
         bool ProcesoComienza;
+        string StrFotoOriginalPath;
         //System.Drawing.Image imagenfinal = null;
+        #region PilaImagenesDescargadas
+             List<string> LFDesFotosOrdenada;
+        int FotoPMax;
+        int FotoPA;
+        #endregion PilaImagenesDescargadas
+        #endregion Propiedades
+
+        #region Constructor
+       
         public PageFotos(VM_Escritorio vm)
         {
             InitializeComponent();
@@ -72,7 +85,7 @@ namespace TinoTriXxX
             scrollViewer.PreviewMouseWheel += OnPreviewMouseWheel;
 
             //scrollViewer.PreviewMouseLeftButtonDown += OnMouseLeftButtonDown;
-            scrollViewer.MouseMove += OnMouseMove;
+            //scrollViewer.MouseMove += OnMouseMove;
 
             slider.ValueChanged += OnSliderValueChanged;
 
@@ -80,8 +93,15 @@ namespace TinoTriXxX
             CropVH = 0;
             IntRotation = 0;
             ObtenerDirectorioRaiz();
-            }
-
+            VM.FotosDescargadas=this.btnDescargarFoto;
+            
+            String Directorio = path + "\\Imagenes\\usuario\\";
+            string[] filePathsdescarga = Directory.GetFiles(Directorio, "*FotoFinalDescarga_*.*", SearchOption.AllDirectories);
+            btnDescargarFoto.Badge= filePathsdescarga.Count();
+            LFDesFotosOrdenada = new List<string>();
+            FotoPMax = -1;
+            FotoPA = -1;
+        }
         void ObtenerDirectorioRaiz()
             {
                 path = System.IO.Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
@@ -92,6 +112,8 @@ namespace TinoTriXxX
                 }
 
             }
+       #endregion Constructor
+      
         #region Crop
 
         private void SetClipColorRed()
@@ -144,7 +166,7 @@ namespace TinoTriXxX
                             AltoRecorte);
             
             AdornerLayer aly = AdornerLayer.GetAdornerLayer(fel);
-            _clp = new CroppingAdorner(fel, rcInterior);
+            _clp = new CroppingAdorner(fel, rcInterior, DouTmPuntoExt);
             aly.Add(_clp);
             imgCrop.Source = _clp.BpsCrop();
             _clp.CropChanged += CropChanged;
@@ -179,16 +201,27 @@ namespace TinoTriXxX
         }
         private void ImgFotoUsuario_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            ChkFotoOvalada.IsChecked = false;
             UbicarMarcoSobreImagen();
+            //if (ChkFotoOvalada.IsChecked == true)
+            //{
+            //    FotoOvalada();
+            //}
         }
         private void ImgFotoUsuario_MouseMove(object sender, MouseEventArgs e)
         {
+            
             //Point position = Mouse.GetPosition(ImgFotoUsuario);
             //txthandposition.Text = "Ubicacion mouse X: " + position.X + ", Y: " + position.Y;
             if (e.LeftButton == MouseButtonState.Pressed)
             {
+                ChkFotoOvalada.IsChecked = false;
                 //Mouse.OverrideCursor = Cursors.Hand;
                 UbicarMarcoSobreImagen();
+                //if (ChkFotoOvalada.IsChecked == true)
+                //{
+                //    FotoOvalada();
+                //}
             }
 
             if (IntCropChanged == 1)//Indicardor de que se editando el tamaño de recorte
@@ -216,12 +249,24 @@ namespace TinoTriXxX
                     AltoRecorte = EmpAlto * _clp.BpsCrop().Width;
                     AnchoRecorte = _clp.BpsCrop().Width;
                 }
+                DouTmPuntoExt = (int)AltoRecorte * 0.05;
                 UbicarMarcoSobreImagen();
                 _clp.IntHandle = 0;
                 IntCropChanged = 0;
-
+                //if (ChkFotoOvalada.IsChecked == true)
+                //{
+                //    FotoOvalada();
+                //}
+                
+               
             }
 
+            //if (e.LeftButton == MouseButtonState.Pressed)
+            //{
+            //    if (ChkFotoOvalada.IsChecked==true) {
+            //        FotoOvalada();
+            //    }
+            //}
         }
         void UbicarMarcoSobreImagen()
         {
@@ -249,8 +294,109 @@ namespace TinoTriXxX
             AddCropToElement(ImgFotoUsuario);
             RefreshCropImage();
             BtnAfirmarElegirFoto.Visibility = Visibility.Visible;
-            BtnCancelarElegirFoto.Visibility = Visibility.Visible;
+            //BtnCancelarElegirFoto.Visibility = Visibility.Visible;
+            imgCrop.Visibility = Visibility.Visible;
+        }
+        public static System.Drawing.Image CropToCircle(System.Drawing.Image srcImage, System.Drawing.Color backGround)
+        {
+                System.Drawing.Image dstImage = new Bitmap(srcImage.Width, srcImage.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                Graphics g = Graphics.FromImage(dstImage);
+                using (System.Drawing.Brush br = new SolidBrush(backGround)) {
+                    g.FillRectangle(br, 0, 0, dstImage.Width, dstImage.Height);
+                }
+                GraphicsPath path = new GraphicsPath();
+                path.AddEllipse(0, 0, dstImage.Width, dstImage.Height);
+                g.SetClip(path);
+                g.DrawImage(srcImage, 0, 0);
 
+                return dstImage;
+         }
+        private void ChkFotoOvalada_Checked(object sender, RoutedEventArgs e)
+        {
+            FotoOvalada();
+        }
+        void FotoOvalada()
+        {
+            String Directorio = path + "\\Imagenes\\usuario\\"; //"C:\\Users\\Iudex\\Documents\\TinoTrix\\Clone\\Tinotrix\\TinoTriXxX"
+                                                                // C: \Users\Iudex\Documents\TinoTrix\Clone\Tinotrix\TinoTriXxX\Imagenes\usuario
+            string[] filePaths = Directory.GetFiles(Directorio, "*FotoOvaladaUsuario_*.png", SearchOption.AllDirectories);
+            try {
+                foreach (string archivo in filePaths)
+                {
+                    File.Delete(archivo);
+                }
+            }
+            catch (Exception d)
+            {
+            }
+            string filePathElegida = "";
+            // if (filePaths.Count() == 0)
+            // {
+            //     String Archivo = "FotoPreFinalUsuario_" + DateTime.Now.ToString(" MM-dd-yyyy HH-mm-ss") + ".png";
+            //     filePathElegida = Directorio + Archivo;
+            //     System.Windows.Controls.Image UserImage = imgCrop;
+            //     var encoder = new PngBitmapEncoder();
+            //     encoder.Frames.Add(BitmapFrame.Create((BitmapSource)UserImage.Source));
+            //     using (FileStream stream = new FileStream(filePathElegida, FileMode.Create)) encoder.Save(stream);
+            //     filePaths = Directory.GetFiles(Directorio, "*FotoPreFinalUsuario_*.png", SearchOption.AllDirectories);
+            // }
+
+            // System.Windows.Media.Imaging.BmpBitmapEncoder bbe = new BmpBitmapEncoder();
+            // if (filePaths.Count() == 1)
+            // {
+            //     filePathElegida = filePaths[0];
+            // }
+            //// byte[] imageData = DownloadData(filePathElegida);
+            // MemoryStream ms = new MemoryStream();
+            // bbe.Frames.Add(BitmapFrame.Create((BitmapSource)imgCrop.Source));
+            // using (FileStream stream = new FileStream(filePathElegida, FileMode.Create))
+            //     ms.CopyTo(stream);
+            //     //bbe.Frames.Add(BitmapFrame.Create(new Uri(filePathElegida, UriKind.RelativeOrAbsolute)));
+            //     bbe.Save(ms);
+            String Archivo = "FotoOvaladaUsuario_" + DateTime.Now.ToString(" MM-dd-yyyy HH-mm-ss-fff") + ".png";
+            filePathElegida = Directorio + Archivo;
+            System.Windows.Controls.Image UserImage = imgCrop;
+            var encoder = new PngBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create((BitmapSource)UserImage.Source));
+            using (FileStream stream = new FileStream(filePathElegida, FileMode.Create))
+            encoder.Save(stream);
+            filePaths = Directory.GetFiles(Directorio, "*FotoOvaladaUsuario_*.png", SearchOption.AllDirectories);
+
+            MemoryStream ms = new MemoryStream();
+            System.Windows.Media.Imaging.BmpBitmapEncoder bbe = new BmpBitmapEncoder();
+            bbe.Frames.Add(BitmapFrame.Create(new Uri(filePathElegida, UriKind.RelativeOrAbsolute)));
+            bbe.Save(ms);
+
+            System.Drawing.Image img2 = System.Drawing.Image.FromStream(ms);
+            img2 = CropToCircle(img2, System.Drawing.Color.Transparent);
+            imgCrop.Source = ConvertImageControl(img2);
+        }
+        public static System.Windows.Media.ImageSource ConvertImageControl(System.Drawing.Image image)
+        {
+            try
+            {
+                if (image != null)
+                {
+                    var bitmap = new System.Windows.Media.Imaging.BitmapImage();
+                    bitmap.BeginInit();
+                    System.IO.MemoryStream memoryStream = new System.IO.MemoryStream();
+                    image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                    memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
+                    bitmap.StreamSource = memoryStream;
+                    bitmap.EndInit();
+                    return bitmap;
+                }
+            }
+            catch { }
+            return null;
+        }
+        private void ChkFotoOvalada_Unchecked(object sender, RoutedEventArgs e)
+        {
+            AddCropToElement(ImgFotoUsuario);
+            RefreshCropImage();
+            BtnAfirmarElegirFoto.Visibility = Visibility.Visible;
+            //BtnCancelarElegirFoto.Visibility = Visibility.Visible;
+            imgCrop.Visibility = Visibility.Visible;
         }
         #endregion crop
 
@@ -377,6 +523,8 @@ namespace TinoTriXxX
         private void btnTomarFoto_Click(object sender, RoutedEventArgs e)
         {
 
+            btnAnterior.Visibility = Visibility.Hidden;
+            btnSiguiente.Visibility = Visibility.Hidden;
 
             Button bt = (Button)sender;
             Grid parent = (Grid)bt.Parent;
@@ -394,7 +542,9 @@ namespace TinoTriXxX
                 BFotoUsuario.Visibility = Visibility.Visible;
                 ImgFondoEditor1.Visibility = Visibility.Visible;
                 ImgFondoEditor2.Visibility = Visibility.Visible;
-                ImgFondoEditor3.Visibility = Visibility.Visible;
+                BimgCrop.Visibility = Visibility.Visible;
+                //ImgFondoEditor3.Visibility = Visibility.Visible;
+                ChkFotoOvalada.Visibility = Visibility.Visible;
                 // SvFotoUsuario.Visibility = Visibility.Visible;
                 lbDescripcionFoto.Content = foto.StrDescripcion;
                 lbStatusFoto.Content = foto.StrStatus;
@@ -410,7 +560,8 @@ namespace TinoTriXxX
 
                 Alto = foto.IntAlto;
                 Ancho = foto.IntAncho;
-                GridMenu.Visibility = Visibility.Visible;
+                ////GridMenu.Visibility = Visibility.Visible;
+
                 //-imgCrop.Visibility = Visibility.Collapsed;
                 //RecSombraSeleccionadora.Visibility = Visibility.Collapsed;
                 //btnRotacionMenos90.Visibility = Visibility.Visible;
@@ -420,6 +571,9 @@ namespace TinoTriXxX
         private void btnRegresarListaFotos_Click(object sender, RoutedEventArgs e)
         {
             cargarfotos();
+            btnAnterior.Visibility = Visibility.Hidden;
+            btnSiguiente.Visibility = Visibility.Hidden;
+
             LbFotos.Visibility = Visibility.Visible;
             btnRecargarListaFotos.Visibility = Visibility.Visible;
             lbTituloFotografias.Visibility = Visibility.Visible;
@@ -432,21 +586,24 @@ namespace TinoTriXxX
             BFotoUsuario.Visibility = Visibility.Hidden;
             ImgFondoEditor1.Visibility = Visibility.Hidden;
             ImgFondoEditor2.Visibility = Visibility.Hidden;
-            ImgFondoEditor3.Visibility = Visibility.Hidden;
+            BimgCrop.Visibility = Visibility.Hidden;
+            ChkFotoOvalada.Visibility = Visibility.Hidden;
             // SvFotoUsuario.Visibility = Visibility.Hidden;
             //ImgFotoUsuario.Source = null;
             lbNombreFotoUsuario.Visibility = Visibility.Hidden;
             lbNombreFotoUsuario.Text = "";
             tblkClippingRectangle.Visibility = Visibility.Hidden;
-            //-imgCrop.Visibility = Visibility.Hidden;
+            imgCrop.Visibility = Visibility.Hidden;
             btnRotacionMenos90.Visibility = Visibility.Hidden;
             btnRotacion90.Visibility = Visibility.Hidden;
 
             BtnCancelarElegirFoto.Visibility = Visibility.Hidden;
             BtnAfirmarElegirFoto.Visibility = Visibility.Hidden;
             //btnSeleccionFoto.Visibility = Visibility.Hidden;
-            GridMenu.Visibility = Visibility.Hidden;
-            GridMenu.IsEnabled = false;
+            ChkFotoOvalada.IsEnabled = false;
+            ////GridMenu.Visibility = Visibility.Hidden;
+
+            // GridMenu.IsEnabled = false;
             //btnRegresarEscogerFoto.Visibility = Visibility.Hidden;
             //BtnImprimir.Visibility = Visibility.Hidden;
             //RecSombraSeleccionadora.Visibility = Visibility.Collapsed;
@@ -461,7 +618,7 @@ namespace TinoTriXxX
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             // Set filter for file extension and default file extension 
             dlg.DefaultExt = "JPG Files (*.jpg)|*.jpg";
-            dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+            dlg.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
             dlg.Multiselect = false;
             // Display OpenFileDialog by calling ShowDialog method 
             Nullable<bool> result = dlg.ShowDialog();
@@ -485,12 +642,15 @@ namespace TinoTriXxX
                 String DirectorioDestino = path + "\\Imagenes\\usuario\\";
                 string ArchivoDescargado = DirectorioDestino + archivoNuevo;
                 File.Copy(dlg.FileName, ArchivoDescargado,true);
-
+                StrFotoOriginalPath = ArchivoDescargado;
                 ImgFotoUsuario.Source = ToImageSource(ArchivoDescargado);
                 ImgFotoUsuario.Visibility = Visibility.Visible;
                 tblkClippingRectangle.Visibility = Visibility.Visible;
                 btnRotacionMenos90.Visibility = Visibility.Visible;
                 btnRotacion90.Visibility = Visibility.Visible;
+                btnAnterior.Visibility = Visibility.Hidden;
+                btnSiguiente.Visibility = Visibility.Hidden;
+                ChkFotoOvalada.IsEnabled = true;
             }
 
         }
@@ -543,6 +703,9 @@ namespace TinoTriXxX
                     using (FileStream stream = new FileStream(archivoWebCam, FileMode.Create)) encoder.Save(stream);
                     ImgFotoUsuario.Source = ToImageSource(archivoWebCam);
                     // File.Delete(archivoWebCam);
+                    btnAnterior.Visibility = Visibility.Hidden;
+                    btnSiguiente.Visibility = Visibility.Hidden;
+                    ChkFotoOvalada.IsEnabled = true;
                 }
             } catch (Exception et) {
                 MessageBox.Show("¡No hay ninguna camara disponible! \r\n \r\n" + et.Message , "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
@@ -564,7 +727,7 @@ namespace TinoTriXxX
             BtnAfirmarElegirFoto.Visibility = Visibility.Hidden;
             BtnCancelarElegirFoto.Visibility = Visibility.Hidden;
             //imgCrop.Visibility = Visibility.Hidden;
-            GridMenu.IsEnabled = false;
+            //GridMenu.IsEnabled = false;
         }
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -617,27 +780,66 @@ namespace TinoTriXxX
         }
         private void AfimarFotoElegida() 
         {
+            try
+            {
+                BtnAfirmarElegirFoto.Visibility = Visibility.Hidden;
+               //string StrIniciando = string.Empty;
+               //for (int i = 0; i < 100000; i++) { StrIniciando += i.ToString(); }
+               String Directorio = path + "\\Imagenes\\usuario\\"; //"C:\\Users\\Iudex\\Documents\\TinoTrix\\Clone\\Tinotrix\\TinoTriXxX"
+                                                                    // C: \Users\Iudex\Documents\TinoTrix\Clone\Tinotrix\TinoTriXxX\Imagenes\usuario
+                //String Extencion = System.IO.Path.GetExtension(sourceFileOriginal);
+                String Archivo = "FotoFinalUsuario_" + DateTime.Now.ToString(" MM-dd-yyyy HH-mm-ss") + ".png";
+                filePathElegidaImprimir = Directorio + Archivo;
+                System.Windows.Controls.Image UserImage = imgCrop;
+                var encoder = new PngBitmapEncoder();
+                //"JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+                //MessageBox.Show("encoder.Frames.Add(BitmapFrame.Create((BitmapSource)UserImage.Source));", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
 
-            //string StrIniciando = string.Empty;
-            //for (int i = 0; i < 100000; i++) { StrIniciando += i.ToString(); }
-            String Directorio = path + "\\Imagenes\\usuario\\"; //"C:\\Users\\Iudex\\Documents\\TinoTrix\\Clone\\Tinotrix\\TinoTriXxX"
-                                                                // C: \Users\Iudex\Documents\TinoTrix\Clone\Tinotrix\TinoTriXxX\Imagenes\usuario
-            String Extencion = System.IO.Path.GetExtension(sourceFileOriginal);
-            String Archivo = "FotoFinalUsuario_" + DateTime.Now.ToString(" MM-dd-yyyy HH-mm-ss") + ".png";
-            filePathElegidaImprimir = Directorio + Archivo;
-            System.Windows.Controls.Image UserImage = imgCrop;
-            var encoder = new PngBitmapEncoder();
-            //"JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
-            encoder.Frames.Add(BitmapFrame.Create((BitmapSource)UserImage.Source));
-            using (FileStream stream = new FileStream(filePathElegidaImprimir, FileMode.Create)) encoder.Save(stream);
-            RedimencionarImagenElegida();
-            //VInfFotosCliente frm = new VInfFotosCliente(filePathElegidaImprimir, imgCrop, foto, VM.Papel);
-            //frm.ShowDialog();
-            ReportPreview reportPreview = new ReportPreview(VM ,filePathElegidaImprimir, foto, VM.Papel);
-            reportPreview.ShowDialog();
-            //FotoFinal ff = new FotoFinal(filePathElegidaImprimir, imgCrop, foto, VM.Papel);
-            //ff.ShowDialog();
-            //File.Delete(filePathElegidaImprimir);
+                encoder.Frames.Add(BitmapFrame.Create((BitmapSource)UserImage.Source));
+
+               // MessageBox.Show(" using (FileStream stream = new FileStream(filePathElegidaImprimir, FileMode.Create)) encoder.Save(stream);", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
+                using (FileStream stream = new FileStream(filePathElegidaImprimir, FileMode.Create)) encoder.Save(stream);
+
+                       // MessageBox.Show("RedimencionarImagenElegida();", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
+           //  RedimencionarImagenElegida();
+                        //VInfFotosCliente frm = new VInfFotosCliente(filePathElegidaImprimir, imgCrop, foto, VM.Papel);
+                        //frm.ShowDialog();
+                       // MessageBox.Show("ReportPreview reportPreview = new ReportPreview(VM, filePathElegidaImprimir, foto, VM.Papel);", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
+                ReportPreview reportPreview = new ReportPreview(VM, filePathElegidaImprimir, foto);
+
+                //MessageBox.Show("reportPreview.ShowDialog();", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
+                reportPreview.ShowDialog();
+                //FotoFinal ff = new FotoFinal(filePathElegidaImprimir, imgCrop, foto, VM.Papel);
+                //ff.ShowDialog();
+                //File.Delete(filePathElegidaImprimir);
+                BtnAfirmarElegirFoto.Visibility = Visibility.Visible;
+            }
+            catch (FileNotFoundException e)
+            {
+                MessageBox.Show("FileNotFoundException: " + e.Message, "Tinotrix: Error informe", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+               // MessageBox.Show(e.Message);
+                //Application.Current.Shutdown();
+
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                MessageBox.Show("DirectoryNotFoundException: " + e.Message, "Tinotrix: Error informe", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                // Application.Current.Shutdown();
+            }
+            catch (IOException e)
+            {
+                MessageBox.Show("IOException: " + e.Message, "Tinotrix: Error informe", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                // Application.Current.Shutdown();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Exception: " + e.Message, "Tinotrix: Error informe", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                //Application.Current.Shutdown();
+            }
         }
         void RedimencionarImagenElegida()
         {
@@ -664,7 +866,135 @@ namespace TinoTriXxX
         //    btnRegresarEscogerFoto.Visibility = Visibility.Hidden;
         //    BtnImprimir.Visibility = Visibility.Hidden;
         //}
+        private void BtnDescargarFotografia_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string DirectorioDescarga = path + "\\Imagenes\\usuario\\";
+                string[] filePaths = Directory.GetFiles(DirectorioDescarga, "*FotoFinalDescarga_*.png", SearchOption.AllDirectories);
 
+
+                if (filePaths.Count() >= 1)
+                {
+                    
+                    List<DateTime> ArchivosSoloFechaString = new List<DateTime>();
+                    foreach (string archivo in filePaths)
+                    {
+                        string NombreArchivo = System.IO.Path.GetFileName(archivo);
+                        //string ExtencionOriginalArchivo = System.IO.Path.GetExtension(archivo);
+                        //Ejemplo: FotoFinalDescarga_ 09-25-2019 13-41-11 =>termina texto 18, comienza fecha comienza 19 y termina 37
+                        string resultado = extraerValor(NombreArchivo, "FotoFinalDescarga_ ", ".png");
+                        ArchivosSoloFechaString.Add( DateTime.ParseExact(resultado, "MM-dd-yyyy HH-mm-ss", null));
+                    }
+                    var Listafechaordenada = ArchivosSoloFechaString.OrderByDescending(x => x.DayOfYear).ThenByDescending(x => x.TimeOfDay).ToList();
+
+                    LFDesFotosOrdenada = new List<string>();
+                    List<DateTime> ListaFechaOrdenada = Listafechaordenada.ToList();
+                    List<string> ListaFotosOrdenada = new List<string>();
+                    foreach (DateTime fechita in ListaFechaOrdenada) {
+                        ListaFotosOrdenada.Add(fechita.ToString("MM-dd-yyyy HH-mm-ss"));
+                    }
+
+                    foreach (string archivoOrdenado in ListaFotosOrdenada)
+                    {
+                        foreach (string archivo in filePaths)
+                        {
+                            if (archivo.Contains(archivoOrdenado)) {
+                                LFDesFotosOrdenada.Add(archivo);
+                            }
+                        }
+                    }
+                    ImgFotoUsuario.Source = ToImageSource(LFDesFotosOrdenada[0]);
+                    ImgFotoUsuario.Visibility = Visibility.Visible;
+                    tblkClippingRectangle.Visibility = Visibility.Visible;
+                    btnRotacionMenos90.Visibility = Visibility.Visible;
+                    btnRotacion90.Visibility = Visibility.Visible;
+                    ChkFotoOvalada.IsEnabled = true;
+                    if (filePaths.Count() > 1)
+                    {
+                       FotoPMax = filePaths.Count()-1;
+                        FotoPA = 0;
+                       btnAnterior.Visibility = Visibility.Visible;
+                        btnSiguiente.Visibility = Visibility.Hidden;
+                    }
+                }
+                else {
+                    MessageBox.Show("No hay ninguna foto para visualizar \n" , " TINOTRIX");
+                }
+            }
+            catch (FileNotFoundException p)
+            {
+                MessageBox.Show(p.Message);
+
+            }
+            catch (DirectoryNotFoundException p)
+            {
+                MessageBox.Show(p.Message);
+
+            }
+            catch (IOException p)
+            {
+                MessageBox.Show(p.Message);
+
+            }
+            catch (Exception p)
+            {
+                MessageBox.Show(p.Message);
+
+            }
+           
+        }
+        private String extraerValor(String cadena, String stringInicial, String stringFinal)
+        {
+            int terminaString = cadena.LastIndexOf(stringFinal);
+            String nuevoString = cadena.Substring(0, terminaString);
+            int offset = stringInicial.Length;
+            int iniciaString = nuevoString.LastIndexOf(stringInicial) + offset;
+            int cortar = nuevoString.Length - iniciaString;
+            nuevoString = nuevoString.Substring(iniciaString, cortar);
+            return nuevoString;
+        }
+        private void BtnAnterior_Click(object sender, RoutedEventArgs e)
+        {
+            FotoPA = FotoPA + 1;
+            ImgFotoUsuario.Source = ToImageSource(LFDesFotosOrdenada[FotoPA]);
+            if (FotoPA + 1 > FotoPMax)
+            {
+                btnAnterior.Visibility = Visibility.Hidden;
+            }
+            else {
+                btnAnterior.Visibility = Visibility.Visible;
+            }
+            if (FotoPA - 1 == -1)
+            {
+                btnSiguiente.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                btnSiguiente.Visibility = Visibility.Visible;
+            }
+        }
+        private void BtnSiguiente_Click(object sender, RoutedEventArgs e)
+        {
+            FotoPA = FotoPA - 1;
+            ImgFotoUsuario.Source = ToImageSource(LFDesFotosOrdenada[FotoPA]);
+            if (FotoPA + 1 > FotoPMax)
+            {
+                btnAnterior.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                btnAnterior.Visibility = Visibility.Visible;
+            }
+            if (FotoPA - 1 == -1)
+            {
+                btnSiguiente.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                btnSiguiente.Visibility = Visibility.Visible;
+            }
+        }
         #endregion fotos
 
         #region Rotacion
@@ -760,7 +1090,6 @@ namespace TinoTriXxX
             VM.CargarPapel(VM.Sucursal.UidSucursal);
             //LbFotos.ItemsSource = VM.ListaFotos;
         }
-
         #endregion
 
         #region otras funciones
@@ -787,7 +1116,16 @@ namespace TinoTriXxX
                 BCargando.Visibility = Visibility.Hidden;
             }
         }
-        #endregion otras funciones
+        private void BtnBrillo_Click(object sender, RoutedEventArgs e)
+        {
+            //MagickImage image = new MagickImage("filepath.jpg");
+            //image.Crop(new MagickGeometry(424, 448, 224, 224));
+            //image.Resize(123, 234);
+            //image.Write("output.jpg");
+
+            //MagickImage image = new MagickImage(StrFotoOriginalPath);
+            //image.
+        }
 
         //private void BtnImprimir_Click(object sender, RoutedEventArgs e)
         //{ 
@@ -896,5 +1234,9 @@ namespace TinoTriXxX
         // Uri source = new Uri("http://www.c-sharpcorner.com/Default.aspx", UriKind.Absolute);
 
         // window.Source = source; window.Show();
+       
+        #endregion otras funciones
+
+
     }
 }

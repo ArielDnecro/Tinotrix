@@ -150,6 +150,9 @@
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Util\RdlcComponentGenerator.cs" />
     <Compile Include="Util\RdlcGenerator.cs" />
+    <Compile Include="Vista\Acerca de Tinotrix.xaml.cs">
+      <DependentUpon>Acerca de Tinotrix.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Autentificacion.xaml.cs">
       <DependentUpon>Autentificacion.xaml</DependentUpon>
     </Compile>
@@ -186,6 +189,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Informe\VInfFotosCliente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Acerca de Tinotrix.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -310,6 +317,8 @@
     <Resource Include="Assets\Tinotrix2019.3.0.155x550.png" />
     <Resource Include="Assets\BienvenidoATinotrix2019.3.0.112x1000.png" />
     <Resource Include="Assets\logotipo2019.3.0.150x150.png" />
+    <Resource Include="Assets\IngOsbelLugo.jpg" />
+    <Resource Include="Assets\IngTinoco.jpg" />
     <Content Include="BaseDeDatos\script.sql" />
     <Resource Include="logotipo2019.2.0.72x75.ico" />
     <Resource Include="logotipo2019.2.0.64x67.ico" />

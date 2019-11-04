@@ -11,7 +11,7 @@
         Orientation="Vertical">
         <WindowsFormsHost
             Height="415">
-            <rdl:ReportViewer x:Name="rvReportPreview"   Print="RvReportPreview_Print" PrintingBegin="RvReportPreview_PrintingBegin" ></rdl:ReportViewer>
+            <rdl:ReportViewer x:Name="rvReportPreview"   Print="RvReportPreview_Print" PrintingBegin="RvReportPreview_PrintingBegin" ShowExportButton="False"  ></rdl:ReportViewer>
         </WindowsFormsHost>
     </StackPanel>
 </Window>

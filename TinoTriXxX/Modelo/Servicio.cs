@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CodorniX.Modelo;
+using CodorniX.Util;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -74,7 +76,6 @@ namespace TinoTriXxX.Modelo
                 }
 
             }
-
             public bool VerificarExistenciaIPServidor()
             {
                 try
@@ -134,6 +135,34 @@ namespace TinoTriXxX.Modelo
 
             }
 
+            protected Connection _ConexionHost = new Connection();
+
+            public SucursalServidor ObtenerConfServerHost(Guid UidSucursal)
+            {
+                DataTable table = new DataTable();
+                SucursalServidor ServerItem = new SucursalServidor();
+                SqlCommand comando = new SqlCommand();
+                comando.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    comando.CommandText = "usp_SucursalServidor_Find";
+                    comando.AddParameter("@UidSucursal", UidSucursal, SqlDbType.UniqueIdentifier);
+                    table = _ConexionHost.ExecuteQuery(comando);
+                    if (int.Parse(table.Rows.Count.ToString()) == 1)
+                    {
+
+                        ServerItem.UidSucursal = UidSucursal;
+                        ServerItem.StrNombreIP = table.Rows[0]["VchNombreIP"].ToString();
+                        ServerItem.StrPuerto = table.Rows[0]["VchPuerto"].ToString();
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw new ServicioConexionException("(No se pudo obtener el servidor de la sucursal)" + e.Message);
+                }
+
+                return ServerItem;
+            }
             #endregion Funciones
 
             #region Excepciones

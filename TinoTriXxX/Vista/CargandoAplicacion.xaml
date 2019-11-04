@@ -30,7 +30,7 @@
             </Rectangle.Fill>
         </Rectangle>
         <TextBlock Margin="115 80 0 0" Foreground="White"  FontSize="80" FontFamily="Lucida Sans">TINOTRIX</TextBlock>
-        <Label Content="Version 1.0"></Label>
+        <Label Content="Version 1.0.0.9"></Label><!--AQUI ESTA LA VERSION-->
         <Label Content="Todos los derechos reservados" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="9"></Label>
         <StackPanel Margin="0,170,0,50"  Visibility="Collapsed">
             <TextBlock Text="Tinotrix" Foreground="White" HorizontalAlignment="Center" FontSize="48" FontWeight="Bold"/>

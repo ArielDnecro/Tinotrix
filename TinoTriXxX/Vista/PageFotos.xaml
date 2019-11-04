@@ -86,7 +86,11 @@
         </Grid>
         <Button Name="btnCapturarFoto" Click="btnCapturarFoto_Click" Content="Tomar foto" Background="Transparent" BorderBrush="#00e676" Grid.Row="1" Width="110" Margin="300 -50 0 0" HorizontalAlignment="Left" Visibility="Hidden" ></Button>
         <Button Name="btnCargarFoto" Click="btnCargarFoto_Click" Content="Cargar foto" Background="Transparent" BorderBrush="#00e676" Grid.Row="1" Width="110" Margin="450 -50 0 0" HorizontalAlignment="Left" Visibility="Hidden"></Button>
-        <Button  Name="btnDescargarFoto" Content="Descargar foto" Background="Transparent" BorderBrush="#00e676" Grid.Row="1" Width="130" Margin="600 -50 0 0" HorizontalAlignment="Left" Visibility="Hidden"></Button>
+        <materialDesign:Badged Badge="0" Name="btnDescargarFoto" Grid.Row="1" 
+         Width="150" Margin="600 -16 0 0" HorizontalAlignment="Left" Visibility="Hidden" >
+            <Button x:Name="btnDescargarFotografia" Click="BtnDescargarFotografia_Click"   Width="150" Content="Fotos descargadas" Background="Transparent" BorderBrush="#00e676"  ></Button>
+
+        </materialDesign:Badged>
         <!--<Button Name="btnSeleccionFoto" Click="btnSeleccionFoto_Click" Content="Seleccionar" Grid.Row="1" Width="110" Margin="750 -50 0 0" HorizontalAlignment="Left" Visibility="Hidden"></Button>-->
         <!--<Button Name="BtnImprimir" Click="BtnImprimir_Click"  Grid.Row="1" Content="Imprimir" Width="110" Margin="400 5 0 0" Visibility="Hidden"></Button>-->
         <Button Name="BtnAfirmarElegirFoto" Click="BtnAfirmarElegirFoto_Click" Grid.Row="1" Width="50" Margin="790 -50 0 0" Background="#00bb2d" BorderBrush="Green" Visibility="Hidden">
@@ -124,10 +128,10 @@
         <ScrollViewer Name="SvFotoUsuario" Visibility="Hidden" Height="370" Margin="0 -70 0 0" HorizontalScrollBarVisibility="Auto" Grid.Row="3" VerticalScrollBarVisibility="Auto">
         </ScrollViewer>
         <Image Name="ImgFondoEditor1" Visibility="Hidden" HorizontalAlignment="Left" Source="../Assets/FondoEditor.png" Grid.Row="2"  Margin="90 -50 10 10"  Height="380"  ></Image>
-        <Image Name="ImgFondoEditor2" Visibility="Hidden" HorizontalAlignment="Center" Source="../Assets/FondoEditor.png" Grid.Row="2"  Margin="10 -50 10 10"  Height="380"  ></Image>
-        <Image Name="ImgFondoEditor3" Visibility="Hidden" HorizontalAlignment="Right" Source="../Assets/FondoEditor.png" Grid.Row="2"  Margin="10 -50 10 10"  Height="380"  ></Image>
+        <Image Name="ImgFondoEditor2" Visibility="Hidden" HorizontalAlignment="Center" Source="../Assets/FondoEditor.png" Grid.Row="2"  Margin="190 -50 10 10"  Height="380"  ></Image>
+        <!--<Image Name="ImgFondoEditor3" Visibility="Hidden" HorizontalAlignment="Right" Source="../Assets/FondoEditor.png" Grid.Row="2"  Margin="-10 -50 10 10"  Height="380"  ></Image>-->
         <TextBlock HorizontalAlignment="Left" Grid.Row="2" Margin="90,-20,0,5" x:Name="tblkClippingRectangle" VerticalAlignment="Top" Width="910" Height="Auto" Foreground="#00e676"  Background="Transparent"  Text="Area de recorte: (0,0,0,0)" TextWrapping="Wrap" Visibility="Hidden" />
-        <Border Name="BFotoUsuario" Visibility="Hidden" Grid.Row="3"   Margin="90 -50 10 10"  Height="380"   HorizontalAlignment="Stretch" BorderBrush="#00c853" BorderThickness="3">
+        <Border Name="BFotoUsuario" Visibility="Hidden" Grid.Row="3"   Margin="90 -50 10 10"  Height="380" Width="700"   HorizontalAlignment="Left" BorderBrush="#00c853" BorderThickness="3">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -143,7 +147,7 @@
                         </Grid.LayoutTransform>
                         <Viewbox Grid.Column="0" Grid.Row="0">
                             <!--<ContentPresenter Content="{StaticResource  Kompass}"/>-->
-                            <Image Name="ImgFotoUsuario"  MouseMove="ImgFotoUsuario_MouseMove"   MouseLeftButtonDown="ImgFotoUsuario_MouseLeftButtonDown" Source="../Assets/ciudadnoche.png" ></Image>
+                            <Image Name="ImgFotoUsuario"  MouseMove="ImgFotoUsuario_MouseMove"   MouseLeftButtonDown="ImgFotoUsuario_MouseLeftButtonDown" Source="../Assets/ciudadnoche.png" Margin="0 30 0 0" ></Image>
                         </Viewbox>
                     </Grid>
 
@@ -176,56 +180,75 @@
                     <!--<ScrollViewer  ScrollViewer.VerticalScrollBarVisibility="Visible">-->
                         <!--<Viewbox >-->
                         <ListView x:Name="ListViewMenu" Height="300"  Background="White" Foreground="White"  ScrollViewer.HorizontalScrollBarVisibility="Disabled"  SelectionChanged="ListViewMenu_SelectionChanged" >
-                           
-                            <ListViewItem x:Name="ItemHome" Height="60">
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="LightbulbOn" ToolTip="Brillo" Height="25" Width="25" Margin="10" Foreground="White" />
+
+                        <ListViewItem x:Name="ItemHome" Height="60" Padding="0">
+                            <Button x:Name="btnBrillo" Margin="0 0 0 0"  Height="60" Width="200" HorizontalContentAlignment="Left" Background="Transparent" Click="BtnBrillo_Click">
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                                    <materialDesign:PackIcon Kind="LightbulbOn" ToolTip="Brillo" Height="25" Width="25" Margin="10"  Foreground="White" />
                                     <TextBlock Text="Brillo" VerticalAlignment="Center" Margin="20 10" Foreground="White"/>
                                 </StackPanel>
-                            </ListViewItem>
-                            <ListViewItem x:Name="ItemCreate" Height="60">
-                                <StackPanel Orientation="Horizontal">
+                            </Button>
+                           </ListViewItem>
+                        <ListViewItem x:Name="ItemCreate" Height="60" Padding="0">
+                            <Button Margin="0 0 0 0"  Height="60" Width="200" HorizontalContentAlignment="Left" Background="Transparent">
+                                <StackPanel Orientation="Horizontal"  Margin="0 0 0 0">
                                     <materialDesign:PackIcon Kind="Filter" ToolTip="Filtro" Height="25" Width="25" Margin="10" Foreground="White"/>
                                     <TextBlock Text="Filtro" VerticalAlignment="Center" Margin="20 10" Foreground="White" />
                                 </StackPanel>
-                            </ListViewItem>
-                            <ListViewItem Height="60">
-                                <StackPanel Orientation="Horizontal">
+                            </Button>
+                        </ListViewItem>
+                        <ListViewItem Height="60" Padding="0">
+                            <Button Margin="0 0 0 0"  Height="60" Width="200" HorizontalContentAlignment="Left" Background="Transparent">
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
                                     <materialDesign:PackIcon Kind="Gradient" Height="25" ToolTip="Nitidez" Width="25" Margin="10" Foreground="White"/>
                                     <TextBlock Text="Nitidez" VerticalAlignment="Center"  Margin="20 10" Foreground="White"/>
                                 </StackPanel>
-                            </ListViewItem>
-                            <ListViewItem Height="60">
-                                <StackPanel Orientation="Horizontal">
+                            </Button>
+                        </ListViewItem>
+                        <ListViewItem Height="60" Padding="0">
+                            <Button Margin="0 0 0 0"  Height="60" Width="200" HorizontalContentAlignment="Left" Background="Transparent">
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
                                     <materialDesign:PackIcon Kind="Eye" ToolTip="Ojos rojos" Height="25" Width="25" Margin="10" Foreground="White"/>
                                     <TextBlock Text="Ojos rojos" VerticalAlignment="Center"  Margin="20 10" Foreground="White"/>
                                 </StackPanel>
-                            </ListViewItem>
-                            <ListViewItem Height="60">
-                                <StackPanel Orientation="Horizontal">
+                            </Button>
+                        </ListViewItem>
+                        <ListViewItem Height="60" Padding="0">
+                            <Button Margin="0 0 0 0"  Height="60" Width="200" HorizontalContentAlignment="Left" Background="Transparent">
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 0 ">
                                     <materialDesign:PackIcon Kind="BlurLinear" ToolTip="Saturacion" Height="25" Width="25" Margin="10" Foreground="White"/>
                                     <TextBlock Text="Saturacion" VerticalAlignment="Center"  Margin="20 10" Foreground="White"/>
                                 </StackPanel>
-                            </ListViewItem>
-                            <ListViewItem Height="60">
+                            </Button>
+                        </ListViewItem>
+                            <!--<ListViewItem Height="60">
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="FormatRotate90" ToolTip="Rotacion de 90 grados" Height="25" Width="25" Margin="10" Foreground="White"/>
                                     <TextBlock Text="Rotacion 90°" VerticalAlignment="Center"  Margin="20 10" Foreground="White"/>
                                 </StackPanel>
-                            </ListViewItem>
+                            </ListViewItem>-->
                         </ListView>
                         <!--</Viewbox>-->
                     <!--</ScrollViewer>-->
                 </StackPanel>
             </Grid>
         </Border>
-        <Button x:Name="btnRotacionMenos90" Visibility="Hidden" Margin="800 -380 0 0" Click="btnRotacionMenos90_Click" HorizontalAlignment="Left" Grid.Row="3"   Width="40" Height="40"  ToolTip="Rotacion de 90 grados" Background="#424242"  BorderBrush="#00e676" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" >
+        <Button x:Name="btnRotacionMenos90" Visibility="Hidden" Margin="400 -380 0 0" Click="btnRotacionMenos90_Click" HorizontalAlignment="Left" Grid.Row="3"   Width="40" Height="40"  ToolTip="Rotacion de 90 grados" Background="#424242"  BorderBrush="#00e676" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" >
             <materialDesign:PackIcon Kind="RotateLeft"  Foreground="White"  Height="30" Width="30" Margin="-5 -5 -5 -5" />
         </Button>
-        <Button x:Name="btnRotacion90" Visibility="Hidden" Margin="850 -380 0 0" Click="btnRotacion90_Click"  HorizontalAlignment="Left" Grid.Row="3"   Width="40" Height="40"  ToolTip="Rotacion de 90 grados" Background="#424242"  BorderBrush="#00e676" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" >
+        <Button x:Name="btnRotacion90" Visibility="Hidden" Margin="450 -380 0 0" Click="btnRotacion90_Click"  HorizontalAlignment="Left" Grid.Row="3"   Width="40" Height="40"  ToolTip="Rotacion de 90 grados" Background="#424242"  BorderBrush="#00e676" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" >
             <materialDesign:PackIcon Kind="RotateRight"  Foreground="White"  Height="30" Width="30" Margin="-5 -5 -5 -5" />
         </Button>
-        <Image x:Name="imgCrop" Width="130" Grid.Row="2" Height="100" Margin="800,-100,5,50" HorizontalAlignment="Center"  VerticalAlignment="Center"   />
+        <Button x:Name="btnAnterior" Click="BtnAnterior_Click"  Margin="110 -380 0 0"  HorizontalAlignment="Left" Grid.Row="3"   Width="40" Height="40"  ToolTip="Foto anterior" Background="#424242"  BorderBrush="#00e676" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Visibility="Hidden" >
+            <materialDesign:PackIcon Kind="ArrowLeftThick "  Foreground="White"  Height="30" Width="30" Margin="-5 -5 -5 -5" />
+        </Button>
+        <Button x:Name="btnSiguiente" Click="BtnSiguiente_Click"  Margin="730 -380 0 0"  HorizontalAlignment="Left" Grid.Row="3"   Width="40" Height="40"  ToolTip="Foto siguiente" Background="#424242"  BorderBrush="#00e676" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Visibility="Hidden"  >
+            <materialDesign:PackIcon Kind="ArrowRightThick"  Foreground="White"  Height="30" Width="30" Margin="-5 -5 -5 -5" />
+        </Button>
+        <CheckBox x:Name="ChkFotoOvalada" Checked="ChkFotoOvalada_Checked" Unchecked="ChkFotoOvalada_Unchecked" IsEnabled="False" Background="#00e676" Grid.Row="2" Margin="800,0,5,50" Foreground="#00e676" Visibility="Hidden">Fotografia ovalada</CheckBox>
+        <Border x:Name="BimgCrop" Visibility="Hidden"  Grid.Row="3"   Margin="800,-220,5,50"  Height="170" Width="200"   HorizontalAlignment="Center" BorderBrush="#00c853" BorderThickness="3">
+        </Border>
+        <Image x:Name="imgCrop" Width="180" Grid.Row="2" Height="150" Margin="800,-220,5,50" HorizontalAlignment="Center"  VerticalAlignment="Center"   />
         <Image RenderTransformOrigin="0.722,0.713" Visibility="Hidden" x:Name="imgChurch" Grid.Row="2" Stretch="Fill"  Height="300" Source="../Assets/ciudadnoche.png" Margin="5,5,5,5"/>
         <Button Name="BtnInformativo"  Height="60" Width="290" RenderTransformOrigin="0.5,0.5" Padding="0" Margin="-290 -60 0 -10" HorizontalAlignment="Left" BorderBrush="#ffc107" Background="#ffa000"  FontSize="16" Grid.Row="1">
             <Button.RenderTransform>
