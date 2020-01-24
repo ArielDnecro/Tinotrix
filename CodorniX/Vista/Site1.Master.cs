@@ -128,12 +128,13 @@ namespace CodorniX.Vista
             Sucursal sucursal = new Sucursal.Repository().Find(SesionActual.uidSucursalActual.GetValueOrDefault(Guid.Empty));
             if (sucursal != null)
             {
-                sucursalActual.Visible = true;
+                //sucursalActual.Visible = true;
                 lblSucursal.Text = sucursal.StrNombre;
             }
             else
             {
-                sucursalActual.Visible = false;
+                //sucursalActual.Visible = false;
+                lblSucursal.Text = "No disponible";
             }
 
             if (strperfil == "Backsite")

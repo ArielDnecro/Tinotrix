@@ -1672,6 +1672,11 @@ namespace CodorniX.Vista
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
+            try { 
+            //se hace esto primero para evitar que le den mas 1 vez, en caso de que no reaccione
+            btnAceptar.Visible = false;
+            btnCancelar.Visible = false;
+
             EditingMode = false;
             bool error = false;
             string Correo = txtCorreo.Text;
@@ -1679,8 +1684,8 @@ namespace CodorniX.Vista
             string FechaFin = txtFechaFin.Text;
             string UidPerfil = DdPerfil.SelectedValue;
             string UidStatus = DdStatus.SelectedValue;
-
-            lblErrorUsuario.Text = string.Empty;
+                lblErrorUsuario.Visible = false;
+                lblErrorUsuario.Text = string.Empty;
             lblErrorDireccion.Text = string.Empty;
             lblErrorTelefono.Text = string.Empty;
 
@@ -1727,22 +1732,49 @@ namespace CodorniX.Vista
             }
             string ApellidoMaterno = txtApellidoMaterno.Text;
 
-            if (txtFechaNacimiento.Text.Trim() == string.Empty)
-            {
-                txtFechaNacimiento.Focus();
-                frmGrpFechaNacimiento.AddCssClass("has-error");
-                error = true;
-            }
-            string FechaNacimiento = txtFechaNacimiento.Text;
+            DateTime temp;
+                if (txtFechaNacimiento.Text.Trim() == string.Empty)
+                {
+                    txtFechaNacimiento.Focus();
+                    frmGrpFechaNacimiento.AddCssClass("has-error");
+                    error = true;
+                }
+                else {
+                    //if (!DateTime.TryParse(txtFechaNacimiento.Text, out temp))
+                    //{
+                    //    txtFechaNacimiento.Focus();
+                    //    frmGrpFechaNacimiento.AddCssClass("has-error");
+                    //    error = true;
+                    //}
+                    //else
+                    //{
+                        
+                    //}
+                }
+            DateTime FechaNacimiento = DateTime.ParseExact(txtFechaNacimiento.Text, "dd/MM/yyyy", null);
 
-            if (txtFechaInicio.Text.Trim() == string.Empty)
+                if (txtFechaInicio.Text.Trim() == string.Empty)
             {
                 txtFechaInicio.Focus();
                 frmGrpFechaInicio.AddCssClass("has-error");
                 error = true;
-            }
-            string FechaInicio = txtFechaInicio.Text;
-            if (txtUsuario.Text.Trim() == string.Empty)
+                }
+                else
+                {
+                    //if (!DateTime.TryParse(txtFechaInicio.Text, out temp))
+                    //{
+                    //    txtFechaNacimiento.Focus();
+                    //    frmGrpFechaNacimiento.AddCssClass("has-error");
+                    //    error = true;
+                    //}
+                    //else
+                    //{
+
+                    //}
+                }
+            DateTime FechaInicio = DateTime.ParseExact(txtFechaNacimiento.Text, "dd/MM/yyyy", null);
+
+                if (txtUsuario.Text.Trim() == string.Empty)
             {
                 txtUsuario.Focus();
                 frmGrpUsuario.AddCssClass("has-error");
@@ -1790,8 +1822,8 @@ namespace CodorniX.Vista
                 {
                     lblMensaje.Text = "Guardado Correctamente";
 
-                    btnAceptar.Visible = false;
-                    btnCancelar.Visible = false;
+                    //btnAceptar.Visible = false;
+                    //btnCancelar.Visible = false;
                     //Deshabilitacion de cajas
                     txtNombre.Enabled = false;
                     txtApellidoPaterno.Enabled = false;
@@ -1944,6 +1976,14 @@ namespace CodorniX.Vista
             userGrid.Visible = false;
             PanelEmpresa.Visible = true;
             btnBuscarEmpresa.Disable();
+
+            }
+            catch (Exception d) {
+
+                lblErrorUsuario.Visible = true;
+                lblErrorUsuario.Text = d.Message;
+                btnNuevo.Enable();
+            }
         }
 
         protected void btnEditar_Click(object sender, EventArgs e)

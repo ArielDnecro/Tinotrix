@@ -658,12 +658,18 @@ namespace CodorniX.Vista
                     Sucursales += "," + value;
             }
             string Sucursal = Sucursales;
-           
 
-            VM.BuscarUsuarios(Nombre, ApellidoPaterno, ApellidoMaterno, FechaNacimiento,
+            try
+            {
+                VM.BuscarUsuarios(Nombre, ApellidoPaterno, ApellidoMaterno, FechaNacimiento,
                 FechaNacimiento2, Correo, FechaInicio, FechaInicio2, FechaFin, FechaFin2,
                 Usuario, Perfil, Status, SesionActual.uidEmpresaActual.Value,Sucursal);
-
+            }
+            catch (Exception et)
+            {
+                lblErrorUsuario.Text = "Error al obtener el encargado \n cargando ....\n" + et;
+                // Response.Redirect("HistoricoVentas.aspx");
+            }
             DVGEncargados.Visible = true;
             DVGEncargados.DataSource = VM.LISTADEUSUARIOS;
             DVGEncargados.DataBind();
@@ -1209,6 +1215,7 @@ namespace CodorniX.Vista
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
+            try { 
             EditingMode = false;
             bool error = false;
 
@@ -1266,22 +1273,24 @@ namespace CodorniX.Vista
                 error = true;
             }
             string ApellidoMaterno = txtApellidoMaterno.Text;
-
+//
             if (txtFechaNacimiento.Text.Trim() == string.Empty)
             {
                 txtFechaNacimiento.Focus();
                 frmGrpFechaNacimiento.AddCssClass("has-error");
                 error = true;
             }
-            string FechaNacimiento = txtFechaNacimiento.Text;
-
-            if (txtFechaInicio.Text.Trim() == string.Empty)
+            //string FechaNacimiento = txtFechaNacimiento.Text;
+                DateTime FechaNacimiento = DateTime.ParseExact(txtFechaNacimiento.Text, "dd/MM/yyyy", null);
+          if (txtFechaInicio.Text.Trim() == string.Empty)
             {
                 txtFechaInicio.Focus();
                 frmGrpFechaInicio.AddCssClass("has-error");
                 error = true;
             }
-            string FechaInicio = txtFechaInicio.Text;
+                //string FechaInicio = txtFechaInicio.Text;
+                DateTime FechaInicio = DateTime.ParseExact(txtFechaNacimiento.Text, "dd/MM/yyyy", null);
+                //
             if (txtUsuario.Text.Trim() == string.Empty)
             {
                 txtUsuario.Focus();
@@ -1471,8 +1480,16 @@ namespace CodorniX.Vista
 
             btnBuscarSucursal.Enabled = false;
             btnBuscarSucursal.CssClass = "btn btn-sm disabled btn-default";
-        }
 
+            }
+            catch (Exception d)
+            {
+                lblErrorUsuario.Visible = true;
+                lblErrorUsuario.Text = d.Message;
+                btnNuevo.Enable();
+            }
+        }
+        
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             EditingMode = false;

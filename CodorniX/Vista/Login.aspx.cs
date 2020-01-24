@@ -14,7 +14,16 @@ namespace CodorniX.Vista
     {
         VMLogin _CVMLogin = new VMLogin();
         string strperfil = "";
+        GoogleReCaptcha.GoogleReCaptcha ctrlGoogleReCaptcha = new GoogleReCaptcha.GoogleReCaptcha();
 
+        protected override void CreateChildControls()
+        {
+            ctrlGoogleReCaptcha.Width = 10;
+            base.CreateChildControls();
+            ctrlGoogleReCaptcha.PublicKey = "6LfVDgMTAAAAAJnH9GV0i7r_Pl3FfC_hyfh2Cgnq";
+            ctrlGoogleReCaptcha.PrivateKey = "6LfVDgMTAAAAAPfTlH1n7z72CvS46c2C_qkTmFsZ";
+            this.Panel1.Controls.Add(ctrlGoogleReCaptcha);
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Sesion"] != null)
@@ -110,6 +119,32 @@ namespace CodorniX.Vista
                 }
             }
 
+        }
+
+        protected void btnDescargarServidor_Click(object sender, EventArgs e)
+        {
+            if (ctrlGoogleReCaptcha.Validate())
+            {
+                Response.Redirect("http://www.compuandsoft.com/Tinotrix/setup_Tinotrix_servidor.rar", false);
+                return;
+            }
+            else
+            {
+
+            }
+        }
+
+        protected void btnDescargarCliente_Click(object sender, EventArgs e)
+        {
+            if (ctrlGoogleReCaptcha.Validate())
+            {
+                Response.Redirect("http://www.compuandsoft.com/Tinotrix/setup_Tinotrix_cliente.rar", false);
+                return;
+            }
+            else
+            {
+               
+            }
         }
     }
 }

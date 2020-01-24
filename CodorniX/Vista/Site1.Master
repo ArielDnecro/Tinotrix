@@ -27,6 +27,7 @@
    
     <script src="../Scripts/DialogBoxService.js"></script>
     <script src="../Assets/Login/jquery.backstretch.min.js"></script>
+   <%-- <link rel="stylesheet" href="../Assets/Login/style.css" />--%>
     <script src="../Scripts/scripts.js"></script>
     <%--<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script>
@@ -90,38 +91,65 @@
                 <!-- Barra superior -->
                 <div class="navbar navbar-fixed-top panel-primary navbar-inverse form-top ">
                     <div class="container-fluid">
-                        <div class="navbar-header" style=" margin-left: 5px;   margin-right: 40px;" >
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar1" aria-expanded="false">
+                        <div class="navbar-header"  >
+                            <button type="button" class="navbar-toggle  navbar-brand btn btn-danger "   style="width:70px; height:70px; margin:0px; padding-left:23px; "     data-toggle="collapse" data-target="#navbar1" aria-expanded="false">
                                 <span class="sr-only">Toggle</span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
+
                             </button>
-                            <asp:LinkButton ID="btnHome" runat="server" OnClick="btnHome_Click"  CssClass="navbar-brand btn btn-primary"  ForeColor="White"  > 
-                                 <span class="glyphicon glyphicon-camera"></span>
-                                 TINOTRIX
+                            <asp:LinkButton ID="btnHome"  ToolTip="Home tinotrix web" runat="server" OnClick="btnHome_Click"  Width="90" style=" padding-top:0px; padding-right:-5px; padding-left:0px; padding-bottom:0px;"    CssClass="navbar-brand btn"   > 
+                                <div  >
+                                    <img src="Imagenes/logotipo2019.1.0.400x400.png" height="69" width="69" class="form-bottom"   />
+                                </div>
                             </asp:LinkButton>
                         </div>
-                        <div class="collapse navbar-collapse" id="navbar1">
-                            <ul class="nav navbar-nav">
-                                <li class="dropdown" id="menuEmpresas" runat="server">
-                                     <a class="btn btn-primary" data-toggle="dropdown" href="#"  style="margin-right: 5px; color:white"  >
-                                       <span class="glyphicon glyphicon-globe"></span>
+                        <div class="collapse navbar-collapse" id="navbar1" >
+                             <ul class="nav navbar-nav "  style="margin-right:2px; margin-left:2px;" >
+                               <li     style="  padding:0px;  " >
+                                    <asp:LinkButton runat="server"   CssClass="    btn btn-primary  " Font-Size="20"   style="padding:0px; "   ToolTip="Descargar tinotrix servidor"   ForeColor="White"   PostBackUrl="http://www.compuandsoft.com/Tinotrix/setup_Tinotrix_servidor.rar" >
+                                         <div runat="server" aria-orientation="horizontal" style=" vertical-align:central;">
+                                              <img src="Imagenes/logotiposerver2019.3.3.150x150.png" height="48" width="48" style="margin-left:5px;" />
+                                              <span class="glyphicon glyphicon-download " runat="server" style="padding:0px; margin-right:5px;" ></span>
+                                         </div>
+                                    </asp:LinkButton>
+                                </li>
+                               
+                             </ul>
+                            <ul class="nav navbar-nav " style="margin-right:2px; margin-left:2px;" >
+                                 <li   style="  padding:0px;  "  >
+                                    <asp:LinkButton  runat="server" CssClass=" btn btn-success "  Font-Size="20"    style="padding:0px;  "    ToolTip="Descargar tinotrix cliente" ForeColor="White"   PostBackUrl="http://www.compuandsoft.com/Tinotrix/setup_Tinotrix_cliente.rar" >
+                                         <div runat="server" aria-orientation="horizontal" style="padding:0px; vertical-align:central;">
+                                              <img src="Imagenes/logotipo2019.3.0.150x150.png" height="48" width="48" style="margin-left:5px;" />
+                                              <span class="glyphicon glyphicon-download " runat="server" style="padding:0px;  margin-right:5px;" ></span>
+                                         </div>
+                                    </asp:LinkButton>
+                                </li>
+                            </ul>
+                            <ul class=" nav navbar-nav  "  style="margin-right:2px; margin-left:2px;" >
+                               
+                                <li class="dropdown   col-xs-12"  style=" padding:0px;   " id="menuEmpresas" runat="server">
+                                     <button class="btn btn-primary  col-md-12 col-sm-12 col-xs-12 " data-toggle="dropdown" href="#"   style=" padding:0px;  font-size:18px; height:50px;  color:white"  >
+                                       <span class="glyphicon glyphicon-globe" style="margin-left:5px;"></span>
                                              Empresas
-                                       <span class="caret"></span>
-                                    </a>
+                                       <span class="caret" style="margin-right:5px;"></span>
+                                     </button>
                                     <ul class="dropdown-menu">
                                         <li id="activoEmpresa" runat="server"><a href="Empresas.aspx">Datos</a></li>
                                         <li id="activoAdmin" runat="server"><a href="Usuarios.aspx">Usuarios</a></li>
                                         <li id="activoPerfiles" runat="server"><a href="Perfiles.aspx">Perfiles</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown" id="menuSucursales" runat="server">
-                                    <a class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="#"  style="color:white">
-                                         <span class="glyphicon glyphicon-home"></span>
+                               
+                            </ul>
+                             <ul class=" nav navbar-nav  "  style="margin-right:2px; margin-left:2px;" >
+                                  <li class="dropdown   col-xs-12"  style=" padding:0px;    " id="menuSucursales" runat="server">
+                                    <button class="btn btn-primary col-md-12 col-sm-12 col-xs-12" data-toggle="dropdown" href="#"   style=" padding:0px;  font-size:18px; height:50px;   color:white">
+                                         <span class="glyphicon glyphicon-home" style="margin-left:5px;"></span>
                                         Sucursales
-                                        <span class="caret"></span>
-                                    </a>
+                                        <span class="caret" style="margin-right:5px;"></span>
+                                    </button>
                                     <ul class="dropdown-menu">
                                         <li id="activoSucursales" runat="server">
                                             <a href="Sucursales.aspx">Datos</a>
@@ -133,30 +161,34 @@
                                             <a href="HistoricoVentas.aspx"></span>Historico venta</a>
                                         </li>
                                     </ul>
-                                </li>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
+                                  </li>
+                             </ul>
+                            
+                            <ul class="nav navbar-nav navbar-right"  >
                                 <li id="empresaActual" runat="server">
-                                    <a href="#" style="color:white; margin-right: 5px;"  >
+                                    <a href="#" style="color:white; margin-right: 5px; font-size:16px; "  >
                                          <span class="glyphicon glyphicon-globe"></span>
                                         Empresa:
                                         <asp:Label ID="lblEmpresa" runat="server" Text="(ninguna)" />
                                     </a>
                                 </li>
                                 <li id="sucursalActual" runat="server">
-                                    <a href="#" style="color:white; margin-right: 5px;">Sucursal:
-                                        <asp:Label ID="lblSucursal" runat="server" Text="(ninguna)" /></a>
+
+                                    <a href="#" style="color:white; margin-right: 5px; font-size:16px;">
+                                        <span class="glyphicon glyphicon-home"></span>
+                                        Sucursal:
+                                        <asp:Label ID="lblSucursal" runat="server" Text="No disponible" /></a>
                                 </li>
+                                
                                 <li>
-                                    <button type="button" class=" navbar-brand btn btn-danger " data-toggle="modal" data-target="#exampleModal" style="color:white;" >
-                                        <span class="glyphicon glyphicon-off"></span>
+                                    <button type="button"   class=" btn btn-danger col-xs-12  "  data-toggle="modal" data-target="#exampleModal" style="color:white; font-size:30px; padding:0px; margin:0;  " >
+                                        <span class="glyphicon glyphicon-off" style="vertical-align:central;  padding-bottom:7px; padding-top:7px; padding-left:15px; padding-right:15px; " ></span>
                                     </button>
                                 </li>
 
                             </ul>
                         </div>
                     </div>
-                      
                 </div>
 
                 <asp:ContentPlaceHolder ID="ContenidoDelSitio" runat="server">

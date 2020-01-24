@@ -71,7 +71,16 @@ namespace CodorniX.Vista
                 return (List<SucursalFoto>)ViewState["FotoRemoved"];
             }
         }
+        private List<SucursalFotoC> FotoCRemoved
+        {
+            get
+            {
+                if (ViewState["FotoCRemoved"] == null)
+                    ViewState["FotoCRemoved"] = new List<SucursalFotoC>();
 
+                return (List<SucursalFotoC>)ViewState["FotoCRemoved"];
+            }
+        }
         private List<SucursalLicencia> LicenciaRemoved
         {
             get
@@ -274,6 +283,7 @@ namespace CodorniX.Vista
 
         #endregion Private methods
 
+        #region Constructor
         protected void Page_Load(object sender, EventArgs e) //19/10/17
         {
             FUImagen.Attributes["onchange"] = "upload(this)";
@@ -290,9 +300,10 @@ namespace CodorniX.Vista
             {
                 Site1 master = (Site1)Master;
                 master.ActivarSucursal();
-                lblErrorTelefono.Visible = false;
-                lblErrorDireccion.Visible = false;
-                lblErrorSucursal.Visible = false;
+                //lblErrorTelefono.Visible = false;
+                //lblErrorDirIz.Visible = false;
+                //lblErrorDirDe.Visible = false;
+                //lblErrorSucursal.Visible = false;
 
                 ActivarCamposDatos(false);
                 ActivarCamposDireccion(false);
@@ -313,6 +324,11 @@ namespace CodorniX.Vista
                 btnAceptarEliminarFoto.Visible = false;
                 btnCancelarEliminarFoto.Visible = false;
                 lblAceptarEliminarFoto.Visible = false;
+
+                btnAceptarEliminarFotoC.Visible = false;
+                btnCancelarEliminarFotoC.Visible = false;
+                lblAceptarEliminarFotoC.Visible = false;
+                
                 #endregion Botones de aceptar eliminar 
 
                 #region btns
@@ -352,6 +368,12 @@ namespace CodorniX.Vista
                 dvgFotosPapel.DataSource = null;
                 dvgFotosPapel.DataBind();
 
+                dgvFotosC.DataSource = null;
+                dgvFotosC.DataBind();
+
+                dvgFotosPapelC.DataSource = null;
+                dvgFotosPapelC.DataBind();
+
                 dgvLicencias.DataSource = null;
                 dgvLicencias.DataBind();
 
@@ -365,6 +387,11 @@ namespace CodorniX.Vista
                 ddMedidaFoto.DataValueField = "UidMedida";
                 ddMedidaFoto.DataTextField = "VchMedida";
                 ddMedidaFoto.DataBind();
+
+                ddMedidaFotoC.DataSource = VM.Medidas;
+                ddMedidaFotoC.DataValueField = "UidMedida";
+                ddMedidaFotoC.DataTextField = "VchMedida";
+                ddMedidaFotoC.DataBind();
                 //-----------------------------------------------------------------------------
 
                 VM.ObtenerPaises();
@@ -400,6 +427,10 @@ namespace CodorniX.Vista
                 ddActivoFoto.DataValueField = "UidStatus";
                 ddActivoFoto.DataTextField = "StrStatus";
                 ddActivoFoto.DataBind();
+                ddActivoFotoC.DataSource = VM.ListaStatus;
+                ddActivoFotoC.DataValueField = "UidStatus";
+                ddActivoFotoC.DataTextField = "StrStatus";
+                ddActivoFotoC.DataBind();
 
                 ddActivoSucursal.DataSource = VM.ListaStatus;
                 ddActivoSucursal.DataValueField = "UidStatus";
@@ -454,6 +485,7 @@ namespace CodorniX.Vista
 
             ScriptManager.RegisterStartupScript(this, typeof(Page), "initializeDatapicker", "enableDatapicker()", true);
         }
+        #endregion Constructor
 
         #region Panel izquierdo
         protected void dgvSucursales_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -597,20 +629,6 @@ namespace CodorniX.Vista
 
             #endregion Rellenar fotos
 
-            #region Rellenar Licencias
-           // dgvLicencias.Columns[6].Visible = false; //17 de agosto del 18
-            dgvLicencias.Columns[5].Visible = false;
-            btnGenerarLicencia.AddCssClass("disabled");
-            btnGenerarLicencia.Enabled = false;
-            btnAgregarLicencia.AddCssClass("disabled");
-            btnAgregarLicencia.Enabled = false;
-            txtCantMaqLicencia.Enabled = false;
-            VM.ObtenerLicencias();
-            Session["Licencias"] = VM.Licencias;
-            LicenciaRemoved.Clear();
-            DatabindLicencias();
-            #endregion Rellenar Licencias
-
             #region Rellenar Papel
             VM.ObtenerPapel(VM.Sucursal.UidSucursal);
             
@@ -634,6 +652,72 @@ namespace CodorniX.Vista
             btnCancelarFotoPapel.Visible = false;
             #endregion Rellenar Papel
 
+            #region Rellenar fotos Comerciales
+           // VM.ObtenerImpresoras();
+            if (VM.Impresoras.Count >= 1)
+            {
+                ddImpresoraFotoC.DataSource = ViewState["Impresoras"];
+                ddImpresoraFotoC.DataValueField = "UidImpresora";
+                ddImpresoraFotoC.DataTextField = "StrDescripcion";
+                ddImpresoraFotoC.DataBind();
+                ddImpresoraFotoC.SelectedIndex = 0;
+            }
+            else
+            {
+                ddImpresoraFotoC.DataSource = null;
+                ddImpresoraFotoC.Items.Clear();
+                ddImpresoraFotoC.DataBind();
+            }
+            //---------------------------------------------------------------------------------
+            
+            DesHabilitarFormularioFotografiasC();
+            //---------------------------------------------------------------------------------
+            VM.ObtenerfotosC();
+
+            ViewState["FotosC"] = VM.FotosC;
+            FotoCRemoved.Clear();
+            DatabindFotografiasC();
+
+            #endregion Rellenar fotos comerciales
+
+            #region Rellenar Papel comerciales
+            VM.ObtenerPapelC(VM.Sucursal.UidSucursal);
+
+            if (VM.PapelC.UidPapel != Guid.Empty)
+            {
+                UidPapelC.Text = VM.PapelC.UidPapel.ToString();
+                //ViewState["Papel"] = VM.Papel;
+            }
+
+            txtNombrePapelC.Text = VM.PapelC.StrDescripcion.ToString();
+            txtAltoPapelC.Text = VM.PapelC.VchAlto.ToString();
+            txtAnchoPapelC.Text = VM.PapelC.VchAncho.ToString();
+            txtMargenSuperiorC.Text = VM.PapelC.VchSuperior.ToString();
+            txtMargenInferiorC.Text = VM.PapelC.VchInferior.ToString();
+            txtMargenDerechoC.Text = VM.PapelC.VchDerecho.ToString();
+            txtMargenIzquierdoC.Text = VM.PapelC.VchIzquierdo.ToString();
+            DataBindFotografiasPapelC();
+            DesHabilitarFormularioFotoPapelC();
+            DesHabilitarFormularioPapelC();
+            LimpiarFormularioFotoPapelC();
+            btnOKFotoPapelC.Visible = false;
+            btnCancelarFotoPapelC.Visible = false;
+            #endregion Rellenar Papel comerciales
+
+            #region Rellenar Licencias
+            // dgvLicencias.Columns[6].Visible = false; //17 de agosto del 18
+            dgvLicencias.Columns[5].Visible = false;
+            btnGenerarLicencia.AddCssClass("disabled");
+            btnGenerarLicencia.Enabled = false;
+            btnAgregarLicencia.AddCssClass("disabled");
+            btnAgregarLicencia.Enabled = false;
+            txtCantMaqLicencia.Enabled = false;
+            VM.ObtenerLicencias();
+            Session["Licencias"] = VM.Licencias;
+            LicenciaRemoved.Clear();
+            DatabindLicencias();
+            #endregion Rellenar Licencias
+
             #region Servidor
             if (VM.ObtenerServidor()==true) {
                 txtServidorIp.Text = VM.Servidor.StrNombreIP;
@@ -644,6 +728,10 @@ namespace CodorniX.Vista
             txtServidorIp.Enabled = false;
             txtPuerto.Enabled = false;
             #endregion Servidor
+
+            PnErrorSucursal.Visible = false;
+            lblErrorSucursal.Visible = false;
+            lblErrorSucursal.Text = "";
         }
         protected void ddPais_SelectedIndexChanged(object sender, EventArgs e)//19/10/17
         {
@@ -846,6 +934,7 @@ namespace CodorniX.Vista
         #region Panel derecho (edicion)
         protected void btnNuevaSucursal_Click(object sender, EventArgs e)
         {
+            try { 
             ActivarCamposDatos(true);
             uidSucursal.Text = string.Empty;
             txtNombre.Text = string.Empty;
@@ -875,6 +964,10 @@ namespace CodorniX.Vista
             //dgvFotos.DataBind();
             DatabindFotografias();
 
+            ViewState["FotosC"] = new List<SucursalFotoC>();
+            FotoCRemoved.Clear();
+            DatabindFotografiasC();
+
             Session["Licencias"] = new List<SucursalLicencia>();
             LicenciaRemoved.Clear();
             dgvLicencias.DataSource = Session["Licencias"];
@@ -896,8 +989,8 @@ namespace CodorniX.Vista
             btnAgregarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
             btnAgregarFoto.Enabled = true;
 
-            btnAgregarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
-            btnAgregarFoto.Enabled = true;
+            btnAgregarFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
+            btnAgregarFotoC.Enabled = true;
 
             btnGenerarLicencia.RemoveCssClass("disabled").RemoveCssClass("hidden");
             btnGenerarLicencia.Enabled = true;
@@ -915,6 +1008,14 @@ namespace CodorniX.Vista
             HabilitarFormularioPapel();
             DataBindFotografiasPapel();
 
+            btnOkPapelC.Visible = true;
+            btnCancelarPapelC.Visible = true;
+            btnEditarPapelC.AddCssClass("disabled");
+            LimpiarFormularioPapelC();
+            LimpiarFormularioFotoPapelC();
+            HabilitarFormularioPapelC();
+            DataBindFotografiasPapelC();
+
             txtServidorIp.RemoveCssClass("disabled");
             txtPuerto.RemoveCssClass("disabled");
             txtServidorIp.Enabled=true;
@@ -930,9 +1031,23 @@ namespace CodorniX.Vista
                 previousRow.RemoveCssClass("success");
             }
             ViewState["SucursalPreviousRow"] = null;
+
+
+                PnErrorSucursal.Visible = false;
+                lblErrorSucursal.Visible = false;
+                lblErrorSucursal.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorSucursal.Visible = true;
+                lblErrorSucursal.Visible = true;
+                lblErrorSucursal.Text = "Error al editar la sucursal: \n detalle del error...\n" + x;
+            }
+
         }
         protected void btnEditarSucursal_Click(object sender, EventArgs e)
         {
+            try { 
            // dgvLicencias.Columns[6].Visible = true;
             dgvLicencias.Columns[5].Visible = true;
 
@@ -945,12 +1060,14 @@ namespace CodorniX.Vista
             {
                 btnAgregarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");//05/10/17
                 btnAgregarFoto.Enabled = true;
+
+                btnAgregarFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");//05/10/17
+                btnAgregarFotoC.Enabled = true;
             }
             else
             {
-                //btnAgregarFoto.AddCssClass("disabled").AddCssClass("hidden");//05/10/17
-                //btnAgregarFoto.Enabled = false;
                 btnAgregarFoto.AddCssClass("disabled");
+                btnAgregarFotoC.AddCssClass("disabled");
             }
             btnAgregarImpresora.RemoveCssClass("disabled").RemoveCssClass("hidden");
             btnAgregarImpresora.Enabled = true;
@@ -1005,20 +1122,56 @@ namespace CodorniX.Vista
                 btnCancelarFotoPapel.Visible = false;
             }
 
-            // HabilitarFormularioPapel();
+
+                if (uidFotoC.Text.Length > 0)
+                {
+                    btnEditarFotoC.Enable();
+                }
+                btnEditarPapelC.Enable();
+                
+                DataBindFotografiasPapelC();
+                if (Guid.Empty != new Guid(DdlFotoC.SelectedValue.ToString()) && !String.IsNullOrWhiteSpace(DdlFotoC.SelectedValue.ToString()))
+                { }
+                else { UidFotoPapelC.Text = ""; }
+                if (!String.IsNullOrWhiteSpace(UidFotoPapelC.Text) && Guid.Empty != new Guid(UidFotoPapelC.Text))
+                {
+                    btnEditarFotoPapelC.RemoveCssClass("disabled").RemoveCssClass("hidden");
+                    btnEditarFotoPapelC.Enabled = true; btnEditarFotoPapelC.Visible = true;
+                    btnOKFotoPapelC.Visible = false;
+                    btnCancelarFotoPapelC.Visible = false;
+                }
+
+
+                // HabilitarFormularioPapel();
             txtServidorIp.RemoveCssClass("disabled");
             txtPuerto.RemoveCssClass("disabled");
             txtServidorIp.Enabled = true;
             txtPuerto.Enabled = true;
+
+                PnErrorSucursal.Visible = false;
+                lblErrorSucursal.Visible = false;
+                lblErrorSucursal.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorSucursal.Visible = true;
+                lblErrorSucursal.Visible = true;
+                lblErrorSucursal.Text = "Error al editar la sucursal: \n detalle del error...\n" + x;
+            }
+
         }
         protected void btnOkSucursal_Click(object sender, EventArgs e)
         {
-            if (ValidarCamposPapel() == false)
-            {
-                return;
-            }
+         try {
+               
+                PnErrorSucursal.Visible = false;
+                lblErrorSucursal.Visible = false;
+                lblErrorSucursal.Text ="";
 
-            #region proceso de actualizacion de una sucursal
+            
+
+           #region proceso de actualizacion de una sucursal
+                //PnErrorSucursal.Visible = false;
             lblErrorSucursal.Visible = true;
             Sucursal empresa = null;
             if (!string.IsNullOrWhiteSpace(uidSucursal.Text))
@@ -1033,6 +1186,7 @@ namespace CodorniX.Vista
 
             if (string.IsNullOrWhiteSpace(txtNombre.Text))
             {
+                PnErrorSucursal.Visible = true;
                 lblErrorSucursal.Text = "El campo Nombre no debe estar vacío";
                 txtNombre.Focus();
                 frmGrpNombre.AddCssClass("has-error");
@@ -1064,9 +1218,12 @@ namespace CodorniX.Vista
                 empresa.RutaImagen = ViewState["rutaimg"].ToString();
 
             VM.GuardarSucursal(empresa);
-
-            #region Papel
-            SucursalPapel Papel = new SucursalPapel();
+                if (ValidarCamposPapel() == false)
+                {
+                    return;
+                }
+                #region Papel
+                SucursalPapel Papel = new SucursalPapel();
             //SucursalPapel Papel = (SucursalPapel)ViewState["Papel"];
 
             if (!string.IsNullOrWhiteSpace(UidPapel.Text))
@@ -1097,13 +1254,52 @@ namespace CodorniX.Vista
             DesHabilitarFormularioFotoPapel();
             dvgFotosPapel.DataSource = null;
             dvgFotosPapel.DataBind();
-            #endregion Papel
-            #endregion proceso de actualizacion de una sucursal
-            //-----------------------------------------------------------------------------------
-            // AQUI YA GUARDO Y EMPIEZA LA LIMPIA DE LA VISTA
+                #endregion Papel
 
-            #region Sucursales
-            ActivarCamposDatos(false);
+                if (ValidarCamposPapelC() == false)
+                {
+                    return;
+                }
+                #region Papel comercial
+                SucursalPapelC PapelC = new SucursalPapelC();
+                //SucursalPapel Papel = (SucursalPapel)ViewState["Papel"];
+
+                if (!string.IsNullOrWhiteSpace(UidPapelC.Text))
+                {
+                    VM.ObtenerPapelC(new Guid(uidSucursal.Text));
+                    PapelC = VM.PapelC;
+                    PapelC.UidPapel = new Guid(UidPapelC.Text);
+                }
+                else
+                {
+
+                    PapelC.UidPapel = empresa.UidSucursal;
+                }
+
+
+                PapelC.StrDescripcion = txtNombrePapelC.Text;
+                PapelC.VchAlto = txtAltoPapelC.Text;
+                PapelC.VchAncho = txtAnchoPapelC.Text;
+                PapelC.VchSuperior = txtMargenSuperiorC.Text;
+                PapelC.VchInferior = txtMargenInferiorC.Text;
+                PapelC.VchDerecho = txtMargenDerechoC.Text;
+                PapelC.VchIzquierdo = txtMargenIzquierdoC.Text;
+                VM.GuardarPapelC(PapelC);
+
+                LimpiarFormularioPapelC();
+                DesHabilitarFormularioPapelC();
+                LimpiarFormularioFotoPapelC();
+                DesHabilitarFormularioFotoPapelC();
+                dvgFotosPapelC.DataSource = null;
+                dvgFotosPapelC.DataBind();
+                #endregion Papel comercial
+                #endregion proceso de actualizacion de una sucursal
+
+                //-----------------------------------------------------------------------------------
+                // AQUI YA GUARDO Y EMPIEZA LA LIMPIA DE LA VISTA
+
+           #region Sucursales
+                ActivarCamposDatos(false);
             frmGrpNombre.RemoveCssClass("has-error");
             txtNombre.Text = string.Empty;
             VM.ObtenerSucursales(SesionActual.uidEmpresaActual.Value);
@@ -1226,11 +1422,40 @@ namespace CodorniX.Vista
             btnOKFoto.AddCssClass("disabled").AddCssClass("hidden");
             btnCancelarFoto.AddCssClass("disabled").AddCssClass("hidden");
             LimpiarFormularioFotografias();
-            #endregion Fotos
+                #endregion Fotos
 
-            #region Licencias
-           // dgvLicencias.Columns[6].Visible = false;
-            dgvLicencias.Columns[5].Visible = false;
+
+           #region Fotos comerciales
+
+                //frmGrpDescripcionFoto.RemoveCssClass("has-error");
+                //frmGrpPrecioFoto.RemoveCssClass("has-error");
+                //frmGrpAltoFoto.RemoveCssClass("has-error");
+                //frmGrpAnchoFoto.RemoveCssClass("has-error");
+
+                if (NoImpresoras >= 1)
+                {
+                    //Begin Fotografias
+                    List<SucursalFotoC> fotosC = (List<SucursalFotoC>)ViewState["FotosC"];
+                    VM.GuardarFotosC(fotosC, empresa.UidSucursal);
+                    VM.EliminarFotosC(FotoCRemoved);
+                    //End Fotografias
+                }
+                dgvFotosC.DataSource = null;
+                dgvFotosC.DataBind();
+                ddImpresoraFotoC.DataSource = null;
+                ddImpresoraFotoC.DataBind();
+                ddImpresoraFotoC.Items.Clear();
+                btnAgregarFotoC.AddCssClass("disabled");
+                btnEditarFotoC.AddCssClass("disabled");
+                //btnEliminarFoto.AddCssClass("disabled");
+                btnOKFotoC.AddCssClass("disabled").AddCssClass("hidden");
+                btnCancelarFotoC.AddCssClass("disabled").AddCssClass("hidden");
+                LimpiarFormularioFotografiasC();
+                #endregion Fotos
+
+           #region Licencias
+                // dgvLicencias.Columns[6].Visible = false;
+                dgvLicencias.Columns[5].Visible = false;
             frmGrpGenerarLicencias.RemoveCssClass("has-error");
             frmGrpNoLicencias.RemoveCssClass("has-error");
             List<SucursalLicencia> Licencias = (List<SucursalLicencia>)Session["Licencias"];
@@ -1243,13 +1468,13 @@ namespace CodorniX.Vista
 
             #endregion Licencias
 
-            #region Servidor
+           #region Servidor
             if (  (String.IsNullOrWhiteSpace(txtServidorIp.Text) || String.IsNullOrEmpty(txtServidorIp.Text)) &&
                   (String.IsNullOrWhiteSpace(txtPuerto.Text) || String.IsNullOrEmpty(txtPuerto.Text))               )
             {
-                VM.EliminarServidor();
+                VM.EliminarServidor(empresa.UidSucursal);
             } else {
-                VM.SalvarServidor(txtServidorIp.Text, txtPuerto.Text);
+                VM.SalvarServidor(txtServidorIp.Text, txtPuerto.Text, empresa.UidSucursal);
             }
             txtServidorIp.AddCssClass("disabled");
             txtPuerto.AddCssClass("disabled");
@@ -1259,14 +1484,31 @@ namespace CodorniX.Vista
             txtPuerto.Text = "";
             #endregion Servidor
 
-            FUImagen.Enabled = false;
+                FUImagen.Enabled = false;
+
+                btnOkSucursal.AddCssClass("disabled").AddCssClass("hidden");
+                btnOkSucursal.Enabled = false;
+                btnCancelarSucursal.AddCssClass("disabled").AddCssClass("hidden");
+                btnCancelarSucursal.Enabled = false;
+
+                PnErrorSucursal.Visible = false;
+                lblErrorSucursal.Visible = false;
+                lblErrorSucursal.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorSucursal.Visible = true;
+                lblErrorSucursal.Visible = true;
+                lblErrorSucursal.Text = "Error al editar la sucursal: \n detalle del error...\n" + x;
+            }
+
         }
         protected void btnCancelarSucursal_Click(object sender, EventArgs e)
         {
-
-
+            try { 
             #region Sucursales
             ActivarCamposDatos(false);
+            PnErrorSucursal.Visible = false;
             lblErrorSucursal.Visible = false;
             lblErrorSucursal.Text = "";
             FUImagen.Enabled = false;
@@ -1287,12 +1529,32 @@ namespace CodorniX.Vista
             LimpiarFormularioFotoPapel();
             DesHabilitarFormularioFotoPapel();
             btnEditarPapel.Disable();
-            
-            #endregion Papel
-            
-            #region Direcciones
-            lblErrorDireccion.Visible = false;
-            lblErrorDireccion.Text = "";
+
+                #endregion Papel
+
+                #region Papel comercial
+                //ActivarCamposDatos(false);
+                lblErrorPapelC.Visible = false;
+                lblErrorPapelC.Text = "";
+                lblErrorFotoPapelC.Visible = false;
+                lblErrorFotoPapelC.Text = "";
+                //FUImagen.Enabled = false;
+                //frmGrpNombre.RemoveCssClass("has-error");
+                LimpiarFormularioPapelC();
+                DesHabilitarFormularioPapelC();
+                LimpiarFormularioFotoPapelC();
+                DesHabilitarFormularioFotoPapelC();
+                btnEditarPapelC.Disable();
+
+                #endregion Papel comercial
+
+                #region Direcciones
+                lblErrorDirIz.Visible = false;
+            lblErrorDirIz.Text = "";
+            lblErrorDirDe.Visible = false;
+            lblErrorDirDe.Text = "";
+            PnErrorDirDeSucursal.Visible = false;
+            PnErrorDirIzSucursal.Visible = false;
             if (EditingModeDireccion)
             {
                 btnCancelarDireccion_Click(null, null);
@@ -1321,6 +1583,7 @@ namespace CodorniX.Vista
             #region Telefonos
             lblErrorTelefono.Visible = false;
             lblErrorTelefono.Text = "";
+            
 
             btnAgregarTelefono.AddCssClass("disabled");
             btnEditarTelefono.AddCssClass("disabled");
@@ -1377,8 +1640,12 @@ namespace CodorniX.Vista
 
             txtDescripcionFoto.Text = string.Empty;
             txtPrecioFoto.Text = string.Empty;
+            txtPrecioFotoTicket.Text = string.Empty;
+            txtPrecioFotoServidor.Text = string.Empty;
             txtAltoFoto.Text = string.Empty;
             txtAnchoFoto.Text = string.Empty;
+            txtAltoFotoDesc.Text = string.Empty;
+            txtAnchoFotoDesc.Text = string.Empty;
             ddActivo.SelectedIndex = 0;
             ddTipoImpresora.SelectedIndex = 0;
 
@@ -1388,11 +1655,40 @@ namespace CodorniX.Vista
             //frmGrpAnchoFoto.RemoveCssClass("has-error");
 
             btnCancelarEliminarFoto_Click(sender, e);
-            #endregion Fotos
+                #endregion Fotos
 
-            #region Licencias
-           // dgvLicencias.Columns[6].Visible = false;
-            dgvLicencias.Columns[5].Visible = false;
+                #region Fotos comerciales
+                //DesActivarValidacionFotografias();
+                DesHabilitarFormularioFotografiasC();
+
+                lblErrorFotoC.Visible = false;
+                lblErrorFotoC.Text = "";
+
+                btnAgregarFotoC.AddCssClass("disabled");
+                btnEditarFotoC.AddCssClass("disabled");
+                //btnEliminarFoto.AddCssClass("disabled");
+
+                btnOKFotoC.AddCssClass("disabled").AddCssClass("hidden");
+                btnCancelarFotoC.AddCssClass("disabled").AddCssClass("hidden");
+
+                txtDescripcionFotoC.Text = string.Empty;
+                txtPrecioFotoC.Text = string.Empty;
+                txtPrecioFotoTicketC.Text = string.Empty;
+                txtPrecioFotoServidorC.Text = string.Empty;
+                txtAltoFotoC.Text = string.Empty;
+                txtAnchoFotoC.Text = string.Empty;
+                txtAltoFotoDescC.Text = string.Empty;
+                txtAnchoFotoDescC.Text = string.Empty;
+                //ddActivo.SelectedIndex = 0;
+                //ddTipoImpresora.SelectedIndex = 0;
+
+                
+                btnCancelarEliminarFotoC_Click(sender, e);
+                #endregion Fotos comerciales
+
+                #region Licencias
+                // dgvLicencias.Columns[6].Visible = false;
+                dgvLicencias.Columns[5].Visible = false;
             btnGenerarLicencia.AddCssClass("disabled");
             btnAgregarLicencia.AddCssClass("disabled");
             #endregion Licencias
@@ -1424,6 +1720,15 @@ namespace CodorniX.Vista
                 dgvFotos.DataSource = null;
                 dgvFotos.DataBind();
 
+                dvgFotosPapel.DataSource = null;
+                dvgFotosPapel.DataBind();
+
+                dgvFotosC.DataSource = null;
+                dgvFotosC.DataBind();
+
+                dvgFotosPapelC.DataSource = null;
+                dvgFotosPapelC.DataBind();
+                
                 btnEditarSucursal.Disable();
 
                 btnAgregarDireccion.Visible = true;
@@ -1474,6 +1779,22 @@ namespace CodorniX.Vista
                 txtMargenDerecho.Text = VM.Papel.VchDerecho.ToString();
                 txtMargenIzquierdo.Text = VM.Papel.VchIzquierdo.ToString();
 
+                    VM.ObtenerPapelC(VM.Sucursal.UidSucursal);
+
+                    if (VM.PapelC.UidPapel != Guid.Empty)
+                    {
+                        UidPapelC.Text = VM.PapelC.UidPapel.ToString();
+                        //ViewState["Papel"] = VM.Papel;
+                    }
+
+                    txtNombrePapelC.Text = VM.PapelC.StrDescripcion.ToString();
+                    txtAltoPapelC.Text = VM.PapelC.VchAlto.ToString();
+                    txtAnchoPapelC.Text = VM.PapelC.VchAncho.ToString();
+                    txtMargenSuperiorC.Text = VM.PapelC.VchSuperior.ToString();
+                    txtMargenInferiorC.Text = VM.PapelC.VchInferior.ToString();
+                    txtMargenDerechoC.Text = VM.PapelC.VchDerecho.ToString();
+                    txtMargenIzquierdoC.Text = VM.PapelC.VchIzquierdo.ToString();
+
                 VM.ObtenerDirecciones();
                 ViewState["Direcciones"] = VM.Direcciones;
                 DireccionRemoved.Clear();
@@ -1499,8 +1820,14 @@ namespace CodorniX.Vista
                 //dgvFotos.DataBind();
                 DatabindFotografias();
 
+                    VM.ObtenerfotosC();
+                    ViewState["FotosC"] = VM.FotosC;
+                    FotoCRemoved.Clear();
+                    //dgvFotos.DataSource = ViewState["Fotos"];
+                    //dgvFotos.DataBind();
+                    DatabindFotografiasC();
 
-                if (VM.Direcciones.Count == 0)
+               if (VM.Direcciones.Count == 0)
                 {
                     btnAgregarDireccion.Visible = true;
                     btnEditarDireccion.Visible = false;
@@ -1516,6 +1843,17 @@ namespace CodorniX.Vista
             }
 
 
+                PnErrorSucursal.Visible = false;
+                lblErrorSucursal.Visible = false;
+                lblErrorSucursal.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorSucursal.Visible = true;
+                lblErrorSucursal.Visible = true;
+                lblErrorSucursal.Text = "Error al editar la sucursal: \n detalle del error...\n" + x;
+            }
+
         }
         #endregion  Panel derecho (edicion)
 
@@ -1523,15 +1861,19 @@ namespace CodorniX.Vista
 
         protected void tabDatos_Click(object sender, EventArgs e)
         {
-            lblErrorTelefono.Visible = false;
-            lblErrorSucursal.Visible = false;
-            lblErrorDireccion.Visible = false;
-            lblErrorImpresora.Visible = false;
-            lblErrorFoto.Visible = false;
-            lblErrorLicencia.Visible = false;
-            lblErrorPapel.Visible = false;
-            lblErrorFotoPapel.Visible = false;
-            lblErrorServer.Visible = false;
+            _tabDatos();
+        }
+        void _tabDatos() {
+
+            //lblErrorTelefono.Visible = false;
+            //lblErrorSucursal.Visible = false;
+            //lblErrorDirDe.Visible = false;
+            //lblErrorImpresora.Visible = false;
+            //lblErrorFoto.Visible = false;
+            //lblErrorLicencia.Visible = false;
+            //lblErrorPapel.Visible = false;
+            //lblErrorFotoPapel.Visible = false;
+            //lblErrorServer.Visible = false;
 
             panelServidor.Visible = false;
             activeServidor.Attributes["class"] = "";
@@ -1551,12 +1893,17 @@ namespace CodorniX.Vista
             panelFotos.Visible = false;
             activeFotografias.Attributes["class"] = "";
 
-            panelLicencias.Visible = false;
-            activeLicencias.Attributes["class"] = "";
-
             panelPapel.Visible = false;
             activePapel.Attributes["class"] = "";
 
+            panelFotosC.Visible = false;
+            activeFotografiasC.Attributes["class"] = "";
+
+            panelPapelC.Visible = false;
+            activePapelC.Attributes["class"] = "";
+
+            panelLicencias.Visible = false;
+            activeLicencias.Attributes["class"] = "";
 
             if (EditingModeDireccion)
                 btnCancelarDireccion_Click(null, null);
@@ -1568,17 +1915,20 @@ namespace CodorniX.Vista
         }
         protected void tabDirecciones_Click(object sender, EventArgs e)
         {
+            _tabDirecciones();
+        }
+        void _tabDirecciones() {
 
-            lblErrorTelefono.Visible = false;
-            lblErrorSucursal.Visible = false;
-            lblErrorDireccion.Visible = false;
-            lblErrorImpresora.Visible = false;
-            lblErrorFoto.Visible = false;
-            lblErrorLicencia.Visible = false;
+            //lblErrorTelefono.Visible = false;
+            //lblErrorSucursal.Visible = false;
+            //lblErrorDireccion.Visible = false;
+            //lblErrorImpresora.Visible = false;
+            //lblErrorFoto.Visible = false;
+            //lblErrorLicencia.Visible = false;
 
-            lblErrorPapel.Visible = false;
-            lblErrorFotoPapel.Visible = false;
-            lblErrorServer.Visible = false;
+            //lblErrorPapel.Visible = false;
+            //lblErrorFotoPapel.Visible = false;
+            //lblErrorServer.Visible = false;
 
             panelServidor.Visible = false;
             activeServidor.Attributes["class"] = "";
@@ -1603,18 +1953,27 @@ namespace CodorniX.Vista
 
             panelPapel.Visible = false;
             activePapel.Attributes["class"] = "";
+
+            panelFotosC.Visible = false;
+            activeFotografiasC.Attributes["class"] = "";
+
+            panelPapelC.Visible = false;
+            activePapelC.Attributes["class"] = "";
         }
         protected void tabTelefonos_Click(object sender, EventArgs e) // modificado 28/09/17
         {
-            lblErrorTelefono.Visible = false;
-            lblErrorSucursal.Visible = false;
-            lblErrorDireccion.Visible = false;
-            lblErrorImpresora.Visible = false;
-            lblErrorFoto.Visible = false;
-            lblErrorLicencia.Visible = false;
-            lblErrorPapel.Visible = false;
-            lblErrorFotoPapel.Visible = false;
-            lblErrorServer.Visible = false;
+            _tabTel();
+        }
+        void _tabTel() {
+            //lblErrorTelefono.Visible = false;
+            //lblErrorSucursal.Visible = false;
+            //lblErrorDireccion.Visible = false;
+            //lblErrorImpresora.Visible = false;
+            //lblErrorFoto.Visible = false;
+            //lblErrorLicencia.Visible = false;
+            //lblErrorPapel.Visible = false;
+            //lblErrorFotoPapel.Visible = false;
+            //lblErrorServer.Visible = false;
 
             panelServidor.Visible = false;
             activeServidor.Attributes["class"] = "";
@@ -1640,6 +1999,12 @@ namespace CodorniX.Vista
             panelPapel.Visible = false;
             activePapel.Attributes["class"] = "";
 
+            panelFotosC.Visible = false;
+            activeFotografiasC.Attributes["class"] = "";
+
+            panelPapelC.Visible = false;
+            activePapelC.Attributes["class"] = "";
+
             if (EditingModeDireccion)
                 btnCancelarDireccion_Click(null, null);
             else
@@ -1649,16 +2014,20 @@ namespace CodorniX.Vista
             }
         }
         protected void tabImpresoras_Click(object sender, EventArgs e)
-        {// pendiente el if editing direcciones
-            lblErrorTelefono.Visible = false;
-            lblErrorSucursal.Visible = false;
-            lblErrorDireccion.Visible = false;
-            lblErrorImpresora.Visible = false;
-            lblErrorFoto.Visible = false;
-            lblErrorLicencia.Visible = false;
-            lblErrorPapel.Visible = false;
-            lblErrorFotoPapel.Visible = false;
-            lblErrorServer.Visible = false;
+        {
+            _tabImpresiones();
+        }
+        void _tabImpresiones() {
+            // pendiente el if editing direcciones
+            //lblErrorTelefono.Visible = false;
+            //lblErrorSucursal.Visible = false;
+            //lblErrorDireccion.Visible = false;
+            //lblErrorImpresora.Visible = false;
+            //lblErrorFoto.Visible = false;
+            //lblErrorLicencia.Visible = false;
+            //lblErrorPapel.Visible = false;
+            //lblErrorFotoPapel.Visible = false;
+            //lblErrorServer.Visible = false;
 
             panelServidor.Visible = false;
             activeServidor.Attributes["class"] = "";
@@ -1684,6 +2053,12 @@ namespace CodorniX.Vista
             panelPapel.Visible = false;
             activePapel.Attributes["class"] = "";
 
+            panelFotosC.Visible = false;
+            activeFotografiasC.Attributes["class"] = "";
+
+            panelPapelC.Visible = false;
+            activePapelC.Attributes["class"] = "";
+
             if (EditingModeDireccion)
                 btnCancelarDireccion_Click(null, null);
             else
@@ -1695,15 +2070,20 @@ namespace CodorniX.Vista
         }
         protected void tabFotografias_Click(object sender, EventArgs e)
         {
-            lblErrorTelefono.Visible = false;
-            lblErrorSucursal.Visible = false;
-            lblErrorDireccion.Visible = false;
-            lblErrorImpresora.Visible = false;
-            lblErrorFoto.Visible = false;
-            lblErrorLicencia.Visible = false;
-            lblErrorPapel.Visible = false;
-            lblErrorFotoPapel.Visible = false;
-            lblErrorServer.Visible = false;
+            _tabFoto();
+        }
+        void _tabFoto()
+        {
+
+            //lblErrorTelefono.Visible = false;
+            //lblErrorSucursal.Visible = false;
+            //lblErrorDireccion.Visible = false;
+            //lblErrorImpresora.Visible = false;
+            //lblErrorFoto.Visible = false;
+            //lblErrorLicencia.Visible = false;
+            //lblErrorPapel.Visible = false;
+            //lblErrorFotoPapel.Visible = false;
+            //lblErrorServer.Visible = false;
 
             panelServidor.Visible = false;
             activeServidor.Attributes["class"] = "";
@@ -1725,54 +2105,15 @@ namespace CodorniX.Vista
 
             panelLicencias.Visible = false;
             activeLicencias.Attributes["class"] = "";
-            
-            panelPapel.Visible = false;
-            activePapel.Attributes["class"] = "";
-
-            if (EditingModeDireccion)
-                btnCancelarDireccion_Click(null, null);
-            else
-            {
-                panelDireccion.Visible = false;
-                panelSucursal.Visible = true;
-
-            }
-        }
-        protected void tabLicencias_Click(object sender, EventArgs e)
-        {
-            lblErrorTelefono.Visible = false;
-            lblErrorSucursal.Visible = false;
-            lblErrorDireccion.Visible = false;
-            lblErrorImpresora.Visible = false;
-            lblErrorFoto.Visible = false;
-            lblErrorLicencia.Visible = false;
-            lblErrorPapel.Visible = false;
-            lblErrorFotoPapel.Visible = false;
-            lblErrorServer.Visible = false;
-
-            panelDatosSucursal.Visible = false;
-            activeDatos.Attributes["class"] = "";
-
-            panelDirecciones.Visible = false;
-            activeDirecciones.Attributes["class"] = "";
-
-            panelTelefonos.Visible = false;
-            activeTelefonos.Attributes["class"] = "";
-
-            panelImpresoras.Visible = false;
-            activeImpresoras.Attributes["class"] = "";
-
-            panelFotos.Visible = false;
-            activeFotografias.Attributes["class"] = "";
-
-            panelLicencias.Visible = true;
-            activeLicencias.Attributes["class"] = "active";
 
             panelPapel.Visible = false;
             activePapel.Attributes["class"] = "";
 
-            panelServidor.Visible = false;
-            activeServidor.Attributes["class"] = "";
+            panelFotosC.Visible = false;
+            activeFotografiasC.Attributes["class"] = "";
+
+            panelPapelC.Visible = false;
+            activePapelC.Attributes["class"] = "";
 
             if (EditingModeDireccion)
                 btnCancelarDireccion_Click(null, null);
@@ -1787,17 +2128,17 @@ namespace CodorniX.Vista
         {
             _tabPapel();
         }
-        void  _tabPapel()
+        void _tabPapel()
         {
-            lblErrorTelefono.Visible = false;
-            lblErrorSucursal.Visible = false;
-            lblErrorDireccion.Visible = false;
-            lblErrorImpresora.Visible = false;
-            lblErrorFoto.Visible = false;
-            lblErrorLicencia.Visible = false;
-            lblErrorPapel.Visible = false;
-            lblErrorFotoPapel.Visible = false;
-            lblErrorServer.Visible = false;
+            //lblErrorTelefono.Visible = false;
+            //lblErrorSucursal.Visible = false;
+            //lblErrorDireccion.Visible = false;
+            //lblErrorImpresora.Visible = false;
+            //lblErrorFoto.Visible = false;
+            //lblErrorLicencia.Visible = false;
+            //lblErrorPapel.Visible = false;
+            //lblErrorFotoPapel.Visible = false;
+            //lblErrorServer.Visible = false;
 
             panelDatosSucursal.Visible = false;
             activeDatos.Attributes["class"] = "";
@@ -1820,8 +2161,15 @@ namespace CodorniX.Vista
             panelPapel.Visible = true;
             activePapel.Attributes["class"] = "active";
 
+            panelFotosC.Visible = false;
+            activeFotografiasC.Attributes["class"] = "";
+
+            panelPapelC.Visible = false;
+            activePapelC.Attributes["class"] = "";
+
             panelServidor.Visible = false;
             activeServidor.Attributes["class"] = "";
+
 
             if (EditingModeDireccion)
                 btnCancelarDireccion_Click(null, null);
@@ -1832,17 +2180,13 @@ namespace CodorniX.Vista
 
             }
         }
-        protected void tabServidor_Click(object sender, EventArgs e)
+        protected void tabFotografiasC_Click(object sender, EventArgs e)
         {
-            lblErrorTelefono.Visible = false;
-            lblErrorSucursal.Visible = false;
-            lblErrorDireccion.Visible = false;
-            lblErrorImpresora.Visible = false;
-            lblErrorFoto.Visible = false;
-            lblErrorLicencia.Visible = false;
-            lblErrorPapel.Visible = false;
-            lblErrorFotoPapel.Visible = false;
-            lblErrorServer.Visible = false;
+            _tabFotoC();
+        }
+        void _tabFotoC() {
+            panelServidor.Visible = false;
+            activeServidor.Attributes["class"] = "";
 
             panelDatosSucursal.Visible = false;
             activeDatos.Attributes["class"] = "";
@@ -1865,6 +2209,164 @@ namespace CodorniX.Vista
             panelPapel.Visible = false;
             activePapel.Attributes["class"] = "";
 
+            panelFotosC.Visible = true;
+            activeFotografiasC.Attributes["class"] = "active";
+
+            panelPapelC.Visible = false;
+            activePapelC.Attributes["class"] = "";
+
+            if (EditingModeDireccion)
+                btnCancelarDireccion_Click(null, null);
+            else
+            {
+                panelDireccion.Visible = false;
+                panelSucursal.Visible = true;
+
+            }
+        }
+        protected void tabPapelC_Click(object sender, EventArgs e)
+        {
+            _tabPapelC();
+        }
+        void _tabPapelC() {
+            panelDatosSucursal.Visible = false;
+            activeDatos.Attributes["class"] = "";
+
+            panelDirecciones.Visible = false;
+            activeDirecciones.Attributes["class"] = "";
+
+            panelTelefonos.Visible = false;
+            activeTelefonos.Attributes["class"] = "";
+
+            panelImpresoras.Visible = false;
+            activeImpresoras.Attributes["class"] = "";
+
+            panelFotos.Visible = false;
+            activeFotografias.Attributes["class"] = "";
+
+            panelLicencias.Visible = false;
+            activeLicencias.Attributes["class"] = "";
+
+            panelPapel.Visible = false;
+            activePapel.Attributes["class"] = "";
+
+            panelFotosC.Visible = false;
+            activeFotografiasC.Attributes["class"] = "";
+
+            panelPapelC.Visible = true;
+            activePapelC.Attributes["class"] = "active";
+
+            panelServidor.Visible = false;
+            activeServidor.Attributes["class"] = "";
+
+
+            if (EditingModeDireccion)
+                btnCancelarDireccion_Click(null, null);
+            else
+            {
+                panelDireccion.Visible = false;
+                panelSucursal.Visible = true;
+
+            }
+        }
+        protected void tabLicencias_Click(object sender, EventArgs e)
+        {
+            _tabLicencias();
+        }
+        void _tabLicencias()
+        {
+            //lblErrorTelefono.Visible = false;
+            //lblErrorSucursal.Visible = false;
+            //lblErrorDireccion.Visible = false;
+            //lblErrorImpresora.Visible = false;
+            //lblErrorFoto.Visible = false;
+            //lblErrorLicencia.Visible = false;
+            //lblErrorPapel.Visible = false;
+            //lblErrorFotoPapel.Visible = false;
+            //lblErrorServer.Visible = false;
+
+            panelDatosSucursal.Visible = false;
+            activeDatos.Attributes["class"] = "";
+
+            panelDirecciones.Visible = false;
+            activeDirecciones.Attributes["class"] = "";
+
+            panelTelefonos.Visible = false;
+            activeTelefonos.Attributes["class"] = "";
+
+            panelImpresoras.Visible = false;
+            activeImpresoras.Attributes["class"] = "";
+
+            panelFotos.Visible = false;
+            activeFotografias.Attributes["class"] = "";
+
+            panelLicencias.Visible = true;
+            activeLicencias.Attributes["class"] = "active";
+
+            panelPapel.Visible = false;
+            activePapel.Attributes["class"] = "";
+
+            panelFotosC.Visible = false;
+            activeFotografiasC.Attributes["class"] = "";
+
+            panelPapelC.Visible = false;
+            activePapelC.Attributes["class"] = "";
+
+            panelServidor.Visible = false;
+            activeServidor.Attributes["class"] = "";
+
+            if (EditingModeDireccion)
+                btnCancelarDireccion_Click(null, null);
+            else
+            {
+                panelDireccion.Visible = false;
+                panelSucursal.Visible = true;
+
+            }
+        }
+        protected void tabServidor_Click(object sender, EventArgs e)
+        {
+            _tabServidor();
+        }
+        void _tabServidor()
+        {
+            //lblErrorTelefono.Visible = false;
+            //lblErrorSucursal.Visible = false;
+            //lblErrorDireccion.Visible = false;
+            //lblErrorImpresora.Visible = false;
+            //lblErrorFoto.Visible = false;
+            //lblErrorLicencia.Visible = false;
+            //lblErrorPapel.Visible = false;
+            //lblErrorFotoPapel.Visible = false;
+            //lblErrorServer.Visible = false;
+
+            panelDatosSucursal.Visible = false;
+            activeDatos.Attributes["class"] = "";
+
+            panelDirecciones.Visible = false;
+            activeDirecciones.Attributes["class"] = "";
+
+            panelTelefonos.Visible = false;
+            activeTelefonos.Attributes["class"] = "";
+
+            panelImpresoras.Visible = false;
+            activeImpresoras.Attributes["class"] = "";
+
+            panelFotos.Visible = false;
+            activeFotografias.Attributes["class"] = "";
+
+            panelLicencias.Visible = false;
+            activeLicencias.Attributes["class"] = "";
+
+            panelPapel.Visible = false;
+            activePapel.Attributes["class"] = "";
+
+            panelFotosC.Visible = false;
+            activeFotografiasC.Attributes["class"] = "";
+
+            panelPapelC.Visible = false;
+            activePapelC.Attributes["class"] = "";
+
             panelServidor.Visible = true;
             activeServidor.Attributes["class"] = "active";
 
@@ -1880,9 +2382,133 @@ namespace CodorniX.Vista
         #endregion
 
         #region Panel derecho (Direcciones)
+        protected void btnCancelarEliminarDireccion_Click(object sender, EventArgs e)
+        {//derecha
+            try { 
+            btnCancelarEliminarDireccion.Visible = false;
+            btnAceptarEliminarDireccion.Visible = false;
+            lblAceptarEliminarDireccion.Visible = false;
+                
+                PnErrorDirDeSucursal.Visible = false;
+                lblErrorDirDe.Visible = false;
+                lblErrorDirDe.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorDirDeSucursal.Visible = true;
+                lblErrorDirDe.Visible = true;
+                lblErrorDirDe.Text = "Error al editar direccion: \n detalle del error... \n" + x;
+            }
+
+        }
+
+        protected void btnCerrarDireccion_Click(object sender, EventArgs e)
+        {//Izquierda
+            try { 
+            panelDireccion.Visible = false;
+            panelSucursal.Visible = true;
+            btnCerrarDireccion.Visible = false;
+            btnOkDireccion.Visible = true;
+            btnCancelarDireccion.Visible = true;
+
+                PnErrorDirIzSucursal.Visible = false;
+                lblErrorDirIz.Visible = false;
+                lblErrorDirIz.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorDirIzSucursal.Visible = true;
+                lblErrorDirIz.Visible = true;
+                lblErrorDirIz.Text = "Error al editar direccion: \n detalle del error... \n" + x;
+            }
+
+        }
+
+        protected void ddDireccionesEmpresa_SelectedIndexChanged(object sender, EventArgs e)
+        {//derecha
+            try { 
+            Guid uid = new Guid(ddDireccionesEmpresa.SelectedValue);
+            VM.ObtenerEmpresaDireccion(uid);
+
+            uidDireccion.Text = string.Empty;
+            ddPais.SelectedValue = VM.Direccion.UidPais.ToString();
+            ddEstado.SelectedValue = VM.Direccion.UidEstado.ToString();
+            txtMunicipio.Text = VM.Direccion.StrMunicipio;
+            txtCiudad.Text = VM.Direccion.StrCiudad;
+            txtColonia.Text = VM.Direccion.StrColonia;
+            txtCalle.Text = VM.Direccion.StrCalle;
+            txtConCalle.Text = VM.Direccion.StrConCalle;
+            txtYCalle.Text = VM.Direccion.StrYCalle;
+            txtNoExt.Text = VM.Direccion.StrNoExt;
+            txtNoInt.Text = VM.Direccion.StrNoInt;
+            txtReferencia.Text = VM.Direccion.StrReferencia;
+
+            panelDireccion.Visible = true;
+            panelSucursal.Visible = false;
+            btnOkDireccion.Visible = true;
+            btnCancelarDireccion.Visible = true;
+            btnCerrarDireccion.Visible = false;
+            btnOkDireccion.Enable();
+            btnCancelarDireccion.Enable();
+
+            List<SucursalDireccion> direcciones = (List<SucursalDireccion>)ViewState["Direcciones"];
+            if (direcciones.Count > 0)
+            {
+                if (direcciones[0].ExistsInDatabase)
+                    DireccionRemoved.Add(direcciones[0]);
+                direcciones.Clear();
+            }
+            btnAgregarDireccion.Visible = true;
+            btnEditarDireccion.Visible = false;
+            btnEliminarDireccion.Visible = false;
+            dgvDirecciones.DataSource = direcciones;
+            dgvDirecciones.DataBind();
+
+
+                PnErrorDirDeSucursal.Visible = false;
+                lblErrorDirDe.Visible = false;
+                lblErrorDirDe.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorDirDeSucursal.Visible = true;
+                lblErrorDirDe.Visible = true;
+                lblErrorDirDe.Text = "Error al editar direccion: \n detalle del error... \n" + x;
+            }
+
+        }
+
+        protected void btnObtenerDireccionEmpresa_Click(object sender, EventArgs e)
+        {//derecha
+            try { 
+            EditingModeDireccion = true;
+            VM.ObtenerEmpresaDirecciones(SesionActual.uidEmpresaActual.Value);
+
+            ddDireccionesEmpresa.DataSource = VM.EmpresaDirecciones;
+            ddDireccionesEmpresa.DataValueField = "UidDireccion";
+            ddDireccionesEmpresa.DataTextField = "LongDirection";
+            ddDireccionesEmpresa.DataBind();
+            panelSeleccionDireccion.Visible = true;
+
+            if (ddDireccionesEmpresa.Items.Count > 0)
+                ddDireccionesEmpresa_SelectedIndexChanged(null, null);
+            
+                PnErrorDirDeSucursal.Visible = false;
+                lblErrorDirDe.Visible = false;
+                lblErrorDirDe.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorDirDeSucursal.Visible = true;
+                lblErrorDirDe.Visible = true;
+                lblErrorDirDe.Text = "Error al editar direccion: \n detalle del error... \n" + x;
+            }
+
+        }
 
         protected void dgvDirecciones_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
+        {//derecha
+            try { 
             VM.ObtenerDireccion(new Guid(dgvDirecciones.SelectedDataKey.Value.ToString()));
             uidDireccion.Text = VM.Direccion.UidDireccion.ToString();
             ddPais.SelectedValue = VM.Direccion.UidPais.ToString();
@@ -1899,12 +2525,26 @@ namespace CodorniX.Vista
             txtNoInt.Text = VM.Direccion.StrNoInt;
 
             ActivarCamposDireccion(true);
+
+
+                PnErrorDirDeSucursal.Visible = false;
+                lblErrorDirDe.Visible = false;
+                lblErrorDirDe.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorDirDeSucursal.Visible = true;
+                lblErrorDirDe.Visible = true;
+                lblErrorDirDe.Text = "Error al editar direccion: \n detalle del error... \n" + x;
+            }
+
         }
 
         protected void btnOkDireccion_Click(object sender, EventArgs e)
-        {
+        {//Izquierda
+            try { 
             EditingModeDireccion = false;
-            lblErrorDireccion.Visible = true;
+            lblErrorDirIz.Visible = true;
             frmGrpMunicipio.RemoveCssClass("has-error");
             frmGrpCiudad.RemoveCssClass("has-error");
             frmGrpColonia.RemoveCssClass("has-error");
@@ -1915,7 +2555,8 @@ namespace CodorniX.Vista
 
             if (string.IsNullOrWhiteSpace(txtMunicipio.Text))
             {
-                lblErrorDireccion.Text = "El campo Municipio no debe estar vacío";
+                    PnErrorDirIzSucursal.Visible = true;
+                lblErrorDirIz.Text = "El campo Municipio no debe estar vacío";
                 txtMunicipio.Focus();
                 frmGrpMunicipio.AddCssClass("has-error");
                 return;
@@ -1923,7 +2564,8 @@ namespace CodorniX.Vista
 
             if (string.IsNullOrWhiteSpace(txtCiudad.Text))
             {
-                lblErrorDireccion.Text = "El campo Ciudad no debe estar vacío";
+                    PnErrorDirIzSucursal.Visible = true;
+                    lblErrorDirIz.Text = "El campo Ciudad no debe estar vacío";
                 txtCiudad.Focus();
                 frmGrpCiudad.AddCssClass("has-error");
                 return;
@@ -1931,7 +2573,8 @@ namespace CodorniX.Vista
 
             if (string.IsNullOrWhiteSpace(txtColonia.Text))
             {
-                lblErrorDireccion.Text = "El campo Colonia no debe estar vacío";
+                    PnErrorDirIzSucursal.Visible = true;
+                    lblErrorDirIz.Text = "El campo Colonia no debe estar vacío";
                 txtColonia.Focus();
                 frmGrpColonia.AddCssClass("has-error");
                 return;
@@ -1939,7 +2582,8 @@ namespace CodorniX.Vista
 
             if (string.IsNullOrWhiteSpace(txtCalle.Text))
             {
-                lblErrorDireccion.Text = "El campo Calle no debe estar vacío";
+                    PnErrorDirIzSucursal.Visible = true;
+                    lblErrorDirIz.Text = "El campo Calle no debe estar vacío";
                 txtCalle.Focus();
                 frmGrpCalle.AddCssClass("has-error");
                 return;
@@ -1947,7 +2591,8 @@ namespace CodorniX.Vista
 
             if (string.IsNullOrWhiteSpace(txtConCalle.Text))
             {
-                lblErrorDireccion.Text = "El campo Con Calle no debe estar vacío";
+                    PnErrorDirIzSucursal.Visible = true;
+                    lblErrorDirIz.Text = "El campo Con Calle no debe estar vacío";
                 txtConCalle.Focus();
                 frmGrpConCalle.AddCssClass("has-error");
                 return;
@@ -1955,7 +2600,8 @@ namespace CodorniX.Vista
 
             if (string.IsNullOrWhiteSpace(txtYCalle.Text))
             {
-                lblErrorDireccion.Text = "El campo Y Calle no debe estar vacío";
+                    PnErrorDirIzSucursal.Visible = true;
+                    lblErrorDirIz.Text = "El campo Y Calle no debe estar vacío";
                 txtYCalle.Focus();
                 frmGrpYCalle.AddCssClass("has-error");
                 return;
@@ -1963,7 +2609,8 @@ namespace CodorniX.Vista
 
             if (string.IsNullOrWhiteSpace(txtNoExt.Text))
             {
-                lblErrorDireccion.Text = "El campo No. Exterior no debe estar vacío";
+                    PnErrorDirIzSucursal.Visible = true;
+                    lblErrorDirIz.Text = "El campo No. Exterior no debe estar vacío";
                 txtNoExt.Focus();
                 frmGrpNoExt.AddCssClass("has-error");
                 return;
@@ -2026,10 +2673,27 @@ namespace CodorniX.Vista
             panelSeleccionDireccion.Visible = false;
             panelSucursal.Visible = true;
             panelDireccion.Visible = false;
+            //panelFotos.Visible = false;
+            //panelImpresoras.Visible = false;
+            //panelPapel.Visible = false;
+            //panelServidor.Visible = false;
+
+             PnErrorDirIzSucursal.Visible = false;
+             lblErrorDirIz.Visible = false;
+             lblErrorDirIz.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorDirIzSucursal.Visible = true;
+                lblErrorDirIz.Visible = true;
+                lblErrorDirIz.Text = "Error al editar direccion: \n detalle del error... \n" + x;
+            }
+            
         }
 
         protected void btnCancelarDireccion_Click(object sender, EventArgs e)
         {
+            try { 
             EditingModeDireccion = false;
             frmGrpMunicipio.RemoveCssClass("has-error");
             frmGrpCiudad.RemoveCssClass("has-error");
@@ -2080,18 +2744,44 @@ namespace CodorniX.Vista
 
             panelSucursal.Visible = true;
             panelDireccion.Visible = false;
+
+                PnErrorDirIzSucursal.Visible = false;
+                lblErrorDirIz.Visible = false;
+                lblErrorDirIz.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorDirIzSucursal.Visible = true;
+                lblErrorDirIz.Visible = true;
+                lblErrorDirIz.Text = "Error al editar direccion: \n detalle del error... \n" + x;
+            }
+
         }
 
         protected void dgvDirecciones_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            try { 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(dgvDirecciones, "Select$" + e.Row.RowIndex);
             }
+
+                PnErrorDirDeSucursal.Visible = false;
+                lblErrorDirDe.Visible = false;
+                lblErrorDirDe.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorDirDeSucursal.Visible = true;
+                lblErrorDirDe.Visible = true;
+                lblErrorDirDe.Text = "Error al editar direccion: \n detalle del error... \n" + x;
+            }
+
         }
 
         protected void dgvDirecciones_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try { 
             List<SucursalDireccion> direcciones = (List<SucursalDireccion>)ViewState["Direcciones"];
             SucursalDireccion empresaDireccion = direcciones.Select(x => x).Where(x => x.UidDireccion.ToString() == dgvDirecciones.SelectedDataKey.Value.ToString()).First();
             uidDireccion.Text = empresaDireccion.UidDireccion.ToString();
@@ -2133,10 +2823,24 @@ namespace CodorniX.Vista
             btnCancelarDireccion.Visible = false;
             btnOkDireccion.Visible = false;
             btnCerrarDireccion.Visible = true;
+
+
+                PnErrorDirDeSucursal.Visible = false;
+                lblErrorDirDe.Visible = false;
+                lblErrorDirDe.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorDirDeSucursal.Visible = true;
+                lblErrorDirDe.Visible = true;
+                lblErrorDirDe.Text = "Error al editar direccion: \n detalle del error... \n" + x;
+            }
+
         }
 
         protected void btnAgregarDireccion_Click(object sender, EventArgs e)
         {
+            try { 
             EditingModeDireccion = true;
             btnAgregarDireccion.AddCssClass("disabled");
             btnEditarDireccion.AddCssClass("disabled");
@@ -2170,10 +2874,24 @@ namespace CodorniX.Vista
                 GridViewRow previousRow = dgvDirecciones.Rows[pos];
                 previousRow.RemoveCssClass("success");
             }
+
+
+                PnErrorDirDeSucursal.Visible = false;
+                lblErrorDirDe.Visible = false;
+                lblErrorDirDe.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorDirDeSucursal.Visible = true;
+                lblErrorDirDe.Visible = true;
+                lblErrorDirDe.Text = "Error al editar direccion: \n detalle del error... \n" + x;
+            }
+
         }
 
         protected void btnEditarDireccion_Click(object sender, EventArgs e)
         {
+            try { 
             EditingModeDireccion = true;
             btnAgregarDireccion.AddCssClass("disabled");
             btnEditarDireccion.AddCssClass("disabled");
@@ -2186,19 +2904,45 @@ namespace CodorniX.Vista
 
             panelSucursal.Visible = false;
             panelDireccion.Visible = true;
+
+                PnErrorDirDeSucursal.Visible = false;
+                lblErrorDirDe.Visible = false;
+                lblErrorDirDe.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorDirDeSucursal.Visible = true;
+                lblErrorDirDe.Visible = true;
+                lblErrorDirDe.Text = "Error al editar direccion: \n detalle del error... \n" + x;
+            }
+
         }
 
         protected void btnEliminarDireccion_Click(object sender, EventArgs e)
         {
+            try { 
             lblAceptarEliminarDireccion.Visible = true;
             lblAceptarEliminarDireccion.Text = "¿Desea eliminar la direccion seleccionada?";
             btnAceptarEliminarDireccion.Visible = true;
             btnCancelarEliminarDireccion.Visible = true;
 
+
+                PnErrorDirDeSucursal.Visible = false;
+                lblErrorDirDe.Visible = false;
+                lblErrorDirDe.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorDirDeSucursal.Visible = true;
+                lblErrorDirDe.Visible = true;
+                lblErrorDirDe.Text = "Error al editar direccion: \n detalle del error... \n" + x;
+            }
+
         }
 
         protected void btnAceptarEliminarDireccion_Click(object sender, EventArgs e)
         {
+            try { 
             ActivarCamposDireccion(false);
             Guid uid = new Guid(uidDireccion.Text);
 
@@ -2243,6 +2987,19 @@ namespace CodorniX.Vista
             }
 
             ViewState["DireccionPreviousRow"] = null;
+
+
+                PnErrorDirDeSucursal.Visible = false;
+                lblErrorDirDe.Visible = false;
+                lblErrorDirDe.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorDirDeSucursal.Visible = true;
+                lblErrorDirDe.Visible = true;
+                lblErrorDirDe.Text = "Error al editar direccion: \n detalle del error... \n" + x;
+            }
+
         }
 
         #endregion
@@ -2250,14 +3007,28 @@ namespace CodorniX.Vista
         #region Panel derecho (Telefono)
         protected void dgvTelefonos_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            try { 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(dgvTelefonos, "Select$" + e.Row.RowIndex);
             }
+
+                PnErrorTelefonoSucursal.Visible = false;
+                lblErrorTelefono.Visible = false;
+                lblErrorTelefono.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorTelefonoSucursal.Visible = true;
+                lblErrorTelefono.Visible = true;
+                lblErrorTelefono.Text = "Error al editar telefono: \n detalle del error... \n" + x;
+            }
+
         }
 
         protected void dgvTelefonos_SelectedIndexChanged1(object sender, EventArgs e)
         {
+            try { 
             List<SucursalTelefono> telefonos = (List<SucursalTelefono>)ViewState["Telefonos"];
             SucursalTelefono telefono = telefonos.Select(x => x).Where(x => x.UidTelefono.ToString() == dgvTelefonos.SelectedDataKey.Value.ToString()).First();
 
@@ -2288,10 +3059,22 @@ namespace CodorniX.Vista
             ViewState["TelefonoPreviousRow"] = dgvTelefonos.SelectedIndex;
             dgvTelefonos.SelectedRow.AddCssClass("success");
 
+                PnErrorTelefonoSucursal.Visible = false;
+                lblErrorTelefono.Visible = false;
+                lblErrorTelefono.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorTelefonoSucursal.Visible = true;
+                lblErrorTelefono.Visible = true;
+                lblErrorTelefono.Text = "Error al editar telefono: \n detalle del error... \n" + x;
+            }
+
         }
 
         protected void btnAgregarTelefono_Click(object sender, EventArgs e)
         {
+            try { 
             uidTelefono.Text = string.Empty;
             txtTelefono.Text = string.Empty;
             txtTelefono.Enabled = true;
@@ -2316,15 +3099,29 @@ namespace CodorniX.Vista
                 GridViewRow previousRow = dgvTelefonos.Rows[pos];
                 previousRow.RemoveCssClass("success");
             }
+
+                PnErrorTelefonoSucursal.Visible = false;
+                lblErrorTelefono.Visible = false;
+                lblErrorTelefono.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorTelefonoSucursal.Visible = true;
+                lblErrorTelefono.Visible = true;
+                lblErrorTelefono.Text = "Error al editar telefono: \n detalle del error... \n" + x;
+            }
+
         }
 
         protected void btnOKTelefono_Click(object sender, EventArgs e)
         {
+            try { 
             lblErrorTelefono.Visible = true;
             frmGrpTelefono.RemoveCssClass("has-error");
 
             if (string.IsNullOrWhiteSpace(txtTelefono.Text))
             {
+                PnErrorTelefonoSucursal.Visible = true;
                 lblErrorTelefono.Text = "El campo Telefono no debe estar vacío";
                 txtTelefono.Focus();
                 frmGrpTelefono.AddCssClass("has-error");
@@ -2377,10 +3174,23 @@ namespace CodorniX.Vista
 
             btnAgregarTelefono.RemoveCssClass("disabled").RemoveCssClass("hidden");
             btnAgregarTelefono.Enabled = true;
+
+                PnErrorTelefonoSucursal.Visible = false;
+                lblErrorTelefono.Visible = false;
+                lblErrorTelefono.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorTelefonoSucursal.Visible = true;
+                lblErrorTelefono.Visible = true;
+                lblErrorTelefono.Text = "Error al editar telefono: \n detalle del error... \n" + x;
+            }
+
         }
 
         protected void btnCancelarTelefono_Click(object sender, EventArgs e)
         {
+            try { 
             frmGrpTelefono.RemoveCssClass("has-error");
 
             txtTelefono.Enabled = false;
@@ -2417,10 +3227,24 @@ namespace CodorniX.Vista
                 txtTelefono.Text = telefono.StrTelefono;
                 ddTipoTelefono.SelectedValue = telefono.UidTipoTelefono.ToString();
             }
+
+
+                PnErrorTelefonoSucursal.Visible = false;
+                lblErrorTelefono.Visible = false;
+                lblErrorTelefono.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorTelefonoSucursal.Visible = true;
+                lblErrorTelefono.Visible = true;
+                lblErrorTelefono.Text = "Error al editar telefono: \n detalle del error... \n" + x;
+            }
+
         }
 
         protected void btnEditarTelefono_Click(object sender, EventArgs e)
         {
+            try { 
             txtTelefono.Enabled = true;
             txtTelefono.RemoveCssClass("disabled");
 
@@ -2441,18 +3265,44 @@ namespace CodorniX.Vista
 
             btnCancelarTelefono.Enabled = true;
             btnCancelarTelefono.RemoveCssClass("disabled").RemoveCssClass("hidden");
+
+                PnErrorTelefonoSucursal.Visible = false;
+                lblErrorTelefono.Visible = false;
+                lblErrorTelefono.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorTelefonoSucursal.Visible = true;
+                lblErrorTelefono.Visible = true;
+                lblErrorTelefono.Text = "Error al editar telefono: \n detalle del error... \n" + x;
+            }
+
         }
 
         protected void btnEliminarTelefono_Click(object sender, EventArgs e)
         {
+            try { 
             lblAceptarEliminarTelefono.Visible = true;
             lblAceptarEliminarTelefono.Text = "¿Desea Eliminar el telefono seleccionado?";
             btnAceptarEliminarTelefono.Visible = true;
             btnCancelarEliminarTelefono.Visible = true;
+
+                PnErrorTelefonoSucursal.Visible = false;
+                lblErrorTelefono.Visible = false;
+                lblErrorTelefono.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorTelefonoSucursal.Visible = true;
+                lblErrorTelefono.Visible = true;
+                lblErrorTelefono.Text = "Error al editar telefono: \n detalle del error... \n" + x;
+            }
+
         }
 
         protected void btnAceptarEliminarTelefono_Click(object sender, EventArgs e)
         {
+            try { 
             btnAgregarTelefono.Enabled = true;
             btnAgregarTelefono.RemoveCssClass("disabled");
 
@@ -2480,88 +3330,45 @@ namespace CodorniX.Vista
             btnAceptarEliminarTelefono.Visible = false;
             lblAceptarEliminarTelefono.Visible = false;
             ViewState["TelefonoPreviousRow"] = null;
+
+
+                PnErrorTelefonoSucursal.Visible = false;
+                lblErrorTelefono.Visible = false;
+                lblErrorTelefono.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorTelefonoSucursal.Visible = true;
+                lblErrorTelefono.Visible = true;
+                lblErrorTelefono.Text = "Error al editar telefono: \n detalle del error... \n" + x;
+            }
+
         }
 
         protected void btnCancelarEliminarTelefono_Click(object sender, EventArgs e)
         {
+            try { 
             btnCancelarEliminarTelefono.Visible = false;
             btnAceptarEliminarTelefono.Visible = false;
             lblAceptarEliminarTelefono.Visible = false;
+
+                PnErrorTelefonoSucursal.Visible = false;
+                lblErrorTelefono.Visible = false;
+                lblErrorTelefono.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorTelefonoSucursal.Visible = true;
+                lblErrorTelefono.Visible = true;
+                lblErrorTelefono.Text = "Error al editar telefono: \n detalle del error... \n" + x;
+            }
+
         }
 
         #endregion
 
         #region otras funciones 
-        protected void btnCancelarEliminarDireccion_Click(object sender, EventArgs e)
-        {
-            btnCancelarEliminarDireccion.Visible = false;
-            btnAceptarEliminarDireccion.Visible = false;
-            lblAceptarEliminarDireccion.Visible = false;
-        }
 
-        protected void btnCerrarDireccion_Click(object sender, EventArgs e)
-        {
-            panelDireccion.Visible = false;
-            panelSucursal.Visible = true;
-            btnCerrarDireccion.Visible = false;
-            btnOkDireccion.Visible = true;
-            btnCancelarDireccion.Visible = true;
-        }
-
-        protected void ddDireccionesEmpresa_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Guid uid = new Guid(ddDireccionesEmpresa.SelectedValue);
-            VM.ObtenerEmpresaDireccion(uid);
-
-            uidDireccion.Text = string.Empty;
-            ddPais.SelectedValue = VM.Direccion.UidPais.ToString();
-            ddEstado.SelectedValue = VM.Direccion.UidEstado.ToString();
-            txtMunicipio.Text = VM.Direccion.StrMunicipio;
-            txtCiudad.Text = VM.Direccion.StrCiudad;
-            txtColonia.Text = VM.Direccion.StrColonia;
-            txtCalle.Text = VM.Direccion.StrCalle;
-            txtConCalle.Text = VM.Direccion.StrConCalle;
-            txtYCalle.Text = VM.Direccion.StrYCalle;
-            txtNoExt.Text = VM.Direccion.StrNoExt;
-            txtNoInt.Text = VM.Direccion.StrNoInt;
-            txtReferencia.Text = VM.Direccion.StrReferencia;
-
-            panelDireccion.Visible = true;
-            panelSucursal.Visible = false;
-            btnOkDireccion.Visible = true;
-            btnCancelarDireccion.Visible = true;
-            btnCerrarDireccion.Visible = false;
-            btnOkDireccion.Enable();
-            btnCancelarDireccion.Enable();
-
-            List<SucursalDireccion> direcciones = (List<SucursalDireccion>)ViewState["Direcciones"];
-            if (direcciones.Count > 0)
-            {
-                if (direcciones[0].ExistsInDatabase)
-                    DireccionRemoved.Add(direcciones[0]);
-                direcciones.Clear();
-            }
-            btnAgregarDireccion.Visible = true;
-            btnEditarDireccion.Visible = false;
-            btnEliminarDireccion.Visible = false;
-            dgvDirecciones.DataSource = direcciones;
-            dgvDirecciones.DataBind();
-        }
-
-        protected void btnObtenerDireccionEmpresa_Click(object sender, EventArgs e)
-        {
-            EditingModeDireccion = true;
-            VM.ObtenerEmpresaDirecciones(SesionActual.uidEmpresaActual.Value);
-
-            ddDireccionesEmpresa.DataSource = VM.EmpresaDirecciones;
-            ddDireccionesEmpresa.DataValueField = "UidDireccion";
-            ddDireccionesEmpresa.DataTextField = "LongDirection";
-            ddDireccionesEmpresa.DataBind();
-            panelSeleccionDireccion.Visible = true;
-
-            if (ddDireccionesEmpresa.Items.Count > 0)
-                ddDireccionesEmpresa_SelectedIndexChanged(null, null);
-        }
 
         protected void imagen(object sender, EventArgs e)
         {
@@ -2603,15 +3410,29 @@ namespace CodorniX.Vista
         //Listo esta funcion ya esta 12-10-17
         protected void dgvImpresoras_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            try { 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(dgvImpresoras, "Select$" + e.Row.RowIndex);
             }
+
+                PnErrorImpresoraSucursal.Visible = false;
+                lblErrorImpresora.Visible = false;
+                lblErrorImpresora.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorImpresoraSucursal.Visible = true;
+                lblErrorImpresora.Visible = true;
+                lblErrorImpresora.Text = "Error al editar impresora: \n detalle del error... \n" + x;
+            }
+
         }
 
         //Listo esta funcion ya esta 12-10-17
         protected void btnAgregarImpresora_Click(object sender, EventArgs e)
         {
+            try { 
             uidImpresora.Text = string.Empty;
             txtDescripcionImpresora.Text = string.Empty;
             txtDescripcionImpresora.Enabled = true;
@@ -2645,11 +3466,24 @@ namespace CodorniX.Vista
                 GridViewRow previousRow = dgvImpresoras.Rows[pos];
                 previousRow.RemoveCssClass("success");
             }
+
+                PnErrorImpresoraSucursal.Visible = false;
+                lblErrorImpresora.Visible = false;
+                lblErrorImpresora.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorImpresoraSucursal.Visible = true;
+                lblErrorImpresora.Visible = true;
+                lblErrorImpresora.Text = "Error al editar impresora: \n detalle del error... \n" + x;
+            }
+
         }
 
         //Listo esta funcion ya esta 12-10-17
         protected void btnEditarImpresora_Click(object sender, EventArgs e)
         {
+            try { 
             HabilitarFormularioImpresoras();
 
             btnAgregarImpresora.Enabled = false;
@@ -2666,21 +3500,47 @@ namespace CodorniX.Vista
 
             btnCancelarImpresora.Enabled = true;
             btnCancelarImpresora.RemoveCssClass("disabled").RemoveCssClass("hidden");
+
+                PnErrorImpresoraSucursal.Visible = false;
+                lblErrorImpresora.Visible = false;
+                lblErrorImpresora.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorImpresoraSucursal.Visible = true;
+                lblErrorImpresora.Visible = true;
+                lblErrorImpresora.Text = "Error al editar impresora: \n detalle del error... \n" + x;
+            }
+
         }
 
         //Listo esta funcion ya esta 12-10-17
         protected void btnEliminarImpresora_Click(object sender, EventArgs e)
         {
+            try { 
             lblAceptarEliminarImpresora.Visible = true;
             lblAceptarEliminarImpresora.Text = "¿Desea Eliminar el telefono seleccionado?";
             btnAceptarEliminarImpresora.Visible = true;
             btnCancelarEliminarImpresora.Visible = true;
+
+                PnErrorImpresoraSucursal.Visible = false;
+                lblErrorImpresora.Visible = false;
+                lblErrorImpresora.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorImpresoraSucursal.Visible = true;
+                lblErrorImpresora.Visible = true;
+                lblErrorImpresora.Text = "Error al editar impresora: \n detalle del error... \n" + x;
+            }
+
         }
 
         //Listo esta funcion ya esta 12-10-17
         protected void btnOkImpresora_Click(object sender, EventArgs e)
         {
-            lblErrorImpresora.Visible = true;
+            try { 
+            //lblErrorImpresora.Visible = true;
           //  frmGrpDescripcionImpresora.RemoveCssClass("has-error");
             //frmGrpMarca.RemoveCssClass("has-error");
             //frmGrpModelo.RemoveCssClass("has-error");
@@ -2762,11 +3622,23 @@ namespace CodorniX.Vista
             btnAgregarImpresora.Enabled = true;
 
 
+                PnErrorImpresoraSucursal.Visible = false;
+                lblErrorImpresora.Visible = false;
+                lblErrorImpresora.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorImpresoraSucursal.Visible = true;
+                lblErrorImpresora.Visible = true;
+                lblErrorImpresora.Text = "Error al editar impresora: \n detalle del error... \n" + x;
+            }
+
         }
 
         //Listo esta funcion ya esta 12-10-17
         protected void btnCancelarImpresora_Click(object sender, EventArgs e)
         {
+            try { 
            // frmGrpDescripcionImpresora.RemoveCssClass("has-error");
             //frmGrpMarca.RemoveCssClass("has-error");
             //frmGrpModelo.RemoveCssClass("has-error");
@@ -2808,11 +3680,24 @@ namespace CodorniX.Vista
                 ddTipoImpresora.SelectedValue = impresora.UidTipoImpresora.ToString();
                 ddActivo.SelectedValue = impresora.UidStatus.ToString();
             }
+
+                PnErrorImpresoraSucursal.Visible = false;
+                lblErrorImpresora.Visible = false;
+                lblErrorImpresora.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorImpresoraSucursal.Visible = true;
+                lblErrorImpresora.Visible = true;
+                lblErrorImpresora.Text = "Error al editar impresora: \n detalle del error... \n" + x;
+            }
+
         }
 
         //Listo esta funcion ya esta 12-10-17
         protected void btnAceptarEliminarImpresora_Click(object sender, EventArgs e)
         {
+            try { 
             btnAgregarImpresora.Enabled = true;
             btnAgregarImpresora.RemoveCssClass("disabled");
 
@@ -2842,19 +3727,46 @@ namespace CodorniX.Vista
             btnAceptarEliminarImpresora.Visible = false;
             lblAceptarEliminarImpresora.Visible = false;
             ViewState["ImpresoraPreviousRow"] = null;
+
+                PnErrorImpresoraSucursal.Visible = false;
+                lblErrorImpresora.Visible = false;
+                lblErrorImpresora.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorImpresoraSucursal.Visible = true;
+                lblErrorImpresora.Visible = true;
+                lblErrorImpresora.Text = "Error al editar impresora: \n detalle del error... \n" + x;
+            }
+
         }
 
         //Listo esta funcion ya esta 12-10-17
         protected void btnCancelarEliminarImpresora_Click(object sender, EventArgs e)
-        {  //esta funcion parece ser llamada por otras
+        {
+            try {  
+            //esta funcion parece ser llamada por otras
             btnCancelarEliminarImpresora.Visible = false;
             btnAceptarEliminarImpresora.Visible = false;
             lblAceptarEliminarImpresora.Visible = false;
+
+                PnErrorImpresoraSucursal.Visible = false;
+                lblErrorImpresora.Visible = false;
+                lblErrorImpresora.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorImpresoraSucursal.Visible = true;
+                lblErrorImpresora.Visible = true;
+                lblErrorImpresora.Text = "Error al editar impresora: \n detalle del error... \n" + x;
+            }
+
         }
 
         //Listo esta funcion ya esta 12-10-17
         protected void dgvImpresoras_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try { 
             List<SucursalImpresora> impresoras = (List<SucursalImpresora>)ViewState["Impresoras"];
             SucursalImpresora impresora = impresoras.Select(x => x).Where(x => x.UidImpresora.ToString() == dgvImpresoras.SelectedDataKey.Value.ToString()).First();
 
@@ -2887,6 +3799,17 @@ namespace CodorniX.Vista
 
             ViewState["ImpresoraPreviousRow"] = dgvImpresoras.SelectedIndex;
             dgvImpresoras.SelectedRow.AddCssClass("success");
+
+                PnErrorImpresoraSucursal.Visible = false;
+                lblErrorImpresora.Visible = false;
+                lblErrorImpresora.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorImpresoraSucursal.Visible = true;
+                lblErrorImpresora.Visible = true;
+                lblErrorImpresora.Text = "Error al editar impresora: \n detalle del error... \n" + x;
+            }
 
         }
 
@@ -2965,8 +3888,223 @@ namespace CodorniX.Vista
         #endregion Panel derecho (Impresoras)
 
         #region Panel derecho (Fotografias)
+        public bool ValidarCamposFoto()
+        {
+            bool FotoBIen = true;
+
+            #region vacios
+
+            if (string.IsNullOrWhiteSpace(txtDescripcionFoto.Text))
+            {
+                txtDescripcionFoto.Focus();
+                txtDescripcionFoto.BorderColor = Color.FromName("#f00800");
+                FotoBIen = false;
+            }
+            if (string.IsNullOrWhiteSpace(txtPrecioFoto.Text))
+            {
+                txtPrecioFoto.Focus();
+                txtPrecioFoto.BorderColor = Color.FromName("#f00800");
+                FotoBIen = false;
+            }
+            if (string.IsNullOrWhiteSpace(txtPrecioFotoTicket.Text))
+            {
+                txtPrecioFotoTicket.Focus();
+                txtPrecioFotoTicket.BorderColor = Color.FromName("#f00800");
+                FotoBIen = false;
+            }
+            if (string.IsNullOrWhiteSpace(txtPrecioFotoServidor.Text))
+            {
+                txtPrecioFotoServidor.Focus();
+                txtPrecioFotoServidor.BorderColor = Color.FromName("#f00800");
+                FotoBIen = false;
+            }
+            if (string.IsNullOrWhiteSpace(txtAltoFoto.Text))
+            {
+                txtAltoFoto.Focus();
+                txtAltoFoto.BorderColor = Color.FromName("#f00800");
+                FotoBIen = false;
+            }
+            if (string.IsNullOrWhiteSpace(txtAnchoFoto.Text))
+            {
+                txtAnchoFoto.Focus();
+                txtAnchoFoto.BorderColor = Color.FromName("#f00800");
+                FotoBIen = false;
+            }
+            if (string.IsNullOrWhiteSpace(txtAltoFotoDesc.Text))
+            {
+                txtAltoFotoDesc.Focus();
+                txtAltoFotoDesc.BorderColor = Color.FromName("#f00800");
+                FotoBIen = false;
+            }
+            if (string.IsNullOrWhiteSpace(txtAnchoFotoDesc.Text))
+            {
+                txtAnchoFotoDesc.Focus();
+                txtAnchoFotoDesc.BorderColor = Color.FromName("#f00800");
+                FotoBIen = false;
+            }
+
+            if (FotoBIen == false)
+            {
+                _tabFoto();
+                lblErrorFoto.Text = "Ningun campo debe estar vacio";//va despues que tab papel
+                lblErrorFoto.Visible = true;
+                PnErrorFotoSucursal.Visible = true;
+                return FotoBIen;
+            }
+
+            #endregion vacios
+            lblErrorFoto.Text = "";//va despues que tab papel
+            lblErrorFoto.Visible = false;
+            PnErrorFotoSucursal.Visible = false;
+            #region Es numero
+
+            //char[] charsRead = new char[txtAltoPapel.Text.Length];
+            foreach (char c in txtPrecioFoto.Text)
+            {
+                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+                {
+                    if (c.ToString() != ".")
+                    {
+                        txtPrecioFoto.Focus();
+                        txtPrecioFoto.BorderColor = Color.FromName("#f00800");
+                        ToolPrecioFoto.HRef = "Solo debe contener 1 numero";
+                        ToolPrecioFoto.Visible = true;
+                        FotoBIen = false;
+                    }
+                }
+            }
+            foreach (char c in txtPrecioFotoTicket.Text)
+            {
+                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+                {
+                    if (c.ToString() != ".")
+                    {
+                        txtPrecioFotoTicket.Focus();
+                        txtPrecioFotoTicket.BorderColor = Color.FromName("#f00800");
+                        ToolPrecioTicket.HRef = "Solo debe contener 1 numero";
+                        ToolPrecioTicket.Visible = true;
+                        FotoBIen = false;
+                    }
+                }
+            }
+            foreach (char c in txtPrecioFotoServidor.Text)
+            {
+                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+                {
+                    if (c.ToString() != ".")
+                    {
+                        txtPrecioFotoServidor.Focus();
+                        txtPrecioFotoServidor.BorderColor = Color.FromName("#f00800");
+                        ToolPrecioServidor.HRef = "Solo debe contener 1 numero";
+                        ToolPrecioServidor.Visible = true;
+                        FotoBIen = false;
+                    }
+                }
+            }
+            foreach (char c in txtAltoFoto.Text)
+            {
+                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+                {
+                    if (c.ToString() != ".")
+                    {
+                        txtAltoFoto.Focus();
+                        txtAltoFoto.BorderColor = Color.FromName("#f00800");
+                        ToolAltoFoto.HRef = "Solo debe contener 1 numero";
+                        ToolAltoFoto.Visible = true;
+                        FotoBIen = false;
+                    }
+                }
+            }
+            foreach (char c in txtAnchoFoto.Text)
+            {
+                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+                {
+                    if (c.ToString() != ".")
+                    {
+                        txtAnchoFoto.Focus();
+                        txtAnchoFoto.BorderColor = Color.FromName("#f00800");
+                        ToolAnchoFoto.HRef = "Solo debe contener 1 numero";
+                        ToolAnchoFoto.Visible = true;
+                        FotoBIen = false;
+                    }
+                }
+            }
+            foreach (char c in txtAltoFotoDesc.Text)
+            {
+                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+                {
+                    if (c.ToString() != ".")
+                    {
+                        txtAltoFotoDesc.Focus();
+                        txtAltoFotoDesc.BorderColor = Color.FromName("#f00800");
+                        ToolAltoFotoDesc.HRef = "Solo debe contener 1 numero";
+                        ToolAltoFotoDesc.Visible = true;
+                        FotoBIen = false;
+                    }
+                }
+            }
+            foreach (char c in txtAnchoFotoDesc.Text)
+            {
+                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+                {
+                    if (c.ToString() != ".")
+                    {
+                        txtAnchoFotoDesc.Focus();
+                        txtAnchoFotoDesc.BorderColor = Color.FromName("#f00800");
+                        ToolAnchoFotoDesc.HRef = "Solo debe contener 1 numero";
+                        ToolAnchoFotoDesc.Visible = true;
+                        FotoBIen = false;
+                    }
+                }
+            }
+            if (FotoBIen == false)
+            {
+                _tabFoto();
+                lblErrorFoto.Text = "Todos los campos en formato correcto";
+                lblErrorFoto.Visible = true;
+                PnErrorFotoSucursal.Visible = true;
+                return FotoBIen;
+            }
+            #endregion Es numero
+            lblErrorFoto.Text = "";//va despues que tab papel
+            lblErrorFoto.Visible = false;
+            PnErrorFotoSucursal.Visible = false;
+            #region prototipo
+            //#region digitos
+            //if (txtAltoPapel.Text.Length < 3)
+            //{
+            //    txtAltoPapel.Focus();
+            //    txtAltoPapel.BorderColor = Color.FromName("#f00800");
+            //    ToolAltoPapel.HRef = "Minimo debe ser 1 numero de 3 digitos";
+            //    ToolAltoPapel.Visible = true;
+            //    PapelBIen = false;
+            //}
+            //if (txtAnchoPapel.Text.Length < 3)
+            //{
+            //    txtAnchoPapel.Focus();
+            //    txtAnchoPapel.BorderColor = Color.FromName("#f00800");
+            //    ToolAnchoPapel.HRef = "Minimo debe ser 1 numero de 3 digitos";
+            //    ToolAnchoPapel.Visible = true;
+            //    PapelBIen = false;
+            //}
+            //if (PapelBIen == false)
+            //{
+            //    _tabPapel();
+            //    lblErrorPapel.Text = "Alto y Ancho deben tener al menos 3 digitos";//va despues que tab papel
+            //    lblErrorPapel.Visible = true;
+            //    PnErrorPapelSucursal.Visible = true;
+            //    return PapelBIen;
+            //}
+            //#endregion digitos
+            //lblErrorFoto.Text = "";//va despues que tab papel
+            //lblErrorFoto.Visible = false;
+            //PnErrorFotoSucursal.Visible = false;
+            #endregion prototipo
+            return FotoBIen;
+        }
         protected void btnAgregarFoto_Click(object sender, EventArgs e)
         {
+            try { 
             //ActivarValidacionFotografias();
             uidFoto.Text = string.Empty;
 
@@ -2989,9 +4127,23 @@ namespace CodorniX.Vista
                 GridViewRow previousRow = dgvFotos.Rows[pos];
                 previousRow.RemoveCssClass("success");
             }
+
+
+                PnErrorFotoSucursal.Visible = false;
+                lblErrorFoto.Visible = false;
+                lblErrorFoto.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoSucursal.Visible = true;
+                lblErrorFoto.Visible = true;
+                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+            }
+
         }
         protected void btnEditarFoto_Click(object sender, EventArgs e)
         {
+            try { 
             HabilitarFormularioFotografias();
 
             btnAgregarFoto.Enabled = false;
@@ -3009,6 +4161,19 @@ namespace CodorniX.Vista
             btnCancelarFoto.Enabled = true;
             btnCancelarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#VConfimacionEditarFoto", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#VConfimacionEditarFoto').hide();", true);
+
+
+                PnErrorFotoSucursal.Visible = false;
+                lblErrorFoto.Visible = false;
+                lblErrorFoto.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoSucursal.Visible = true;
+                lblErrorFoto.Visible = true;
+                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+            }
+
         }
         protected void btnEliminarFoto_Click(object sender, EventArgs e)
         {
@@ -3019,57 +4184,94 @@ namespace CodorniX.Vista
         }
         protected void btnOKFoto_Click(object sender, EventArgs e)
         {
-            lblErrorFoto.Visible = true;
-            List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
-            SucursalFoto foto = null;
-            int pos = -1;
-            if (!string.IsNullOrWhiteSpace(uidFoto.Text))
-            {
-                IEnumerable<SucursalFoto> dir = from i in fotos where i.UidFoto.ToString() == uidFoto.Text select i;
-                foto = dir.First();
-                pos = fotos.IndexOf(foto);
-                fotos.Remove(foto);
-            }
-            else
-            {
-                foto = new SucursalFoto();
-                foto.UidFoto = Guid.NewGuid();
-            }
-            //a partir de aqui agrega los datos al objeto
-            foto.UidImpresora = new Guid(ddImpresoraFoto.SelectedValue);
-            foto.StrDescripcion = txtDescripcionFoto.Text;
-            foto.StrPrecio = txtPrecioFoto.Text;
-            foto.VchAlto = txtAltoFoto.Text;
-            foto.VchAncho = txtAnchoFoto.Text;
-            foto.UidStatus = new Guid(ddActivoFoto.SelectedValue);
-            foto.StrStatus = ddActivoFoto.SelectedItem.Text;
-            foto.BooRotarEnPapel =false;
-            foto.VchColumna = "";
-            foto.VchFila = "";
-            foto.UidMedida = new Guid(ddMedidaFoto.SelectedValue);
-            foto.VchMedida = ddMedidaFoto.SelectedItem.Text;
-            if (pos < 0)
-                fotos.Add(foto);
-            else
-                fotos.Insert(pos, foto);
+            try {
+
+                if (ValidarCamposFoto() == false)
+                {
+                    return;
+                }
+                ToolPrecioFoto.HRef = "";
+                ToolPrecioFoto.Visible = false;
+                ToolPrecioTicket.HRef = "";
+                ToolPrecioTicket.Visible = false;
+                ToolPrecioServidor.HRef = "";
+                ToolPrecioServidor.Visible = false;
+                ToolAltoFoto.HRef = "";
+                ToolAltoFoto.Visible = false;
+                ToolAnchoFoto.HRef = "";
+                ToolAnchoFoto.Visible = false;
+                ToolAltoFotoDesc.HRef = "";
+                ToolAltoFotoDesc.Visible = false;
+                ToolAnchoFotoDesc.HRef = "";
+                ToolAnchoFotoDesc.Visible = false;
+                List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
+                SucursalFoto foto = null;
+                int pos = -1;
+                if (!string.IsNullOrWhiteSpace(uidFoto.Text))
+                {
+                    IEnumerable<SucursalFoto> dir = from i in fotos where i.UidFoto.ToString() == uidFoto.Text select i;
+                    foto = dir.First();
+                    pos = fotos.IndexOf(foto);
+                    fotos.Remove(foto);
+                }
+                else
+                {
+                    foto = new SucursalFoto();
+                    foto.UidFoto = Guid.NewGuid();
+                }
+                //a partir de aqui agrega los datos al objeto
+                foto.UidImpresora = new Guid(ddImpresoraFoto.SelectedValue);
+                foto.StrDescripcion = txtDescripcionFoto.Text;
+                foto.StrPrecio = txtPrecioFoto.Text;
+                foto.StrPrecioTicket = txtPrecioFotoTicket.Text;
+                foto.StrPrecioServidor = txtPrecioFotoServidor.Text;
+                foto.VchAlto = txtAltoFoto.Text;
+                foto.VchAncho = txtAnchoFoto.Text;
+                foto.VchAltoDesc = txtAltoFotoDesc.Text;
+                foto.VchAnchoDesc = txtAnchoFotoDesc.Text;
+                foto.UidStatus = new Guid(ddActivoFoto.SelectedValue);
+                foto.StrStatus = ddActivoFoto.SelectedItem.Text;
+                foto.BooRotarEnPapel =false;
+                foto.VchColumna = "";
+                foto.VchFila = "";
+                foto.UidMedida = new Guid(ddMedidaFoto.SelectedValue);
+                foto.VchMedida = ddMedidaFoto.SelectedItem.Text;
+                if (pos < 0)
+                    fotos.Add(foto);
+                else
+                    fotos.Insert(pos, foto);
 
            
-            ViewState["Fotos"] = fotos;
-            DatabindFotografias();
-            DataBindFotografiasPapel();
-            LimpiarFormularioFotografias();
-            DesHabilitarFormularioFotografias();
-            btnOKFoto.AddCssClass("hidden").AddCssClass("disabled");
-            btnOKFoto.Enabled = false;
-            btnCancelarFoto.AddCssClass("hidden").AddCssClass("disabled");
-            btnCancelarFoto.Enabled = false;
-            btnEditarFoto.AddCssClass("disabled").AddCssClass("hidden");
-            btnEditarFoto.Enabled = false;
-            btnAgregarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
-            btnAgregarFoto.Enabled = true;
+                ViewState["Fotos"] = fotos;
+                DatabindFotografias();
+                DataBindFotografiasPapel();
+                LimpiarFormularioFotografias();
+                DesHabilitarFormularioFotografias();
+                btnOKFoto.AddCssClass("hidden").AddCssClass("disabled");
+                btnOKFoto.Enabled = false;
+                btnCancelarFoto.AddCssClass("hidden").AddCssClass("disabled");
+                btnCancelarFoto.Enabled = false;
+                btnEditarFoto.AddCssClass("disabled").AddCssClass("hidden");
+                btnEditarFoto.Enabled = false;
+                btnAgregarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
+                btnAgregarFoto.Enabled = true;
+
+
+                PnErrorFotoSucursal.Visible = false;
+                lblErrorFoto.Visible = false;
+                lblErrorFoto.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoSucursal.Visible = true;
+                lblErrorFoto.Visible = true;
+                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+            }
+
         }
         protected void btnCancelarFoto_Click(object sender, EventArgs e)
         {
+            try { 
             //frmGrpDescripcionFoto.RemoveCssClass("has-error");
             //frmGrpPrecioFoto.RemoveCssClass("has-error");
             //frmGrpAltoFoto.RemoveCssClass("has-error");
@@ -3103,8 +4305,12 @@ namespace CodorniX.Vista
 
                 txtDescripcionFoto.Text = foto.StrDescripcion;
                 txtPrecioFoto.Text = foto.StrPrecio;
+                txtPrecioFotoTicket.Text = foto.StrPrecioTicket;
+                txtPrecioFotoServidor.Text = foto.StrPrecioServidor;
                 txtAltoFoto.Text = foto.VchAlto.ToString();
-                txtModelo.Text = foto.VchAncho.ToString();
+                txtAnchoFoto.Text = foto.VchAncho.ToString();
+                txtAltoFotoDesc.Text = foto.VchAltoDesc.ToString();
+                txtAnchoFotoDesc.Text = foto.VchAnchoDesc.ToString();
                 txtFxColumna.Text = foto.VchColumna;
                 txtFxFila.Text = foto.VchFila;
                 CbRotarImagenPapel.Checked = foto.BooRotarEnPapel;
@@ -3112,9 +4318,24 @@ namespace CodorniX.Vista
                 ddActivoFoto.SelectedValue = foto.UidStatus.ToString();
                 ddMedidaFoto.SelectedValue = foto.UidMedida.ToString();
             }
+
+
+                PnErrorFotoSucursal.Visible = false;
+                lblErrorFoto.Visible = false;
+                lblErrorFoto.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoSucursal.Visible = true;
+                lblErrorFoto.Visible = true;
+                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+            }
+
         }
         protected void btnAceptarEliminarFoto_Click(object sender, EventArgs e)
         {
+            try { 
+
             btnAgregarFoto.Enabled = true;
             btnAgregarFoto.RemoveCssClass("disabled");
 
@@ -3154,23 +4375,67 @@ namespace CodorniX.Vista
             btnAceptarEliminarFoto.Visible = false;
             lblAceptarEliminarFoto.Visible = false;
             ViewState["FotoPreviousRow"] = null;
+
+
+            PnErrorFotoSucursal.Visible = false;
+            lblErrorFoto.Visible = false;
+            lblErrorFoto.Text = "";
         }
+            catch (Exception x)
+            {
+                PnErrorFotoSucursal.Visible = true;
+                lblErrorFoto.Visible = true;
+                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+            }
+
+}
         protected void btnCancelarEliminarFoto_Click(object sender, EventArgs e)
         {
+            try { 
             //esta funcion parece ser llamada por otras
             btnCancelarEliminarFoto.Visible = false;
             btnAceptarEliminarFoto.Visible = false;
             lblAceptarEliminarFoto.Visible = false;
+
+
+                PnErrorFotoSucursal.Visible = false;
+                lblErrorFoto.Visible = false;
+                lblErrorFoto.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoSucursal.Visible = true;
+                lblErrorFoto.Visible = true;
+                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+            }
+
         }
         protected void dgvFotos_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            try { 
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(dgvFotos, "Select$" + e.Row.RowIndex);
             }
+
+
+                PnErrorFotoSucursal.Visible = false;
+                lblErrorFoto.Visible = false;
+                lblErrorFoto.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoSucursal.Visible = true;
+                lblErrorFoto.Visible = true;
+                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+            }
+
         }
         protected void dgvFotos_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try { 
+
             List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
             SucursalFoto foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == dgvFotos.SelectedDataKey.Value.ToString()).First();
 
@@ -3178,8 +4443,12 @@ namespace CodorniX.Vista
             ddImpresoraFoto.SelectedValue = foto.UidImpresora.ToString();
             txtDescripcionFoto.Text = foto.StrDescripcion;
             txtPrecioFoto.Text = foto.StrPrecio;
+            txtPrecioFotoTicket.Text = foto.StrPrecioTicket;
+            txtPrecioFotoServidor.Text = foto.StrPrecioServidor;
             txtAltoFoto.Text = foto.VchAlto.ToString();
             txtAnchoFoto.Text = foto.VchAncho.ToString();
+            txtAltoFotoDesc.Text = foto.VchAltoDesc.ToString();
+            txtAnchoFotoDesc.Text = foto.VchAnchoDesc.ToString();
             ddActivoFoto.SelectedValue = foto.UidStatus.ToString();//no se si se necesite seccionar tambien la uid
             ddMedidaFoto.SelectedValue = foto.UidMedida.ToString();
             
@@ -3206,6 +4475,18 @@ namespace CodorniX.Vista
 
             ViewState["FotoPreviousRow"] = dgvFotos.SelectedIndex;
             dgvFotos.SelectedRow.AddCssClass("success");
+
+
+                PnErrorFotoSucursal.Visible = false;
+                lblErrorFoto.Visible = false;
+                lblErrorFoto.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoSucursal.Visible = true;
+                lblErrorFoto.Visible = true;
+                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+            }
         }
         void LimpiarFormularioFotografias()
         {
@@ -3213,8 +4494,12 @@ namespace CodorniX.Vista
             uidFoto.Text = string.Empty;
             txtDescripcionFoto.Text = string.Empty;
             txtPrecioFoto.Text = string.Empty;
+            txtPrecioFotoTicket.Text = string.Empty;
+            txtPrecioFotoServidor.Text = string.Empty;
             txtAltoFoto.Text = string.Empty;
             txtAnchoFoto.Text = string.Empty;
+            txtAltoFotoDesc.Text = string.Empty;
+            txtAnchoFotoDesc.Text = string.Empty;
             ddActivoFoto.SelectedIndex = 0;
             ddMedidaFoto.SelectedIndex = 0;
         }
@@ -3233,11 +4518,23 @@ namespace CodorniX.Vista
             txtPrecioFoto.Enabled = false;
             txtPrecioFoto.AddCssClass("disabled");
 
+            txtPrecioFotoTicket.Enabled = false;
+            txtPrecioFotoTicket.AddCssClass("disabled");
+
+            txtPrecioFotoServidor.Enabled = false;
+            txtPrecioFotoServidor.AddCssClass("disabled");
+
             txtAltoFoto.Enabled = false;
             txtAltoFoto.AddCssClass("disabled");
 
             txtAnchoFoto.Enabled = false;
             txtAnchoFoto.AddCssClass("disabled");
+
+            txtAltoFotoDesc.Enabled = false;
+            txtAltoFotoDesc.AddCssClass("disabled");
+
+            txtAnchoFotoDesc.Enabled = false;
+            txtAnchoFotoDesc.AddCssClass("disabled");
 
             ddActivoFoto.SelectedIndex = 0;
             ddActivoFoto.AddCssClass("disabled");
@@ -3261,11 +4558,23 @@ namespace CodorniX.Vista
             txtPrecioFoto.Enabled = true;
             txtPrecioFoto.RemoveCssClass("disabled");
 
+            txtPrecioFotoTicket.Enabled = true;
+            txtPrecioFotoTicket.RemoveCssClass("disabled");
+
+            txtPrecioFotoServidor.Enabled = true;
+            txtPrecioFotoServidor.RemoveCssClass("disabled");
+
             txtAltoFoto.Enabled = true;
             txtAltoFoto.RemoveCssClass("disabled");
 
             txtAnchoFoto.Enabled = true;
             txtAnchoFoto.RemoveCssClass("disabled");
+
+            txtAltoFotoDesc.Enabled = true;
+            txtAltoFotoDesc.RemoveCssClass("disabled");
+
+            txtAnchoFotoDesc.Enabled = true;
+            txtAnchoFotoDesc.RemoveCssClass("disabled");
 
             ddActivoFoto.SelectedIndex = 0;
             ddActivoFoto.RemoveCssClass("disabled");
@@ -3310,16 +4619,21 @@ namespace CodorniX.Vista
                 //LimpiarFormularioFotografias();
                 //DesHabilitarFormularioFotografias();
 
-                lblErrorLicencia.Visible = false;
-                lblErrorLicencia.Text = "";
+               
                 //NOta: no necesita databindLicencias porque btnGenerarLicencia_Click es para generar unicamente licencias nuevas
                 //y databindLicencias es para recuperar la lista de objetos ya configurada
+
+                PnErrorLicenciaSucursal.Visible = false;
+                lblErrorLicencia.Visible = false;
+                lblErrorLicencia.Text = "";
             }
             catch (Exception x)
             {
+                PnErrorLicenciaSucursal.Visible = true;
                 lblErrorLicencia.Visible = true;
-                lblErrorLicencia.Text = x.ToString();
+                lblErrorLicencia.Text = "Error al editar licencias: \n detalle del error...\n" + x;
             }
+
         }
         protected void btnAgregarLicencia_Click(object sender, EventArgs e)
         {
@@ -3338,19 +4652,25 @@ namespace CodorniX.Vista
                 //LimpiarFormularioFotografias();
                 //DesHabilitarFormularioFotografias();
 
-                lblErrorLicencia.Visible = false;
-                lblErrorLicencia.Text = "";
+
                 //NOta: no necesita databindLicencias porque btnGenerarLicencia_Click es para generar unicamente licencias nuevas
                 //y databindLicencias es para recuperar la lista de objetos ya configurada
+
+                PnErrorLicenciaSucursal.Visible = false;
+                lblErrorLicencia.Visible = false;
+                lblErrorLicencia.Text = "";
             }
             catch (Exception x)
             {
+                PnErrorLicenciaSucursal.Visible = true;
                 lblErrorLicencia.Visible = true;
-                lblErrorLicencia.Text = x.ToString();
+                lblErrorLicencia.Text = "Error al editar licencias: \n detalle del error...\n" + x;
             }
+
         }
         protected void dvgLicencias_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            try { 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 SucursalLicencia Licencia = (SucursalLicencia)e.Row.DataItem;
@@ -3417,6 +4737,18 @@ namespace CodorniX.Vista
                         break;
                 }
             }
+
+                PnErrorLicenciaSucursal.Visible = false;
+                lblErrorLicencia.Visible = false;
+                lblErrorLicencia.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorLicenciaSucursal.Visible = true;
+                lblErrorLicencia.Visible = true;
+                lblErrorLicencia.Text = "Error al editar licencias: \n detalle del error...\n" + x;
+            }
+
         }
         protected void dgvLicencias_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -3487,12 +4819,18 @@ namespace CodorniX.Vista
                     }
                 }
 
+
+                PnErrorLicenciaSucursal.Visible = false;
+                lblErrorLicencia.Visible = false;
+                lblErrorLicencia.Text = "";
             }
-            catch (Exception ex)
+            catch (Exception x)
             {
+                PnErrorLicenciaSucursal.Visible = true;
                 lblErrorLicencia.Visible = true;
-                lblErrorLicencia.Text = ex.ToString();
+                lblErrorLicencia.Text = "Error al editar licencias: \n detalle del error...\n" + x;
             }
+
         }
         void DatabindLicencias()
         {
@@ -3551,11 +4889,25 @@ namespace CodorniX.Vista
         //}
         protected void dgvLicencias_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            try { 
             dgvLicencias.PageIndex = e.NewPageIndex;
             DatabindLicencias();
+
+                PnErrorLicenciaSucursal.Visible = false;
+                lblErrorLicencia.Visible = false;
+                lblErrorLicencia.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorLicenciaSucursal.Visible = true;
+                lblErrorLicencia.Visible = true;
+                lblErrorLicencia.Text = "Error al editar licencias: \n detalle del error...\n" + x;
+            }
+
         }
         protected void dgvLicencias_Sorting(object sender, GridViewSortEventArgs e)
         {
+            try { 
             //VM.Licencias= (List<SucursalLicencia>)Session["Licencias"];
             //DatabindLicencias();
             // txtCantMaqLicencia.Text = "EnuOrden: " + VM.EnuOrden.ToString() + " StrOrdenaPor: " + VM.StrOrdenaPor.ToString();
@@ -3563,6 +4915,18 @@ namespace CodorniX.Vista
             // txtCantMaqLicencia.Text = "EnuOrden: " + VM.EnuOrden.ToString() + " StrOrdenaPor: " + VM.StrOrdenaPor.ToString();
             DatabindLicencias();
             Session["Licencias"] = VM.Licencias;
+
+                PnErrorLicenciaSucursal.Visible = false;
+                lblErrorLicencia.Visible = false;
+                lblErrorLicencia.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorLicenciaSucursal.Visible = true;
+                lblErrorLicencia.Visible = true;
+                lblErrorLicencia.Text = "Error al editar licencias: \n detalle del error...\n" + x;
+            }
+
         }
 
         private static string _Val;
@@ -3674,14 +5038,14 @@ namespace CodorniX.Vista
             ToolMSuperior.Visible = false;
             ToolMInferior.Visible = false;
             ToolMDerecho.Visible = false;
-            ToolMInferior.Visible = false;
+            ToolMIzquierdo.Visible = false;
 
             ToolAltoPapel.HRef = "";
             ToolAnchoPapel.HRef = "";
             ToolMSuperior.HRef = "";
             ToolMInferior.HRef = "";
             ToolMDerecho.HRef = "";
-            ToolMInferior.HRef = "";
+            ToolMIzquierdo.HRef = "";
         }
         void LimpiarFormularioFotoPapel() {
 
@@ -3757,12 +5121,14 @@ namespace CodorniX.Vista
                 _tabPapel();
                 lblErrorPapel.Text = "Ningun campo debe estar vacio";//va despues que tab papel
                 lblErrorPapel.Visible = true;
+                PnErrorPapelSucursal.Visible = true;
                 return PapelBIen;
             }
 
             #endregion vacios
             lblErrorPapel.Text = "";//va despues que tab papel
             lblErrorPapel.Visible = false;
+            PnErrorPapelSucursal.Visible = false;
             #region Es numero
 
             //char[] charsRead = new char[txtAltoPapel.Text.Length];
@@ -3843,11 +5209,13 @@ namespace CodorniX.Vista
                 _tabPapel();
                 lblErrorPapel.Text = "Todos los campos en formato correcto";//va despues que tab papel
                 lblErrorPapel.Visible = true;
+                PnErrorPapelSucursal.Visible = true;
                 return PapelBIen;
             }
             #endregion Es numero
             lblErrorPapel.Text = "";//va despues que tab papel
             lblErrorPapel.Visible = false;
+            PnErrorPapelSucursal.Visible = false;
             #region digitos
             if (txtAltoPapel.Text.Length<3) {
                 txtAltoPapel.Focus();
@@ -3869,11 +5237,13 @@ namespace CodorniX.Vista
                 _tabPapel();
                 lblErrorPapel.Text = "Alto y Ancho deben tener al menos 3 digitos";//va despues que tab papel
                 lblErrorPapel.Visible = true;
+                PnErrorPapelSucursal.Visible = true;
                 return PapelBIen;
             }
             #endregion digitos
             lblErrorPapel.Text = "";//va despues que tab papel
             lblErrorPapel.Visible = false;
+            PnErrorPapelSucursal.Visible = false;
             return PapelBIen;
         }
         void DataBindFotografiasPapel() {
@@ -3916,6 +5286,7 @@ namespace CodorniX.Vista
         }
         protected void dvgFotosPapel_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            try { 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(dvgFotosPapel, "Select$" + e.Row.RowIndex);
@@ -3936,9 +5307,22 @@ namespace CodorniX.Vista
                         break;
                 }
             }
+
+                PnErrorFotoPapelSucursal.Visible = false;
+                lblErrorFotoPapel.Visible = false;
+                lblErrorFotoPapel.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoPapelSucursal.Visible = true;
+                lblErrorFotoPapel.Visible = true;
+                lblErrorFotoPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
+            }
+
         }
         protected void dvgFotosPapel_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try { 
             DataBindFotografiasPapel();
             List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
             SucursalFoto foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == dvgFotosPapel.SelectedDataKey.Value.ToString()).First();
@@ -3971,9 +5355,23 @@ namespace CodorniX.Vista
 
             ViewState["FotoPreviousRow"] = dvgFotosPapel.SelectedIndex;
             dvgFotosPapel.SelectedRow.AddCssClass("success");
+
+
+                PnErrorFotoPapelSucursal.Visible = false;
+                lblErrorFotoPapel.Visible = false;
+                lblErrorFotoPapel.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoPapelSucursal.Visible = true;
+                lblErrorFotoPapel.Visible = true;
+                lblErrorFotoPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
+            }
+
         }
         protected void btnEditarFotoPapel_Click(object sender, EventArgs e)
         {
+            try { 
             HabilitarFormularioFotoPapel();
             btnEditarFotoPapel.AddCssClass("disabled");
             btnCancelarFotoPapel.Visible = true;
@@ -3983,9 +5381,21 @@ namespace CodorniX.Vista
             btnOKFotoPapel.Enabled = true;
             btnCancelarFotoPapel.Enabled = true;
 
+                PnErrorFotoPapelSucursal.Visible = false;
+                lblErrorFotoPapel.Visible = false;
+                lblErrorFotoPapel.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoPapelSucursal.Visible = true;
+                lblErrorFotoPapel.Visible = true;
+                lblErrorFotoPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
+            }
+
         }
         protected void btnOKFotoPapel_Click(object sender, EventArgs e)
         {
+            try { 
             if (ValidarCamposPapel() == false)
             {
                 return;
@@ -4086,16 +5496,43 @@ namespace CodorniX.Vista
             btnCancelarFotoPapel.Enabled = false;
             btnEditarFotoPapel.AddCssClass("disabled").AddCssClass("hidden");
             btnEditarFotoPapel.Enabled = false;
+
+
+                PnErrorFotoPapelSucursal.Visible = false;
+                lblErrorFotoPapel.Visible = false;
+                lblErrorFotoPapel.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoPapelSucursal.Visible = true;
+                lblErrorFotoPapel.Visible = true;
+                lblErrorFotoPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
+            }
+
         }
         protected void btnCancelarFotoPapel_Click(object sender, EventArgs e)
         {
+            try { 
             DesHabilitarFormularioFotoPapel();
             btnEditarFotoPapel.RemoveCssClass("disabled");
             btnCancelarFotoPapel.Visible = false;
             btnOKFotoPapel.Visible = false;
+
+                PnErrorFotoPapelSucursal.Visible = false;
+                lblErrorFotoPapel.Visible = false;
+                lblErrorFotoPapel.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoPapelSucursal.Visible = true;
+                lblErrorFotoPapel.Visible = true;
+                lblErrorFotoPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
+            }
+
         }
         protected void btnEditarPapel_Click(object sender, EventArgs e)
         {
+            try { 
             btnEditarPapel.AddCssClass("disabled");
             HabilitarFormularioPapel();
             //HabilitarFormularioFotoPapel();
@@ -4124,12 +5561,37 @@ namespace CodorniX.Vista
             //  ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#VConfimacionNuevoPapel').modal('hide');", true);
             //  ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#VConfimacionNuevoPapel').modal('hide');", true);
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#VConfimacionNuevoPapel", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#VConfimacionNuevoPapel').hide();", true);
+
+                PnErrorPapelSucursal.Visible = false;
+                lblErrorPapel.Visible = false;
+                lblErrorPapel.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorPapelSucursal.Visible = true;
+                lblErrorPapel.Visible = true;
+                lblErrorPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
+            }
+
         }
         protected void btnOkPapel_Click(object sender, EventArgs e)
         {
+            try { 
             DesHabilitarFormularioPapel();
             btnOkPapel.Visible = false;
             btnCancelarPapel.Visible = false;
+
+                PnErrorPapelSucursal.Visible = false;
+                lblErrorPapel.Visible = false;
+                lblErrorPapel.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorPapelSucursal.Visible = true;
+                lblErrorPapel.Visible = true;
+                lblErrorPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
+            }
+
         }
         protected void btnCancelarPapel_Click(object sender, EventArgs e)
         {
@@ -4137,6 +5599,8 @@ namespace CodorniX.Vista
         }
         protected void DdlFoto_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try { 
+
             if (Guid.Empty != new Guid(DdlFoto.SelectedValue.ToString()) && !String.IsNullOrWhiteSpace(DdlFoto.SelectedValue.ToString()))
             {
                 if (EditingMode)
@@ -4158,6 +5622,18 @@ namespace CodorniX.Vista
             btnOKFotoPapel.Enabled = false;
             btnCancelarFotoPapel.AddCssClass("disabled").AddCssClass("hidden");
             btnCancelarFotoPapel.Enabled = false;
+
+                PnErrorFotoPapelSucursal.Visible = false;
+                lblErrorFotoPapel.Visible = false;
+                lblErrorFotoPapel.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoPapelSucursal.Visible = true;
+                lblErrorFotoPapel.Visible = true;
+                lblErrorFotoPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
+            }
+
         }
         public double ConMMColumna(SucursalFoto foto)
         {
@@ -4202,6 +5678,7 @@ namespace CodorniX.Vista
         }
         protected void dvgFotosPapel_Sorting(object sender, GridViewSortEventArgs e)
         {
+            try { 
             List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
             if (e.SortExpression == lbOrdenFPPor.Text)
             {
@@ -4224,11 +5701,1484 @@ namespace CodorniX.Vista
             List<SucursalFoto> fotosOrdenNueva = VM.OrdenarListaFP(e.SortExpression, Ordenn, fotos);
             ViewState["Fotos"] = fotosOrdenNueva;
             DataBindFotografiasPapel();
+
+                PnErrorFotoPapelSucursal.Visible = false;
+                lblErrorFotoPapel.Visible = false;
+                lblErrorFotoPapel.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoPapelSucursal.Visible = true;
+                lblErrorFotoPapel.Visible = true;
+                lblErrorFotoPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
+            }
+
         }
 
 
 
         #endregion Panel derecho (Papel)
+
+        
+        #region Panel derecho (Fotografias Comercial)
+        public bool ValidarCamposFotoC()//
+        {
+            bool FotoBIen = true;
+
+            #region vacios
+
+            if (string.IsNullOrWhiteSpace(txtDescripcionFotoC.Text))
+            {
+                txtDescripcionFotoC.Focus();
+                txtDescripcionFotoC.BorderColor = Color.FromName("#f00800");
+                FotoBIen = false;
+            }
+            if (string.IsNullOrWhiteSpace(txtPrecioFotoC.Text))
+            {
+                txtPrecioFotoC.Focus();
+                txtPrecioFotoC.BorderColor = Color.FromName("#f00800");
+                FotoBIen = false;
+            }
+            if (string.IsNullOrWhiteSpace(txtPrecioFotoTicketC.Text))
+            {
+                txtPrecioFotoTicketC.Focus();
+                txtPrecioFotoTicketC.BorderColor = Color.FromName("#f00800");
+                FotoBIen = false;
+            }
+            if (string.IsNullOrWhiteSpace(txtPrecioFotoServidorC.Text))
+            {
+                txtPrecioFotoServidorC.Focus();
+                txtPrecioFotoServidorC.BorderColor = Color.FromName("#f00800");
+                FotoBIen = false;
+            }
+            if (string.IsNullOrWhiteSpace(txtAltoFotoC.Text))
+            {
+                txtAltoFotoC.Focus();
+                txtAltoFotoC.BorderColor = Color.FromName("#f00800");
+                FotoBIen = false;
+            }
+            if (string.IsNullOrWhiteSpace(txtAnchoFotoC.Text))
+            {
+                txtAnchoFotoC.Focus();
+                txtAnchoFotoC.BorderColor = Color.FromName("#f00800");
+                FotoBIen = false;
+            }
+            if (string.IsNullOrWhiteSpace(txtAltoFotoDescC.Text))
+            {
+                txtAltoFotoDescC.Focus();
+                txtAltoFotoDescC.BorderColor = Color.FromName("#f00800");
+                FotoBIen = false;
+            }
+            if (string.IsNullOrWhiteSpace(txtAnchoFotoDescC.Text))
+            {
+                txtAnchoFotoDescC.Focus();
+                txtAnchoFotoDescC.BorderColor = Color.FromName("#f00800");
+                FotoBIen = false;
+            }
+
+            if (FotoBIen == false)
+            {
+                _tabFotoC();
+                lblErrorFotoC.Text = "Ningun campo debe estar vacio";//va despues que tab papel
+                lblErrorFotoC.Visible = true;
+                PnErrorFotoCSucursal.Visible = true;
+                return FotoBIen;
+            }
+
+            #endregion vacios
+            lblErrorFotoC.Text = "";//va despues que tab papel
+            lblErrorFotoC.Visible = false;
+            PnErrorFotoCSucursal.Visible = false;
+            #region Es numero
+
+            //char[] charsRead = new char[txtAltoPapel.Text.Length];
+            foreach (char c in txtPrecioFotoC.Text)
+            {
+                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+                {
+                    if (c.ToString() != ".")
+                    {
+                        txtPrecioFotoC.Focus();
+                        txtPrecioFotoC.BorderColor = Color.FromName("#f00800");
+                        ToolPrecioFotoC.HRef = "Solo debe contener 1 numero";
+                        ToolPrecioFotoC.Visible = true;
+                        FotoBIen = false;
+                    }
+                }
+            }
+            foreach (char c in txtPrecioFotoTicketC.Text)
+            {
+                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+                {
+                    if (c.ToString() != ".")
+                    {
+                        txtPrecioFotoTicketC.Focus();
+                        txtPrecioFotoTicketC.BorderColor = Color.FromName("#f00800");
+                        ToolPrecioTicketC.HRef = "Solo debe contener 1 numero";
+                        ToolPrecioTicketC.Visible = true;
+                        FotoBIen = false;
+                    }
+                }
+            }
+            foreach (char c in txtPrecioFotoServidorC.Text)
+            {
+                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+                {
+                    if (c.ToString() != ".")
+                    {
+                        txtPrecioFotoServidorC.Focus();
+                        txtPrecioFotoServidorC.BorderColor = Color.FromName("#f00800");
+                        ToolPrecioServidorC.HRef = "Solo debe contener 1 numero";
+                        ToolPrecioServidorC.Visible = true;
+                        FotoBIen = false;
+                    }
+                }
+            }
+            foreach (char c in txtAltoFotoC.Text)
+            {
+                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+                {
+                    if (c.ToString() != ".")
+                    {
+                        txtAltoFotoC.Focus();
+                        txtAltoFotoC.BorderColor = Color.FromName("#f00800");
+                        ToolAltoFotoC.HRef = "Solo debe contener 1 numero";
+                        ToolAltoFotoC.Visible = true;
+                        FotoBIen = false;
+                    }
+                }
+            }
+            foreach (char c in txtAnchoFotoC.Text)
+            {
+                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+                {
+                    if (c.ToString() != ".")
+                    {
+                        txtAnchoFotoC.Focus();
+                        txtAnchoFotoC.BorderColor = Color.FromName("#f00800");
+                        ToolAnchoFotoC.HRef = "Solo debe contener 1 numero";
+                        ToolAnchoFotoC.Visible = true;
+                        FotoBIen = false;
+                    }
+                }
+            }
+            foreach (char c in txtAltoFotoDescC.Text)
+            {
+                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+                {
+                    if (c.ToString() != ".")
+                    {
+                        txtAltoFotoDescC.Focus();
+                        txtAltoFotoDescC.BorderColor = Color.FromName("#f00800");
+                        ToolAltoFotoDescC.HRef = "Solo debe contener 1 numero";
+                        ToolAltoFotoDescC.Visible = true;
+                        FotoBIen = false;
+                    }
+                }
+            }
+            foreach (char c in txtAnchoFotoDescC.Text)
+            {
+                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+                {
+                    if (c.ToString() != ".")
+                    {
+                        txtAnchoFotoDescC.Focus();
+                        txtAnchoFotoDescC.BorderColor = Color.FromName("#f00800");
+                        ToolAnchoFotoDescC.HRef = "Solo debe contener 1 numero";
+                        ToolAnchoFotoDescC.Visible = true;
+                        FotoBIen = false;
+                    }
+                }
+            }
+            if (FotoBIen == false)
+            {
+                _tabFotoC();
+                lblErrorFotoC.Text = "Todos los campos en formato correcto";
+                lblErrorFotoC.Visible = true;
+                PnErrorFotoCSucursal.Visible = true;
+                return FotoBIen;
+            }
+            #endregion Es numero
+            lblErrorFotoC.Text = "";//va despues que tab papel
+            lblErrorFotoC.Visible = false;
+            PnErrorFotoCSucursal.Visible = false;
+            #region prototipo
+            ///#region digitos
+            //if (txtAltoPapel.Text.Length < 3)
+            //{
+            //    txtAltoPapel.Focus();
+            //    txtAltoPapel.BorderColor = Color.FromName("#f00800");
+            //    ToolAltoPapel.HRef = "Minimo debe ser 1 numero de 3 digitos";
+            //    ToolAltoPapel.Visible = true;
+            //    PapelBIen = false;
+            //}
+            //if (txtAnchoPapel.Text.Length < 3)
+            //{
+            //    txtAnchoPapel.Focus();
+            //    txtAnchoPapel.BorderColor = Color.FromName("#f00800");
+            //    ToolAnchoPapel.HRef = "Minimo debe ser 1 numero de 3 digitos";
+            //    ToolAnchoPapel.Visible = true;
+            //    PapelBIen = false;
+            //}
+            //if (PapelBIen == false)
+            //{
+            //    _tabPapel();
+            //    lblErrorPapel.Text = "Alto y Ancho deben tener al menos 3 digitos";//va despues que tab papel
+            //    lblErrorPapel.Visible = true;
+            //    PnErrorPapelSucursal.Visible = true;
+            //    return PapelBIen;
+            //}
+            //#endregion digitos
+            //lblErrorFoto.Text = "";//va despues que tab papel
+            //lblErrorFoto.Visible = false;
+            //PnErrorFotoSucursal.Visible = false;
+            #endregion prototipo
+            return FotoBIen;
+        }
+        protected void btnAgregarFotoC_Click(object sender, EventArgs e)//
+        {
+            try
+            {
+                //ActivarValidacionFotografias();
+                uidFotoC.Text = string.Empty;
+
+                LimpiarFormularioFotografiasC();
+                HabilitarFormularioFotografiasC();
+
+                btnOKFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
+                btnOKFotoC.Enabled = true;
+                btnCancelarFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
+                btnCancelarFotoC.Enabled = true;
+
+                btnAgregarFotoC.Disable();
+                btnEditarFotoC.Disable();
+                //btnEliminarFoto.Disable();
+
+                int pos = -1;
+                if (ViewState["FotoCPreviousRow"] != null)
+                {
+                    pos = (int)ViewState["FotoCPreviousRow"];
+                    GridViewRow previousRow = dgvFotosC.Rows[pos];
+                    previousRow.RemoveCssClass("success");
+                }
+
+
+                PnErrorFotoCSucursal.Visible = false;
+                lblErrorFotoC.Visible = false;
+                lblErrorFotoC.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoCSucursal.Visible = true;
+                lblErrorFotoC.Visible = true;
+                lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+            }
+
+        }
+        protected void btnEditarFotoC_Click(object sender, EventArgs e)//
+        {
+            try
+            {
+                HabilitarFormularioFotografiasC();
+
+                btnAgregarFotoC.Enabled = false;
+                btnAgregarFotoC.AddCssClass("disabled");
+
+                btnEditarFotoC.Enabled = false;
+                btnEditarFotoC.AddCssClass("disabled");
+
+                //btnEliminarFoto.Enabled = false;
+                //btnEliminarFoto.AddCssClass("disabled");
+
+                btnOKFotoC.Enabled = true;
+                btnOKFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
+
+                btnCancelarFotoC.Enabled = true;
+                btnCancelarFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#VConfimacionEditarFotoC", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#VConfimacionEditarFoto').hide();", true);
+
+
+                PnErrorFotoCSucursal.Visible = false;
+                lblErrorFotoC.Visible = false;
+                lblErrorFotoC.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoCSucursal.Visible = true;
+                lblErrorFotoC.Visible = true;
+                lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+            }
+
+        }
+        protected void btnEliminarFotoC_Click(object sender, EventArgs e)//
+        {
+            lblAceptarEliminarFotoC.Visible = true;
+            lblAceptarEliminarFotoC.Text = "¿Desea eliminar La foto seleccionada?";
+            btnAceptarEliminarFotoC.Visible = true;
+            btnCancelarEliminarFotoC.Visible = true;
+        }
+        protected void btnOKFotoC_Click(object sender, EventArgs e)//
+        {
+            try
+            {
+
+                if (ValidarCamposFotoC() == false)
+                {
+                    return;
+                }
+                ToolPrecioFotoC.HRef = "";
+                ToolPrecioFotoC.Visible = false;
+                ToolPrecioTicketC.HRef = "";
+                ToolPrecioTicketC.Visible = false;
+                ToolPrecioServidorC.HRef = "";
+                ToolPrecioServidorC.Visible = false;
+                ToolAltoFotoC.HRef = "";
+                ToolAltoFotoC.Visible = false;
+                ToolAnchoFotoC.HRef = "";
+                ToolAnchoFotoC.Visible = false;
+                ToolAltoFotoDescC.HRef = "";
+                ToolAltoFotoDescC.Visible = false;
+                ToolAnchoFotoDescC.HRef = "";
+                ToolAnchoFotoDescC.Visible = false;
+                List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+                SucursalFotoC foto = null;
+                int pos = -1;
+                if (!string.IsNullOrWhiteSpace(uidFotoC.Text))
+                {
+                    IEnumerable<SucursalFotoC> dir = from i in fotos where i.UidFoto.ToString() == uidFotoC.Text select i;
+                    foto = dir.First();
+                    pos = fotos.IndexOf(foto);
+                    fotos.Remove(foto);
+                }
+                else
+                {
+                    foto = new SucursalFotoC();
+                    foto.UidFoto = Guid.NewGuid();
+                }
+                //a partir de aqui agrega los datos al objeto
+                foto.UidImpresora = new Guid(ddImpresoraFotoC.SelectedValue);
+                foto.StrDescripcion = txtDescripcionFotoC.Text;
+                foto.StrPrecio = txtPrecioFotoC.Text;
+                foto.StrPrecioTicket = txtPrecioFotoTicketC.Text;
+                foto.StrPrecioServidor = txtPrecioFotoServidorC.Text;
+                foto.VchAlto = txtAltoFotoC.Text;
+                foto.VchAncho = txtAnchoFotoC.Text;
+                foto.VchAltoDesc = txtAltoFotoDescC.Text;
+                foto.VchAnchoDesc = txtAnchoFotoDescC.Text;
+                foto.UidStatus = new Guid(ddActivoFotoC.SelectedValue);
+                foto.StrStatus = ddActivoFotoC.SelectedItem.Text;
+                foto.BooRotarEnPapel = false;
+                foto.VchColumna = "";
+                foto.VchFila = "";
+                foto.UidMedida = new Guid(ddMedidaFotoC.SelectedValue);
+                foto.VchMedida = ddMedidaFotoC.SelectedItem.Text;
+                if (pos < 0)
+                    fotos.Add(foto);
+                else
+                    fotos.Insert(pos, foto);
+
+
+                ViewState["FotosC"] = fotos;
+                DatabindFotografiasC();
+                DataBindFotografiasPapelC();
+                LimpiarFormularioFotografiasC();
+                DesHabilitarFormularioFotografiasC();
+                btnOKFotoC.AddCssClass("hidden").AddCssClass("disabled");
+                btnOKFotoC.Enabled = false;
+                btnCancelarFotoC.AddCssClass("hidden").AddCssClass("disabled");
+                btnCancelarFotoC.Enabled = false;
+                btnEditarFotoC.AddCssClass("disabled").AddCssClass("hidden");
+                btnEditarFotoC.Enabled = false;
+                btnAgregarFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
+                btnAgregarFotoC.Enabled = true;
+
+
+                PnErrorFotoCSucursal.Visible = false;
+                lblErrorFotoC.Visible = false;
+                lblErrorFotoC.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoCSucursal.Visible = true;
+                lblErrorFotoC.Visible = true;
+                lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+            }
+
+        }
+        protected void btnCancelarFotoC_Click(object sender, EventArgs e)//
+        {
+            try
+            {
+
+                DesHabilitarFormularioFotografiasC();
+
+                btnOKFotoC.AddCssClass("hidden").AddCssClass("disabled");
+                btnOKFotoC.Enabled = false;
+                btnCancelarFotoC.AddCssClass("hidden").AddCssClass("disabled");
+                btnCancelarFotoC.Enabled = false;
+
+                btnAgregarFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
+                btnAgregarFotoC.Enabled = true;
+
+
+                if (uidFotoC.Text.Length == 0)
+                {
+                    btnEditarFotoC.Disable();
+                    LimpiarFormularioFotografiasC();
+                }
+                else
+                {
+                    //btnEliminarFoto.Enable();
+                    btnEditarFotoC.Enable();
+
+                    List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+                    SucursalFotoC foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == dgvFotosC.SelectedDataKey.Value.ToString()).First();
+
+                    uidFotoC.Text = foto.UidFoto.ToString();
+
+                    txtDescripcionFotoC.Text = foto.StrDescripcion;
+                    txtPrecioFotoC.Text = foto.StrPrecio;
+                    txtPrecioFotoTicketC.Text = foto.StrPrecioTicket;
+                    txtPrecioFotoServidorC.Text = foto.StrPrecioServidor;
+                    txtAltoFotoC.Text = foto.VchAlto.ToString();
+                    txtAnchoFotoC.Text = foto.VchAncho.ToString();
+                    txtAltoFotoDescC.Text = foto.VchAltoDesc.ToString();
+                    txtAnchoFotoDescC.Text = foto.VchAnchoDesc.ToString();
+                    txtFxColumnaC.Text = foto.VchColumna;
+                    txtFxFilaC.Text = foto.VchFila;
+                    CbRotarImagenPapelC.Checked = foto.BooRotarEnPapel;
+
+                    ddActivoFotoC.SelectedValue = foto.UidStatus.ToString();
+                    ddMedidaFotoC.SelectedValue = foto.UidMedida.ToString();
+                }
+
+
+                PnErrorFotoCSucursal.Visible = false;
+                lblErrorFotoC.Visible = false;
+                lblErrorFotoC.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoCSucursal.Visible = true;
+                lblErrorFotoC.Visible = true;
+                lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+            }
+
+        }
+        protected void btnAceptarEliminarFotoC_Click(object sender, EventArgs e)//
+        {
+            try
+            {
+
+                btnAgregarFotoC.Enabled = true;
+                btnAgregarFotoC.RemoveCssClass("disabled");
+
+                btnOKFotoC.Enabled = false;
+                btnOKFotoC.AddCssClass("hidden").AddCssClass("disabled");
+
+                btnCancelarFotoC.Enabled = false;
+                btnCancelarFotoC.AddCssClass("hidden").AddCssClass("disabled");
+
+                Guid uid = new Guid(uidFotoC.Text);
+
+                List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+                SucursalFotoC foto = fotos.Select(x => x).Where(x => x.UidFoto == uid).First();
+                fotos.Remove(foto);
+                FotoCRemoved.Add(foto);
+
+                LimpiarFormularioFotografias();
+
+                ViewState["FotosC"] = fotos;
+                DatabindFotografiasC();
+
+                btnCancelarEliminarFotoC.Visible = false;
+                btnAceptarEliminarFotoC.Visible = false;
+                lblAceptarEliminarFotoC.Visible = false;
+                ViewState["FotoCPreviousRow"] = null;
+
+
+                PnErrorFotoCSucursal.Visible = false;
+                lblErrorFotoC.Visible = false;
+                lblErrorFotoC.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoCSucursal.Visible = true;
+                lblErrorFotoC.Visible = true;
+                lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+            }
+
+        }
+        protected void btnCancelarEliminarFotoC_Click(object sender, EventArgs e)//
+        {
+            try
+            {
+                //esta funcion parece ser llamada por otras
+                btnCancelarEliminarFotoC.Visible = false;
+                btnAceptarEliminarFotoC.Visible = false;
+                lblAceptarEliminarFotoC.Visible = false;
+
+
+                PnErrorFotoCSucursal.Visible = false;
+                lblErrorFotoC.Visible = false;
+                lblErrorFotoC.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoCSucursal.Visible = true;
+                lblErrorFotoC.Visible = true;
+                lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+            }
+
+        }
+        protected void dgvFotosC_RowDataBound(object sender, GridViewRowEventArgs e)//
+        {
+            try
+            {
+
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(dgvFotosC, "Select$" + e.Row.RowIndex);
+                }
+
+
+                PnErrorFotoCSucursal.Visible = false;
+                lblErrorFotoC.Visible = false;
+                lblErrorFotoC.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoCSucursal.Visible = true;
+                lblErrorFotoC.Visible = true;
+                lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+            }
+
+        }
+        protected void dgvFotosC_SelectedIndexChanged(object sender, EventArgs e)//
+        {
+            try
+            {
+
+                List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+                SucursalFotoC foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == dgvFotosC.SelectedDataKey.Value.ToString()).First();
+
+                uidFotoC.Text = foto.UidFoto.ToString();
+                ddImpresoraFotoC.SelectedValue = foto.UidImpresora.ToString();
+                txtDescripcionFotoC.Text = foto.StrDescripcion;
+                txtPrecioFotoC.Text = foto.StrPrecio;
+                txtPrecioFotoTicketC.Text = foto.StrPrecioTicket;
+                txtPrecioFotoServidorC.Text = foto.StrPrecioServidor;
+                txtAltoFotoC.Text = foto.VchAlto.ToString();
+                txtAnchoFotoC.Text = foto.VchAncho.ToString();
+                txtAltoFotoDescC.Text = foto.VchAltoDesc.ToString();
+                txtAnchoFotoDescC.Text = foto.VchAnchoDesc.ToString();
+                ddActivoFotoC.SelectedValue = foto.UidStatus.ToString();//no se si se necesite seccionar tambien la uid
+                ddMedidaFotoC.SelectedValue = foto.UidMedida.ToString();
+
+
+                if (EditingMode)
+                {
+                    btnEditarFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
+                    btnEditarFotoC.Enabled = true;
+                    //btnEliminarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
+                    //btnEliminarFoto.Enabled = true;
+                    btnOKFotoC.AddCssClass("disabled").AddCssClass("hidden");
+                    btnOKFotoC.Enabled = false;
+                    btnCancelarFotoC.AddCssClass("disabled").AddCssClass("hidden");
+                    btnCancelarFotoC.Enabled = false;
+                }
+
+                int pos = -1;
+                if (ViewState["FotoCPreviousRow"] != null)
+                {
+                    pos = (int)ViewState["FotoCPreviousRow"];
+                    GridViewRow previousRow = dgvFotosC.Rows[pos];
+                    previousRow.RemoveCssClass("success");
+                }
+
+                ViewState["FotoCPreviousRow"] = dgvFotosC.SelectedIndex;
+                dgvFotosC.SelectedRow.AddCssClass("success");
+
+
+                PnErrorFotoCSucursal.Visible = false;
+                lblErrorFotoC.Visible = false;
+                lblErrorFotoC.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoCSucursal.Visible = true;
+                lblErrorFotoC.Visible = true;
+                lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+            }
+        }
+        void LimpiarFormularioFotografiasC()//
+        {
+            //solo son texbox
+            uidFotoC.Text = string.Empty;
+            txtDescripcionFotoC.Text = string.Empty;
+            txtPrecioFotoC.Text = string.Empty;
+            txtPrecioFotoTicketC.Text = string.Empty;
+            txtPrecioFotoServidorC.Text = string.Empty;
+            txtAltoFotoC.Text = string.Empty;
+            txtAnchoFotoC.Text = string.Empty;
+            txtAltoFotoDescC.Text = string.Empty;
+            txtAnchoFotoDescC.Text = string.Empty;
+            ddActivoFotoC.SelectedIndex = 0;
+            ddMedidaFotoC.SelectedIndex = 0;
+        }
+        void DesHabilitarFormularioFotografiasC()//
+        {
+            if (ddImpresoraFotoC.DataSource != null)
+            {
+                ddImpresoraFotoC.SelectedIndex = 0;
+            }
+            ddImpresoraFotoC.AddCssClass("disabled");
+            ddImpresoraFotoC.Enabled = false;
+
+            txtDescripcionFotoC.Enabled = false;
+            txtDescripcionFotoC.AddCssClass("disabled");
+
+            txtPrecioFotoC.Enabled = false;
+            txtPrecioFotoC.AddCssClass("disabled");
+
+            txtPrecioFotoTicketC.Enabled = false;
+            txtPrecioFotoTicketC.AddCssClass("disabled");
+
+            txtPrecioFotoServidorC.Enabled = false;
+            txtPrecioFotoServidorC.AddCssClass("disabled");
+
+            txtAltoFotoC.Enabled = false;
+            txtAltoFotoC.AddCssClass("disabled");
+
+            txtAnchoFotoC.Enabled = false;
+            txtAnchoFotoC.AddCssClass("disabled");
+
+            txtAltoFotoDescC.Enabled = false;
+            txtAltoFotoDescC.AddCssClass("disabled");
+
+            txtAnchoFotoDescC.Enabled = false;
+            txtAnchoFotoDescC.AddCssClass("disabled");
+
+            ddActivoFotoC.SelectedIndex = 0;
+            ddActivoFotoC.AddCssClass("disabled");
+            ddActivoFotoC.Enabled = false;
+
+            ddMedidaFotoC.SelectedIndex = 0;
+            ddMedidaFotoC.AddCssClass("disabled");
+            ddMedidaFotoC.Enabled = false;
+
+
+        }
+        void HabilitarFormularioFotografiasC()//
+        {
+            ddImpresoraFotoC.SelectedIndex = 0;
+            ddImpresoraFotoC.RemoveCssClass("disabled");
+            ddImpresoraFotoC.Enabled = true;
+
+            txtDescripcionFotoC.Enabled = true;
+            txtDescripcionFotoC.RemoveCssClass("disabled");
+
+            txtPrecioFotoC.Enabled = true;
+            txtPrecioFotoC.RemoveCssClass("disabled");
+
+            txtPrecioFotoTicketC.Enabled = true;
+            txtPrecioFotoTicketC.RemoveCssClass("disabled");
+
+            txtPrecioFotoServidorC.Enabled = true;
+            txtPrecioFotoServidorC.RemoveCssClass("disabled");
+
+            txtAltoFotoC.Enabled = true;
+            txtAltoFotoC.RemoveCssClass("disabled");
+
+            txtAnchoFotoC.Enabled = true;
+            txtAnchoFotoC.RemoveCssClass("disabled");
+
+            txtAltoFotoDescC.Enabled = true;
+            txtAltoFotoDescC.RemoveCssClass("disabled");
+
+            txtAnchoFotoDescC.Enabled = true;
+            txtAnchoFotoDescC.RemoveCssClass("disabled");
+
+            ddActivoFotoC.SelectedIndex = 0;
+            ddActivoFotoC.RemoveCssClass("disabled");
+            ddActivoFotoC.Enabled = true;
+
+            ddMedidaFotoC.SelectedIndex = 0;
+            ddMedidaFotoC.RemoveCssClass("disabled");
+            ddMedidaFotoC.Enabled = true;
+
+        }
+        void DatabindFotografiasC()//
+        {
+            List<SucursalFotoC> Fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+            
+            dgvFotosC.DataSource = Fotos;
+            dgvFotosC.DataBind();
+        }
+        #endregion Panel derecho (Fotografias Comercial)
+
+        #region Panel derecho (Papel Comercial)
+        void DesHabilitarFormularioPapelC()//
+        {
+            txtNombrePapelC.Enabled = false;
+            txtAltoPapelC.Enabled = false;
+            txtAnchoPapelC.Enabled = false;
+            txtMargenSuperiorC.Enabled = false;
+            txtMargenInferiorC.Enabled = false;
+            txtMargenDerechoC.Enabled = false;
+            txtMargenIzquierdoC.Enabled = false;
+        }
+        void DesHabilitarFormularioFotoPapelC()//
+        {
+
+            CbRotarImagenPapelC.AddCssClass("disabled");
+            CbRotarImagenPapelC.Enabled = false;
+
+            txtFxFilaC.Enabled = false;
+            txtFxFilaC.AddCssClass("disabled");
+
+            txtFxColumnaC.Enabled = false;
+            txtFxColumnaC.AddCssClass("disabled");
+        }
+        void HabilitarFormularioPapelC()//
+        {
+            txtNombrePapelC.Enabled = true;
+            txtAltoPapelC.Enabled = true;
+            txtAnchoPapelC.Enabled = true;
+            txtMargenSuperiorC.Enabled = true;
+            txtMargenInferiorC.Enabled = true;
+            txtMargenDerechoC.Enabled = true;
+            txtMargenIzquierdoC.Enabled = true;
+
+
+        }
+        void HabilitarFormularioFotoPapelC()//
+        {
+
+            CbRotarImagenPapelC.RemoveCssClass("disabled");
+            CbRotarImagenPapelC.Enabled = true;
+            txtFxFilaC.Enabled = true;
+            txtFxFilaC.RemoveCssClass("disabled");
+            txtFxColumnaC.Enabled = true;
+            txtFxColumnaC.RemoveCssClass("disabled");
+        }
+        void LimpiarFormularioPapelC()//
+        {
+            txtNombrePapelC.Text = "";
+            txtAltoPapelC.Text = "";
+            txtAnchoPapelC.Text = "";
+            txtMargenSuperiorC.Text = "";
+            txtMargenInferiorC.Text = "";
+            txtMargenDerechoC.Text = "";
+            txtMargenIzquierdoC.Text = "";
+
+            txtNombrePapelC.BorderColor = Color.FromName("#FF3580BF");
+            txtAltoPapelC.BorderColor = Color.FromName("#FF3580BF");
+            txtAnchoPapelC.BorderColor = Color.FromName("#FF3580BF");
+            txtMargenSuperiorC.BorderColor = Color.FromName("#FF3580BF");
+            txtMargenInferiorC.BorderColor = Color.FromName("#FF3580BF");
+            txtMargenDerechoC.BorderColor = Color.FromName("#FF3580BF");
+            txtMargenIzquierdoC.BorderColor = Color.FromName("#FF3580BF");
+
+            lblErrorPapelC.Text = "";
+            lblErrorPapelC.Visible = false;
+
+            ToolAltoPapelC.Visible = false;
+            ToolAnchoPapelC.Visible = false;
+            ToolMSuperiorC.Visible = false;
+            ToolMInferiorC.Visible = false;
+            ToolMDerechoC.Visible = false;
+            ToolMIzquierdoC.Visible = false;
+
+            ToolAltoPapelC.HRef = "";
+            ToolAnchoPapelC.HRef = "";
+            ToolMSuperiorC.HRef = "";
+            ToolMInferiorC.HRef = "";
+            ToolMDerechoC.HRef = "";
+            ToolMIzquierdoC.HRef = "";
+        }
+        void LimpiarFormularioFotoPapelC()//
+        {
+
+            txtFxColumnaC.Text = string.Empty;
+            txtFxFilaC.Text = string.Empty;
+            CbRotarImagenPapelC.Checked = false;
+
+            lblErrorFotoPapelC.Text = "";
+            lblErrorFotoPapelC.Visible = false;
+
+        }
+        public bool ValidarCamposPapelC()//
+        {
+            bool PapelBIen = true;
+
+            #region vacios
+
+
+            if (string.IsNullOrWhiteSpace(txtNombrePapelC.Text))
+            {
+                txtNombrePapelC.Focus();
+                txtNombrePapelC.BorderColor = Color.FromName("#f00800");
+                PapelBIen = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtAltoPapelC.Text))
+            {
+                txtAltoPapelC.Focus();
+                txtAltoPapelC.BorderColor = Color.FromName("#f00800");
+                PapelBIen = false;
+            }
+            if (string.IsNullOrWhiteSpace(txtAnchoPapelC.Text))
+            {
+                txtAnchoPapelC.Focus();
+                txtAnchoPapelC.BorderColor = Color.FromName("#f00800");
+                PapelBIen = false;
+            }
+
+
+            if (string.IsNullOrWhiteSpace(txtMargenSuperiorC.Text))
+            {
+                txtMargenSuperiorC.Focus();
+                txtMargenSuperiorC.BorderColor = Color.FromName("#f00800");
+                PapelBIen = false;
+            }
+
+
+            if (string.IsNullOrWhiteSpace(txtMargenInferiorC.Text))
+            {
+                txtMargenInferiorC.Focus();
+                txtMargenInferiorC.BorderColor = Color.FromName("#f00800");
+                PapelBIen = false;
+            }
+
+
+            if (string.IsNullOrWhiteSpace(txtMargenDerechoC.Text))
+            {
+                txtMargenDerechoC.Focus();
+                txtMargenDerechoC.BorderColor = Color.FromName("#f00800");
+                PapelBIen = false;
+            }
+
+
+            if (string.IsNullOrWhiteSpace(txtMargenIzquierdoC.Text))
+            {
+                txtMargenIzquierdoC.Focus();
+                txtMargenIzquierdoC.BorderColor = Color.FromName("#f00800");
+                PapelBIen = false;
+            }
+
+
+            if (PapelBIen == false)
+            {
+                _tabPapelC();
+                lblErrorPapelC.Text = "Ningun campo debe estar vacio";//va despues que tab papel
+                lblErrorPapelC.Visible = true;
+                PnErrorPapelCSucursal.Visible = true;
+                return PapelBIen;
+            }
+
+            #endregion vacios
+            lblErrorPapelC.Text = "";//va despues que tab papel
+            lblErrorPapelC.Visible = false;
+            PnErrorPapelCSucursal.Visible = false;
+            #region Es numero
+
+            //char[] charsRead = new char[txtAltoPapel.Text.Length];
+            foreach (char c in txtAltoPapelC.Text)
+            {
+                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+                {
+
+                    txtAltoPapelC.Focus();
+                    txtAltoPapelC.BorderColor = Color.FromName("#f00800");
+                    ToolAltoPapelC.HRef = "Solo debe contener 1 numero";
+                    ToolAltoPapelC.Visible = true;
+                    PapelBIen = false;
+                }
+            }
+            foreach (char c in txtAnchoPapelC.Text)
+            {
+                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+                {
+
+                    txtAnchoPapelC.Focus();
+                    txtAnchoPapelC.BorderColor = Color.FromName("#f00800");
+                    ToolAnchoPapelC.HRef = "Solo debe contener 1 numero";
+                    ToolAnchoPapelC.Visible = true;
+                    PapelBIen = false;
+                }
+            }
+            foreach (char c in txtMargenSuperiorC.Text)
+            {
+                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+                {
+
+                    txtMargenSuperiorC.Focus();
+                    txtMargenSuperiorC.BorderColor = Color.FromName("#f00800");
+                    ToolMSuperiorC.HRef = "Solo debe contener 1 numero";
+                    ToolMSuperiorC.Visible = true;
+                    PapelBIen = false;
+                }
+            }
+            foreach (char c in txtMargenInferiorC.Text)
+            {
+                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+                {
+
+                    txtMargenInferiorC.Focus();
+                    txtMargenInferiorC.BorderColor = Color.FromName("#f00800");
+                    ToolMInferiorC.HRef = "Solo debe contener 1 numero";
+                    ToolMInferiorC.Visible = true;
+                    PapelBIen = false;
+                }
+            }
+            foreach (char c in txtMargenDerechoC.Text)
+            {
+                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+                {
+
+                    txtMargenDerechoC.Focus();
+                    txtMargenDerechoC.BorderColor = Color.FromName("#f00800");
+                    ToolMDerechoC.HRef = "Solo debe contener 1 numero";
+                    ToolMDerechoC.Visible = true;
+                    PapelBIen = false;
+                }
+            }
+            foreach (char c in txtMargenIzquierdoC.Text)
+            {
+                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+                {
+
+                    txtMargenIzquierdoC.Focus();
+                    txtMargenIzquierdoC.BorderColor = Color.FromName("#f00800");
+                    ToolMIzquierdoC.HRef = "Solo debe contener 1 numero";
+                    ToolMIzquierdoC.Visible = true;
+                    PapelBIen = false;
+                }
+            }
+            if (PapelBIen == false)
+            {
+                _tabPapelC();
+                lblErrorPapelC.Text = "Todos los campos en formato correcto";//va despues que tab papel
+                lblErrorPapelC.Visible = true;
+                PnErrorPapelCSucursal.Visible = true;
+                return PapelBIen;
+            }
+            #endregion Es numero
+            lblErrorPapelC.Text = "";//va despues que tab papel
+            lblErrorPapelC.Visible = false;
+            PnErrorPapelCSucursal.Visible = false;
+            #region digitos
+            if (txtAltoPapelC.Text.Length < 3)
+            {
+                txtAltoPapelC.Focus();
+                txtAltoPapelC.BorderColor = Color.FromName("#f00800");
+                ToolAltoPapelC.HRef = "Minimo debe ser 1 numero de 3 digitos";
+                ToolAltoPapelC.Visible = true;
+                PapelBIen = false;
+            }
+            if (txtAnchoPapelC.Text.Length < 3)
+            {
+                txtAnchoPapelC.Focus();
+                txtAnchoPapelC.BorderColor = Color.FromName("#f00800");
+                ToolAnchoPapelC.HRef = "Minimo debe ser 1 numero de 3 digitos";
+                ToolAnchoPapelC.Visible = true;
+                PapelBIen = false;
+            }
+            if (PapelBIen == false)
+            {
+                _tabPapelC();
+                lblErrorPapelC.Text = "Alto y Ancho deben tener al menos 3 digitos";//va despues que tab papel
+                lblErrorPapelC.Visible = true;
+                PnErrorPapelCSucursal.Visible = true;
+                return PapelBIen;
+            }
+            #endregion digitos
+            lblErrorPapelC.Text = "";//va despues que tab papel
+            lblErrorPapelC.Visible = false;
+            PnErrorPapelCSucursal.Visible = false;
+            return PapelBIen;
+        }
+        void DataBindFotografiasPapelC()//
+        {
+
+            List<SucursalFotoC> Fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+            List<SucursalFotoC> FotosX = new List<SucursalFotoC>();
+            SucursalFotoC fotox = new SucursalFotoC(); fotox.StrDescripcion = "[Selecciona]"; FotosX.Add(fotox);
+
+            // txtCantMaqLicencia.Text ="EnuOrden: "+ Licencias[0].EnuOrden.ToString() + " StrOrdenaPor: " + Licencias[0].StrOrdenaPor.ToString();
+            dvgFotosPapelC.DataSource = Fotos;
+            dvgFotosPapelC.DataBind();
+            int cant = dvgFotosPapelC.Rows.Count - 1; //el menos 1 es debido porque en el gridview se maneja a partir del 0 y  Licencias.Count a partir del 1
+            for (int i = 0; i <= cant; i++) // i comienza desde 0 porque recorre todo el gridview y el gridview comienza desde 0 igual que el Array aunque utilizando el count lo obtienes comenzando a partir del 1
+            {
+                if (Fotos[i].VchFila == "" && Fotos[i].VchColumna == "" && Fotos[i].BooRotarEnPapel == false)
+                {
+                    dvgFotosPapelC.Rows[i].Visible = false;
+                    FotosX.Add(Fotos[i]);
+                }
+                else
+                {
+                    if (Fotos[i].BooRotarEnPapel == false)
+                    {
+                        ((Label)dvgFotosPapelC.Rows[i].FindControl("lbFotoRotadoPapel_icon")).Visible = false;
+                        ((Label)dvgFotosPapelC.Rows[i].FindControl("lbFotoNoRotadoPapel_icon")).Visible = true;
+                    }
+                    else
+                    {
+                        ((Label)dvgFotosPapelC.Rows[i].FindControl("lbFotoRotadoPapel_icon")).Visible = true;
+                        ((Label)dvgFotosPapelC.Rows[i].FindControl("lbFotoNoRotadoPapel_icon")).Visible = false;
+                    }
+                }
+            }
+
+            DdlFotoC.DataSource = FotosX;
+            DdlFotoC.DataValueField = "UidFoto";
+            DdlFotoC.DataTextField = "StrDescripcion";
+            DdlFotoC.DataBind();
+        }
+        protected void dvgFotosPapelC_RowDataBound(object sender, GridViewRowEventArgs e)//
+        {
+            try
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(dvgFotosPapelC, "Select$" + e.Row.RowIndex);
+                }
+                if (e.Row.RowType == DataControlRowType.Header)
+                {
+
+                    switch (lbOrdenFPPorC.Text)
+                    {
+                        case "Descripcion":
+                            if (lbOrdenFPC.Text == "ASC")
+                            {
+                                ((HtmlGenericControl)e.Row.FindControl("IcoDescripcionFP")).Attributes["class"] = Global.OrdenDescendente;
+                            }
+                            else
+                            {
+                                ((HtmlGenericControl)e.Row.FindControl("IcoDescripcionFP")).Attributes["class"] = Global.OrdenAscendente;
+                            }
+                            break;
+                    }
+                }
+
+                PnErrorFotoPapelCSucursal.Visible = false;
+                lblErrorFotoPapelC.Visible = false;
+                lblErrorFotoPapelC.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoPapelCSucursal.Visible = true;
+                lblErrorFotoPapelC.Visible = true;
+                lblErrorFotoPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
+            }
+
+        }
+        protected void dvgFotosPapelC_SelectedIndexChanged(object sender, EventArgs e)//
+        {
+            try
+            {
+                DataBindFotografiasPapelC();
+                List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+                SucursalFotoC foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == dvgFotosPapelC.SelectedDataKey.Value.ToString()).First();
+                UidFotoPapelC.Text = foto.UidFoto.ToString();
+                txtFxFilaC.Text = foto.VchFila.ToString();
+                txtFxColumnaC.Text = foto.VchColumna.ToString();
+                CbRotarImagenPapelC.Checked = foto.BooRotarEnPapel;
+                DdlFotoC.Items.Insert(0, new ListItem(foto.StrDescripcion, foto.UidFoto.ToString()));
+                btnEditarFotoPapelC.Text = "Editar";
+                DesHabilitarFormularioFotoPapelC();
+                if (EditingMode)
+                {
+                    btnEditarFotoPapelC.RemoveCssClass("disabled").RemoveCssClass("hidden");
+                    btnEditarFotoPapelC.Enabled = true;
+                    //btnEliminarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
+                    //btnEliminarFoto.Enabled = true;
+                    btnOKFotoPapelC.AddCssClass("disabled").AddCssClass("hidden");
+                    btnOKFotoPapelC.Enabled = false;
+                    btnCancelarFotoPapelC.AddCssClass("disabled").AddCssClass("hidden");
+                    btnCancelarFotoPapelC.Enabled = false;
+                }
+
+                int pos = -1;
+                if (ViewState["FotoCPreviousRow"] != null)
+                {
+                    pos = (int)ViewState["FotoCPreviousRow"];
+                    GridViewRow previousRow = dvgFotosPapelC.Rows[pos];
+                    previousRow.RemoveCssClass("success");
+                }
+
+                ViewState["FotoCPreviousRow"] = dvgFotosPapelC.SelectedIndex;
+                dvgFotosPapelC.SelectedRow.AddCssClass("success");
+
+
+                PnErrorFotoPapelCSucursal.Visible = false;
+                lblErrorFotoPapelC.Visible = false;
+                lblErrorFotoPapelC.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoPapelCSucursal.Visible = true;
+                lblErrorFotoPapelC.Visible = true;
+                lblErrorFotoPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
+            }
+
+        }
+        protected void btnEditarFotoPapelC_Click(object sender, EventArgs e)//
+        {
+            try
+            {
+                HabilitarFormularioFotoPapelC();
+                btnEditarFotoPapelC.AddCssClass("disabled");
+                btnCancelarFotoPapelC.Visible = true;
+                btnOKFotoPapelC.Visible = true;
+                btnCancelarFotoPapelC.RemoveCssClass("hidden").RemoveCssClass("disabled");
+                btnOKFotoPapelC.RemoveCssClass("hidden").RemoveCssClass("disabled");
+                btnOKFotoPapelC.Enabled = true;
+                btnCancelarFotoPapelC.Enabled = true;
+
+                PnErrorFotoPapelCSucursal.Visible = false;
+                lblErrorFotoPapelC.Visible = false;
+                lblErrorFotoPapelC.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoPapelCSucursal.Visible = true;
+                lblErrorFotoPapelC.Visible = true;
+                lblErrorFotoPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
+            }
+
+        }
+        protected void btnOKFotoPapelC_Click(object sender, EventArgs e)//
+        {
+            try
+            {
+                if (ValidarCamposPapelC() == false)
+                {
+                    return;
+                }
+                ToolAltoPapelC.Visible = false;
+                ToolAnchoPapelC.Visible = false;
+                ToolMDerechoC.Visible = false;
+                ToolMInferiorC.Visible = false;
+                ToolMIzquierdoC.Visible = false;
+                ToolMSuperiorC.Visible = false;
+                List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+                SucursalFotoC foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == DdlFotoC.SelectedValue.ToString()).First();
+                //dgvFotos.SelectedDataKey.Value.ToString()).First();
+                double CEspdisponible = ConMMColumnaC(foto);
+                double FEspdisponible = ConMMFilaC(foto);
+                NumberFormatInfo punto = new NumberFormatInfo(); punto.NumberDecimalSeparator = ".";
+
+                //tarea pendiente validar si estan vacios columna y fila
+                if (CbRotarImagenPapelC.Checked == false)
+                {
+                    if (CEspdisponible - (double.Parse(txtFxColumnaC.Text, punto) * double.Parse(foto.VchAncho, punto)) <= 0)
+                    {
+                        txtFxColumnaC.BorderColor = Color.FromName("#f00800");
+                        txtFxColumnaC.Focus();
+                        ToolFxColumnaC.HRef = "Excede del espacio diponible";
+                        ToolFxColumnaC.Visible = true;
+                        return;
+                    }
+                    ToolFxColumnaC.HRef = "";
+                    ToolFxColumnaC.Visible = false;
+                    if (FEspdisponible - (double.Parse(txtFxFilaC.Text, punto) * double.Parse(foto.VchAlto, punto)) <= 0)
+                    {
+                        txtFxFilaC.BorderColor = Color.FromName("#f00800");
+                        txtFxFilaC.Focus();
+                        ToolFxFilaC.HRef = "Excede del espacio diponible";
+                        ToolFxFilaC.Visible = true;
+                        return;
+                    }
+                    ToolFxFilaC.HRef = "";
+                    ToolFxFilaC.Visible = false;
+                }
+                else
+                {
+                    if (CEspdisponible - (double.Parse(txtFxColumnaC.Text, punto) * double.Parse(foto.VchAlto, punto)) <= 0)
+                    {
+                        txtFxColumnaC.BorderColor = Color.FromName("#f00800");
+                        txtFxColumnaC.Focus();
+                        ToolFxColumnaC.HRef = "Excede del espacio diponible";
+                        ToolFxColumnaC.Visible = true;
+                        return;
+                    }
+                    ToolFxColumnaC.HRef = "";
+                    ToolFxColumnaC.Visible = false;
+                    if (FEspdisponible - (double.Parse(txtFxFilaC.Text, punto) * double.Parse(foto.VchAncho, punto)) <= 0)
+                    {
+                        txtFxFilaC.BorderColor = Color.FromName("#f00800");
+                        txtFxFilaC.Focus();
+                        ToolFxFilaC.HRef = "Excede del espacio diponible";
+                        ToolFxFilaC.Visible = true;
+                        return;
+                    }
+                    ToolFxFilaC.HRef = "";
+                    ToolFxFilaC.Visible = false;
+                }
+                lblErrorFotoC.Visible = true;
+                //List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
+                SucursalFotoC photo = null;
+                int pos = -1;
+                if (!string.IsNullOrWhiteSpace(UidFotoPapelC.Text))
+                {
+                    IEnumerable<SucursalFotoC> dir = from i in fotos where i.UidFoto.ToString() == DdlFotoC.SelectedValue.ToString() select i;
+                    photo = dir.First();
+                    pos = fotos.IndexOf(photo);
+                    fotos.Remove(photo);
+                }
+                else
+                {
+                    photo = new SucursalFotoC();
+                    photo.UidFoto = Guid.NewGuid();
+                }
+                photo.BooRotarEnPapel = CbRotarImagenPapelC.Checked;
+                photo.VchColumna = txtFxColumnaC.Text;
+                photo.VchFila = txtFxFilaC.Text;
+                photo.UidFoto = new Guid(UidFotoPapelC.Text);
+                photo.StrDescripcion = DdlFotoC.SelectedItem.Text;
+
+                if (pos < 0)
+                    fotos.Add(photo);
+                else
+                    fotos.Insert(pos, photo);
+
+                ViewState["FotosC"] = fotos;
+                DataBindFotografiasPapelC();
+                LimpiarFormularioFotoPapelC();
+                DesHabilitarFormularioFotoPapelC();
+                btnOKFotoPapelC.AddCssClass("hidden").AddCssClass("disabled");
+                btnOKFotoPapelC.Enabled = false;
+                btnCancelarFotoPapelC.AddCssClass("hidden").AddCssClass("disabled");
+                btnCancelarFotoPapelC.Enabled = false;
+                btnEditarFotoPapelC.AddCssClass("disabled").AddCssClass("hidden");
+                btnEditarFotoPapelC.Enabled = false;
+
+
+                PnErrorFotoPapelCSucursal.Visible = false;
+                lblErrorFotoPapelC.Visible = false;
+                lblErrorFotoPapelC.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoPapelCSucursal.Visible = true;
+                lblErrorFotoPapelC.Visible = true;
+                lblErrorFotoPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
+            }
+
+        }
+        protected void btnCancelarFotoPapelC_Click(object sender, EventArgs e)//
+        {
+            try
+            {
+                DesHabilitarFormularioFotoPapelC();
+                btnEditarFotoPapelC.RemoveCssClass("disabled");
+                btnCancelarFotoPapelC.Visible = false;
+                btnOKFotoPapelC.Visible = false;
+
+                PnErrorFotoPapelCSucursal.Visible = false;
+                lblErrorFotoPapelC.Visible = false;
+                lblErrorFotoPapelC.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoPapelCSucursal.Visible = true;
+                lblErrorFotoPapelC.Visible = true;
+                lblErrorFotoPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
+            }
+
+        }
+        protected void btnEditarPapelC_Click(object sender, EventArgs e)//
+        {
+            try
+            {
+                btnEditarPapelC.AddCssClass("disabled");
+                HabilitarFormularioPapelC();
+                //HabilitarFormularioFotoPapel();
+                LimpiarFormularioFotoPapelC();
+                LimpiarFormularioPapelC();
+                //btnOkPapel
+                //btnCancelarPapel.
+                List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+
+
+                foreach (SucursalFotoC f in fotos)
+                {
+                    f.VchColumna = "";
+                    f.VchFila = "";
+                    f.BooRotarEnPapel = false;
+                }
+                ViewState["FotosC"] = fotos;
+                DataBindFotografiasPapelC();
+
+                //DdlFoto.DataSource = ViewState["Fotos"];
+                //DdlFoto.DataValueField = "UidFoto";
+                //DdlFoto.DataTextField = "StrDescripcion";
+                //DdlFoto.DataBind();
+
+
+                //  ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#VConfimacionNuevoPapel').modal('hide');", true);
+                //  ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#VConfimacionNuevoPapel').modal('hide');", true);
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#VConfimacionNuevoPapelC", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#VConfimacionNuevoPapelC').hide();", true);
+
+                PnErrorPapelCSucursal.Visible = false;
+                lblErrorPapelC.Visible = false;
+                lblErrorPapelC.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorPapelCSucursal.Visible = true;
+                lblErrorPapelC.Visible = true;
+                lblErrorPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
+            }
+
+        }
+        protected void btnOkPapelC_Click(object sender, EventArgs e)//
+        {
+            try
+            {
+                DesHabilitarFormularioPapelC();
+                btnOkPapelC.Visible = false;
+                btnCancelarPapelC.Visible = false;
+
+                PnErrorPapelCSucursal.Visible = false;
+                lblErrorPapelC.Visible = false;
+                lblErrorPapelC.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorPapelCSucursal.Visible = true;
+                lblErrorPapelC.Visible = true;
+                lblErrorPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
+            }
+
+        }
+        protected void btnCancelarPapelC_Click(object sender, EventArgs e)//NO HAY NADA DE PORSI
+        {
+
+        }
+        protected void DdlFotoC_SelectedIndexChanged(object sender, EventArgs e)//
+        {
+            try
+            {
+
+                if (Guid.Empty != new Guid(DdlFotoC.SelectedValue.ToString()) && !String.IsNullOrWhiteSpace(DdlFotoC.SelectedValue.ToString()))
+                {
+                    if (EditingMode)
+                    {
+                        btnEditarFotoPapelC.RemoveCssClass("disabled").RemoveCssClass("hidden");
+                        btnEditarFotoPapelC.Enabled = true;
+                    }
+                    UidFotoPapelC.Text = DdlFotoC.SelectedValue.ToString();
+                }
+                else
+                {
+                    btnEditarFotoPapelC.AddCssClass("disabled").RemoveCssClass("hidden");
+                    btnEditarFotoPapelC.Enabled = false;
+                    UidFotoPapelC.Text = "";
+                }
+                DesHabilitarFormularioFotoPapelC();
+                btnEditarFotoPapelC.Text = "Nuevo";
+                btnOKFotoPapelC.AddCssClass("disabled").AddCssClass("hidden");
+                btnOKFotoPapelC.Enabled = false;
+                btnCancelarFotoPapelC.AddCssClass("disabled").AddCssClass("hidden");
+                btnCancelarFotoPapelC.Enabled = false;
+
+                PnErrorFotoPapelCSucursal.Visible = false;
+                lblErrorFotoPapelC.Visible = false;
+                lblErrorFotoPapelC.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoPapelCSucursal.Visible = true;
+                lblErrorFotoPapelC.Visible = true;
+                lblErrorFotoPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
+            }
+
+        }
+        public double ConMMColumnaC(SucursalFotoC foto)//
+        {
+            double CEspDisponible;
+            SucursalPapelC Papel1 = new SucursalPapelC();
+            Papel1.VchAncho = txtAnchoPapel.Text;
+            Papel1.VchDerecho = txtMargenDerecho.Text;
+            Papel1.VchIzquierdo = txtMargenIzquierdo.Text;
+
+            double CEspDisponibleMilimetros = (double.Parse(Papel1.VchAncho) - (double.Parse(Papel1.VchDerecho) + double.Parse(Papel1.VchIzquierdo)));
+            CEspDisponible = ConversionMedidaMilimetros(CEspDisponibleMilimetros, foto.VchMedida);
+
+            return CEspDisponible;
+        }
+        public double ConMMFilaC(SucursalFotoC foto)
+        {
+            double FEspDisponible;
+            SucursalPapelC Papel1 = new SucursalPapelC();
+            Papel1.VchAlto = txtAltoPapel.Text;
+            Papel1.VchSuperior = txtMargenSuperior.Text;
+            Papel1.VchInferior = txtMargenInferior.Text;
+            double FEspDisponibleMilimetros = (double.Parse(Papel1.VchAlto) - (double.Parse(Papel1.VchInferior) + double.Parse(Papel1.VchSuperior)));
+            FEspDisponible = ConversionMedidaMilimetros(FEspDisponibleMilimetros, foto.VchMedida);
+            return FEspDisponible;
+        }
+        //public double ConversionMedidaMilimetros(double Dou, String StrMedida)
+        //{
+
+        //    switch (StrMedida)
+        //    {
+        //        case "Centimetro":
+        //            Dou = Dou * 0.1;
+        //            break;
+        //        case "Pulgada":
+        //            Dou = Dou * 0.0393701;
+        //            break;
+        //        default:
+        //            Dou = Dou * 0.1;
+        //            break;
+        //    }
+        //    return Dou;
+        //}
+        protected void dvgFotosPapelC_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            try
+            {
+                List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+                if (e.SortExpression == lbOrdenFPPorC.Text)
+                {
+                    if (lbOrdenFPC.Text == Orden.ASC.ToString())
+                    {
+                        lbOrdenFPC.Text = Orden.DESC.ToString();
+                    }
+                    else
+                    {
+                        lbOrdenFPC.Text = Orden.ASC.ToString();
+                    }
+                }
+                else
+                {
+                    lbOrdenFPPorC.Text = e.SortExpression;
+                    lbOrdenFPC.Text = Orden.ASC.ToString();
+                }
+                Orden Ordenn = (Orden)Enum.Parse(typeof(Orden), lbOrdenFPC.Text, true);
+                //var txt = (HtmlInputText)dvgFotosPapel.FindControl("txt");
+                List<SucursalFotoC> fotosOrdenNueva = VM.OrdenarListaFPC(e.SortExpression, Ordenn, fotos);
+                ViewState["FotosC"] = fotosOrdenNueva;
+                DataBindFotografiasPapelC();
+
+                PnErrorFotoPapelCSucursal.Visible = false;
+                lblErrorFotoPapelC.Visible = false;
+                lblErrorFotoPapelC.Text = "";
+            }
+            catch (Exception x)
+            {
+                PnErrorFotoPapelCSucursal.Visible = true;
+                lblErrorFotoPapelC.Visible = true;
+                lblErrorFotoPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
+            }
+
+        }
+        #endregion Panel derecho (Papel comercial)
     }
 
 }

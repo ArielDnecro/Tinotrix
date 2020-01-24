@@ -371,7 +371,7 @@ namespace CodorniX.VistaDelModelo
         }
 
         public bool GuardarUsuario(string Nombre, string ApellidoPaterno, string ApellidoMaterno,
-            string FechaNacimiento, string Correo, string FechaInicio,
+            DateTime FechaNacimiento, string Correo, DateTime FechaInicio,
             string FechaFin, string Usuario, string Password, string UidStatus, string rutaimagen)
         {
             CLASSUSUARIO = new Usuario()
@@ -379,11 +379,11 @@ namespace CodorniX.VistaDelModelo
                 STRNOMBRE = Nombre,
                 STRAPELLIDOPATERNO = ApellidoPaterno,
                 STRAPELLIDOMATERNO = ApellidoMaterno,
-                DtFechaNacimiento = Convert.ToDateTime(FechaNacimiento),
+                DtFechaNacimiento = FechaNacimiento,
                 STRCORREO = Correo,
                 //STRCURP = Curp,
 
-                DtFechaInicio = Convert.ToDateTime(FechaInicio),
+                DtFechaInicio = FechaInicio,
                 DtFechaFin = FechaFin.Length == 0 ? (DateTime?)null : Convert.ToDateTime(FechaFin),
                 STRUSUARIO = Usuario,
                 STRPASSWORD = Password,
@@ -407,7 +407,7 @@ namespace CodorniX.VistaDelModelo
 
 
         public bool ModificarUsuario(string UidUsuario, string Nombre, string ApellidoPaterno, string ApellidoMaterno,
-            string FechaNacimiento, string Correo, string FechaInicio, string FechaFin,
+            DateTime FechaNacimiento, string Correo, DateTime FechaInicio, string FechaFin,
             string Usuario, string Password, string UidStatus, string rutaimagen)
         {
 
@@ -418,10 +418,10 @@ namespace CodorniX.VistaDelModelo
                 STRNOMBRE = Nombre,
                 STRAPELLIDOPATERNO = ApellidoPaterno,
                 STRAPELLIDOMATERNO = ApellidoMaterno,
-                DtFechaNacimiento = Convert.ToDateTime(FechaNacimiento),
+                DtFechaNacimiento = FechaNacimiento,
                 STRCORREO = Correo,
                 // STRCURP = Curp,
-                DtFechaInicio = Convert.ToDateTime(FechaInicio),
+                DtFechaInicio = FechaInicio,
                 DtFechaFin = FechaFin.Length == 0 ? (DateTime?)null : Convert.ToDateTime(FechaFin),
                 STRUSUARIO = Usuario,
                 STRPASSWORD = Password,

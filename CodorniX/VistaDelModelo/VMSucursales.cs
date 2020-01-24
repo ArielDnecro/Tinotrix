@@ -9,185 +9,205 @@ namespace CodorniX.VistaDelModelo
 {
     public class VMSucursales
     {
-#region Propiedades
-        private Sucursal.Repository repository = new Sucursal.Repository();
-        private SucursalTelefono.Repository telefonoRepository = new SucursalTelefono.Repository();
-        private SucursalDireccion.Repository direccionRepository = new SucursalDireccion.Repository();
+        #region Propiedades
+                private Sucursal.Repository repository = new Sucursal.Repository();
+                private SucursalTelefono.Repository telefonoRepository = new SucursalTelefono.Repository();
+                private SucursalDireccion.Repository direccionRepository = new SucursalDireccion.Repository();
         
-        private SucursalImpresora.Repository impresoraRepository = new SucursalImpresora.Repository();
-        private Status.Repository statusRepository = new Status.Repository();
-        private SucursalFoto.Repository fotoRepository = new SucursalFoto.Repository();
-        private SucursalImpresoraTipo.Repository tipoimpresoraRepository = new SucursalImpresoraTipo.Repository();
-        private SucursalLicencia.Repository LicenciaRepository = new SucursalLicencia.Repository();
+                private SucursalImpresora.Repository impresoraRepository = new SucursalImpresora.Repository();
+                private Status.Repository statusRepository = new Status.Repository();
+                private SucursalFoto.Repository fotoRepository = new SucursalFoto.Repository();
+                private SucursalFotoC.Repository fotoCRepository = new SucursalFotoC.Repository();
+                private SucursalImpresoraTipo.Repository tipoimpresoraRepository = new SucursalImpresoraTipo.Repository();
+                private SucursalLicencia.Repository LicenciaRepository = new SucursalLicencia.Repository();
 
-        private EmpresaDireccion.Repository empresaDireccionRepository = new EmpresaDireccion.Repository();
-        private Pais.Repository paisRepository = new Pais.Repository();
-        private Estado.Repository estadoRepository = new Estado.Repository();
-        private TipoTelefono.Repository tipoTelefonoRepository = new TipoTelefono.Repository();
-        private TipoSucursal.Repository tipoSucursalRepository = new TipoSucursal.Repository();
-        private UnidadMedida.Repository UnidadMedidaRepository = new UnidadMedida.Repository();
-        private SucursalPapel.Repository PapelRepository = new SucursalPapel.Repository();
-        private SucursalServidor.Repository ServidorRepository = new SucursalServidor.Repository();
+                private EmpresaDireccion.Repository empresaDireccionRepository = new EmpresaDireccion.Repository();
+                private Pais.Repository paisRepository = new Pais.Repository();
+                private Estado.Repository estadoRepository = new Estado.Repository();
+                private TipoTelefono.Repository tipoTelefonoRepository = new TipoTelefono.Repository();
+                private TipoSucursal.Repository tipoSucursalRepository = new TipoSucursal.Repository();
+                private UnidadMedida.Repository UnidadMedidaRepository = new UnidadMedida.Repository();
+                private SucursalPapel.Repository PapelRepository = new SucursalPapel.Repository();
+                private SucursalPapelC.Repository PapelCRepository = new SucursalPapelC.Repository();
+                private SucursalServidor.Repository ServidorRepository = new SucursalServidor.Repository();
 
-        #region sucursales
-        private List<Sucursal> _Sucursales;
+                #region sucursales
+                private List<Sucursal> _Sucursales;
 
-        public List<Sucursal> Sucursales
-        {
-            get { return _Sucursales; }
-            set { _Sucursales = value; }
-        }
+                public List<Sucursal> Sucursales
+                {
+                    get { return _Sucursales; }
+                    set { _Sucursales = value; }
+                }
 
-        private Sucursal _Sucursal;
+                private Sucursal _Sucursal;
 
-        public Sucursal Sucursal
-        {
-            get { return _Sucursal; }
-            set { _Sucursal = value; }
-        }
-        private List<TipoSucursal> _TipoSucursales;
+                public Sucursal Sucursal
+                {
+                    get { return _Sucursal; }
+                    set { _Sucursal = value; }
+                }
+                private List<TipoSucursal> _TipoSucursales;
 
-        public List<TipoSucursal> TipoSucursales
-        {
-            get { return _TipoSucursales; }
-            set { _TipoSucursales = value; }
-        }
-        //VMGlobalDireccion _CVMObjGlobalDireccion = new VMGlobalDireccion();
-        //public VMGlobalDireccion CVMObjGlobalDireccion
-        //{ get { return _CVMObjGlobalDireccion; } set { _CVMObjGlobalDireccion = value; } }
-        #endregion sucursales
+                public List<TipoSucursal> TipoSucursales
+                {
+                    get { return _TipoSucursales; }
+                    set { _TipoSucursales = value; }
+                }
+                //VMGlobalDireccion _CVMObjGlobalDireccion = new VMGlobalDireccion();
+                //public VMGlobalDireccion CVMObjGlobalDireccion
+                //{ get { return _CVMObjGlobalDireccion; } set { _CVMObjGlobalDireccion = value; } }
+                #endregion sucursales
 
-        #region direcciones
-        private List<EmpresaDireccion> _EmpresaDirecciones;
+                #region direcciones
+                private List<EmpresaDireccion> _EmpresaDirecciones;
 
-        public List<EmpresaDireccion> EmpresaDirecciones
-        {
-            get { return _EmpresaDirecciones; }
-            set { _EmpresaDirecciones = value; }
-        }
-        private List<SucursalDireccion> _direcciones;
+                public List<EmpresaDireccion> EmpresaDirecciones
+                {
+                    get { return _EmpresaDirecciones; }
+                    set { _EmpresaDirecciones = value; }
+                }
+                private List<SucursalDireccion> _direcciones;
 
-        public List<SucursalDireccion> Direcciones
-        {
-            get { return _direcciones; }
-            set { _direcciones = value; }
-        }
+                public List<SucursalDireccion> Direcciones
+                {
+                    get { return _direcciones; }
+                    set { _direcciones = value; }
+                }
 
-        private Direccion _direccion;
+                private Direccion _direccion;
 
-        public Direccion Direccion
-        {
-            get { return _direccion; }
-            set { _direccion = value; }
-        }
-        private List<Pais> _paises;
+                public Direccion Direccion
+                {
+                    get { return _direccion; }
+                    set { _direccion = value; }
+                }
+                private List<Pais> _paises;
 
-        public List<Pais> Paises
-        {
-            get { return _paises; }
-            set { _paises = value; }
-        }
+                public List<Pais> Paises
+                {
+                    get { return _paises; }
+                    set { _paises = value; }
+                }
 
-        private List<Estado> _estados;
+                private List<Estado> _estados;
 
-        public List<Estado> Estados
-        {
-            get { return _estados; }
-            set { _estados = value; }
-        }
-        #endregion direcciones
+                public List<Estado> Estados
+                {
+                    get { return _estados; }
+                    set { _estados = value; }
+                }
+                #endregion direcciones
 
-        #region telefonos
-        private IList<TipoTelefono> _TipoTelefonos;
+                #region telefonos
+                private IList<TipoTelefono> _TipoTelefonos;
 
-        public IList<TipoTelefono> TipoTelefonos
-        {
-            get { return _TipoTelefonos; }
-            set { _TipoTelefonos = value; }
-        }
-        private List<SucursalTelefono> _telefonos;
+                public IList<TipoTelefono> TipoTelefonos
+                {
+                    get { return _TipoTelefonos; }
+                    set { _TipoTelefonos = value; }
+                }
+                private List<SucursalTelefono> _telefonos;
 
-        public List<SucursalTelefono> Telefonos
-        {
-            get { return _telefonos; }
-            set { _telefonos = value; }
-        }
-        private Telefono _telefono;
+                public List<SucursalTelefono> Telefonos
+                {
+                    get { return _telefonos; }
+                    set { _telefonos = value; }
+                }
+                private Telefono _telefono;
 
-        public Telefono Telefono
-        {
-            get { return _telefono; }
-            set { _telefono = value; }
-        }
-        #endregion telefonos
+                public Telefono Telefono
+                {
+                    get { return _telefono; }
+                    set { _telefono = value; }
+                }
+                #endregion telefonos
 
-        #region impresoras
-        private List<SucursalImpresora> _impresoras;
+                #region impresoras
+                private List<SucursalImpresora> _impresoras;
 
-        public List<SucursalImpresora> Impresoras
-        {
-            get { return _impresoras; }
-            set { _impresoras = value; }
-        }
+                public List<SucursalImpresora> Impresoras
+                {
+                    get { return _impresoras; }
+                    set { _impresoras = value; }
+                }
 
-        private List<SucursalImpresoraTipo> _tipoimpresoras;
+                private List<SucursalImpresoraTipo> _tipoimpresoras;
 
-        public List<SucursalImpresoraTipo> TipoImpresoras
-        {
-            get { return _tipoimpresoras; }
-            set { _tipoimpresoras = value; }
-        }
+                public List<SucursalImpresoraTipo> TipoImpresoras
+                {
+                    get { return _tipoimpresoras; }
+                    set { _tipoimpresoras = value; }
+                }
 
-        #endregion impresoras
+                #endregion impresoras
 
-        #region fotos
-        private List<SucursalFoto> _fotos;
+                #region fotos
+                private List<SucursalFoto> _fotos;
 
-        public List<SucursalFoto> Fotos
-        {
-            get { return _fotos; }
-            set { _fotos = value; }
-        }
+                public List<SucursalFoto> Fotos
+                {
+                    get { return _fotos; }
+                    set { _fotos = value; }
+                }
 
-        private List< UnidadMedida > _Medidas;
+                private List< UnidadMedida > _Medidas;
 
-        public List<UnidadMedida> Medidas
-        {
-            get { return _Medidas; }
-            set { _Medidas = value; }
-        }
+                public List<UnidadMedida> Medidas
+                {
+                    get { return _Medidas; }
+                    set { _Medidas = value; }
+                }
         #endregion fotos
 
-        #region Licencias
-        private List<SucursalLicencia> _Licencias;
-        public List<SucursalLicencia> Licencias
-        {
-            get { return _Licencias; }
-            set { _Licencias = value; }
-        }
+                #region fotos Comercial
+                private List<SucursalFotoC> _fotosC;
 
-        string _StrOrdenaPor = string.Empty;
-        public string StrOrdenaPor
-        {
-            get { return _StrOrdenaPor; }
-            set { _StrOrdenaPor = value; }
-        }
-        Orden _EnuOrden = Orden.ASC;
-        public Orden EnuOrden
-        {
-            get { return _EnuOrden; }
-            set { _EnuOrden = value; }
-        }
-        #endregion Licencias
+                public List<SucursalFotoC> FotosC
+                {
+                    get { return _fotosC; }
+                    set { _fotosC = value; }
+                }
 
-        #region Papel
-        private SucursalPapel _Papel;
+                //private List<UnidadMedida> _MedidasC;
 
-        public SucursalPapel Papel
-        {
-            get { return _Papel; }
-            set { _Papel = value; }
-        }
+                //public List<UnidadMedida> MedidasC
+                //{
+                //    get { return _MedidasC; }
+                //    set { _MedidasC = value; }
+                //}
+                #endregion fotos Comercial
+
+                #region Licencias
+                private List<SucursalLicencia> _Licencias;
+                        public List<SucursalLicencia> Licencias
+                        {
+                            get { return _Licencias; }
+                            set { _Licencias = value; }
+                        }
+
+                        string _StrOrdenaPor = string.Empty;
+                        public string StrOrdenaPor
+                        {
+                            get { return _StrOrdenaPor; }
+                            set { _StrOrdenaPor = value; }
+                        }
+                        Orden _EnuOrden = Orden.ASC;
+                        public Orden EnuOrden
+                        {
+                            get { return _EnuOrden; }
+                            set { _EnuOrden = value; }
+                        }
+                        #endregion Licencias
+
+                #region Papel
+                private SucursalPapel _Papel;
+
+                public SucursalPapel Papel
+                {
+                    get { return _Papel; }
+                    set { _Papel = value; }
+                }
 
         //string _StrOrdenaFPPor = string.Empty;
         //public string StrOrdenaFPPor
@@ -204,31 +224,38 @@ namespace CodorniX.VistaDelModelo
         //}
         #endregion Papel
 
-        #region servidor
-        private SucursalServidor _Servidor;
-        public SucursalServidor Servidor
-        {
-            get { return _Servidor; }
-            set { _Servidor = value; }
-        }
-        #endregion servidor
+                #region Papel Comercial
+                private SucursalPapelC _PapelC;
+                public SucursalPapelC PapelC
+                {
+                    get { return _PapelC; }
+                    set { _PapelC = value; }
+                }
+                #endregion Papel Comercial
 
-        #region varios
-        private IList<Status> _ListaStatus;
+                #region servidor
+                private SucursalServidor _Servidor;
+                        public SucursalServidor Servidor
+                        {
+                            get { return _Servidor; }
+                            set { _Servidor = value; }
+                        }
+                        #endregion servidor
 
-        public IList<Status> ListaStatus
-        {
-            get { return _ListaStatus; }
-            set { _ListaStatus = value; }
-        }
+                #region varios
+                private IList<Status> _ListaStatus;
+
+                public IList<Status> ListaStatus
+                {
+                    get { return _ListaStatus; }
+                    set { _ListaStatus = value; }
+                }
 
 
-        #endregion varios
+                #endregion varios
 
 
-#endregion Propiedades
-
-
+        #endregion Propiedades
         #region Funciones
 
         #region sucursal
@@ -412,6 +439,36 @@ namespace CodorniX.VistaDelModelo
 
         #endregion fotos
 
+        #region fotos Comercial
+
+        //public void ObtenerMedidas()
+        //{
+        //    _Medidas = UnidadMedidaRepository.FindAll();
+        //}
+        public void ObtenerfotosC()
+        {
+            _fotosC = fotoCRepository.FindAll(_Sucursal.UidSucursal);
+        }
+        
+        public void GuardarFotosC(List<SucursalFotoC> fotosC, Guid uidSucursal)
+        {
+            foreach (SucursalFotoC foto in fotosC)
+            {
+                foto.UidSucursal = uidSucursal;
+                fotoCRepository.Save(foto);
+            }
+        }
+
+        public void EliminarFotosC(List<SucursalFotoC> fotosC)
+        {
+            foreach (SucursalFotoC foto in fotosC)
+            {
+                fotoCRepository.Remove(foto);
+            }
+        }
+
+        #endregion fotos
+
         #region Licencias 
         public void ObtenerLicencias()
         {
@@ -586,6 +643,54 @@ namespace CodorniX.VistaDelModelo
         }
         #endregion Papel
 
+        #region Papel
+        public void GuardarPapelC(SucursalPapelC PapelNuevo)
+        {
+            PapelCRepository.Save(PapelNuevo);
+        }
+
+        public void ObtenerPapelC(Guid uid)
+        {
+            _PapelC = PapelCRepository.Find(uid);
+        }
+        
+        public List<SucursalFotoC> OrdenarListaFPC(string ordenarpor, Orden OrdenFP, List<SucursalFotoC> fotos)
+        {
+            try
+            {
+                if (OrdenFP == Orden.ASC)
+                {
+                    switch (ordenarpor)
+                    {
+                        case "Descripcion":
+                            fotos = new List<SucursalFotoC>(fotos.OrderBy(Descripcion => Descripcion.StrDescripcion));
+                            break;
+                        default:
+                            fotos = new List<SucursalFotoC>(fotos.OrderBy(Descripcion => Descripcion.StrDescripcion));
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (ordenarpor)
+                    {
+                        case "Descripcion":
+                            fotos = new List<SucursalFotoC>(fotos.OrderByDescending(Descripcion => Descripcion.StrDescripcion));
+                            break;
+                        default:
+                            fotos = new List<SucursalFotoC>(fotos.OrderByDescending(Descripcion => Descripcion.StrDescripcion));
+                            break;
+                    }
+                }
+                return fotos;
+            }
+            catch (Exception ex)
+            {
+                throw new VMSucursalesException("(OrdenarLista FOTOS PAPEL COMERCIAL)" + ex.Message);
+            }
+        }
+        #endregion Papel
+
         #region servidor
         public bool ObtenerServidor() {
             bool existe = false;
@@ -601,15 +706,25 @@ namespace CodorniX.VistaDelModelo
             }
             return existe;
         }
-        public void EliminarServidor() {
-            if (_Sucursal.UidSucursal != Guid.Empty)
+        public void EliminarServidor(Guid UidSucursal) {
+            try
             {
-                 ServidorRepository.Eliminar(_Sucursal.UidSucursal);
+                if (UidSucursal != Guid.Empty)
+                {
+                    if (UidSucursal != null)
+                    {
+                        ServidorRepository.Eliminar(_Sucursal.UidSucursal);
+                    }
+                }
+            }
+            catch
+            {
+
             }
          }
-        public void SalvarServidor(String StrServidorIP, String StrPuerto) {
+        public void SalvarServidor(String StrServidorIP, String StrPuerto, Guid UidSucursal) {
             SucursalServidor server = new SucursalServidor();
-            server.UidSucursal = _Sucursal.UidSucursal;
+            server.UidSucursal = UidSucursal;
             server.StrNombreIP = StrServidorIP;
             server.StrPuerto = StrPuerto;
             ServidorRepository.Salvar(server);

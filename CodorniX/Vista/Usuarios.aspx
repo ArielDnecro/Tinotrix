@@ -397,7 +397,7 @@
                                     </div>
                                 </asp:Panel>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4  hidden "  >
                                 <asp:Panel ID="frmGrpFechaFin" runat="server" CssClass="form-group">
                                     <h6>Fecha de terminación</h6>
                                     <div class="input-group date extra">
