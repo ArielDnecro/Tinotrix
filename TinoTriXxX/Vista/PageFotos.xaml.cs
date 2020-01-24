@@ -75,32 +75,37 @@ namespace TinoTriXxX
        
         public PageFotos(VM_Escritorio vm)
         {
-            InitializeComponent();
-            VM = vm;
-            cargarfotos();
-            cargarPapel();
-            scrollViewer.ScrollChanged += OnScrollViewerScrollChanged;
-            //scrollViewer.MouseLeftButtonUp += OnMouseLeftButtonUp;
-            //scrollViewer.PreviewMouseLeftButtonUp += OnMouseLeftButtonUp;
-            scrollViewer.PreviewMouseWheel += OnPreviewMouseWheel;
+            try
+            {
+                InitializeComponent();
+                VM = vm;
+                cargarfotos();
+                cargarPapel();
+                scrollViewer.ScrollChanged += OnScrollViewerScrollChanged;
+                //scrollViewer.MouseLeftButtonUp += OnMouseLeftButtonUp;
+                //scrollViewer.PreviewMouseLeftButtonUp += OnMouseLeftButtonUp;
+                scrollViewer.PreviewMouseWheel += OnPreviewMouseWheel;
 
-            //scrollViewer.PreviewMouseLeftButtonDown += OnMouseLeftButtonDown;
-            //scrollViewer.MouseMove += OnMouseMove;
+                //scrollViewer.PreviewMouseLeftButtonDown += OnMouseLeftButtonDown;
+                //scrollViewer.MouseMove += OnMouseMove;
 
-            slider.ValueChanged += OnSliderValueChanged;
+                slider.ValueChanged += OnSliderValueChanged;
 
-            //Cropimage();
-            CropVH = 0;
-            IntRotation = 0;
-            ObtenerDirectorioRaiz();
-            VM.FotosDescargadas=this.btnDescargarFoto;
-            
-            String Directorio = path + "\\Imagenes\\usuario\\";
-            string[] filePathsdescarga = Directory.GetFiles(Directorio, "*FotoFinalDescarga_*.*", SearchOption.AllDirectories);
-            btnDescargarFoto.Badge= filePathsdescarga.Count();
-            LFDesFotosOrdenada = new List<string>();
-            FotoPMax = -1;
-            FotoPA = -1;
+                //Cropimage();
+                CropVH = 0;
+                IntRotation = 0;
+                ObtenerDirectorioRaiz();
+                VM.FotosDescargadas = this.btnDescargarFoto;
+
+                String Directorio = path + "\\Imagenes\\usuario\\";
+                string[] filePathsdescarga = Directory.GetFiles(Directorio, "*FotoFinalDescarga_*.*", SearchOption.AllDirectories);
+                btnDescargarFoto.Badge = filePathsdescarga.Count();
+                LFDesFotosOrdenada = new List<string>();
+                FotoPMax = -1;
+                FotoPA = -1;
+            }
+            catch (Exception f) { MessageBox.Show("¡No se puede inicializar modulo fotos ! \r\n \r\n Detalle del error:" + f.Message, "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk); }
+
         }
         void ObtenerDirectorioRaiz()
             {
@@ -129,6 +134,7 @@ namespace TinoTriXxX
         }
         private void RefreshCropImage()
         {
+            try { 
             if (_clp != null)
             {
 
@@ -141,7 +147,10 @@ namespace TinoTriXxX
                     rc.Bottom);
                 imgCrop.Source = _clp.BpsCrop();
             }
-        } 
+            }
+            catch (Exception f) { }
+
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             WinLoaded();
@@ -201,72 +210,81 @@ namespace TinoTriXxX
         }
         private void ImgFotoUsuario_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            try { 
             ChkFotoOvalada.IsChecked = false;
             UbicarMarcoSobreImagen();
-            //if (ChkFotoOvalada.IsChecked == true)
-            //{
-            //    FotoOvalada();
-            //}
+                //if (ChkFotoOvalada.IsChecked == true)
+                //{
+                //    FotoOvalada();
+                //}
+            }
+            catch (Exception f) { }
+
         }
         private void ImgFotoUsuario_MouseMove(object sender, MouseEventArgs e)
         {
-            
-            //Point position = Mouse.GetPosition(ImgFotoUsuario);
-            //txthandposition.Text = "Ubicacion mouse X: " + position.X + ", Y: " + position.Y;
-            if (e.LeftButton == MouseButtonState.Pressed)
+            try
             {
-                ChkFotoOvalada.IsChecked = false;
-                //Mouse.OverrideCursor = Cursors.Hand;
-                UbicarMarcoSobreImagen();
-                //if (ChkFotoOvalada.IsChecked == true)
+                //Point position = Mouse.GetPosition(ImgFotoUsuario);
+                //txthandposition.Text = "Ubicacion mouse X: " + position.X + ", Y: " + position.Y;
+                if (e.LeftButton == MouseButtonState.Pressed)
+                {
+                    ChkFotoOvalada.IsChecked = false;
+                    //Mouse.OverrideCursor = Cursors.Hand;
+                    UbicarMarcoSobreImagen();
+                    //if (ChkFotoOvalada.IsChecked == true)
+                    //{
+                    //    FotoOvalada();
+                    //}
+                }
+
+                if (IntCropChanged == 1)//Indicardor de que se editando el tamaño de recorte
+                {
+
+                    double EmpAncho = Ancho / Alto;
+                    double EmpAlto = Alto / Ancho;
+                    if (CropVH == 0)
+                    {
+                        EmpAncho = Ancho / Alto;
+                        EmpAlto = Alto / Ancho;
+                    }
+                    else
+                    {
+                        EmpAncho = Alto / Ancho;
+                        EmpAlto = Ancho / Alto;
+                    }
+                    if (_clp.IntHandle == 1 || _clp.IntHandle == 4)
+                    {
+                        AnchoRecorte = EmpAncho * _clp.BpsCrop().Height;
+                        AltoRecorte = _clp.BpsCrop().Height;
+                    }
+                    if (_clp.IntHandle == 2 || _clp.IntHandle == 3)
+                    {
+                        AltoRecorte = EmpAlto * _clp.BpsCrop().Width;
+                        AnchoRecorte = _clp.BpsCrop().Width;
+                    }
+                    DouTmPuntoExt = (int)AltoRecorte * 0.05;
+                    UbicarMarcoSobreImagen();
+                    _clp.IntHandle = 0;
+                    IntCropChanged = 0;
+                    //if (ChkFotoOvalada.IsChecked == true)
+                    //{
+                    //    FotoOvalada();
+                    //}
+
+
+                }
+
+                //if (e.LeftButton == MouseButtonState.Pressed)
                 //{
-                //    FotoOvalada();
+                //    if (ChkFotoOvalada.IsChecked==true) {
+                //        FotoOvalada();
+                //    }
                 //}
             }
+            catch (Exception f) {
 
-            if (IntCropChanged == 1)//Indicardor de que se editando el tamaño de recorte
-            {
-
-                double EmpAncho = Ancho / Alto;
-                double EmpAlto = Alto / Ancho;
-                if (CropVH == 0)
-                {
-                    EmpAncho = Ancho / Alto;
-                    EmpAlto = Alto / Ancho;
-                }
-                else
-                {
-                    EmpAncho = Alto / Ancho;
-                    EmpAlto = Ancho / Alto;
-                }
-                if (_clp.IntHandle == 1 || _clp.IntHandle == 4)
-                {
-                    AnchoRecorte = EmpAncho * _clp.BpsCrop().Height;
-                    AltoRecorte = _clp.BpsCrop().Height;
-                }
-                if (_clp.IntHandle == 2 || _clp.IntHandle == 3)
-                {
-                    AltoRecorte = EmpAlto * _clp.BpsCrop().Width;
-                    AnchoRecorte = _clp.BpsCrop().Width;
-                }
-                DouTmPuntoExt = (int)AltoRecorte * 0.05;
-                UbicarMarcoSobreImagen();
-                _clp.IntHandle = 0;
-                IntCropChanged = 0;
-                //if (ChkFotoOvalada.IsChecked == true)
-                //{
-                //    FotoOvalada();
-                //}
-                
-               
             }
-
-            //if (e.LeftButton == MouseButtonState.Pressed)
-            //{
-            //    if (ChkFotoOvalada.IsChecked==true) {
-            //        FotoOvalada();
-            //    }
-            //}
         }
         void UbicarMarcoSobreImagen()
         {
@@ -313,7 +331,12 @@ namespace TinoTriXxX
          }
         private void ChkFotoOvalada_Checked(object sender, RoutedEventArgs e)
         {
-            FotoOvalada();
+            try
+            {
+                FotoOvalada();
+            }
+            catch (Exception f) { MessageBox.Show("¡No se puede ovalar la foto ! \r\n \r\n Detalle del error:" + f.Message, "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk); }
+
         }
         void FotoOvalada()
         {
@@ -518,17 +541,21 @@ namespace TinoTriXxX
         }
         private void btnRecargarListaFotos_Click(object sender, RoutedEventArgs e)
         {
+            try { 
             cargarfotos();
+            }
+            catch (Exception f) { MessageBox.Show("¡No puede recargar lista de fotos! \r\n \r\n Detalle del error:" + f.Message, "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk); }
+
         }
         private void btnTomarFoto_Click(object sender, RoutedEventArgs e)
         {
-
+            try { 
             btnAnterior.Visibility = Visibility.Hidden;
             btnSiguiente.Visibility = Visibility.Hidden;
 
             Button bt = (Button)sender;
             Grid parent = (Grid)bt.Parent;
-             foto = (Foto)parent.DataContext;
+            foto = (Foto)parent.DataContext;
             if (foto != null) {
                 LbFotos.Visibility = Visibility.Hidden;
                 lbTituloFotografias.Visibility = Visibility.Hidden;
@@ -567,9 +594,13 @@ namespace TinoTriXxX
                 //btnRotacionMenos90.Visibility = Visibility.Visible;
                 //btnRotacion90.Visibility = Visibility.Visible;
             }
+            }
+            catch (Exception f) { MessageBox.Show("¡No puede Eligir o tomar foto para trabajar con èl! \r\n \r\n Detalle del error:" + f.Message, "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk); }
+
         }
         private void btnRegresarListaFotos_Click(object sender, RoutedEventArgs e)
         {
+            try { 
             cargarfotos();
             btnAnterior.Visibility = Visibility.Hidden;
             btnSiguiente.Visibility = Visibility.Hidden;
@@ -601,17 +632,23 @@ namespace TinoTriXxX
             BtnAfirmarElegirFoto.Visibility = Visibility.Hidden;
             //btnSeleccionFoto.Visibility = Visibility.Hidden;
             ChkFotoOvalada.IsEnabled = false;
-            ////GridMenu.Visibility = Visibility.Hidden;
+                ////GridMenu.Visibility = Visibility.Hidden;
 
-            // GridMenu.IsEnabled = false;
-            //btnRegresarEscogerFoto.Visibility = Visibility.Hidden;
-            //BtnImprimir.Visibility = Visibility.Hidden;
-            //RecSombraSeleccionadora.Visibility = Visibility.Collapsed;
+                // GridMenu.IsEnabled = false;
+                //btnRegresarEscogerFoto.Visibility = Visibility.Hidden;
+                //BtnImprimir.Visibility = Visibility.Hidden;
+                //RecSombraSeleccionadora.Visibility = Visibility.Collapsed;
+            }
+            catch (Exception f) { MessageBox.Show("¡No puede regrasar a la lista de fotos! \r\n \r\n Detalle del error:" + f.Message, "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk); }
+
         }
         private void btnCargarFoto_Click(object sender, RoutedEventArgs e)
         {
+            try { 
             cargarfoto();
-           
+            }
+            catch (Exception f) { MessageBox.Show("¡No puede cargar foto! \r\n \r\n Detalle del error:" + f.Message, "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk); }
+
         }
         void cargarfoto() {
             // Create OpenFileDialog 
@@ -956,26 +993,33 @@ namespace TinoTriXxX
         }
         private void BtnAnterior_Click(object sender, RoutedEventArgs e)
         {
-            FotoPA = FotoPA + 1;
-            ImgFotoUsuario.Source = ToImageSource(LFDesFotosOrdenada[FotoPA]);
-            if (FotoPA + 1 > FotoPMax)
+            try
             {
-                btnAnterior.Visibility = Visibility.Hidden;
+                FotoPA = FotoPA + 1;
+                ImgFotoUsuario.Source = ToImageSource(LFDesFotosOrdenada[FotoPA]);
+                if (FotoPA + 1 > FotoPMax)
+                {
+                    btnAnterior.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    btnAnterior.Visibility = Visibility.Visible;
+                }
+                if (FotoPA - 1 == -1)
+                {
+                    btnSiguiente.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    btnSiguiente.Visibility = Visibility.Visible;
+                }
             }
-            else {
-                btnAnterior.Visibility = Visibility.Visible;
-            }
-            if (FotoPA - 1 == -1)
-            {
-                btnSiguiente.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                btnSiguiente.Visibility = Visibility.Visible;
-            }
+            catch (Exception f) { MessageBox.Show("¡No puede ir a la foto anterior! \r\n \r\n Detalle del error:" + f.Message, "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk); }
+
         }
         private void BtnSiguiente_Click(object sender, RoutedEventArgs e)
         {
+            try { 
             FotoPA = FotoPA - 1;
             ImgFotoUsuario.Source = ToImageSource(LFDesFotosOrdenada[FotoPA]);
             if (FotoPA + 1 > FotoPMax)
@@ -994,6 +1038,9 @@ namespace TinoTriXxX
             {
                 btnSiguiente.Visibility = Visibility.Visible;
             }
+            }
+            catch (Exception f) { MessageBox.Show("¡No puede ir a la foto siguiente! \r\n \r\n Detalle del error:" + f.Message, "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk); }
+
         }
         #endregion fotos
 
@@ -1001,50 +1048,53 @@ namespace TinoTriXxX
         //TransformGroup myTransformGroup = new TransformGroup();
         private void btnRotacionMenos90_Click(object sender, RoutedEventArgs e)
         {
-            //RotateTransform rotateTransform = ImgFotoUsuario.LayoutTransform as RotateTransform;
-            //rotateTransform = new RotateTransform(-90);
-            //rotateTransform.CenterX = ImgFotoUsuario.ActualWidth / 2;
-            //rotateTransform.CenterY = ImgFotoUsuario.ActualHeight / 2;
-            //myTransformGroup.Children.Add(rotateTransform);
-            //ImgFotoUsuario.LayoutTransform = myTransformGroup;
-            ////ImgFotoUsuario.SizeChanged=ImgFotoUsuario.ActualWidth;
-            ////System.Windows.Controls.Image _image = new System.Windows.Controls.Image();
-            //double AnchoC = AnchoReal;
-            //double AltoC = AltoReal;
-
-            //if (CropVH==0) {
-            //    CropVH = 1;
-
-            //} else {
-            //    CropVH = 0;
-            //}
-            //AnchoReal = AltoC;
-            //AltoReal = AnchoC;
-            //UbicarMarcoSobreImagen();
-
-            //intRotation marca la rotacion actual de la foto
-
-
-            if (IntRotation == 3)
-            { RotarImagen(ImgFotoUsuario, Rotation.Rotate180); IntRotation = 2; }
-            else
+            try
             {
-                if (IntRotation == 2)
-                { RotarImagen(ImgFotoUsuario, Rotation.Rotate90); IntRotation = 1; }
+                //RotateTransform rotateTransform = ImgFotoUsuario.LayoutTransform as RotateTransform;
+                //rotateTransform = new RotateTransform(-90);
+                //rotateTransform.CenterX = ImgFotoUsuario.ActualWidth / 2;
+                //rotateTransform.CenterY = ImgFotoUsuario.ActualHeight / 2;
+                //myTransformGroup.Children.Add(rotateTransform);
+                //ImgFotoUsuario.LayoutTransform = myTransformGroup;
+                ////ImgFotoUsuario.SizeChanged=ImgFotoUsuario.ActualWidth;
+                ////System.Windows.Controls.Image _image = new System.Windows.Controls.Image();
+                //double AnchoC = AnchoReal;
+                //double AltoC = AltoReal;
+
+                //if (CropVH==0) {
+                //    CropVH = 1;
+
+                //} else {
+                //    CropVH = 0;
+                //}
+                //AnchoReal = AltoC;
+                //AltoReal = AnchoC;
+                //UbicarMarcoSobreImagen();
+
+                //intRotation marca la rotacion actual de la foto
+
+
+                if (IntRotation == 3)
+                { RotarImagen(ImgFotoUsuario, Rotation.Rotate180); IntRotation = 2; }
                 else
                 {
-                    if (IntRotation == 1)
-                    { RotarImagen(ImgFotoUsuario, Rotation.Rotate0); IntRotation = 0; }
+                    if (IntRotation == 2)
+                    { RotarImagen(ImgFotoUsuario, Rotation.Rotate90); IntRotation = 1; }
                     else
                     {
-                        if (IntRotation == 0)
-                        { RotarImagen(ImgFotoUsuario, Rotation.Rotate270); IntRotation = 3; }
+                        if (IntRotation == 1)
+                        { RotarImagen(ImgFotoUsuario, Rotation.Rotate0); IntRotation = 0; }
+                        else
+                        {
+                            if (IntRotation == 0)
+                            { RotarImagen(ImgFotoUsuario, Rotation.Rotate270); IntRotation = 3; }
+                        }
+
                     }
 
                 }
-
             }
-
+            catch (Exception f) { }
         }
         private void RotarImagen(System.Windows.Controls.Image control, Rotation value)
         {
@@ -1061,25 +1111,29 @@ namespace TinoTriXxX
         }
         private void btnRotacion90_Click(object sender, RoutedEventArgs e)
         {
-            if (IntRotation == 3)
-            { RotarImagen(ImgFotoUsuario, Rotation.Rotate0); IntRotation = 0; }
-            else
+            try
             {
-                if (IntRotation == 2)
-                { RotarImagen(ImgFotoUsuario, Rotation.Rotate270); IntRotation = 3; }
+                if (IntRotation == 3)
+                { RotarImagen(ImgFotoUsuario, Rotation.Rotate0); IntRotation = 0; }
                 else
                 {
-                    if (IntRotation == 1)
-                    { RotarImagen(ImgFotoUsuario, Rotation.Rotate180); IntRotation = 2; }
+                    if (IntRotation == 2)
+                    { RotarImagen(ImgFotoUsuario, Rotation.Rotate270); IntRotation = 3; }
                     else
                     {
-                        if (IntRotation == 0)
-                        { RotarImagen(ImgFotoUsuario, Rotation.Rotate90); IntRotation = 1; }
+                        if (IntRotation == 1)
+                        { RotarImagen(ImgFotoUsuario, Rotation.Rotate180); IntRotation = 2; }
+                        else
+                        {
+                            if (IntRotation == 0)
+                            { RotarImagen(ImgFotoUsuario, Rotation.Rotate90); IntRotation = 1; }
+                        }
+
                     }
 
                 }
-
             }
+            catch (Exception f) { }
         }
         
         #endregion Rotacion
@@ -1087,8 +1141,13 @@ namespace TinoTriXxX
         #region papel
         private void cargarPapel()
         {
-            VM.CargarPapel(VM.Sucursal.UidSucursal);
-            //LbFotos.ItemsSource = VM.ListaFotos;
+            try
+            {
+                VM.CargarPapel(VM.Sucursal.UidSucursal);
+                //LbFotos.ItemsSource = VM.ListaFotos;
+            }
+            catch (Exception f) { MessageBox.Show("¡No puede cargar papel! \r\n \r\n Detalle del error:" + f.Message, "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk); }
+
         }
         #endregion
 

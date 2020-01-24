@@ -380,11 +380,11 @@ namespace TinoTriXxX
             {
                 VM.RevocarSession();
                 SessionConf();
-                if (VM.Connection != null)//|| VM.Connection.State != ConnectionState.Disconnected
-                {
-                    VM.Connection.Stop();
-                    VM.Connection.Dispose();
-                }
+                //if (VM.Connection != null)//|| VM.Connection.State != ConnectionState.Disconnected
+                //{
+                //    VM.Connection.Stop();
+                //    VM.Connection.Dispose();
+                //}
                 
                 //LimpiarApp();
             }
@@ -462,20 +462,43 @@ namespace TinoTriXxX
         }
         private void BtnMenuFotos_Click(object sender, RoutedEventArgs e)
         {
-            pageconf = null;
-            pagefoto = null;
-            pageprincipal = null;
+            try
+            {
+                pageconf = null;
+                pagefoto = null;
+                pageprincipal = null;
 
-            LVIMenu.Background = Brushes.Transparent;
-            LVILicencia.Background = Brushes.Transparent;
-            LVIFotos.Background = new SolidColorBrush(verde3);
-            LVIConfiguracion.Background = Brushes.Transparent;
+                LVIMenu.Background = Brushes.Transparent;
+                LVILicencia.Background = Brushes.Transparent;
+                LVIFotos.Background = new SolidColorBrush(verde3);
+                LVIConfiguracion.Background = Brushes.Transparent;
 
-            blicencia.Visibility = Visibility.Hidden;
-            bframe.Visibility = Visibility.Visible;
-            pagefoto = new PageFotos(VM);
-            frame.NavigationService.Navigate(pagefoto);
-            cerrarmenu();
+                blicencia.Visibility = Visibility.Hidden;
+                bframe.Visibility = Visibility.Visible;
+                pagefoto = new PageFotos(VM);
+                frame.NavigationService.Navigate(pagefoto);
+                cerrarmenu();
+            }
+            catch (FileNotFoundException r)
+            {
+                MessageBox.Show("FileNotFoundException: " + r.Message, "Tinotrix: Error menu fotografias", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
+            }
+            catch (DirectoryNotFoundException r)
+            {
+                MessageBox.Show("DirectoryNotFoundException: " + r.Message, "Tinotrix: Error menu fotografias", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
+            }
+            catch (IOException r)
+            {
+                MessageBox.Show("IOException: " + r.Message, "Tinotrix: Error menu fotografias", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show("Exception: " + r.Message, "Tinotrix: Error menu fotografias", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
+            }
         }
         private void BtnMenuConfiguracion_Click(object sender, RoutedEventArgs e)
         {
@@ -530,10 +553,10 @@ namespace TinoTriXxX
         }
         private void BtnAcercade_Click(object sender, RoutedEventArgs e)
         {
-            Acerca_de_Tinotrix au = new Acerca_de_Tinotrix();
-            au.Owner = this; AplicarEfecto(this, 8);
-            au.ShowDialog();
-            au.Owner = this; AplicarEfecto(this, 0);
+            //Acerca_de_Tinotrix au = new Acerca_de_Tinotrix();
+            //au.Owner = this; AplicarEfecto(this, 8);
+            //au.ShowDialog();
+            //au.Owner = this; AplicarEfecto(this, 0);
         }
         #endregion Eventos de la vista
 
@@ -874,6 +897,7 @@ namespace TinoTriXxX
         }
         private void BtnAgregarLicencia_Click(object sender, RoutedEventArgs e)
         {
+            txtLicenciaCodigo.Text = "";
             HabilitarActualizacionLicencia();
         }
         #endregion Actualizar Licencia

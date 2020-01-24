@@ -51,6 +51,12 @@ namespace TinoTriXxX.Modelo
             get { return _StrPrecio; }
             set { _StrPrecio = value; }
         }
+        protected String _StrPrecioTicket;
+        public String StrPrecioTicket
+        {
+            get { return _StrPrecioTicket; }
+            set { _StrPrecioTicket = value; }
+        }
         protected double _IntAncho;
         public double IntAncho
         {
@@ -62,6 +68,19 @@ namespace TinoTriXxX.Modelo
         {
             get { return _IntAlto; }
             set { _IntAlto = value; }
+        }
+
+        protected double _IntAnchoDesc;
+        public double IntAnchoDesc
+        {
+            get { return _IntAnchoDesc; }
+            set { _IntAnchoDesc = value; }
+        }
+        protected double _IntAltoDesc;
+        public double IntAltoDesc
+        {
+            get { return _IntAltoDesc; }
+            set { _IntAltoDesc = value; }
         }
         protected String _StrMedida;
         public String StrMedida
@@ -113,21 +132,24 @@ namespace TinoTriXxX.Modelo
 
                     foreach (DataRow item in Conexionhost.Busquedas(comando).Rows)
                     {
-                        foto = new Foto()
-                        {
-                            UidFoto = new Guid(item["UidFoto"].ToString()),
-                            StrStatus = item["VchStatus"].ToString(),
-                            StrDescripcion = item["VchDescripcion"].ToString(),
-                            StrPrecio = item["VchPrecio"].ToString(),
-                            IntAlto =  double.Parse(item["VchAlto"].ToString(), ni),
-                            IntAncho = double.Parse(item["VchAncho"].ToString(), ni),
-                            StrMedida = item["VchMedida"].ToString(),
-                            _VchColumna = item["VchColumna"].ToString(),
-                            _VchFila = item["VchFila"].ToString(),
-                            _BooRotarEnPapel = Convert.ToBoolean(item["BitRotarEnPapel"]),
-                            StrDescripcionDetalle ="$ " + item["VchPrecio"].ToString()+ " c/u ( "+ item["VchAlto"].ToString()+" x "+ item["VchAncho"].ToString()+" " + item["VchMedida"].ToString()+ " ) "
+                        foto = new Foto();
 
-                        };
+                        foto.UidFoto = new Guid(item["UidFoto"].ToString());
+                        foto.StrStatus = item["VchStatus"].ToString();
+                        foto.StrDescripcion = item["VchDescripcion"].ToString();
+                        foto.StrPrecio = item["VchPrecio"].ToString();
+                        foto.StrPrecioTicket = item["VchPrecioTicket"].ToString();
+                        foto.IntAlto = double.Parse(item["VchAlto"].ToString(), ni);
+                        foto.IntAncho = double.Parse(item["VchAncho"].ToString(), ni);
+                        foto.IntAltoDesc = double.Parse(item["VchAltoDesc"].ToString(), ni);
+                        foto.IntAnchoDesc = double.Parse(item["VchAnchoDesc"].ToString(), ni);
+                        foto.StrMedida = item["VchMedida"].ToString();
+                        foto._VchColumna = item["VchColumna"].ToString();
+                        foto._VchFila = item["VchFila"].ToString();
+                        foto._BooRotarEnPapel = Convert.ToBoolean(item["BitRotarEnPapel"]);
+                        foto.StrDescripcionDetalle = "$ " + item["VchPrecioTicket"].ToString() + " c/u ( " + item["VchAnchoDesc"].ToString() + " x " + item["VchAltoDesc"].ToString() + " " + item["VchMedida"].ToString() + " ) ";
+
+                        
                         fotos.Add(foto);
                     }
                 }
@@ -139,13 +161,13 @@ namespace TinoTriXxX.Modelo
                 return fotos;
             }
 
-            public bool NuevaImpresion( Guid UidSucursal, Guid UidFoto, string DtTmVenta, int IntFotos, int IntCosto)
+            public bool NuevaImpresion( Guid UidSucursal, Guid UidFoto, string DtTmVenta, int IntCopiasXImpresion,int IntFotosXCopiasXImpresion,  string VchCosto, string VchCostoTicket, int IntMaquina) 
             {
                 try
                 {
                     SqlCommand comando = new SqlCommand();
                     comando.CommandType = CommandType.StoredProcedure;
-                    comando.CommandText = "Wpf_AddVenta";
+                    comando.CommandText = "Wpf_AddImpresion";
 
                     comando.Parameters.Add("@UidSucursal", SqlDbType.UniqueIdentifier);
                     comando.Parameters["@UidSucursal"].Value = UidSucursal;
@@ -156,12 +178,21 @@ namespace TinoTriXxX.Modelo
                     comando.Parameters.Add("@DtTmVenta", SqlDbType.SmallDateTime);
                     comando.Parameters["@DtTmVenta"].Value = DtTmVenta;
 
-                    comando.Parameters.Add("@IntFotos", SqlDbType.Int);
-                    comando.Parameters["@IntFotos"].Value = IntFotos;
+                    comando.Parameters.Add("@IntCopiasXImpresion", SqlDbType.Int);
+                    comando.Parameters["@IntCopiasXImpresion"].Value = IntCopiasXImpresion;
 
-                    comando.Parameters.Add("@IntCosto", SqlDbType.Int);
-                    comando.Parameters["@IntCosto"].Value = IntCosto;
-                     
+                    comando.Parameters.Add("@IntMaquina", SqlDbType.Int);
+                    comando.Parameters["@IntMaquina"].Value = IntMaquina;
+
+                    comando.Parameters.Add("@IntFotosXCopiasXImpresion", SqlDbType.Int);
+                    comando.Parameters["@IntFotosXCopiasXImpresion"].Value = IntFotosXCopiasXImpresion;
+
+                    comando.Parameters.Add("@VchCosto", SqlDbType.VarChar,150);
+                    comando.Parameters["@VchCosto"].Value = VchCosto;
+
+                    comando.Parameters.Add("@VchCostoTicket", SqlDbType.VarChar, 150);
+                    comando.Parameters["@VchCostoTicket"].Value = VchCostoTicket;
+
                     return Conexionhost.ManipilacionDeDatos(comando);
                 }
                 catch (Exception e)
@@ -207,7 +238,7 @@ namespace TinoTriXxX.Modelo
         public override string ToString()
         {
              
-            return StrDescripcion + StrStatus +StrDescripcionDetalle + StrPrecio + IntAlto + IntAncho;
+            return StrDescripcion + StrStatus +StrDescripcionDetalle + StrPrecioTicket + IntAltoDesc + IntAnchoDesc;
         }
     }
 }

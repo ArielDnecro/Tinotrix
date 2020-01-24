@@ -198,11 +198,25 @@ namespace TinoTriXxX.Informe
            // MessageBox.Show("test", "Error de impresion");
             DateTime saveNow = DateTime.Now;
             DateTime myDt = DateTime.SpecifyKind(saveNow, DateTimeKind.Utc);
-            // int NumFotos = int.Parse(foto.VchColumna) * int.Parse(foto.VchFila);
+            int NumFotos = int.Parse(foto.VchColumna) * int.Parse(foto.VchFila);
             //VM.NuevaImpresion(VM.Sucursal.UidSucursal, foto.UidFoto, myDt.ToString("dd/MM/yyyy HH:mm:ss"),
             //NumFotos, int.Parse(foto.StrPrecio) * NumFotos);
-            VM.NuevaImpresion(VM.Sucursal.UidSucursal, foto.UidFoto, myDt.ToString("dd/MM/yyyy HH:mm:ss"),
-            int.Parse(e.PrinterSettings.Copies.ToString()), int.Parse(e.PrinterSettings.Copies.ToString())* int.Parse(foto.StrPrecio) );
+
+           
+            try
+            {
+
+                VM.NuevaImpresion(VM.Sucursal.UidSucursal,
+                   foto.UidFoto, myDt.ToString("dd/MM/yyyy HH:mm:ss"),
+                   int.Parse(e.PrinterSettings.Copies.ToString()),
+                   int.Parse(e.PrinterSettings.Copies.ToString()) * NumFotos,
+                   (double.Parse(e.PrinterSettings.Copies.ToString()) * double.Parse(foto.StrPrecio)).ToString(),
+                   (double.Parse(e.PrinterSettings.Copies.ToString()) * double.Parse(foto.StrPrecioTicket)).ToString(),
+                   VM.Licencia.IntNo);
+
+            } catch (Exception b) {
+                MessageBox.Show("NO se puedo guardar impresion \n\n detalle del error: \n"+b, "Tinotrix Error de registro de impresion");
+            } 
             if (VM.Connection == null || VM.Connection.State == ConnectionState.Disconnected)
             {
                 try { VM.ConnectAsync(); } catch (Exception b) { }

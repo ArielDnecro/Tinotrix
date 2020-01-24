@@ -112,11 +112,9 @@
                         <TranslateTransform/>
                     </TransformGroup>
                 </StackPanel.RenderTransform>
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="100" HorizontalAlignment="Center">
-                    <Button Visibility="Hidden" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"  Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Width="50" Height="50"  Margin="10">
-                        <materialDesign:PackIcon Kind="Settings" Width="20" Height="20"/>
-                    </Button>
-                    <Button x:Name="btnAcercade" ToolTip="Acerca de" Click="BtnAcercade_Click" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" BorderBrush="Green"  Padding="0" Width="80" Height="80"  Margin="10" RenderTransformOrigin="0.5,0.5" >
+                <StackPanel Orientation="Vertical" VerticalAlignment="Top" Height="100" HorizontalAlignment="Center">
+                    
+                    <Button x:Name="btnAcercade" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" BorderBrush="Green"  Padding="0" Width="70" Height="70"  Margin="10" RenderTransformOrigin="0.5,0.5" >
                         <Button.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -127,12 +125,12 @@
                         </Button.RenderTransform>
                         <Button.Background>
                             <ImageBrush ImageSource="../Assets/logotipo2019.3.0.80x80.png" Stretch="UniformToFill"  x:Name="imgMenuPrincipal"></ImageBrush>
-                            
+
                         </Button.Background>
+                        
                     </Button>
-                    <Button  Visibility="Hidden" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"  Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Width="60" Height="60"  Margin="10">
-                        <materialDesign:PackIcon Kind="InformationOutline"  Width="20" Height="20"/>
-                    </Button>
+                    <TextBlock Foreground="White"  HorizontalAlignment="Center"  FontWeight="Bold"  FontSize="16" Margin="0 -10 0 0">1.0.0.13</TextBlock>
+                    
                 </StackPanel>
                 <ListView >
                     <ListViewItem x:Name="LVIMenu" Height="60" RenderTransformOrigin="0.5,0.5" Background="#00e676" >

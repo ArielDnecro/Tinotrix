@@ -516,8 +516,8 @@ namespace TinoTriXxX.VistaModelo
         public double MedidafotoConversor(string StrMedida) {
           return FotoRepository.CargarMedidaLocal(StrMedida);
         }
-        public void NuevaImpresion(Guid UidSucursal, Guid UidFoto, string DtTmVenta, int IntFotos, int IntCosto) {
-            FotoRepository.NuevaImpresion( UidSucursal,  UidFoto,  DtTmVenta,  IntFotos, IntCosto);
+        public void NuevaImpresion(Guid UidSucursal, Guid UidFoto, string DtTmVenta, int IntCopiasXImpresion,int IntFotosXCopiasXImpresion, string StrCosto, string StrCostoTicket, int IntMaquina) {
+            FotoRepository.NuevaImpresion( UidSucursal,  UidFoto,  DtTmVenta, IntCopiasXImpresion, IntFotosXCopiasXImpresion, StrCosto,  StrCostoTicket,  IntMaquina); 
         }
         #endregion FOTO
         #region Papel

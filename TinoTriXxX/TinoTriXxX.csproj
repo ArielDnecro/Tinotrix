@@ -150,9 +150,6 @@
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Util\RdlcComponentGenerator.cs" />
     <Compile Include="Util\RdlcGenerator.cs" />
-    <Compile Include="Vista\Acerca de Tinotrix.xaml.cs">
-      <DependentUpon>Acerca de Tinotrix.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Vista\Autentificacion.xaml.cs">
       <DependentUpon>Autentificacion.xaml</DependentUpon>
     </Compile>
@@ -189,10 +186,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Informe\VInfFotosCliente.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Vista\Acerca de Tinotrix.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -355,6 +348,9 @@
   <ItemGroup>
     <Folder Include="Assets\UserImage\" />
     <Folder Include="Imagenes\usuario\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

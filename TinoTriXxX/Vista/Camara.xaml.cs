@@ -150,14 +150,7 @@ namespace TinoTriXxX.Vista
             
             this.Close();
         }
-        //public System.Windows.Media.Imaging.BitmapImage ToImageSource(string path)
-        //{
-        //    System.Windows.Media.Imaging.BitmapImage _bitmap = new System.Windows.Media.Imaging.BitmapImage();
-        //    _bitmap.BeginInit();
-        //    _bitmap.UriSource = new Uri(path);
-        //    _bitmap.EndInit();
-        //    return _bitmap;
-        //}
+      
         private void BtnCerrarCamara_Click(object sender, RoutedEventArgs e)
         {
             TerminarFuenteDeVideo();
