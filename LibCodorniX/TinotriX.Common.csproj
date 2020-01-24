@@ -40,14 +40,19 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConexionDB\Conexion.cs" />
@@ -70,6 +75,8 @@
     <Compile Include="Modelo\EmpresaTelefono.cs" />
     <Compile Include="Modelo\EncargadoEmpresa.cs" />
     <Compile Include="Modelo\Estado.cs" />
+    <Compile Include="Modelo\HImpresiones.cs" />
+    <Compile Include="Modelo\HTurno.cs" />
     <Compile Include="Modelo\IniciarTurno.cs" />
     <Compile Include="Modelo\Meses.cs" />
     <Compile Include="Modelo\Modulo.cs" />
@@ -83,9 +90,12 @@
     <Compile Include="Modelo\Sucursal.cs" />
     <Compile Include="Modelo\SucursalDireccion.cs" />
     <Compile Include="Modelo\SucursalFoto.cs" />
+    <Compile Include="Modelo\SucursalFotoC.cs" />
     <Compile Include="Modelo\SucursalImpresora.cs" />
     <Compile Include="Modelo\SucursalImpresoraTipo.cs" />
     <Compile Include="Modelo\SucursalPapel.cs" />
+    <Compile Include="Modelo\SucursalPapelC.cs" />
+    <Compile Include="Modelo\SucursalServidor.cs" />
     <Compile Include="Modelo\SucursalTelefono.cs" />
     <Compile Include="Modelo\Telefono.cs" />
     <Compile Include="Modelo\Tipo.cs" />

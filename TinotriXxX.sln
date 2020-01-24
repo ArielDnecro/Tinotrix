@@ -3,14 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodorniX.WebApp", "CodorniX\CodorniX.WebApp.csproj", "{CC6A5954-FC3C-4750-AF90-623FB35779AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinotriX.WebApp", "CodorniX\TinotriX.WebApp.csproj", "{CC6A5954-FC3C-4750-AF90-623FB35779AD}"
 	ProjectSection(ProjectDependencies) = postProject
 		{949FB113-9029-46C9-811E-481148A336DC} = {949FB113-9029-46C9-811E-481148A336DC}
 	EndProjectSection
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CodornixDB", "CodornixDB\CodornixDB.sqlproj", "{267EE95D-7E03-4195-98B4-82D42D8C820C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodorniX.Common", "LibCodorniX\CodorniX.Common.csproj", "{949FB113-9029-46C9-811E-481148A336DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinotriX.Common", "LibCodorniX\TinotriX.Common.csproj", "{949FB113-9029-46C9-811E-481148A336DC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinoTriXxX", "TinoTriXxX\TinoTriXxX.csproj", "{9E193885-E6D9-44C6-B820-A7753313F49A}"
 EndProject
@@ -47,5 +47,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B03E4227-CB8C-4835-9510-261125D2E55B}
 	EndGlobalSection
 EndGlobal

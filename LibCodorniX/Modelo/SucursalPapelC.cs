@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CodorniX.Modelo
 {
-   public class SucursalPapel
+    public class SucursalPapelC
     {
         #region Propiedades
         protected bool _ExistsInDatabase = false;
@@ -78,22 +78,22 @@ namespace CodorniX.Modelo
         {
             protected Connection _Conexion = new Connection();
 
-            public bool Save(SucursalPapel Papel)//Lista 03/05/2019
+            public bool Save(SucursalPapelC Papel)
             {
                 try
                 {
                     SqlCommand comando = new SqlCommand();
-                    if (Papel._ExistsInDatabase == true )
+                    if (Papel._ExistsInDatabase == true)
                     {
                         //return InternalUpdate(SucursalFoto);
-                        comando.CommandText = "usp_SucursalPapel_Update";
+                        comando.CommandText = "usp_SucursalPapelC_Update";
                         //comando.AddParameter("@UidPapel", Papel._UidPapel, SqlDbType.UniqueIdentifier);
                     }
                     else
                     {
                         Papel._ExistsInDatabase = true;
                         //return InternalSave(SucursalFoto);
-                        comando.CommandText = "usp_SucursalPapel_Add";
+                        comando.CommandText = "usp_SucursalPapelC_Add";
                     }
                     comando.CommandType = CommandType.StoredProcedure;
                     comando.AddParameter("@UidPapel", Papel._UidPapel, SqlDbType.UniqueIdentifier);
@@ -113,19 +113,19 @@ namespace CodorniX.Modelo
                 }
             }
 
-            public SucursalPapel Find(Guid uid)//Lista 03/05/2019
+            public SucursalPapelC Find(Guid uid)
             {
                 DataTable table = new DataTable();
-                SucursalPapel Papel = new SucursalPapel();
+                SucursalPapelC Papel = new SucursalPapelC();
                 SqlCommand comando = new SqlCommand();
                 comando.CommandType = CommandType.StoredProcedure;
                 try
                 {
-                    comando.CommandText = "usp_SucursalPapel_Find";
+                    comando.CommandText = "usp_SucursalPapelC_Find";
                     comando.Parameters.Add("@UidPapel", SqlDbType.UniqueIdentifier);
                     comando.Parameters["@UidPapel"].Value = uid;
                     table = _Conexion.ExecuteQuery(comando);
-                    
+
                     if (int.Parse(table.Rows.Count.ToString()) == 1)
                     {
                         Papel._UidPapel = uid;
@@ -139,7 +139,8 @@ namespace CodorniX.Modelo
                         Papel._ExistsInDatabase = true;
                         //obtener el total de maquinas
                     }
-                    else {
+                    else
+                    {
                         //if (int.Parse(table.Rows.Count.ToString()) == 0)
                         //{
 

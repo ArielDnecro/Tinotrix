@@ -1,3 +1,6 @@
-C:\Users\chess\Documents\Source\Repos\codornix\CodornixDB\bin\Debug\CodornixDB.dacpac
-C:\Users\chess\Documents\Source\Repos\codornix\CodornixDB\bin\Debug\CodornixDB.dll
-C:\Users\chess\Documents\Source\Repos\codornix\CodornixDB\bin\Debug\CodornixDB.pdb
+C:\Users\Iudex\Documents\TinoTrix\Clone\Tinotrix\CodornixDB\bin\Output\CodornixDB.dacpac
+C:\Users\Iudex\Documents\TinoTrix\Clone\Tinotrix\CodornixDB\bin\Output\CodornixDB.dll
+C:\Users\Iudex\Documents\TinoTrix\Clone\Tinotrix\CodornixDB\bin\Output\CodornixDB.pdb
+C:\Users\Iudex\Documents\TinoTrix\Clone\Tinotrix\CodornixDB\obj\Debug\CodornixDB.dll
+C:\Users\Iudex\Documents\TinoTrix\Clone\Tinotrix\CodornixDB\obj\Debug\CodornixDB.pdb
+C:\Users\Iudex\Documents\TinoTrix\Clone\Tinotrix\CodornixDB\obj\Debug\CodornixDB.sqlprojAssemblyReference.cache

@@ -75,7 +75,6 @@ namespace CodorniX.Modelo
         {
             //Comienzo repositorio raiz tomado de suscursaltelefono -> telefono
             protected Connection _Conexion = new Connection();
-
             public bool Save(SucursalLicencia SucursalLicencia)//Lista 16/11/2017
             {
 
@@ -112,7 +111,6 @@ namespace CodorniX.Modelo
                     throw new DatabaseException("Cannot save a Licencia from Sucursal", e);
                 }
             }
-
             public bool EliminarAllSucursal(Guid UidSucursal){
                 try
                 {
@@ -167,7 +165,6 @@ namespace CodorniX.Modelo
 
                 return Licencias;
             }
-
             public SucursalLicencia IfExists(Guid uid)
             {
                 DataTable table = new DataTable();
@@ -198,7 +195,6 @@ namespace CodorniX.Modelo
 
                 return licencia;
             }
-
             public SucursalLicencia IfExistsServer(Guid uid) //15/feb/19//realizado otra vez
             {
                 DataTable table = new DataTable();
@@ -270,7 +266,6 @@ namespace CodorniX.Modelo
 
                 return licencia;
             }
-
             public bool HabilitarLicenciaAnterior(Guid LicenciaAnterior)
             {
 

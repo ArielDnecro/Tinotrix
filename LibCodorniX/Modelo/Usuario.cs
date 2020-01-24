@@ -228,7 +228,6 @@ namespace CodorniX.Modelo
 
             return Resultado;
         }
-
         public bool ModificarDatos()
         {
             
@@ -280,11 +279,9 @@ namespace CodorniX.Modelo
 
             return Resultado;
         }
-
         public class Repository
         {
             Conexion Conexion = new Conexion();
-
             public Usuario Find(Guid uid)
             {
                 Usuario usuario = null;
@@ -318,7 +315,6 @@ namespace CodorniX.Modelo
 
                 return usuario;
             }
-
             public Usuario FindByName(string name)
             {
                 Usuario usuario = null;
@@ -352,7 +348,6 @@ namespace CodorniX.Modelo
 
                 return usuario;
             }
-
             public List<Usuario> CargarUsuarios()
             {
                 List<Usuario> Usuarios = new List<Usuario>();
@@ -392,16 +387,13 @@ namespace CodorniX.Modelo
                 }
                 catch (SqlException e)
                 {
-                    throw new DatabaseException("Cannot load Empresas", e);
+                    throw new DatabaseException("No se puede cargar usuarios \n \n", e);
                 }
 
                 return Usuarios;
             }
-
-
             protected Connection _Conexion = new Connection();
-
-            public bool wpffindsucursal(Guid iduser, Guid idsucursal) {
+            public bool wpffindsucursal(Guid iduser, Guid idsucursal) { 
                 bool i = false;
                 SqlCommand comando = new SqlCommand();
                 DataTable table = new DataTable();
@@ -427,7 +419,6 @@ namespace CodorniX.Modelo
                 }
                 return i;
             }
-
             public bool wpffindempresa(Guid iduser, Guid idempresa)
             {
                 bool i = false;
@@ -455,6 +446,7 @@ namespace CodorniX.Modelo
                 }
                 return i;
             }
+
 
         }
 

@@ -48,7 +48,18 @@ namespace CodorniX.Modelo
             set { _StrPrecio = value; }
         }
 
-
+        protected string _StrPrecioTicket;
+        public string StrPrecioTicket
+        {
+            get { return _StrPrecioTicket; }
+            set { _StrPrecioTicket = value; }
+        }
+        protected string _StrPrecioServidor;
+        public string StrPrecioServidor
+        {
+            get { return _StrPrecioServidor; }
+            set { _StrPrecioServidor = value; }
+        }
         protected Guid _UidStatus;
         public Guid UidStatus
         {
@@ -77,13 +88,25 @@ namespace CodorniX.Modelo
             get { return _VchAlto; }
             set { _VchAlto = value; }
         }
-
+        protected string _VchAltoDesc;
+        public string VchAltoDesc
+        {
+            get { return _VchAltoDesc; }
+            set { _VchAltoDesc = value; }
+        }
 
         protected string _VchAncho;
         public string VchAncho
         {
             get { return _VchAncho; }
             set { _VchAncho = value; }
+        }
+
+        protected string _VchAnchoDesc;
+        public string VchAnchoDesc
+        {
+            get { return _VchAnchoDesc; }
+            set { _VchAnchoDesc = value; }
         }
 
         protected string _VchMedida;
@@ -259,8 +282,12 @@ namespace CodorniX.Modelo
 
                comando.AddParameter("@VchDescripcion", SucursalFoto._StrDescripcion, SqlDbType.VarChar, 50);
                 comando.AddParameter("@VchPrecio", SucursalFoto._StrPrecio, SqlDbType.VarChar, 50);
+                comando.AddParameter("@VchPrecioTicket", SucursalFoto._StrPrecioTicket, SqlDbType.VarChar, 50);
+                comando.AddParameter("@VchPrecioServidor", SucursalFoto._StrPrecioServidor, SqlDbType.VarChar, 50);
                 comando.AddParameter("@VchAlto", SucursalFoto._VchAlto, SqlDbType.VarChar, 50);
                 comando.AddParameter("@VchAncho", SucursalFoto._VchAncho, SqlDbType.VarChar, 50);
+                comando.AddParameter("@VchAltoDesc", SucursalFoto._VchAltoDesc, SqlDbType.VarChar, 50);
+                comando.AddParameter("@VchAnchoDesc", SucursalFoto._VchAnchoDesc, SqlDbType.VarChar, 50);
                 comando.AddParameter("@VchColumna", SucursalFoto._VchColumna, SqlDbType.VarChar, 50);
                 comando.AddParameter("@VchFila", SucursalFoto._VchFila, SqlDbType.VarChar, 50);
                 comando.Parameters.Add("@BitRotarEnPapel", SqlDbType.Bit).Value = SucursalFoto._BooRotarEnPapel;
@@ -306,11 +333,15 @@ namespace CodorniX.Modelo
                             _UidFoto = (Guid)row["UidFoto"],
                             _StrDescripcion = row["VchDescripcion"].ToString(),
                             _StrPrecio = row["VchPrecio"].ToString(),
+                            _StrPrecioTicket = row["VchPrecioTicket"].ToString(),
+                            _StrPrecioServidor = row["VchPrecioServidor"].ToString(),
                             _UidStatus = (Guid)row["UidStatus"],
                             _UidImpresora = (Guid)row["UidImpresora"],
                             _StrStatus = row["VchStatus"].ToString(),
                             _VchAlto = row["VchAlto"].ToString(),
                             _VchAncho = row["VchAncho"].ToString(),
+                            _VchAltoDesc= row["VchAltoDesc"].ToString(),
+                            _VchAnchoDesc = row["VchAnchoDesc"].ToString(),
                             _UidMedida = (Guid)row["UidMedida"],
                             _VchMedida = row["VchMedida"].ToString(),
                             _VchColumna = row["VchColumna"].ToString(),

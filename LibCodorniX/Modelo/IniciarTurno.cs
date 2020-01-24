@@ -174,8 +174,6 @@ namespace CodorniX.Modelo
 
                 return inicioturno;
             }
-
-
             public IniciarTurno ObtenerInicioPorPeriodo(Guid uid, Guid periodo, DateTime fecha)
             {
                 IniciarTurno inicioturno = null;
@@ -211,7 +209,6 @@ namespace CodorniX.Modelo
 
                 return inicioturno;
             }
-
             public IniciarTurno ObtenerHora(DateTime fecha, Guid UidUsuario, Guid uidperiodo)
             {
                 IniciarTurno inicioturno = null;
@@ -247,8 +244,6 @@ namespace CodorniX.Modelo
 
                 return inicioturno;
             }
-
-
             public IniciarTurno ObtenerTurnoUsuario(Guid uid, Guid UidTurno, DateTime fecha)
             {
                 IniciarTurno inicioturno = null;
