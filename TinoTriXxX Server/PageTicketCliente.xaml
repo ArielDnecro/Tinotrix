@@ -1,0 +1,110 @@
+﻿<Page x:Class="TinoTriXxX.PageTicketCliente"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TinoTriXxX"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageTicketCliente" Loaded="Page_Loaded">
+    <Grid>
+        <TextBlock Foreground="#FF3580BF" Margin="0 0 0 0"
+             Style="{StaticResource MaterialDesignHeadlineTextBlock}" HorizontalAlignment="Center">
+                          Configuracion de recibo de cliente
+        </TextBlock>
+        <TextBlock Foreground="#FF3580BF" Margin="0 40 0 0"
+             Style="{StaticResource MaterialDesignHeadlineTextBlock}" HorizontalAlignment="Center" FontSize="14" TextWrapping="Wrap">
+                         Esta seccion permite cambiar los elementos del encabezado y pie de pagina del recibo en el cual
+                            se le dara al cliente.
+        </TextBlock>
+        <dragablz:TabablzControl Margin="0 60 0 0">
+            <!--<dragablz:TabablzControl.InterTabController>
+                    <dragablz:InterTabController/>
+                </dragablz:TabablzControl.InterTabController>-->
+            <TabItem Header="Encabezado" >
+                <Grid>
+                    <TextBlock Foreground="#FF3580BF" Margin="0 5 0 0"
+                            Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                         Encabezado
+                    </TextBlock>
+
+                    <TextBox x:Name="TxtEncUnoLinea"
+                              materialDesign:HintAssist.Hint="Ejemplo de linea 1: XXXXX" Margin="0 50 0 0 "
+                              materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                              materialDesign:HintAssist.FloatingScale="0.50" MaxLength="33"
+                              Text="" VerticalAlignment="Top"  Foreground="#FF3580BF"
+                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                              FontSize="20" />
+                    <TextBox x:Name="TxtEncDosLinea"
+                              materialDesign:HintAssist.Hint="Ejemplo de linea 2: XXXXX" Margin="0 95 0 0 "
+                              materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                              materialDesign:HintAssist.FloatingScale="0.50" MaxLength="33"
+                              Text="" VerticalAlignment="Top"  Foreground="#FF3580BF"
+                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                              FontSize="20" />
+                    <TextBox x:Name="TxtEncTresLinea"
+                              materialDesign:HintAssist.Hint="Ejemplo de linea 3: XXXXX" Margin="0 140 0 0 "
+                              materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                              materialDesign:HintAssist.FloatingScale="0.50" MaxLength="33"
+                              Text="" VerticalAlignment="Top"  Foreground="#FF3580BF"
+                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                              FontSize="20" />
+                    <TextBox x:Name="TxtEncCuatroLinea"
+                              materialDesign:HintAssist.Hint="Ejemplo de linea 4: XXXXX" Margin="0 185 0 0 "
+                              materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                              materialDesign:HintAssist.FloatingScale="0.50" MaxLength="33"
+                              Text="" VerticalAlignment="Top"  Foreground="#FF3580BF"
+                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                              FontSize="20" />
+                    <TextBox x:Name="TxtEncCincoLinea"
+                              materialDesign:HintAssist.Hint="Ejemplo de linea 5: XXXXX" Margin="0 230 0 0 "
+                              materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                              materialDesign:HintAssist.FloatingScale="0.50" MaxLength="33"
+                              Text="" VerticalAlignment="Top"  Foreground="#FF3580BF"
+                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                              FontSize="20" />
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Pie de pagina" >
+                <Grid>
+                    <TextBlock Foreground="#FF3580BF" Margin="0 5 0 0"
+                            Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                         Pie de pagina
+                        </TextBlock>
+                        <TextBox x:Name="TxtPieUnoLinea"
+                                              materialDesign:HintAssist.Hint="Ejemplo de linea 1: XXXXX" Margin="0 50 0 0 "
+                                              materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                                              materialDesign:HintAssist.FloatingScale="0.50" MaxLength="33"
+                                              Text="" VerticalAlignment="Top"  Foreground="#FF3580BF"
+                                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                              FontSize="20" />
+                        <TextBox x:Name="TxtPieDosLinea"
+                                              materialDesign:HintAssist.Hint="Ejemplo de linea 2: XXXXX" Margin="0 95 0 0 "
+                                              materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                                              materialDesign:HintAssist.FloatingScale="0.50" MaxLength="33"
+                                              Text="" VerticalAlignment="Top"  Foreground="#FF3580BF"
+                                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                              FontSize="20" />
+                        <TextBox x:Name="TxtPieTresLinea"
+                                              materialDesign:HintAssist.Hint="Ejemplo de linea 3: XXXXX" Margin="0 140 0 0 "
+                                              materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                                              materialDesign:HintAssist.FloatingScale="0.50" MaxLength="33"
+                                              Text="" VerticalAlignment="Top"  Foreground="#FF3580BF"
+                                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                              FontSize="20" />
+                       
+                </Grid>
+            </TabItem>
+        </dragablz:TabablzControl>
+        <Button x:Name="btnGuardarConfTicketCliente" Click="BtnGuardarConfTicketCliente_Click"  Margin="200 61 10 0" 
+                VerticalAlignment="Top" HorizontalAlignment="Left"
+                 Width="40" Height="40" Padding="0" Background="#FF3580BF"  BorderBrush="#ffc107" 
+                 Grid.Column="2"   ToolTip="Confirmar cambios" >
+            
+            <materialDesign:PackIcon Kind="Check" Width="40" Height="40" />
+         </Button>
+    </Grid>
+</Page>

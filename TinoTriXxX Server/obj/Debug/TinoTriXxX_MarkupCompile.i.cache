@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Iudex\Documents\TinoTrix\Clone\Tinotrix\TinoTriXxX Server\App.xaml
-121104434182
-1-1102676960
-33-18491727
-371974360024
-Autentificacion.xaml;Camara.xaml;CargandoAplicacion.xaml;PageConfConexionServicio.xaml;PageFotosCliente.xaml;PageImpresoras.xaml;SinConexionInternet.xaml;Vista\DBLocal.xaml;Login.xaml;PageLicencia.xaml;PagePrincipal.xaml;ServerMain.xaml;
+161511748550
+6-101434511
+481425996419
+461723287820
+Autentificacion.xaml;Camara.xaml;CargandoAplicacion.xaml;Informe\ReportPreview.xaml;Informe\VInfFotosCliente.xaml;PageConfConexionServicio.xaml;PageFotosCliente.xaml;PageImpresoras.xaml;PageTicketCliente.xaml;SeccionVentas.xaml;SinConexionInternet.xaml;Vista\DBLocal.xaml;Login.xaml;PageLicencia.xaml;PagePrincipal.xaml;ServerMain.xaml;
 
-True
+False
 

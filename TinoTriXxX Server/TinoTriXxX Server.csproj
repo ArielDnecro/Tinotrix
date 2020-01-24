@@ -74,6 +74,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>F:\LibPrintTicket.dll</HintPath>
     </Reference>
+    <Reference Include="Magick.NET-Q16-AnyCPU, Version=7.13.1.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL">
+      <HintPath>..\packages\Magick.NET-Q16-AnyCPU.7.13.1\lib\net40\Magick.NET-Q16-AnyCPU.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -101,6 +104,24 @@
     <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -116,6 +137,7 @@
     <Reference Include="System.Web.Cors, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -128,6 +150,7 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -143,9 +166,22 @@
     <Compile Include="CargandoAplicacion.xaml.cs">
       <DependentUpon>CargandoAplicacion.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CroppingAdorner\CroppingAdorner.cs" />
+    <Compile Include="CroppingAdorner\PuncturedRect.cs" />
+    <Compile Include="Informe\ReportPreview.xaml.cs">
+      <DependentUpon>ReportPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Informe\VInfFotosCliente.xaml.cs">
+      <DependentUpon>VInfFotosCliente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Foto.cs" />
+    <Compile Include="Modelo\HistoricoVentasXTurno.cs" />
+    <Compile Include="Modelo\Imagen.cs" />
     <Compile Include="Modelo\Impresora.cs" />
+    <Compile Include="Modelo\Papel.cs" />
     <Compile Include="Modelo\Servicio.cs" />
     <Compile Include="Modelo\Ticket2.cs" />
+    <Compile Include="Modelo\TicketCliente.cs" />
     <Compile Include="Modelo\_Foto.cs" />
     <Compile Include="PageConfConexionServicio.xaml.cs">
       <DependentUpon>PageConfConexionServicio.xaml</DependentUpon>
@@ -156,9 +192,19 @@
     <Compile Include="PageImpresoras.xaml.cs">
       <DependentUpon>PageImpresoras.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageTicketCliente.xaml.cs">
+      <DependentUpon>PageTicketCliente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SeccionVentas.xaml.cs">
+      <DependentUpon>SeccionVentas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SetHorizontalOffset.cs" />
     <Compile Include="SinConexionInternet.xaml.cs">
       <DependentUpon>SinConexionInternet.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Util\RdlcComponentGenerator.cs" />
+    <Compile Include="Util\RdlcGenerator.cs" />
     <Compile Include="VistaModelo\Servidor_Chat.cs" />
     <Compile Include="VistaModelo\VariablesGlobal.cs" />
     <Compile Include="Vista\DBLocal.xaml.cs">
@@ -187,6 +233,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Informe\ReportPreview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Informe\VInfFotosCliente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="PageConfConexionServicio.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -196,6 +250,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PageImpresoras.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageTicketCliente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SeccionVentas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -251,6 +313,27 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Informe\Credencial\Credencial2.rdlc" />
+    <EmbeddedResource Include="Informe\Credencial\Credencial3.rdlc" />
+    <EmbeddedResource Include="Informe\Credencial\Credencial4.rdlc" />
+    <EmbeddedResource Include="Informe\Credencial\Credencial5.rdlc" />
+    <EmbeddedResource Include="Informe\Foto1.rdlc" />
+    <EmbeddedResource Include="Informe\Foto2.rdlc" />
+    <EmbeddedResource Include="Informe\Foto3.rdlc" />
+    <EmbeddedResource Include="Informe\Foto4.rdlc" />
+    <EmbeddedResource Include="Informe\Foto5.rdlc" />
+    <EmbeddedResource Include="Informe\Foto6.rdlc" />
+    <EmbeddedResource Include="Informe\Foto7.rdlc" />
+    <EmbeddedResource Include="Informe\Infantil\Infantil2.rdlc" />
+    <EmbeddedResource Include="Informe\Infantil\Infantil3.rdlc" />
+    <EmbeddedResource Include="Informe\Infantil\Infantil4.rdlc" />
+    <EmbeddedResource Include="Informe\Infantil\Infantil5.rdlc" />
+    <EmbeddedResource Include="Informe\Infantil\Infantil6.rdlc" />
+    <EmbeddedResource Include="Informe\Militar\Militar2.rdlc" />
+    <EmbeddedResource Include="Informe\Militar\Militar3.rdlc" />
+    <EmbeddedResource Include="Informe\Militar\Militar4.rdlc" />
+    <EmbeddedResource Include="Informe\Militar\Militar5.rdlc" />
+    <EmbeddedResource Include="Informe\Titulo\Titulo2.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -302,6 +385,19 @@
     <Folder Include="pagecliente\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Imagenes\vacio.png" />
     <Resource Include="Assets\LogoSinInternet.423x423.png" />
     <Resource Include="Assets\AppMainNewYorkBackGround.jpg" />

@@ -109,7 +109,8 @@
                     <Button Visibility="Collapsed" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"  Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Width="50" Height="50"  Margin="10">
                         <materialDesign:PackIcon Kind="Settings" Width="20" Height="20"/>
                     </Button>
-                    <Button x:Name="button" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" BorderBrush="{x:Null}" Padding="0" Width="70" Height="70"  Margin="10 10 40 10" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" >
+                    <TextBlock FontSize="20" Foreground="White"  Margin="0 60 0 10" HorizontalAlignment="Right"  Padding="0"> 1.0.0.6</TextBlock>
+                    <Button x:Name="button" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" BorderBrush="{x:Null}" Padding="0" Width="80" Height="80"  Margin="10 10 40 10" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" >
                         <Button.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -163,7 +164,8 @@
                             </Button>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem x:Name="LVICliente"  RenderTransformOrigin="0.5,0.5">
+
+                    <ListViewItem x:Name="LVICliente" Height="60"  RenderTransformOrigin="0.5,0.5">
                         <ListViewItem.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -174,23 +176,23 @@
                         </ListViewItem.RenderTransform>
                         <StackPanel Orientation="Horizontal">
 
-                            <materialDesign:Card Background="{DynamicResource MaterialDesignBackground}"   Margin="-17 -10 0 -8"  >
+                            <!--<materialDesign:Card Background="{DynamicResource MaterialDesignBackground}"   Margin="-17 -10 0 -8"  >
                                 <StackPanel Margin="0 0 0 0">
                                     <Expander    Header="Cliente" MinHeight="60"  Background="#FF3580BF"  Margin="0 0 0 0 "  BorderBrush="#ffc107" BorderThickness="1" Padding="0">
-                                       
-                                        <StackPanel  Orientation="Vertical"  TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,0,16" >
-                                            <Button Name="BtnMenuFotografiasCliente"  Click="BtnMenuFotografiasCliente_Click"  Height="40" Width="223"   HorizontalAlignment="Center" >
-                                                    <StackPanel  Orientation="Horizontal">
-                                                        <materialDesign:PackIcon Kind="Camera"  Width="20" Height="20" Margin="-35 0 0 0" VerticalAlignment="Center" />
-                                                        <TextBlock>Fotografias</TextBlock>
-                                                    </StackPanel>
-                                                </Button>
-                                        </StackPanel>
+
+                                        <StackPanel  Orientation="Vertical"  TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,0,16" >-->
+                                   <Button Name="BtnMenuFotografiasCliente"  Click="BtnMenuFotografiasCliente_Click"  Height="60" Width="247" Padding="0" Margin="-15 -10 0 -10"   HorizontalAlignment="Center" BorderBrush="#ffc107" Background="#FF3580BF"  VerticalAlignment="Center" FontSize="20">
+                                                <StackPanel  Orientation="Horizontal">
+                                                    <materialDesign:PackIcon Kind="Camera"  Width="30" Height="30" Margin="-53 0 0 0" VerticalAlignment="Center" />
+                                                    <TextBlock>Fotografias</TextBlock>
+                                                </StackPanel>
+                                   </Button>
+                                        <!--</StackPanel>
                                     </Expander>
                                 </StackPanel>
-                            </materialDesign:Card>
-                            
-                        </StackPanel>
+                            </materialDesign:Card>-->
+
+                        </StackPanel><!--aqui-->
                     </ListViewItem>
                     <ListViewItem x:Name="LVIConfiguracion"  RenderTransformOrigin="0.5,0.5">
                         <ListViewItem.RenderTransform>
@@ -218,6 +220,12 @@
                                                     <TextBlock>Conexion servicio</TextBlock>
                                                 </StackPanel>
                                             </Button>
+                                            <Button Name="BtnMenuTicketCliente"  Click="BtnMenuTicketCliente_Click"  Height="40" Width="223"  Margin="0 5 0 0"   HorizontalAlignment="Center" >
+                                                <StackPanel  Orientation="Horizontal">
+                                                    <materialDesign:PackIcon Kind="Ticket"  Width="20" Height="20" Margin="-35 0 0 0" VerticalAlignment="Center" />
+                                                    <TextBlock>Recibo del cliente</TextBlock>
+                                                </StackPanel>
+                                            </Button>
                                         </StackPanel>
                                     </Expander>
                                 </StackPanel>
@@ -240,7 +248,7 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="250"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Border BorderBrush="#e9e9e9" Grid.Column="1"  BorderThickness="6" Background="White">
+                <Border x:Name="BBarraEstado" BorderBrush="#e9e9e9" Grid.Column="1"  BorderThickness="6" Background="White">
                     <Border BorderBrush="#ffc107" Grid.Column="1"  BorderThickness="1" Background="White">
                         <Grid Name="GridBarraEstado" Height="550" Margin="5 0 5 0" >
                             <Grid.ColumnDefinitions>
@@ -469,7 +477,7 @@
                         </StackPanel>
                     </Grid>
                 </Border>
-                <Border Name="bframe" BorderBrush="#e9e9e9"   BorderThickness="6" Background="White">
+                <Border Name="bframe" BorderBrush="#e9e9e9"   BorderThickness="6" Background="White" Margin="0 0 0 0">
                     <Frame Name="frame" NavigationUIVisibility="Hidden"></Frame>
                 </Border>
             </Grid>
@@ -502,6 +510,12 @@
 
             </StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40" HorizontalAlignment="Right" Margin="0 3 10 0">
+                <Button Name="btnExpandirDerechaApp"  Visibility="Collapsed" Width="30" Height="30" Margin="0 0 65 0"  Padding="0" Background="#FF3580BF"  HorizontalAlignment="Center" Click="BtnExpandirDerechaApp_Click" >
+                    <materialDesign:PackIcon  Kind="ArrowExpandRight"  Padding="0" Foreground="White" Width="23" Height="23" HorizontalAlignment="Center" Margin="-1 0 0 0" />
+                </Button>
+                <Button Name="btnRetraerIzquierdaApp" Visibility="Collapsed"  Width="30" Height="30" Margin="0 0 65 0"  Padding="0" Background="#FF3580BF"  HorizontalAlignment="Center" Click="BtnRetraerIzquierdaApp_Click" >
+                    <materialDesign:PackIcon  Kind="ArrowExpandLeft"  Padding="0" Foreground="White" Width="23" Height="23" HorizontalAlignment="Center" Margin="-1 0 0 0" />
+                </Button>
                 <Button Name="btnMinimizarApp"  Width="30" Height="30" Margin="0 0 15 0"  Padding="0" Background="#FF3580BF"  HorizontalAlignment="Center" Click="btnMinimizarApp_Click" >
                     <materialDesign:PackIcon  Kind="WindowMinimize"  Padding="0" Foreground="White" Width="23" Height="23" HorizontalAlignment="Center" Margin="-1 0 0 0" />
                 </Button>

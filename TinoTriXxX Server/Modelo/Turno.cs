@@ -279,6 +279,30 @@ namespace TinoTriXxX.Modelo
                 }
                 return Turno;
             }
+
+            public bool TurnoServidorAbierto(Guid Sucursal)
+            {
+                try
+                {
+                    bool Resultado = false;
+                    SqlCommand command = new SqlCommand();
+                    command.CommandText = "Wpf_TurnoServidorAbierto";
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.AddParameter("@UidSucursal", Sucursal, SqlDbType.UniqueIdentifier);
+
+                    DataTable table = new Connection().ExecuteQuery(command);
+                    if (table.Rows.Count == 1)
+                    {
+                        Resultado = Convert.ToBoolean(table.Rows[0]["IsBTech"]);
+                    }
+                    //Resultado = Conexionhost.ManipilacionDeDatos(command);
+                    return Resultado;
+                }
+                catch (Exception e)
+                {
+                    throw new TurnoLocalException("(TurnoServidorAbierto) " + e.Message);
+                }
+            }
             #region Excepciones
             public class TurnoLocalException : Exception
             {

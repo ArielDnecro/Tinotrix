@@ -31,6 +31,8 @@ using Owin;
 using Microsoft.Owin.Cors;
 using Microsoft.AspNet.SignalR;
 using System.ComponentModel;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Collections.ObjectModel;
 
 namespace TinoTriXxX
 {
@@ -75,6 +77,59 @@ namespace TinoTriXxX
             get { return hub; }
             set { hub = value; }
         }
+
+        //VariablesGlobal confimpresoraticket ;
+
+        #region TicketCliente
+        private TextBox _txtEnc1Linea;
+        public TextBox txtEnc1Linea
+        {
+            get { return _txtEnc1Linea; }
+            set { _txtEnc1Linea = value; }
+        }
+        private TextBox _txtEnc2Linea;
+        public TextBox txtEnc2Linea
+        {
+            get { return _txtEnc2Linea; }
+            set { _txtEnc2Linea = value; }
+        }
+        private TextBox _txtEnc3Linea;
+        public TextBox txtEnc3Linea
+        {
+            get { return _txtEnc3Linea; }
+            set { _txtEnc3Linea = value; }
+        }
+        private TextBox _txtEnc4Linea;
+        public TextBox txtEnc4Linea
+        {
+            get { return _txtEnc4Linea; }
+            set { _txtEnc4Linea = value; }
+        }
+        private TextBox _txtEnc5Linea;
+        public TextBox txtEnc5Linea
+        {
+            get { return _txtEnc5Linea; }
+            set { _txtEnc5Linea = value; }
+        }
+        private TextBox _txtPie1Linea;
+        public TextBox txtPie1Linea
+        {
+            get { return _txtPie1Linea; }
+            set { _txtPie1Linea = value; }
+        }
+        private TextBox _txtPie2Linea;
+        public TextBox txtPie2Linea
+        {
+            get { return _txtPie2Linea; }
+            set { _txtPie2Linea = value; }
+        }
+        private TextBox _txtPie3Linea;
+        public TextBox txtPie3Linea
+        {
+            get { return _txtPie3Linea; }
+            set { _txtPie3Linea = value; }
+        }
+        #endregion TicketCliente
         #endregion propiedades
 
         #region Constructor
@@ -87,6 +142,40 @@ namespace TinoTriXxX
             AplicarCultura();
             RedireccionarBasico();
             ConstructorPrincipal();
+
+
+        //     [Serializable] //arriba de la clase para que ejecute la funcion
+
+        ////Obtener configuracion
+        //RegistryKey key = Registry.CurrentUser.OpenSubKey("Supervix");
+        //    var Data = (byte[])key.GetValue("Conf-Col-HT", null);
+        //    key.Close();
+        //    byte[] bytes = new byte[0];
+        //    if (Data != null)
+        //    {
+        //        bytes = Data;
+        //        //Convertir bytes to object list
+        //        BinaryFormatter bf = new BinaryFormatter();
+        //        using (MemoryStream ms = new MemoryStream(bytes))
+        //        {
+        //            ConfiguracionRegistro = (ObservableCollection<Recaudacion>)bf.Deserialize(ms);
+        //        }
+        //    }
+
+        //    //Guardar Lista en el registro
+        //    using (var ms = new MemoryStream())
+        //    {
+        //        var formatter = new BinaryFormatter();//
+        //        formatter.Serialize(ms, "object list");//
+        //        var data = ms.ToArray();//
+        //        RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("Supervix", true);
+        //        registryKey.SetValue("Conf-Col-HT", data, RegistryValueKind.Binary);//data-> "texto" 
+        //    }
+
+        //    // Eliminar
+        //    RegistryKey key2 = Registry.CurrentUser.OpenSubKey("Supervix");
+        //    key2.DeleteSubKey("Conf-Col-HT");
+        //    key2.Close();
         }
         void ConstructorPrincipal()
         {
@@ -121,7 +210,7 @@ namespace TinoTriXxX
             try
             {
                 //arranquesesionapp = true;
-                frame.NavigationService.Navigate(new PagePrincipal());
+                frame.NavigationService.Navigate(new PagePrincipal(VM));
                 acceso();
 
                 bframe.Visibility = Visibility.Visible;
@@ -135,7 +224,7 @@ namespace TinoTriXxX
                 //VariablesGlobal.WidthImagen = 180;
                 //VariablesGlobal.HeightImagen = 40;
                 //VariablesGlobal.CentrarGoParkiX = "        ";
-
+                //confimpresoraticket = new VariablesGlobal();
                 VariablesGlobal.FontName = "arial";
                 VariablesGlobal.FontSize = 12;
                 VariablesGlobal.FontSizeItemIndividual = 9;
@@ -153,17 +242,17 @@ namespace TinoTriXxX
             {
                 MessageBox.Show(e.Message);
                 //Application.Current.Shutdown();
-               
+
             }
             catch (DirectoryNotFoundException e)
             {
                 MessageBox.Show(e.Message);
-               // Application.Current.Shutdown();
+                // Application.Current.Shutdown();
             }
             catch (IOException e)
             {
                 MessageBox.Show(e.Message);
-               // Application.Current.Shutdown();
+                // Application.Current.Shutdown();
             }
             catch (Exception e)
             {
@@ -425,7 +514,7 @@ namespace TinoTriXxX
             CMenu.Background = Brushes.White;
             popmenuicon.Foreground = new SolidColorBrush(TemaAzulEstandar);
 
-            
+
         }
         private void BtnCloseMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -474,6 +563,42 @@ namespace TinoTriXxX
         {
             this.WindowState = WindowState.Minimized;
         }
+        private void BtnExpandirDerechaApp_Click(object sender, RoutedEventArgs e)
+        {
+            ExpandirbframeDerecha();
+        }
+        void ExpandirbframeDerecha()
+        {
+            //ColumnDefinition c2 = new ColumnDefinition();
+            //c2.Width = new GridLength(0);
+            //GridMain.ColumnDefinitions[1] = c2;
+            bframe.Margin = new Thickness(0, 0, -250, 0);
+            btnExpandirDerechaApp.Visibility = Visibility.Collapsed;
+            btnRetraerIzquierdaApp.Visibility = Visibility.Visible;
+        }
+        private void BtnRetraerIzquierdaApp_Click(object sender, RoutedEventArgs e)
+        {
+            RetraerbframeIzquierda(true);
+        }
+        void RetraerbframeIzquierda(bool MF)
+        {
+            //ColumnDefinition c2 = new ColumnDefinition();
+            //c2.Width = new GridLength(250.0, GridUnitType.Pixel);
+            //GridMain.ColumnDefinitions[1] = c2;
+            bframe.Margin = new Thickness(0, 0, 0, 0);
+
+            if (MF==true)
+            {
+                btnExpandirDerechaApp.Visibility = Visibility.Visible;
+                btnRetraerIzquierdaApp.Visibility = Visibility.Collapsed;
+
+            }
+            else
+            {
+                btnExpandirDerechaApp.Visibility = Visibility.Collapsed;
+                btnRetraerIzquierdaApp.Visibility = Visibility.Collapsed;
+            }
+        }
         private void BtnMenuLicencia_Click(object sender, RoutedEventArgs e)
         {
             //imprimirturno();
@@ -489,19 +614,20 @@ namespace TinoTriXxX
             blicencia.Visibility = Visibility.Visible;
             bframe.Visibility = Visibility.Hidden;
             cerrarmenu();
-            
+            RetraerbframeIzquierda(false);
         }
         private void BtnMenuHome_Click(object sender, RoutedEventArgs e)
         {
             MenuHome();
             cerrarmenu();
+            RetraerbframeIzquierda(false);
         }
         public void MenuHome() {
             LVIMenu.Background = new SolidColorBrush(TemaDoradoEstandar);
             LVILicencia.Background = Brushes.Transparent;
             LVICliente.Background = Brushes.Transparent;
             LVIConfiguracion.Background = Brushes.Transparent;
-            frame.NavigationService.Navigate(new PagePrincipal());
+            frame.NavigationService.Navigate(new PagePrincipal(VM));
             CMenu.Background = new SolidColorBrush(TemaAzulEstandar);
             popmenuicon.Foreground = Brushes.White;
 
@@ -510,8 +636,8 @@ namespace TinoTriXxX
         }
         private void BtnMenuFotografiasCliente_Click(object sender, RoutedEventArgs e)
         {
-           
-            if (this.hub!=null && this.IntClientesConectados>=1 ) {
+
+            //if (this.hub != null && this.IntClientesConectados >= 1) {
                 try
                 {
                     LVIMenu.Background = Brushes.Transparent;
@@ -533,15 +659,18 @@ namespace TinoTriXxX
                     frame.NavigationService.Navigate(pagecliente);
 
                     cerrarmenu();
+                 ExpandirbframeDerecha();
+               // btnExpandirDerechaApp.Visibility = Visibility.Visible;
                 }
                 catch (Exception d) {
+                    RetraerbframeIzquierda(false);
                     MessageBox.Show(d.Message, "Aviso de error TINOTRIX");
                 }
-            }
-            else
-            {
-                MessageBox.Show("No hay una ninguna maquina a quien enviarle 1 foto: \n" , "Aviso de conexion TINOTRIX");
-            }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("No hay una ninguna maquina a quien enviarle 1 foto: \n", "Aviso de conexion TINOTRIX");
+            //}
         }
         private void BtnMenuImpresoras_Click(object sender, RoutedEventArgs e)
         {
@@ -567,6 +696,7 @@ namespace TinoTriXxX
                 pageconfimpre.ParentWindow = this;
                 frame.NavigationService.Navigate(pageconfimpre);
                 cerrarmenu();
+                RetraerbframeIzquierda(false);
             }
         }
         private void BtnMenuConexionServidor_Click(object sender, RoutedEventArgs e)
@@ -593,7 +723,36 @@ namespace TinoTriXxX
                 pagconser.ParentWindow = this;
                 frame.NavigationService.Navigate(pagconser);
                 cerrarmenu();
+                RetraerbframeIzquierda(false);
             }
+        }
+        private void BtnMenuTicketCliente_Click(object sender, RoutedEventArgs e)
+        {
+            //VM.ObtenerSession();
+            //if (VM.Session.UidUsusario == Guid.Empty)
+            //{
+            //    MessageBox.Show("¡Inicia sesion primero!", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            //}
+            //else
+            //{
+                LVIMenu.Background = Brushes.Transparent;
+                LVILicencia.Background = Brushes.Transparent;
+                LVICliente.Background = Brushes.Transparent;
+                LVIConfiguracion.Background = new SolidColorBrush(TemaDoradoEstandar);
+
+                // frame.NavigationService.Navigate(new PagePrincipal());
+                CMenu.Background = new SolidColorBrush(TemaAzulEstandar);
+                popmenuicon.Foreground = Brushes.White;
+
+                blicencia.Visibility = Visibility.Hidden;
+                bframe.Visibility = Visibility.Visible;
+
+                PageTicketCliente pagticket = new PageTicketCliente(VM);
+                pagticket.ParentWindow = this;
+                frame.NavigationService.Navigate(pagticket);
+                cerrarmenu();
+                RetraerbframeIzquierda(false);
+            //}
         }
         void cerrarmenu()
         {
@@ -604,7 +763,7 @@ namespace TinoTriXxX
         #endregion Eventos de la vista
 
         #region Actualizar Licencia
-        
+
         private void BtnFinalizarCancelarActualizacionLicencia_Click(object sender, RoutedEventArgs e)
         {
             CancelarActulizacionLicencia();
@@ -648,7 +807,7 @@ namespace TinoTriXxX
                 //BtnActualizarLicencia.Content = "Actualizar";
                 BtnAgregarLicencia.Visibility = Visibility.Hidden;
             }
-            
+
 
 
             BtnFinalizarCancelarActualizacionLicencia.Visibility = Visibility.Hidden;
@@ -809,22 +968,22 @@ namespace TinoTriXxX
             }
             catch (Exception e)
             {
-                MessageBox.Show("¡Error conexion y actualizacion de licencia! U.U: \n"+e, "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                MessageBox.Show("¡Error conexion y actualizacion de licencia! U.U: \n" + e, "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 //Application.Current.Shutdown();
             }
             return CumpleConTodoRequisito;
         }
         public void ComprovarActulizacionLicencia() {
-          
+
             try
             {
                 Guid licenciaNueva = new Guid(txtLicenciaCodigo.Text);
 
-              
+
                 VM.IFExistsLicencia(licenciaNueva);
                 if (VM.Licencia.UidLicencia == Guid.Empty)
                 {
-                   
+
                     MessageBox.Show("¡Licencia no existente! U.U", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 }
                 else
@@ -832,7 +991,7 @@ namespace TinoTriXxX
                     VM.FindLicencia(licenciaNueva, 1);
                     if (VM.Licencia.UidLicencia == Guid.Empty)
                     {
-                        
+
                         MessageBox.Show("¡Licencia ocupada! U.U", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                     }
                     else
@@ -890,8 +1049,8 @@ namespace TinoTriXxX
                 //VM.ObtenerSession();
                 //if (VM.Session.UidUsusario != Guid.Empty)
                 //{
-                    MessageBoxResult result = MessageBox.Show("¿Seguro de revocar Licencia? 7x7 ",
-                "Confirmacion", MessageBoxButton.YesNoCancel);
+                MessageBoxResult result = MessageBox.Show("¿Seguro de revocar Licencia? 7x7 ",
+            "Confirmacion", MessageBoxButton.YesNoCancel);
                 if (result == MessageBoxResult.Yes)
                 {
                     VM.ObtenerLicenciaLocal();
@@ -921,8 +1080,8 @@ namespace TinoTriXxX
             VM.LicenciaLocal = null;
         }
         public void RevocarLicencia() {
-                VM.RevocarLicenciaLocal();
-                ComprovarValidacionLicencia();
+            VM.RevocarLicenciaLocal();
+            ComprovarValidacionLicencia();
         }
         private void BtnAgregarLicencia_Click(object sender, RoutedEventArgs e)
         {
@@ -1022,7 +1181,7 @@ namespace TinoTriXxX
                     CorteCaja.Cabecera("DESCRIPCION", "CANT" + "  IMPORTE", "");
                     foreach (var fot in VM.FotosVendidas)
                     {
-                        CorteCaja.AddItem("[" + fot.StrDescripcion + "]", "        " + fot.StrCantidad+ "      $" + fot.StrCosto, "");
+                        CorteCaja.AddItem("[" + fot.StrDescripcion + "]", "        " + fot.StrCantidad + "      $" + fot.StrCosto, "");
                     }
                     //CorteCaja.AddItem("Infantil", "        " + "12", "$" + "103");
                 }
@@ -1035,7 +1194,7 @@ namespace TinoTriXxX
                 // CorteCaja.AddItem("", "DESCUENTOS", "$" );
                 if (VM.FotosVendidas.Count == 0)
                 {
-                    CorteCaja.AddItem("TOTAL", "        " +  "      $" + costototalfotos.ToString(), "");
+                    CorteCaja.AddItem("TOTAL", "        " + "      $" + costototalfotos.ToString(), "");
 
                 }
                 else
@@ -1050,101 +1209,101 @@ namespace TinoTriXxX
                 //CorteCaja.PrintTicket("EPSON UB-U03II");
             }
             else {
-                MessageBox.Show("¡No hay impresora disponible o seleccionada! \n configure 'impresoras'" , "Configuracion Tinotrix");
+                MessageBox.Show("¡No hay impresora disponible o seleccionada! \n configure 'impresoras'", "Configuracion Tinotrix");
             }
         }
         private void btnInicioTurno_Click(object sender, RoutedEventArgs e)
-            {
-                Login lo = new Login(VM);
-                lo.Owner = this; AplicarEfecto(this, 5);
-                lo.ShowDialog();
-                lo.Owner = this; AplicarEfecto(this, 0);
-                TurnoConf();
-            }
+        {
+            Login lo = new Login(VM);
+            lo.Owner = this; AplicarEfecto(this, 5);
+            lo.ShowDialog();
+            lo.Owner = this; AplicarEfecto(this, 0);
+            TurnoConf();
+        }
         void TurnoConf()
+        {
+            if (CumpleConTodoRequisito == false)
             {
-                if (CumpleConTodoRequisito == false)
+                if (btnInicioTurno.Visibility != Visibility.Collapsed)
                 {
-                    if (btnInicioTurno.Visibility != Visibility.Collapsed)
-                    {
-                        btnInicioTurno.Visibility = Visibility.Collapsed;
-                    }
+                    btnInicioTurno.Visibility = Visibility.Collapsed;
+                }
+                if (btnCierreTurno.Visibility != Visibility.Collapsed)
+                {
+                    btnCierreTurno.Visibility = Visibility.Collapsed;
+                }
+                lbEncagado.Text = "No disponible";
+                lbTurno.Text = "Cerrada";
+                icoCheckstatusturno.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                VM.ObtenerTurno();
+                if (VM.Turno.UidUsusario == Guid.Empty)
+                {
                     if (btnCierreTurno.Visibility != Visibility.Collapsed)
                     {
                         btnCierreTurno.Visibility = Visibility.Collapsed;
                     }
+                    if (btnInicioTurno.Visibility == Visibility.Collapsed)
+                    {
+                        btnInicioTurno.Visibility = Visibility.Visible;
+                    }
                     lbEncagado.Text = "No disponible";
                     lbTurno.Text = "Cerrada";
                     icoCheckstatusturno.Visibility = Visibility.Hidden;
+                    lbHoraInicio.Text = "00:00:00";
+                    lbFechaInicio.Text = "00/00/0000";
+                    lbFolio.Text = "000000000000";
+                    lbFotos.Text = "0";
+                    lbVenta.Text = "0";
                 }
                 else
                 {
-                    VM.ObtenerTurno();
-                    if (VM.Turno.UidUsusario == Guid.Empty)
+                    if (VM.usuariosucursal(VM.Turno.UidUsusario, VM.Sucursal.UidSucursal) == false)
                     {
-                        if (btnCierreTurno.Visibility != Visibility.Collapsed)
-                        {
-                            btnCierreTurno.Visibility = Visibility.Collapsed;
-                        }
-                        if (btnInicioTurno.Visibility == Visibility.Collapsed)
-                        {
-                            btnInicioTurno.Visibility = Visibility.Visible;
-                        }
-                        lbEncagado.Text = "No disponible";
-                        lbTurno.Text = "Cerrada";
-                        icoCheckstatusturno.Visibility = Visibility.Hidden;
-                         lbHoraInicio.Text ="00:00:00";
-                         lbFechaInicio.Text = "00/00/0000";
-                         lbFolio.Text = "000000000000";
-                         lbFotos.Text = "0";
-                         lbVenta.Text = "0";
-                   }
-                    else
+                        MessageBox.Show("Encargado no pertece a esta sucuersal", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                        // VM.RevocarTurno();
+                        // TurnoConf();
+                    }
+
+                    if (VM.Encargado == null)
                     {
-                        if (VM.usuariosucursal(VM.Turno.UidUsusario, VM.Sucursal.UidSucursal) == false)
-                        {
-                            MessageBox.Show("Encargado no pertece a esta sucuersal", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                           // VM.RevocarTurno();
-                           // TurnoConf();
-                        }
-                        
-                            if (VM.Encargado == null)
-                            {
-                                VM.ObteneEncargado(VM.Turno.UidUsusario);
-                            }
+                        VM.ObteneEncargado(VM.Turno.UidUsusario);
+                    }
 
 
-                            if (btnCierreTurno.Visibility == Visibility.Collapsed)
-                            {
+                    if (btnCierreTurno.Visibility == Visibility.Collapsed)
+                    {
 
-                                //NameScope.GetNameScope(yourContainer).UnregisterName("name of your control");
-                                //sPMenu.RegisterName("btnCierreSession", btncerrarsession);
-                                //sPMenu.Children.Add(btncerrarsession);
-                                btnCierreTurno.Visibility = Visibility.Visible;
-                                //NameScope.GetNameScope(sPMenu).RegisterName("btnCierreSession", btncerrarsession);
-                            }
-                            if (btnInicioTurno.Visibility != Visibility.Collapsed)
-                            {
-                                btnInicioTurno.Visibility = Visibility.Collapsed;
-                            }
-                        
-                            lbEncagado.Text = VM.Encargado.STRUSUARIO;
-                            lbTurno.Text = "Abierto";
-                            icoCheckstatusturno.Visibility = Visibility.Visible;
-                            lbHoraInicio.Text = VM.Turno.DtHrInicio.ToString("T");
-                            lbFechaInicio.Text = VM.Turno.DtFhInicio.ToString("d");
-                            lbFolio.Text = VM.Turno.IntNoFolio.ToString("D12");
-                            lbFotos.Text = VM.Turno.IntTFotos.ToString();
-                            lbVenta.Text = VM.Turno.IntTCosto.ToString();
-                            ActualizarVentasClientes();
+                        //NameScope.GetNameScope(yourContainer).UnregisterName("name of your control");
+                        //sPMenu.RegisterName("btnCierreSession", btncerrarsession);
+                        //sPMenu.Children.Add(btncerrarsession);
+                        btnCierreTurno.Visibility = Visibility.Visible;
+                        //NameScope.GetNameScope(sPMenu).RegisterName("btnCierreSession", btncerrarsession);
+                    }
+                    if (btnInicioTurno.Visibility != Visibility.Collapsed)
+                    {
+                        btnInicioTurno.Visibility = Visibility.Collapsed;
+                    }
+
+                    lbEncagado.Text = VM.Encargado.STRUSUARIO;
+                    lbTurno.Text = "Abierto";
+                    icoCheckstatusturno.Visibility = Visibility.Visible;
+                    lbHoraInicio.Text = VM.Turno.DtHrInicio.ToString("T");
+                    lbFechaInicio.Text = VM.Turno.DtFhInicio.ToString("d");
+                    lbFolio.Text = VM.Turno.IntNoFolio.ToString("D12");
+                    lbFotos.Text = VM.Turno.IntTFotos.ToString();
+                    lbVenta.Text = VM.Turno.IntTCosto.ToString();
+                    ActualizarVentasClientes();
 
                 }
-                     //VM.Turno = null;
+                //VM.Turno = null;
 
-                }
             }
+        }
         private void btnCierreTurno_Click(object sender, RoutedEventArgs e)
-            {
+        {
             MessageBoxResult result = MessageBox.Show("¿Seguro de cerrar turno? 7x7",
              "Confirmacion", MessageBoxButton.YesNoCancel);
             if (result == MessageBoxResult.Yes)
@@ -1158,7 +1317,7 @@ namespace TinoTriXxX
                     VM.Turno.DtHrFin = DateTime.Parse(myDt.ToString("HH:mm:ss"));
                     VM.Turno.DtFhInicio = DateTime.Parse(myDt.ToString("dd/MM/yyyy"));
                     bool TurnoCerrado = new bool();
-                    TurnoCerrado= VM.RevocarTurno(VM.Turno.UidFolio, myDt.ToString("HH:mm:ss"), myDt.ToString("dd/MM/yyyy"), VM.Turno.IntTFotos, VM.Turno.IntTCosto);
+                    TurnoCerrado = VM.RevocarTurno(VM.Turno.UidFolio, myDt.ToString("HH:mm:ss"), myDt.ToString("dd/MM/yyyy"), VM.Turno.IntTFotos, VM.Turno.IntTCosto);
                     if (TurnoCerrado == true) {
                         VM.ReporteVentaFotos(VM.Turno.UidFolio);
                         imprimirturno();
@@ -1167,18 +1326,18 @@ namespace TinoTriXxX
                     {
                         MessageBox.Show("¡Ya estaba cerrado el turno! \n", "ERROR Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                     }
-                    
+
                     VM.Turno = null;
                     VM.Encargado = null;
                     TurnoConf();
 
-                   
+
                 }
                 catch (Exception y) {
                     VM.Turno = null;
                     VM.Encargado = null;
                     TurnoConf();
-                    MessageBox.Show("¡Error, no se pudo ejecutar el siguiente proceso! \n"+ y, "ERROR Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                    MessageBox.Show("¡Error, no se pudo ejecutar el siguiente proceso! \n" + y, "ERROR Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 }
             }
             else if (result == MessageBoxResult.No)
@@ -1193,84 +1352,125 @@ namespace TinoTriXxX
         #endregion TUrno
 
         #region Session
-            private void btnInicioSesion_Click(object sender, RoutedEventArgs e)
+        private void btnInicioSesion_Click(object sender, RoutedEventArgs e)
+        {
+            Autentificacion au = new Autentificacion(VM, true);
+            au.Owner = this; AplicarEfecto(this, 5);
+            au.ShowDialog();
+            au.Owner = this; AplicarEfecto(this, 0);
+            SessionConf();
+
+            confSessionTicketCliente();
+
+
+        }
+        void confSessionTicketCliente() {
+
+            string pageactual = Application.Current.Dispatcher.Invoke(() =>
+                          ((MainWindow)Application.Current.MainWindow).frame.Content.ToString());
+            string s2 = "PageTicketCliente";
+            bool b = pageactual.Contains(s2);
+            if (b)
             {
-                Autentificacion au = new Autentificacion(VM, true);
-                au.Owner = this; AplicarEfecto(this, 5);
-                au.ShowDialog();
-                au.Owner = this; AplicarEfecto(this, 0);
-                SessionConf();
-            }
-            void SessionConf()
-            {
-                if (CumpleConTodoRequisito == false)
+                // VM.ObtenerSession();
+                if (VM.Session.UidUsusario == Guid.Empty)
                 {
-                    if (btnInicioSession.Visibility != Visibility.Collapsed)
-                    {
-                        btnInicioSession.Visibility = Visibility.Collapsed;
-                    }
+                    //  MessageBox.Show("¡Inicia sesion primero!", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                    _txtEnc1Linea.IsEnabled = false;
+                    _txtEnc2Linea.IsEnabled = false;
+                    _txtEnc3Linea.IsEnabled = false;
+                    _txtEnc4Linea.IsEnabled = false;
+                    _txtEnc5Linea.IsEnabled = false;
+                    _txtPie1Linea.IsEnabled = false;
+                    _txtPie2Linea.IsEnabled = false;
+                    _txtPie3Linea.IsEnabled = false;
+                }
+                else
+                {
+                    _txtEnc1Linea.IsEnabled = true;
+                    _txtEnc2Linea.IsEnabled = true;
+                    _txtEnc3Linea.IsEnabled = true;
+                    _txtEnc4Linea.IsEnabled = true;
+                    _txtEnc5Linea.IsEnabled = true;
+                    _txtPie1Linea.IsEnabled = true;
+                    _txtPie2Linea.IsEnabled = true;
+                    _txtPie3Linea.IsEnabled = true;
+                }
+            }
+            else
+            {
+            }
+        }
+        void SessionConf()
+        {
+            if (CumpleConTodoRequisito == false)
+            {
+                if (btnInicioSession.Visibility != Visibility.Collapsed)
+                {
+                    btnInicioSession.Visibility = Visibility.Collapsed;
+                }
+                if (btnCierreSession.Visibility != Visibility.Collapsed)
+                {
+                    btnCierreSession.Visibility = Visibility.Collapsed;
+                }
+                lbUsuario.Text = "No disponible";
+                lbNombreUsuario.Text = "No disponible";
+            }
+            else
+            {
+                VM.ObtenerSession();
+                if (VM.Session.UidUsusario == Guid.Empty)
+                {
                     if (btnCierreSession.Visibility != Visibility.Collapsed)
                     {
                         btnCierreSession.Visibility = Visibility.Collapsed;
+                    }
+                    if (btnInicioSession.Visibility == Visibility.Collapsed)
+                    {
+                        btnInicioSession.Visibility = Visibility.Visible;
                     }
                     lbUsuario.Text = "No disponible";
                     lbNombreUsuario.Text = "No disponible";
                 }
                 else
                 {
-                    VM.ObtenerSession();
-                    if (VM.Session.UidUsusario == Guid.Empty)
+
+                    if (VM.usuarioempresa(VM.Session.UidUsusario, VM.Empresa.UidEmpresa) == false)
                     {
-                        if (btnCierreSession.Visibility != Visibility.Collapsed)
-                        {
-                            btnCierreSession.Visibility = Visibility.Collapsed;
-                        }
-                        if (btnInicioSession.Visibility == Visibility.Collapsed)
-                        {
-                            btnInicioSession.Visibility = Visibility.Visible;
-                        }
-                        lbUsuario.Text = "No disponible";
-                        lbNombreUsuario.Text = "No disponible";
+                        MessageBox.Show("Usuario no pertenece a esta empresa 7-7", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                        VM.RevocarSession();
+                        SessionConf();
                     }
                     else
                     {
-
-                        if (VM.usuarioempresa(VM.Session.UidUsusario, VM.Empresa.UidEmpresa) == false)
+                        if (VM.Usuario == null)
                         {
-                            MessageBox.Show("Usuario no pertenece a esta empresa 7-7", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                            VM.RevocarSession();
-                            SessionConf();
-                        }
-                        else
-                        {
-                            if (VM.Usuario == null)
-                            {
-                                VM.ObteneUsuario(VM.Session.UidUsusario);
-                            }
-
-
-                            if (btnCierreSession.Visibility == Visibility.Collapsed)
-                            {
-
-                                //NameScope.GetNameScope(yourContainer).UnregisterName("name of your control");
-                                //sPMenu.RegisterName("btnCierreSession", btncerrarsession);
-                                //sPMenu.Children.Add(btncerrarsession);
-                                btnCierreSession.Visibility = Visibility.Visible;
-                                //NameScope.GetNameScope(sPMenu).RegisterName("btnCierreSession", btncerrarsession);
-                            }
-                            if (btnInicioSession.Visibility != Visibility.Collapsed)
-                            {
-                                btnInicioSession.Visibility = Visibility.Collapsed;
-                            }
-                            lbUsuario.Text = VM.Usuario.STRUSUARIO;
-                            lbNombreUsuario.Text = VM.Usuario.STRNOMBRE;
+                            VM.ObteneUsuario(VM.Session.UidUsusario);
                         }
 
+
+                        if (btnCierreSession.Visibility == Visibility.Collapsed)
+                        {
+
+                            //NameScope.GetNameScope(yourContainer).UnregisterName("name of your control");
+                            //sPMenu.RegisterName("btnCierreSession", btncerrarsession);
+                            //sPMenu.Children.Add(btncerrarsession);
+                            btnCierreSession.Visibility = Visibility.Visible;
+                            //NameScope.GetNameScope(sPMenu).RegisterName("btnCierreSession", btncerrarsession);
+                        }
+                        if (btnInicioSession.Visibility != Visibility.Collapsed)
+                        {
+                            btnInicioSession.Visibility = Visibility.Collapsed;
+                        }
+                        lbUsuario.Text = VM.Usuario.STRUSUARIO;
+                        lbNombreUsuario.Text = VM.Usuario.STRNOMBRE;
                     }
+
                 }
-              //VM.Session = null;
             }
-            private void btnCierreSession_Click(object sender, RoutedEventArgs e) {
+            //VM.Session = null;
+        }
+        private void btnCierreSession_Click(object sender, RoutedEventArgs e) {
             MessageBoxResult result = MessageBox.Show("¿Seguro de cerrar sesion? 7o7",
               "Confirmacion", MessageBoxButton.YesNoCancel);
             if (result == MessageBoxResult.Yes)
@@ -1286,10 +1486,8 @@ namespace TinoTriXxX
             {
                 // Cancel code here  
             }
+            confSessionTicketCliente();
         }
-
-
-
         #endregion Session
 
         #region codigo prototipo
@@ -1365,9 +1563,9 @@ namespace TinoTriXxX
         public void ActualizarVentasClientes() {
             try
             {
-                if (VM.Turno.UidFolio == Guid.Empty || VM.Turno.UidFolio== null  )
+                if (VM.Turno.UidFolio == Guid.Empty || VM.Turno.UidFolio == null)
                 {
-                    MessageBox.Show("¡No haz iniciado Turno! \n " , "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                    MessageBox.Show("¡No haz iniciado Turno! \n ", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 }
                 else {
                     VM.ActualizarVentaGeneral();
@@ -1431,10 +1629,14 @@ namespace TinoTriXxX
         {
             ActualizarVentasClientes();
         }
+
+
         #endregion servicio
 
+        
     }
     #region clases conexion red local
+
     class Startup
     {
         public void Configuration(IAppBuilder app)
@@ -1540,7 +1742,6 @@ namespace TinoTriXxX
             return base.OnReconnected();
         }
     }
-
     public class ConnectionMapping<T>
     {
         private readonly Dictionary<T, HashSet<string>> _connections =

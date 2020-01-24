@@ -25,7 +25,7 @@
             </Rectangle.Fill>
         </Rectangle>
         <TextBlock Margin="25 80 0 0" Foreground="White"  FontSize="65" FontFamily="Lucida Sans">TINOTRIX SERVER</TextBlock>
-        <Label Content="Version 1.0"></Label>
+        <Label Content="Version 1.0.0.6"></Label>
         <Label Content="Todos los derechos reservados" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="9"></Label>
         <StackPanel Margin="0,170,0,50"  Visibility="Collapsed">
             <TextBlock Text="Tinotrix Server" Foreground="White" HorizontalAlignment="Center" FontSize="48" FontWeight="Bold"/>

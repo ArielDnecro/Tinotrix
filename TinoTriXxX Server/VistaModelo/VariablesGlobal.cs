@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TinoTriXxX.VistaModelo
 {
-    class VariablesGlobal
+    public class VariablesGlobal
     {
         public static string FontName;
         public static float FontSize;

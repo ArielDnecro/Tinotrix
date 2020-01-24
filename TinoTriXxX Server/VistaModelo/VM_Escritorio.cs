@@ -21,7 +21,7 @@ namespace TinoTriXxX.VistaModelo
         private Sucursal.Repository Sucursalrepository = new Sucursal.Repository();
         //private SucursalTelefono.Repository telefonoRepository = new SucursalTelefono.Repository();
         private SucursalDireccion.Repository SucursaldireccionRepository = new SucursalDireccion.Repository();
-
+        private Papel.Repository PapelRepository = new Papel.Repository();
         //private SucursalImpresora.Repository impresoraRepository = new SucursalImpresora.Repository();
         private Status.Repository statusRepository = new Status.Repository();
         private SucursalLicencia.Repository LicenciaRepository = new SucursalLicencia.Repository();
@@ -33,8 +33,11 @@ namespace TinoTriXxX.VistaModelo
         private Turno.Repository TurnoRepository = new Turno.Repository();
         DBLogin login = new DBLogin();
         private Impresora.Repository ImpresoraRepository = new Impresora.Repository();
-        private _Foto.Repository FotoRepository = new _Foto.Repository();
+        private _Foto.Repository _FotoRepository = new _Foto.Repository();
+        private Foto.Repository FotoRepository = new Foto.Repository();
         private Servicio.Repository ServicioRepository = new Servicio.Repository();
+        private TicketCliente.Repository TicketClienteRepository = new TicketCliente.Repository();
+        private HistoricoImpresionesXTurno.Repository HistoricoVentaRepository = new HistoricoImpresionesXTurno.Repository();
         #region empresa
         private Empresa _Empresa;
         public Empresa Empresa
@@ -176,7 +179,18 @@ namespace TinoTriXxX.VistaModelo
             get { return _FotosVendidas; }
             set { _FotosVendidas = value; }
         }
+        
+        public List<Foto> ListaFotos = new List<Foto>();
         #endregion foto
+
+        #region Papel
+        private Papel _Papel;
+        public Papel Papel
+        {
+            get { return _Papel; }
+            set { _Papel = value; }
+        }
+        #endregion Papel
 
         #region varios
         private IList<Status> _ListaStatus;
@@ -208,6 +222,24 @@ namespace TinoTriXxX.VistaModelo
         public string localIP = "";
         #endregion red
 
+        #region TicketCliente
+        private TicketCliente _ticketcliente;
+        public TicketCliente ticketcliente
+        {
+            get { return _ticketcliente; }
+            set { _ticketcliente = value; }
+        }
+        #endregion TicketCliente
+
+        #region HistoricoVentasXTurno
+       
+        private List<HistoricoImpresionesXTurno> _HVentas;
+        public List<HistoricoImpresionesXTurno> HVentas
+        {
+            get { return _HVentas; }
+            set { _HVentas = value; }
+        }
+        #endregion HistoricoVentasXTurno
         #endregion Propiedades
         #region funciones
 
@@ -407,7 +439,6 @@ namespace TinoTriXxX.VistaModelo
         {
             _StrDescImpresora= ImpresoraRepository.Find().StrDescripcion;
         }
-
         public void ActualizarImpresora(string StrDescripcion)
         {
             try
@@ -423,9 +454,54 @@ namespace TinoTriXxX.VistaModelo
 
         #region Foto
         public void ReporteVentaFotos(Guid UIDTURNO) {
-            _FotosVendidas = FotoRepository.CargarFotos(UIDTURNO);
+            FotosVendidas = _FotoRepository.CargarFotos(UIDTURNO);
+        }
+        public double MedidafotoConversor(string StrMedida)
+        {
+            //  return FotoRepository.CargarMedidaLocal(StrMedida);
+            double DouMedida = 0.0;
+            if (StrMedida== "PGL" || StrMedida == "PLG" || StrMedida == "PULGADAS" || StrMedida == "PULGADA" || StrMedida == "IN" || StrMedida == "INCH")
+            {
+                DouMedida = 96.0;
+            }
+            else
+            {
+                if(StrMedida == "CEN" || StrMedida == "CM" || StrMedida == "Centimetro" || StrMedida == "CENTIMETROS")
+                {
+                    DouMedida = 37.7952755905512;
+                }
+                else
+                {
+
+                }
+            }
+            return DouMedida;
+        }
+        public void NuevaImpresion(Guid UidSucursal, Guid UidFoto, string DtTmVenta, int IntCopiasXImpresion, int IntFotosXCopiasXImpresion, string StrCosto, string StrCostoTicket, int IntMaquina)
+        {
+            FotoRepository.NuevaImpresion(UidSucursal, UidFoto, DtTmVenta, IntCopiasXImpresion, IntFotosXCopiasXImpresion, StrCosto, StrCostoTicket, IntMaquina);
+        }
+        public void CargarlistaFotos(Guid UIDSucursal)
+        {
+            ListaFotos = FotoRepository.CargarFotos(UIDSucursal);
         }
         #endregion Foto
+
+        #region Papel
+        public void CargarPapel(Guid UIDSucursal)
+        {
+            _Papel = PapelRepository.Find(UIDSucursal);
+        }
+        #endregion Papel
+
+        #region turno
+        public bool TurnoServidorAbierto(Guid sucursal)
+        {
+            return TurnoRepository.TurnoServidorAbierto(sucursal);
+        }
+
+
+        #endregion turno
 
         #region Servicios
         public string ObtenerPuerto()
@@ -534,6 +610,35 @@ namespace TinoTriXxX.VistaModelo
             return value;
         }
         #endregion Servicios
+
+        #region TicketCliente
+        public void ObtenerTicketCliente()
+        {
+            _ticketcliente = TicketClienteRepository.FindEncPie();
+        }
+        public void ActualizarEncPieTicketCliente(string e1,string e2, string e3, string e4, string e5, string p1, string p2, string p3) {
+            _ticketcliente.StrEnc1Linea = e1;
+            _ticketcliente.StrEnc2Linea = e2;
+            _ticketcliente.StrEnc3Linea = e3;
+            _ticketcliente.StrEnc4Linea = e4;
+            _ticketcliente.StrEnc5Linea = e5;
+            _ticketcliente.StrPie1Linea = p1;
+            _ticketcliente.StrPie2Linea = p2;
+            _ticketcliente.StrPie3Linea = p3;
+            try
+            {
+                TicketClienteRepository.ActualizarEncPie(_ticketcliente);
+            }
+            catch (Exception e)
+            {
+                throw new VM_EscritorioException("(ConvertirCriterioATicketCliente)" + e.Message);
+            }
+        }
+        public void ObtenerListaHistoricoVentasXTurno(Guid UidTurno) {
+            _HVentas= HistoricoVentaRepository.CargarVentas(UidTurno);
+        }
+        #endregion TicketCliente
+
         #endregion funciones 
         #region Excepciones
         public class VM_EscritorioException : Exception
