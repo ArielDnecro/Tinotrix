@@ -10,11 +10,19 @@ none
 false
 DEBUG;TRACE
 C:\Users\Iudex\Documents\TinoTrix\Clone\Tinotrix\TinoTriXxX Server\App.xaml
+<<<<<<< HEAD
 6-1032864964
 
 211263085826
 18-1668948929
 Autentificacion.xaml;Vista\DBLocal.xaml;Login.xaml;PageLicencia.xaml;PagePrincipal.xaml;ServerMain.xaml;
+=======
+121104434182
+1-1102676960
+33-18491727
+371974360024
+Autentificacion.xaml;Camara.xaml;CargandoAplicacion.xaml;PageConfConexionServicio.xaml;PageFotosCliente.xaml;PageImpresoras.xaml;SinConexionInternet.xaml;Vista\DBLocal.xaml;Login.xaml;PageLicencia.xaml;PagePrincipal.xaml;ServerMain.xaml;
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
 
 True
 

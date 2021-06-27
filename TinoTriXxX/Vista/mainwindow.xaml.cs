@@ -21,6 +21,10 @@ using System.ComponentModel;
 using System.IO;
 using Microsoft.Win32;
 using System.Data.SqlClient;
+using System.Net.Http;
+using Microsoft.AspNet.SignalR.Client;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 
 namespace TinoTriXxX
 {
@@ -29,11 +33,15 @@ namespace TinoTriXxX
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region propiedades 
+        
 
         CargandoAplicacion LoadApp;
         BackgroundWorker bg;
         VM_Escritorio VM = new VM_Escritorio();
-      
+        PageConfiguracion pageconf ;
+        PageFotos pagefoto;
+        PagePrincipal pageprincipal;
         string path;
         //var converter = new System.Windows.Media.BrushConverter();
         //var brush = (Brush)converter.ConvertFromString("#FFFFFF90");
@@ -45,6 +53,25 @@ namespace TinoTriXxX
         Color verde1 = (Color)ColorConverter.ConvertFromString("#b9f6ca");
         Boolean CumpleConTodoRequisito;
         //bool AppSinConexion = true;
+<<<<<<< HEAD
+=======
+        private TextBox _txtIpServer;
+        public TextBox txtIpServer
+        {
+            get { return _txtIpServer; }
+            set { _txtIpServer = value; }
+        }
+        private TextBox _txtPuertoServer;
+        public TextBox txtPuertoServer
+        {
+            get { return _txtPuertoServer; }
+            set { _txtPuertoServer = value; }
+        }
+        #endregion propiedades
+
+        #region Constructor
+
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
         public MainWindow()
         {
             bg = new BackgroundWorker();
@@ -54,10 +81,46 @@ namespace TinoTriXxX
             AplicarCultura();
             RedireccionarBasico();
             ConstructorPrincipal();
+<<<<<<< HEAD
         }
         void ConstructorPrincipal() {
             try
             {
+=======
+            //SaberIpRed();
+        }
+        void ConstructorPrincipal() {
+            InitializeComponent();
+            //en esta primera seccion verifico que tengo internet
+            System.Net.WebRequest Peticion = default(System.Net.WebRequest);
+            var Respuesta = default(System.Net.WebResponse);
+            try
+            {
+
+                Peticion = System.Net.WebRequest.Create("http://tinotrix.gearhostpreview.com/vista/Login.aspx");
+                Respuesta = Peticion.GetResponse();
+                //this.Close();
+            }
+            catch (FileNotFoundException r)
+            {
+                AppSinConexionInternet();
+            }
+            catch (DirectoryNotFoundException r)
+            {
+                AppSinConexionInternet();
+            }
+            catch (IOException r)
+            {
+                AppSinConexionInternet();
+            }
+            catch (Exception r)
+            {
+                AppSinConexionInternet();
+            }
+            //en esta seccion Inicializo mi ventana y la construyo con base a los datos que tenga en el host
+            try
+            {
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
                 
                 //Thread t = new Thread(new ThreadStart(Ca));
                 //t.SetApartmentState(ApartmentState.STA);
@@ -65,7 +128,7 @@ namespace TinoTriXxX
                 //t.Start();
                 //CargandoAplicacion Load = new CargandoAplicacion();
                 //Load.Show();
-                InitializeComponent();
+               
 
                 //string StrIniciando = string.Empty;
                 //for (int i=0; i<100000; i++) { StrIniciando += i.ToString(); }
@@ -80,15 +143,22 @@ namespace TinoTriXxX
                 //AplicarCultura();
                 //RedireccionarBasico();
                 ComprovarValidacionLicencia();
-                frame.NavigationService.Navigate(new PagePrincipal());
+                //pageconf = new PageConfiguracion(VM);
+                //pagefoto = new PageFotos(VM);
+                pageprincipal = new PagePrincipal();
+                frame.NavigationService.Navigate(pageprincipal);
                 bframe.Visibility = Visibility.Visible;
                 blicencia.Visibility = Visibility.Hidden;
                 ObtenerDirectorioRaiz();
                 LimpiarApp();
+                //string im = "DescargaUsuario_ 09-23-2019 15-43-27";
+                //string img = im.ToString("MM-dd-yyyy HH-mm-ss");
+                
             }
 
             catch (FileNotFoundException e)
             {
+<<<<<<< HEAD
                 MessageBox.Show(e.Message);
                 AppSinConexionInternet();
             }
@@ -133,6 +203,31 @@ namespace TinoTriXxX
             btnInicioSession.Visibility = Visibility.Collapsed;
             btnCierreSession.Visibility = Visibility.Collapsed;
         }
+=======
+                MessageBox.Show("FileNotFoundException: " + e.Message, "Tinotrix: Error inicialización", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                MessageBox.Show("DirectoryNotFoundException: " + e.Message, "Tinotrix: Error inicialización", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
+            }
+            catch (IOException e)
+            {
+                MessageBox.Show("IOException: " + e.Message, "Tinotrix: Error inicialización", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Exception: " + e.Message, "Tinotrix: Error inicialización", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
+            }
+        }
+
+        #endregion Constructor
+       
+        #region Archivos temporales
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
         void ObtenerDirectorioRaiz() {
             path = System.IO.Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
             if (!Directory.Exists(path + "\\Imagenes\\usuario\\")) {
@@ -162,8 +257,22 @@ namespace TinoTriXxX
             {
                 File.Delete(archivoFinal);
             }
+            string[] filePathsdescarga = Directory.GetFiles(Directorio, "*FotoFinalDescarga_*.*", SearchOption.AllDirectories);
+            foreach (string archivodescarga in filePathsdescarga)
+            {
+                File.Delete(archivodescarga);
+            }
+
+            string[] filePathsOvalada = Directory.GetFiles(Directorio, "*FotoOvaladaUsuario_*.*", SearchOption.AllDirectories);
+            foreach (string archivoOvalado in filePathsOvalada)
+            {
+                File.Delete(archivoOvalado);
+            }
             //MessageBox.Show("DELETE ALL TEMP USER IMAGES");
         }
+        #endregion Archivos temporales
+       
+        #region Ventana Inicion
         void bg_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             //LoadApp.Hide();
@@ -176,14 +285,8 @@ namespace TinoTriXxX
             System.Threading.Thread.Sleep(20000);
             //this.Hide();
         }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        void Ca()
         {
-            //////LoadApp = new CargandoAplicacion();
-            //////LoadApp.Show();
-            //////bg.RunWorkerAsync();
-            LoadApp.Close();
-        }
-        void Ca() {
             //CargandoAplicacion Load = new CargandoAplicacion();
             //Load.Show();
             //System.Windows.Threading.Dispatcher.Run();
@@ -191,13 +294,17 @@ namespace TinoTriXxX
             LoadApp.Show();
             bg.RunWorkerAsync();
         }
-        private void Time_Tick(object sender, EventArgs e)
-        {
-            //comprovar Licencia en el hodting
-            ComprovarValidacionLicencia();
+        #endregion Ventana inicio
+       
+        //private void Time_Tick(object sender, EventArgs e)
+        //{
+        //    //comprovar Licencia en el hodting
+        //    ComprovarValidacionLicencia();
 
 
-        }
+        //}
+
+        #region registro app
         private void AplicarCultura()
         {
             System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("ES-Mx");
@@ -258,8 +365,105 @@ namespace TinoTriXxX
 
             return aux;
         }
-        #region Eventos de la vista
+<<<<<<< HEAD
+        private void AplicarCultura()
+        {
+            System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("ES-Mx");
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+        }
+        public void RedireccionarBasico()
+        {
+            string sourceRegistro = string.Empty;
+            try
+            {
+                sourceRegistro = Registry.GetValue(@"HKEY_CURRENT_USER\Tinotrix", "Source", "NULL").ToString();
+            }
+            catch (Exception) { sourceRegistro = string.Empty; }
 
+            //Validar si el registro no existe o tiene un valor nulo 
+            if (!string.IsNullOrEmpty(sourceRegistro))
+            {
+                //Prueba la conexión con el source guardado en el registro de windows 
+                if (PruebaConexionRegistro(sourceRegistro))
+                {
+                    TinoTriXxX.Properties.Settings.Default["Source"] = sourceRegistro;
+
+
+                }
+                else
+                {
+                    DBLocal wBDLocal = new DBLocal();
+                    wBDLocal.ShowDialog();
+                }
+            }
+            //Validar si el registro existe o tiene un valor nulo 
+            else
+            {
+                DBLocal wBDLocal = new DBLocal();
+                wBDLocal.ShowDialog();
+            }
+        }
+        public bool PruebaConexionRegistro(string source)
+        {
+            int intentos = 3;
+            bool aux = false;
+            SqlConnection _sqlConeccion;
+            string stringConnection = string.Empty;
+
+            stringConnection = @"Data Source=" + source + ";Initial Catalog=TinotrixCliente;Integrated Security=True;Connection Timeout=1";
+
+            for (int i = 0; i < intentos; i++)
+                try
+                {
+                    _sqlConeccion = new SqlConnection(stringConnection);
+                    _sqlConeccion.Open();
+                    aux = true;
+                    _sqlConeccion.Close();
+                    break;
+                }
+                catch (Exception) { }
+
+            return aux;
+        }
+=======
+        #endregion registro app
+
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
+        #region Eventos de la vista
+        void AppSinConexionInternet()
+        {
+
+            AppTemaSinConexion();
+            SinConexionInternet AppSinInternet = new SinConexionInternet();
+            LoadApp.Close();
+            AppSinInternet.ShowDialog();
+            ConstructorPrincipal();
+        }
+        void AppTemaSinConexion()
+        {
+            GridMain.Visibility = Visibility.Hidden;
+            //BtnOpenMenu.Background = Brushes.White;
+            //IcoOpenMenu.Foreground = new SolidColorBrush(TemaAzulEstandar);
+            BtnMenuFotos.IsEnabled = false;
+            BtnMenuHome.IsEnabled = false;
+            BtnMenuLicencia.IsEnabled = false;
+            GBestado.Visibility = Visibility.Hidden;
+            BtnMenuConfiguracion.IsEnabled = false;
+            LVIMenu.Background = Brushes.Transparent;
+            LVILicencia.Background = Brushes.Transparent;
+            LVIFotos.Background = Brushes.Transparent;
+            LVIConfiguracion.Background = Brushes.Transparent;
+            btnInicioSession.Visibility = Visibility.Collapsed;
+            btnCierreSession.Visibility = Visibility.Collapsed;
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            //////LoadApp = new CargandoAplicacion();
+            //////LoadApp.Show();
+            //////bg.RunWorkerAsync();
+            LoadApp.Close();
+        }
         void TemaAppDesabilitado()
         {
             GridMain.Visibility = Visibility.Hidden;
@@ -292,6 +496,39 @@ namespace TinoTriXxX
         }
         private void BtnSesion_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                VM.RevocarSession();
+                SessionConf();
+                if (VM.Connection != null)//|| VM.Connection.State != ConnectionState.Disconnected
+                {
+                    VM.Connection.Stop();
+                    VM.Connection.Dispose();
+                }
+                
+                //LimpiarApp();
+            }
+            catch (FileNotFoundException t)
+            {
+                //MessageBox.Show("FileNotFoundException: " + t.Message, "Tinotrix: Error cierre de app", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
+
+            }
+            catch (DirectoryNotFoundException t)
+            {
+                //MessageBox.Show("DirectoryNotFoundException: " + t.Message, "Tinotrix: Error cierre de app", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
+            }
+            catch (IOException t)
+            {
+                //MessageBox.Show("IOException: " + t.Message, "Tinotrix: Error cierre de app", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
+            }
+            catch (Exception t)
+            {
+                //MessageBox.Show("Exception: " + t.Message, "Tinotrix: Error cierre de app", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
+            }
             Application.Current.Shutdown();
         }
         private void BtnMin_Click(object sender, RoutedEventArgs e)
@@ -308,6 +545,10 @@ namespace TinoTriXxX
         }
         private void BtnMenuLicencia_Click(object sender, RoutedEventArgs e)
         {
+            pageconf = null;
+            pagefoto = null;
+            pageprincipal = null;
+
             LVIMenu.Background = Brushes.Transparent;
             LVILicencia.Background = new SolidColorBrush(verde3);
             LVIFotos.Background = Brushes.Transparent;
@@ -320,6 +561,14 @@ namespace TinoTriXxX
         }
         private void BtnMenuHome_Click(object sender, RoutedEventArgs e)
         {
+             MenuHome();
+            cerrarmenu();
+        }
+        public void MenuHome() {
+            pageconf = null;
+            pagefoto = null;
+            pageprincipal = null;
+
             LVIMenu.Background = new SolidColorBrush(verde3);
             LVILicencia.Background = Brushes.Transparent;
             LVIFotos.Background = Brushes.Transparent;
@@ -327,11 +576,16 @@ namespace TinoTriXxX
 
             blicencia.Visibility = Visibility.Hidden;
             bframe.Visibility = Visibility.Visible;
-            frame.NavigationService.Navigate(new PagePrincipal());
-            cerrarmenu();
+
+            pageprincipal = new PagePrincipal();
+            frame.NavigationService.Navigate(pageprincipal);
         }
         private void BtnMenuFotos_Click(object sender, RoutedEventArgs e)
         {
+            pageconf = null;
+            pagefoto = null;
+            pageprincipal = null;
+
             LVIMenu.Background = Brushes.Transparent;
             LVILicencia.Background = Brushes.Transparent;
             LVIFotos.Background = new SolidColorBrush(verde3);
@@ -339,20 +593,31 @@ namespace TinoTriXxX
 
             blicencia.Visibility = Visibility.Hidden;
             bframe.Visibility = Visibility.Visible;
-            frame.NavigationService.Navigate(new PageFotos(VM));
+            pagefoto = new PageFotos(VM);
+            frame.NavigationService.Navigate(pagefoto);
             cerrarmenu();
         }
         private void BtnMenuConfiguracion_Click(object sender, RoutedEventArgs e)
         {
-            LVIMenu.Background = Brushes.Transparent;
-            LVILicencia.Background = Brushes.Transparent;
-            LVIFotos.Background = Brushes.Transparent;
-            LVIConfiguracion.Background = new SolidColorBrush(verde3);
+            pageconf =null;
+            pagefoto = null;
+            pageprincipal = null;
 
-            blicencia.Visibility = Visibility.Hidden;
-            bframe.Visibility = Visibility.Visible;
-            frame.NavigationService.Navigate(new PageConfiguracion());
-            cerrarmenu();
+            LVIMenu.Background = Brushes.Transparent;
+                LVILicencia.Background = Brushes.Transparent;
+                LVIFotos.Background = Brushes.Transparent;
+                LVIConfiguracion.Background = new SolidColorBrush(verde3);
+
+                blicencia.Visibility = Visibility.Hidden;
+                bframe.Visibility = Visibility.Visible;
+                 pageconf = new PageConfiguracion(VM);
+                pageconf.ParentWindow = this;
+                frame.NavigationService.Navigate(pageconf);
+               
+                cerrarmenu();
+                //string pge = frame.Content.ToString();
+            
+           
         }
         void cerrarmenu()
         {
@@ -383,10 +648,20 @@ namespace TinoTriXxX
             objBlur.Radius = NivelDegradado;
             win.Effect = objBlur;
         }
+<<<<<<< HEAD
+=======
+        private void BtnAcercade_Click(object sender, RoutedEventArgs e)
+        {
+            Acerca_de_Tinotrix au = new Acerca_de_Tinotrix();
+            au.Owner = this; AplicarEfecto(this, 8);
+            au.ShowDialog();
+            au.Owner = this; AplicarEfecto(this, 0);
+        }
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
         #endregion Eventos de la vista
 
         #region Actualizar Licencia
-        
+
         private void BtnFinalizarCancelarActualizacionLicencia_Click(object sender, RoutedEventArgs e)
         {
             CancelarActulizacionLicencia();
@@ -465,8 +740,8 @@ namespace TinoTriXxX
                 BtnRevocarLicencia.Visibility = Visibility.Hidden;
                // BtnActualizarLicencia.Content = "Introducir";//06 oct 18
                 BtnAgregarLicencia.Visibility = Visibility.Visible;
-                LbLicenciaStatusSucursal.Foreground = azul;
-                LbLicenciaStatus.Foreground = azul;
+                //LbLicenciaStatusSucursal.Foreground = azul;
+                //LbLicenciaStatus.Foreground = azul;
                 BtnActualizarLicencia.IsEnabled = false;
                 CumpleConTodoRequisito = false;
                 TemaAppDesabilitado();
@@ -533,11 +808,41 @@ namespace TinoTriXxX
                             LbLicenciaStatusSucursal.Text = "Activo";
                         }
 
-                        LbLicenciaDireccionSucursal.Text = "Calle " + VM.SucursalDireccion.StrCalle + " entre calle "
-                        + VM.SucursalDireccion.StrConCalle + " y calle " + VM.SucursalDireccion.StrYCalle + " colonia "
-                        + VM.SucursalDireccion.StrColonia + ", " + VM.SucursalDireccion.StrCiudad
-                        //+ ", " + VM.SucursalDireccion.e
-                        ;
+                        //LbLicenciaDireccionSucursal.Text = "Calle " + VM.SucursalDireccion.StrCalle + " entre calle "
+                        //+ VM.SucursalDireccion.StrConCalle + " y calle " + VM.SucursalDireccion.StrYCalle + " colonia "
+                        //+ VM.SucursalDireccion.StrColonia + ", " + VM.SucursalDireccion.StrCiudad
+                        ////+ ", " + VM.SucursalDireccion.e
+                        //;
+
+                        if (VM.SucursalDireccion.StrCalle == null && VM.SucursalDireccion.StrConCalle == null &&
+                            VM.SucursalDireccion.StrYCalle == null && VM.SucursalDireccion.StrColonia == null
+                           && VM.SucursalDireccion.StrCiudad == null)
+                        {
+                            LbLicenciaDireccionSucursal.Text = "Sin direccion";
+                        }
+                        else {
+                            LbLicenciaDireccionSucursal.Text = "";
+                            if (VM.SucursalDireccion.StrCalle != null)
+                            {
+                                LbLicenciaDireccionSucursal.Text += "Calle " + VM.SucursalDireccion.StrCalle;
+                            }
+                            if (VM.SucursalDireccion.StrConCalle != null)
+                            {
+                                LbLicenciaDireccionSucursal.Text += " entre calle " + VM.SucursalDireccion.StrConCalle;
+                            }
+                            if(VM.SucursalDireccion.StrYCalle != null)
+                            {
+                                LbLicenciaDireccionSucursal.Text += " y calle " + VM.SucursalDireccion.StrYCalle;
+                            }
+                           if( VM.SucursalDireccion.StrColonia != null)
+                            {
+                                LbLicenciaDireccionSucursal.Text += " colonia " + VM.SucursalDireccion.StrColonia;
+                            }
+                            if (VM.SucursalDireccion.StrCiudad != null)
+                            {
+                                LbLicenciaDireccionSucursal.Text += ", " + VM.SucursalDireccion.StrCiudad;
+                            }
+                        }
 
                         //Empresa
                         LbLicenciaNombreEmpresa.Text = VM.Empresa.StrNombreComercial;
@@ -564,9 +869,20 @@ namespace TinoTriXxX
                         {
                             //TemaProductoElejido();
                             CumpleConTodoRequisito = true;
-                            LbLicenciaStatusSucursal.Foreground = azul;
-                            LbLicenciaStatus.Foreground = azul;
+                            //LbLicenciaStatusSucursal.Foreground = azul;
+                            //LbLicenciaStatus.Foreground = azul;
                             TemaAppHabilitado();
+                            VM.UserName = "Maquina " + VM.Licencia.IntNo;
+                            //Lo siguiente es comprobacion del servicio de interconexion de red local
+                                if (VM.ObtenerIPServidor() != "" && VM.ObtenerPuerto() !="")
+                                {
+                                    VM.ServerURI = "http://" + VM.IpServidor+ ":"+VM.PuertoConexion+ "/signalr";
+                                    VM.ConnectAsync();
+                                }
+                                else
+                                {
+
+                                }
                         }
                     }
                 }
@@ -693,6 +1009,30 @@ namespace TinoTriXxX
             au.ShowDialog();
             au.Owner = this; AplicarEfecto(this, 0);
             SessionConf();
+
+
+            string pageactual = Application.Current.Dispatcher.Invoke(() =>
+                            ((MainWindow)Application.Current.MainWindow).frame.Content.ToString());
+            string s2 = "PageConfiguracion";
+            bool b = pageactual.Contains(s2);
+            if (b)
+            {
+               // VM.ObtenerSession();
+                if (VM.Session.UidUsusario == Guid.Empty)
+                {
+                    //  MessageBox.Show("¡Inicia sesion primero!", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                    _txtIpServer.IsEnabled = false;
+                    _txtPuertoServer.IsEnabled = false;
+                }
+                else
+                {
+                    _txtIpServer.IsEnabled = true;
+                    _txtPuertoServer.IsEnabled = true;
+                }
+            }
+            else
+            {
+            }
         }
         void SessionConf()
         {
@@ -782,9 +1122,46 @@ namespace TinoTriXxX
             {
                 // Cancel code here  
             }
+<<<<<<< HEAD
         }
         #endregion Sesion
        
+=======
 
+            string pageactual = Application.Current.Dispatcher.Invoke(() =>
+                           ((MainWindow)Application.Current.MainWindow).frame.Content.ToString());
+            string s2 = "PageConfiguracion";
+            bool b = pageactual.Contains(s2);
+            if (b)
+            {
+                // VM.ObtenerSession();
+                if (VM.Session.UidUsusario == Guid.Empty)
+                {
+                    //  MessageBox.Show("¡Inicia sesion primero!", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                    _txtIpServer.IsEnabled = false;
+                    _txtPuertoServer.IsEnabled = false;
+                }
+                else
+                {
+                    _txtIpServer.IsEnabled = true;
+                    _txtPuertoServer.IsEnabled = true;
+                }
+            }
+            else
+            {
+            }
+        }
+        #endregion Sesion
+
+        #region Conexion fotos
+        void ActualizarModulofotos()
+        {
+           
+        }
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
+
+        #endregion Conexion fotos
+
+        
     }
 }

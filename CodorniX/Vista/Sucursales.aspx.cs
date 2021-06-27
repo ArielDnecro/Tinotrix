@@ -12,6 +12,8 @@ using CodorniX.Common;
 using System.Web.UI.HtmlControls;
 using System.Drawing;
 using System.Globalization;
+using System.Windows;
+using System.Threading;
 
 namespace CodorniX.Vista
 {
@@ -178,7 +180,7 @@ namespace CodorniX.Vista
 
                 dgvFotos.Enabled = false;
 
-                dgvLicencias.Enabled = false;
+                dgvLicencias.Enabled = true;
                 EditingMode = false;
             }
         }
@@ -446,7 +448,7 @@ namespace CodorniX.Vista
                     else
                         todos += "," + value;
                 }
-                ImgSucursales.ImageUrl = "Imgenes/Default.jpg";
+                ImgSucursales.ImageUrl = "Imagenes/logotipo2019.1.0.400x400.png";
                 ImgSucursales.DataBind();
             }
 
@@ -631,6 +633,17 @@ namespace CodorniX.Vista
             btnOKFotoPapel.Visible = false;
             btnCancelarFotoPapel.Visible = false;
             #endregion Rellenar Papel
+
+            #region Servidor
+            if (VM.ObtenerServidor()==true) {
+                txtServidorIp.Text = VM.Servidor.StrNombreIP;
+                txtPuerto.Text = VM.Servidor.StrPuerto;
+            }
+            txtServidorIp.AddCssClass("disabled");
+            txtPuerto.AddCssClass("disabled");
+            txtServidorIp.Enabled = false;
+            txtPuerto.Enabled = false;
+            #endregion Servidor
         }
         protected void ddPais_SelectedIndexChanged(object sender, EventArgs e)//19/10/17
         {
@@ -902,6 +915,13 @@ namespace CodorniX.Vista
             HabilitarFormularioPapel();
             DataBindFotografiasPapel();
 
+            txtServidorIp.RemoveCssClass("disabled");
+            txtPuerto.RemoveCssClass("disabled");
+            txtServidorIp.Enabled=true;
+            txtPuerto.Enabled = true;
+            txtServidorIp.Text = "";
+            txtPuerto.Text = "";
+
             int pos = -1;
             if (ViewState["SucursalPreviousRow"] != null)
             {
@@ -984,8 +1004,12 @@ namespace CodorniX.Vista
                 btnOKFotoPapel.Visible = false;
                 btnCancelarFotoPapel.Visible = false;
             }
-            
-           // HabilitarFormularioPapel();
+
+            // HabilitarFormularioPapel();
+            txtServidorIp.RemoveCssClass("disabled");
+            txtPuerto.RemoveCssClass("disabled");
+            txtServidorIp.Enabled = true;
+            txtPuerto.Enabled = true;
         }
         protected void btnOkSucursal_Click(object sender, EventArgs e)
         {
@@ -1150,9 +1174,9 @@ namespace CodorniX.Vista
             #region Impresoras
 
 
-            frmGrpDescripcionImpresora.RemoveCssClass("has-error");
-            frmGrpMarca.RemoveCssClass("has-error");
-            frmGrpModelo.RemoveCssClass("has-error");
+           // frmGrpDescripcionImpresora.RemoveCssClass("has-error");
+            //frmGrpMarca.RemoveCssClass("has-error");
+            //frmGrpModelo.RemoveCssClass("has-error");
             List<SucursalImpresora> impresoras = (List<SucursalImpresora>)ViewState["Impresoras"];
             int NoImpresoras = impresoras.Count;
             VM.GuardarImpresoras(impresoras, empresa.UidSucursal);
@@ -1219,7 +1243,21 @@ namespace CodorniX.Vista
 
             #endregion Licencias
 
-            
+            #region Servidor
+            if (  (String.IsNullOrWhiteSpace(txtServidorIp.Text) || String.IsNullOrEmpty(txtServidorIp.Text)) &&
+                  (String.IsNullOrWhiteSpace(txtPuerto.Text) || String.IsNullOrEmpty(txtPuerto.Text))               )
+            {
+                VM.EliminarServidor();
+            } else {
+                VM.SalvarServidor(txtServidorIp.Text, txtPuerto.Text);
+            }
+            txtServidorIp.AddCssClass("disabled");
+            txtPuerto.AddCssClass("disabled");
+            txtServidorIp.Enabled = false;
+            txtPuerto.Enabled = false;
+            txtServidorIp.Text = "";
+            txtPuerto.Text = "";
+            #endregion Servidor
 
             FUImagen.Enabled = false;
         }
@@ -1235,6 +1273,7 @@ namespace CodorniX.Vista
             frmGrpNombre.RemoveCssClass("has-error");
 
             #endregion Sucursales
+
             #region Papel
             //ActivarCamposDatos(false);
             lblErrorPapel.Visible = false;
@@ -1250,9 +1289,7 @@ namespace CodorniX.Vista
             btnEditarPapel.Disable();
             
             #endregion Papel
-
-
-
+            
             #region Direcciones
             lblErrorDireccion.Visible = false;
             lblErrorDireccion.Text = "";
@@ -1318,8 +1355,8 @@ namespace CodorniX.Vista
             ddActivo.SelectedIndex = 0;
             ddTipoImpresora.SelectedIndex = 0;
 
-            frmGrpMarca.RemoveCssClass("has-error");
-            frmGrpModelo.RemoveCssClass("has-error");
+            //frmGrpMarca.RemoveCssClass("has-error");
+            //frmGrpModelo.RemoveCssClass("has-error");
 
             btnCancelarEliminarImpresora_Click(sender, e);
             #endregion Impresoras
@@ -1359,6 +1396,13 @@ namespace CodorniX.Vista
             btnGenerarLicencia.AddCssClass("disabled");
             btnAgregarLicencia.AddCssClass("disabled");
             #endregion Licencias
+
+            #region Servidor
+            txtServidorIp.AddCssClass("disabled");
+            txtPuerto.AddCssClass("disabled");
+            txtServidorIp.Enabled = false;
+            txtPuerto.Enabled = false;
+            #endregion Servidor 
 
             if (uidSucursal.Text.Length == 0)
             {
@@ -1470,6 +1514,8 @@ namespace CodorniX.Vista
                 }
 
             }
+
+
         }
         #endregion  Panel derecho (edicion)
 
@@ -1485,7 +1531,10 @@ namespace CodorniX.Vista
             lblErrorLicencia.Visible = false;
             lblErrorPapel.Visible = false;
             lblErrorFotoPapel.Visible = false;
+            lblErrorServer.Visible = false;
 
+            panelServidor.Visible = false;
+            activeServidor.Attributes["class"] = "";
 
             panelDatosSucursal.Visible = true;
             activeDatos.Attributes["class"] = "active";
@@ -1529,6 +1578,10 @@ namespace CodorniX.Vista
 
             lblErrorPapel.Visible = false;
             lblErrorFotoPapel.Visible = false;
+            lblErrorServer.Visible = false;
+
+            panelServidor.Visible = false;
+            activeServidor.Attributes["class"] = "";
 
             panelDatosSucursal.Visible = false;
             activeDatos.Attributes["class"] = "";
@@ -1561,6 +1614,10 @@ namespace CodorniX.Vista
             lblErrorLicencia.Visible = false;
             lblErrorPapel.Visible = false;
             lblErrorFotoPapel.Visible = false;
+            lblErrorServer.Visible = false;
+
+            panelServidor.Visible = false;
+            activeServidor.Attributes["class"] = "";
 
             panelDatosSucursal.Visible = false;
             activeDatos.Attributes["class"] = "";
@@ -1601,6 +1658,10 @@ namespace CodorniX.Vista
             lblErrorLicencia.Visible = false;
             lblErrorPapel.Visible = false;
             lblErrorFotoPapel.Visible = false;
+            lblErrorServer.Visible = false;
+
+            panelServidor.Visible = false;
+            activeServidor.Attributes["class"] = "";
 
             panelDatosSucursal.Visible = false;
             activeDatos.Attributes["class"] = "";
@@ -1642,6 +1703,10 @@ namespace CodorniX.Vista
             lblErrorLicencia.Visible = false;
             lblErrorPapel.Visible = false;
             lblErrorFotoPapel.Visible = false;
+            lblErrorServer.Visible = false;
+
+            panelServidor.Visible = false;
+            activeServidor.Attributes["class"] = "";
 
             panelDatosSucursal.Visible = false;
             activeDatos.Attributes["class"] = "";
@@ -1683,6 +1748,7 @@ namespace CodorniX.Vista
             lblErrorLicencia.Visible = false;
             lblErrorPapel.Visible = false;
             lblErrorFotoPapel.Visible = false;
+            lblErrorServer.Visible = false;
 
             panelDatosSucursal.Visible = false;
             activeDatos.Attributes["class"] = "";
@@ -1705,6 +1771,9 @@ namespace CodorniX.Vista
             panelPapel.Visible = false;
             activePapel.Attributes["class"] = "";
 
+            panelServidor.Visible = false;
+            activeServidor.Attributes["class"] = "";
+
             if (EditingModeDireccion)
                 btnCancelarDireccion_Click(null, null);
             else
@@ -1718,7 +1787,7 @@ namespace CodorniX.Vista
         {
             _tabPapel();
         }
-       void  _tabPapel()
+        void  _tabPapel()
         {
             lblErrorTelefono.Visible = false;
             lblErrorSucursal.Visible = false;
@@ -1728,6 +1797,7 @@ namespace CodorniX.Vista
             lblErrorLicencia.Visible = false;
             lblErrorPapel.Visible = false;
             lblErrorFotoPapel.Visible = false;
+            lblErrorServer.Visible = false;
 
             panelDatosSucursal.Visible = false;
             activeDatos.Attributes["class"] = "";
@@ -1749,6 +1819,54 @@ namespace CodorniX.Vista
 
             panelPapel.Visible = true;
             activePapel.Attributes["class"] = "active";
+
+            panelServidor.Visible = false;
+            activeServidor.Attributes["class"] = "";
+
+            if (EditingModeDireccion)
+                btnCancelarDireccion_Click(null, null);
+            else
+            {
+                panelDireccion.Visible = false;
+                panelSucursal.Visible = true;
+
+            }
+        }
+        protected void tabServidor_Click(object sender, EventArgs e)
+        {
+            lblErrorTelefono.Visible = false;
+            lblErrorSucursal.Visible = false;
+            lblErrorDireccion.Visible = false;
+            lblErrorImpresora.Visible = false;
+            lblErrorFoto.Visible = false;
+            lblErrorLicencia.Visible = false;
+            lblErrorPapel.Visible = false;
+            lblErrorFotoPapel.Visible = false;
+            lblErrorServer.Visible = false;
+
+            panelDatosSucursal.Visible = false;
+            activeDatos.Attributes["class"] = "";
+
+            panelDirecciones.Visible = false;
+            activeDirecciones.Attributes["class"] = "";
+
+            panelTelefonos.Visible = false;
+            activeTelefonos.Attributes["class"] = "";
+
+            panelImpresoras.Visible = false;
+            activeImpresoras.Attributes["class"] = "";
+
+            panelFotos.Visible = false;
+            activeFotografias.Attributes["class"] = "";
+
+            panelLicencias.Visible = false;
+            activeLicencias.Attributes["class"] = "";
+
+            panelPapel.Visible = false;
+            activePapel.Attributes["class"] = "";
+
+            panelServidor.Visible = true;
+            activeServidor.Attributes["class"] = "active";
 
             if (EditingModeDireccion)
                 btnCancelarDireccion_Click(null, null);
@@ -2563,9 +2681,9 @@ namespace CodorniX.Vista
         protected void btnOkImpresora_Click(object sender, EventArgs e)
         {
             lblErrorImpresora.Visible = true;
-            frmGrpDescripcionImpresora.RemoveCssClass("has-error");
-            frmGrpMarca.RemoveCssClass("has-error");
-            frmGrpModelo.RemoveCssClass("has-error");
+          //  frmGrpDescripcionImpresora.RemoveCssClass("has-error");
+            //frmGrpMarca.RemoveCssClass("has-error");
+            //frmGrpModelo.RemoveCssClass("has-error");
             //if (string.IsNullOrWhiteSpace(txtMarca.Text))
             //{
             //    lblErrorImpresora.Text = "El campo Marca no debe estar vacío";
@@ -2649,9 +2767,9 @@ namespace CodorniX.Vista
         //Listo esta funcion ya esta 12-10-17
         protected void btnCancelarImpresora_Click(object sender, EventArgs e)
         {
-            frmGrpDescripcionImpresora.RemoveCssClass("has-error");
-            frmGrpMarca.RemoveCssClass("has-error");
-            frmGrpModelo.RemoveCssClass("has-error");
+           // frmGrpDescripcionImpresora.RemoveCssClass("has-error");
+            //frmGrpMarca.RemoveCssClass("has-error");
+            //frmGrpModelo.RemoveCssClass("has-error");
 
 
             DesHabilitarFormularioImpresoras();
@@ -3249,8 +3367,9 @@ namespace CodorniX.Vista
                 }
                 else
                 {
-                    e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(dgvLicencias, "Select$" + e.Row.RowIndex);
+                    
                 }
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(dgvLicencias, "Select$" + e.Row.RowIndex);
             }
             if (e.Row.RowType == DataControlRowType.Header)
             {
@@ -3310,13 +3429,18 @@ namespace CodorniX.Vista
                     if (e.CommandName.Equals("RegenerarLicencia"))
                     {
                         List<SucursalLicencia> Licencias = (List<SucursalLicencia>)Session["Licencias"];
-                        Guid LicenciaNueva = Guid.NewGuid();
+                        SucursalLicencia Licencia = new SucursalLicencia();
+                        Licencia.IntNo = Licencias[index].IntNo;// Licencias.Count;
+                        Licencia.UidLicencia = Guid.NewGuid();
+                        Licencia.BooStatus = true;
+                        Licencia.BooStatusLicencia = true;
+                        //Guid LicenciaNueva = Guid.NewGuid();
                         //dgvLicencias.DataSource = Licencias;
                         //((TextBox)GVObjCListaDireccionEmpresa.Rows[GVObjCListaDireccionEmpresa.EditIndex].FindControl("tbDirColonia")).Text = LicenciaNueva;
                         //((BoundField)dgvLicencias.Rows[dgvLicencias.SelectedIndex].FindControl("UidLicencia")).Text = LicenciaNueva;
-                        dgvLicencias.Rows[index].Cells[2].Text = LicenciaNueva.ToString();
+                        dgvLicencias.Rows[index].Cells[2].Text = Licencia.UidLicencia.ToString();
                         //SucursalLicencia Licencia = Licencias.Select(x => x).Where(x => x.UidLicencia.ToString() == dgvLicencias.SelectedDataKey.Value.ToString()).First();
-                        Licencias[index].UidLicencia = LicenciaNueva;
+                        Licencias[index] = Licencia;
                         Session["Licencias"] = Licencias;
                         DatabindLicencias();
 
@@ -3341,11 +3465,12 @@ namespace CodorniX.Vista
                         Session["Licencias"] = Licencias;
                         DatabindLicencias();
                     }
-                    if (e.CommandName.Equals("CopiarLicencia")) {
-                        List<SucursalLicencia> Licencias = (List<SucursalLicencia>)Session["Licencias"];
-                        txtCantMaqLicencia.Text= Licencias[index].UidLicencia.ToString();
-                        
-                    }
+                    //if (e.CommandName.Equals("CopiarLicencia"))
+                    //{
+                    //    List<SucursalLicencia> Licencias = (List<SucursalLicencia>)Session["Licencias"];
+                    //    txtCantMaqLicencia.Text = Licencias[index].UidLicencia.ToString();
+                    //    txtCantMaqLicencia.Text = dgvLicencias.rows[index].UidLicencia.ToString();
+                    //}
                     if (e.CommandName.Equals("EliminarLicencia"))
                     {
                         List<SucursalLicencia> Licencias = (List<SucursalLicencia>)Session["Licencias"];
@@ -3429,8 +3554,6 @@ namespace CodorniX.Vista
             dgvLicencias.PageIndex = e.NewPageIndex;
             DatabindLicencias();
         }
-
-
         protected void dgvLicencias_Sorting(object sender, GridViewSortEventArgs e)
         {
             //VM.Licencias= (List<SucursalLicencia>)Session["Licencias"];
@@ -3442,8 +3565,34 @@ namespace CodorniX.Vista
             Session["Licencias"] = VM.Licencias;
         }
 
-
-
+        private static string _Val;
+        public static string Val
+        {
+            get { return _Val; }
+            set { _Val = value; }
+        }
+        protected void dgvLicencias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //try
+            //{
+            //    List<SucursalLicencia> Licencias = (List<SucursalLicencia>)Session["Licencias"];
+            //    SucursalLicencia licencia = Licencias.Select(x => x).Where(x => x.UidLicencia.ToString() == dgvLicencias.SelectedDataKey.Value.ToString()).First();
+            //    // Clipboard.SetText(licencia.UidLicencia.ToString());
+            //    // Clipboard.SetDataObject(licencia.UidLicencia.ToString());
+            //    Val = licencia.UidLicencia.ToString();
+            //    Thread staThread = new Thread(new ThreadStart(myMethod));
+            //    staThread.ApartmentState = ApartmentState.STA;
+            //    staThread.Start();
+            //}
+            //catch (Exception d)
+            //{
+                
+            //}
+        }
+        public static void myMethod()
+        {
+            Clipboard.SetText(Val);
+        }
 
         #endregion Panel derecho (Licencias)
 
@@ -4077,9 +4226,9 @@ namespace CodorniX.Vista
             DataBindFotografiasPapel();
         }
 
+
+
         #endregion Panel derecho (Papel)
-
-
     }
 
 }

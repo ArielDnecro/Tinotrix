@@ -96,8 +96,10 @@ namespace DAP.Adorners
 				pthfExt.Segments.Add(new LineSegment(RectExterior.TopLeft, false));
 				pthgExt.Figures.Add(pthfExt);
 
+                //System.Windows.CornerRadius 
 				Rect rectIntSect = Rect.Intersect(RectExterior, RectInterior);
-				PathGeometry pthgInt = new PathGeometry();
+                
+                PathGeometry pthgInt = new PathGeometry();
 				PathFigure pthfInt = new PathFigure();
 				pthfInt.StartPoint = rectIntSect.TopLeft;
 				pthfInt.Segments.Add(new LineSegment(rectIntSect.TopRight, false));
@@ -105,8 +107,8 @@ namespace DAP.Adorners
 				pthfInt.Segments.Add(new LineSegment(rectIntSect.BottomLeft, false));
 				pthfInt.Segments.Add(new LineSegment(rectIntSect.TopLeft, false));
 				pthgInt.Figures.Add(pthfInt);
-
-				CombinedGeometry cmbg = new CombinedGeometry(GeometryCombineMode.Exclude, pthgExt, pthgInt);
+                
+                CombinedGeometry cmbg = new CombinedGeometry(GeometryCombineMode.Exclude, pthgExt, pthgInt);
 				return cmbg;
 			}
 		}

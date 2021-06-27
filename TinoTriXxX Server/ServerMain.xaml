@@ -6,7 +6,11 @@
         xmlns:local="clr-namespace:TinoTriXxX"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
+<<<<<<< HEAD
         Title="MainWindow" ResizeMode="NoResize" Height="600" Width="1024" AllowsTransparency="True" Background="Transparent"  WindowStartupLocation="CenterScreen" WindowStyle="None">
+=======
+        Title="MainWindow" ResizeMode="NoResize"  Height="600" Width="1024" AllowsTransparency="True" Background="Transparent"  WindowStartupLocation="CenterScreen" WindowStyle="None" Loaded="Window_Loaded">
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
     <Window.Resources>
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="GridMain">
@@ -27,6 +31,16 @@
                 <EasingDoubleKeyFrame KeyTime="0" Value="-250"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-250"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="LVICliente">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="LVIConfiguracion">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
             <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="button">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
@@ -95,11 +109,11 @@
                         <TranslateTransform/>
                     </TransformGroup>
                 </StackPanel.RenderTransform>
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="100" HorizontalAlignment="Center">
-                    <Button Visibility="Hidden" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"  Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Width="50" Height="50"  Margin="10">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="100" HorizontalAlignment="Right">
+                    <Button Visibility="Collapsed" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"  Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Width="50" Height="50"  Margin="10">
                         <materialDesign:PackIcon Kind="Settings" Width="20" Height="20"/>
                     </Button>
-                    <Button x:Name="button" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" BorderBrush="{x:Null}" Padding="0" Width="70" Height="70"  Margin="10" RenderTransformOrigin="0.5,0.5" >
+                    <Button x:Name="button" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" BorderBrush="{x:Null}" Padding="0" Width="70" Height="70"  Margin="10 10 40 10" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" >
                         <Button.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -112,12 +126,14 @@
                             <ImageBrush ImageSource="Assets/logotiposerver2019.3.3.150x150.png" Stretch="UniformToFill"></ImageBrush>
                         </Button.Background>
                     </Button>
-                    <Button  Visibility="Hidden" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"  Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Width="60" Height="60"  Margin="10">
+                    <Button  Visibility="Collapsed" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"  Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Width="60" Height="60"  Margin="10">
                         <materialDesign:PackIcon Kind="InformationOutline"  Width="20" Height="20"/>
                     </Button>
                 </StackPanel>
                 <ListView>
                     <ListViewItem x:Name="LVIMenu" Height="60" RenderTransformOrigin="0.5,0.5" Background="#ffc107"  >
+<<<<<<< HEAD
+=======
                         <ListViewItem.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -136,6 +152,7 @@
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem x:Name="LVILicencia" Height="60" RenderTransformOrigin="0.5,0.5">
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
                         <ListViewItem.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -145,12 +162,94 @@
                             </TransformGroup>
                         </ListViewItem.RenderTransform>
                         <StackPanel Orientation="Horizontal">
+<<<<<<< HEAD
+                            <Button Name="BtnMenuHome"  Click="BtnMenuHome_Click" Height="60" Width="247" Padding="0" Margin="-15 -10 0 -10" HorizontalAlignment="Center" BorderBrush="#ffc107"  Background="#FF3580BF"  VerticalAlignment="Center" FontSize="20">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Home" Width="30" Height="30" Margin="-80 0 0 0" VerticalAlignment="Center"/>
+                                    <TextBlock>Home</TextBlock>
+=======
+                            <Button Name="BtnMenuLicencia"  Click="BtnMenuLicencia_Click" Height="60" Width="247" Padding="0" Margin="-15 -10 0 -10" HorizontalAlignment="Center"  BorderBrush="#ffc107" Background="#FF3580BF"  VerticalAlignment="Center" FontSize="20">
+                                <StackPanel  Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Key"  Width="30" Height="30" Margin="-70 0 0 0" VerticalAlignment="Center" />
+                                    <TextBlock>Licencia</TextBlock>
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </ListViewItem>
+<<<<<<< HEAD
+                    <ListViewItem x:Name="LVILicencia" Height="60" RenderTransformOrigin="0.5,0.5">
+=======
+                    <ListViewItem x:Name="LVICliente"  RenderTransformOrigin="0.5,0.5">
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
+                        <ListViewItem.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </ListViewItem.RenderTransform>
+                        <StackPanel Orientation="Horizontal">
+<<<<<<< HEAD
                             <Button Name="BtnMenuLicencia"  Click="BtnMenuLicencia_Click" Height="60" Width="247" Padding="0" Margin="-15 -10 0 -10" HorizontalAlignment="Center"  BorderBrush="#ffc107" Background="#FF3580BF"  VerticalAlignment="Center" FontSize="20">
                                 <StackPanel  Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="Key"  Width="30" Height="30" Margin="-70 0 0 0" VerticalAlignment="Center" />
                                     <TextBlock>Licencia</TextBlock>
                                 </StackPanel>
                             </Button>
+=======
+
+                            <materialDesign:Card Background="{DynamicResource MaterialDesignBackground}"   Margin="-17 -10 0 -8"  >
+                                <StackPanel Margin="0 0 0 0">
+                                    <Expander    Header="Cliente" MinHeight="60"  Background="#FF3580BF"  Margin="0 0 0 0 "  BorderBrush="#ffc107" BorderThickness="1" Padding="0">
+                                       
+                                        <StackPanel  Orientation="Vertical"  TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,0,16" >
+                                            <Button Name="BtnMenuFotografiasCliente"  Click="BtnMenuFotografiasCliente_Click"  Height="40" Width="223"   HorizontalAlignment="Center" >
+                                                    <StackPanel  Orientation="Horizontal">
+                                                        <materialDesign:PackIcon Kind="Camera"  Width="20" Height="20" Margin="-35 0 0 0" VerticalAlignment="Center" />
+                                                        <TextBlock>Fotografias</TextBlock>
+                                                    </StackPanel>
+                                                </Button>
+                                        </StackPanel>
+                                    </Expander>
+                                </StackPanel>
+                            </materialDesign:Card>
+                            
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="LVIConfiguracion"  RenderTransformOrigin="0.5,0.5">
+                        <ListViewItem.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </ListViewItem.RenderTransform>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:Card Background="{DynamicResource MaterialDesignBackground}"   Margin="-17 -10 0 -8"  >
+                                <StackPanel Margin="0 0 0 0">
+                                    <Expander    Header="Configuracion" MinHeight="60"  Background="#FF3580BF"  Margin="0 0 0 0 "  BorderBrush="#ffc107" BorderThickness="1" Padding="0">
+                                        <StackPanel  Orientation="Vertical"  TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,0,16" >
+                                            <Button Name="BtnMenuImpresoras"  Click="BtnMenuImpresoras_Click"  Height="40" Width="223"   HorizontalAlignment="Center" >
+                                                <StackPanel  Orientation="Horizontal">
+                                                    <materialDesign:PackIcon Kind="Printer"  Width="20" Height="20" Margin="-35 0 0 0" VerticalAlignment="Center" />
+                                                    <TextBlock>Impresoras</TextBlock>
+                                                </StackPanel>
+                                            </Button>
+                                            <Button Name="BtnMenuConexionServidor"  Click="BtnMenuConexionServidor_Click"  Height="40" Width="223"  Margin="0 5 0 0"   HorizontalAlignment="Center" >
+                                                <StackPanel  Orientation="Horizontal">
+                                                    <materialDesign:PackIcon Kind="Network"  Width="20" Height="20" Margin="-35 0 0 0" VerticalAlignment="Center" />
+                                                    <TextBlock>Conexion servicio</TextBlock>
+                                                </StackPanel>
+                                            </Button>
+                                        </StackPanel>
+                                    </Expander>
+                                </StackPanel>
+                            </materialDesign:Card>
+
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
                         </StackPanel>
                     </ListViewItem>
                 </ListView>
@@ -170,7 +269,11 @@
                 </Grid.ColumnDefinitions>
                 <Border BorderBrush="#e9e9e9" Grid.Column="1"  BorderThickness="6" Background="White">
                     <Border BorderBrush="#ffc107" Grid.Column="1"  BorderThickness="1" Background="White">
+<<<<<<< HEAD
                         <Grid Name="GridBarraEstado" Height="550" Margin="5 0 5 0">
+=======
+                        <Grid Name="GridBarraEstado" Height="550" Margin="5 0 5 0" >
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="105"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -217,6 +320,7 @@
                             <TextBlock Name="lbEncagado" ToolTip="Encargado" Text="No disponible" Grid.Row="4"  Foreground="#FF3580BF" Grid.Column="1" Margin="-75,0,5,5" FontSize="18"></TextBlock>
 
 
+<<<<<<< HEAD
                             <materialDesign:PackIcon   Kind="Camera" ToolTip="Total de las fotos impresas" Height="22" Width="22" Margin="0 3 0 0"  Foreground="#FF3580BF" Grid.Row="5"/>
                             <TextBlock Text=":" ToolTip="Total de las fotos impresas" Foreground="#FF3580BF" Grid.Row="5" Margin="25,0,5,5" FontSize="18"></TextBlock>
                             <TextBlock Name="lbFotos" ToolTip="Total de las fotos impresas" Text="0" Foreground="#FF3580BF"  Grid.Row="5" Margin="-75,0,5,5" FontSize="18"  Grid.Column="1"></TextBlock>
@@ -224,6 +328,17 @@
                             <materialDesign:PackIcon   Kind="CashUsd" ToolTip="Venta total de las fotos" Height="22" Width="22" Margin="0 3 0 0"  Foreground="#FF3580BF" Grid.Row="6"/>
                             <TextBlock Text=":$" ToolTip="Venta total de las fotos" Foreground="#FF3580BF" Grid.Row="6" Margin="25,0,5,5" FontSize="18"></TextBlock>
                             <TextBlock Name="lbVenta" ToolTip="Venta total de las fotos"  Text="0" Foreground="#FF3580BF"  Grid.Row="6" Margin="-65,0,5,5" FontSize="18"  Grid.Column="1"></TextBlock>
+=======
+                            <materialDesign:PackIcon    Kind="Camera"  Height="22" Width="22" Margin="0 3 0 0"  Foreground="#FF3580BF" Grid.Row="5"/>
+                            <TextBlock   Text=":" Foreground="#FF3580BF" Grid.Row="5" Margin="25,0,5,5" FontSize="18"></TextBlock>
+                            <TextBlock    Name="lbFotos" x:FieldModifier="public"  Text="0" Foreground="#FF3580BF"  Grid.Row="5" Margin="-75,0,5,5" FontSize="18"  Grid.Column="1"></TextBlock>
+
+                            <materialDesign:PackIcon    Kind="CashUsd"  Height="22" Width="22" Margin="0 3 0 0"  Foreground="#FF3580BF" Grid.Row="6"/>
+                            <TextBlock   Text=":$" Foreground="#FF3580BF" Grid.Row="6" Margin="25,0,5,5" FontSize="18"></TextBlock>
+                            <TextBlock    Name="lbVenta" x:FieldModifier="public"  Text="0" Foreground="#FF3580BF"  Grid.Row="6" Margin="-65,0,5,5" FontSize="18"  Grid.Column="1"></TextBlock>
+
+                            <Button  Name="btnActualizarVentas"  ToolTip="Venta total de las fotos" BorderBrush="{x:Null}"  Click="BtnActualizarVentas_Click" Height="55" Width="232" Background="Transparent"  Grid.Row="5"  Grid.RowSpan="2" Margin="-5 -5 0 0" Grid.ColumnSpan="2" ></Button>
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
 
                             <Border Background="White" BorderBrush="#ffc107" BorderThickness="0,3,0,0" Height="2" Grid.ColumnSpan="2" Margin="0 20 0 0" Grid.Row="6" />
 
@@ -252,9 +367,28 @@
 
                             <!--e9e9e9-->
                             <Border Background="White" BorderBrush="#ffc107" BorderThickness="0,3,0,0" Height="2" Grid.ColumnSpan="2" Margin="0 20 0 0" Grid.Row="12" />
+<<<<<<< HEAD
 
 
                             <StackPanel Visibility="Hidden" Grid.Row="15">
+=======
+                            
+                            <TextBlock Text="Servicio de red local" Grid.Row="13" FontSize="18" FontWeight="Bold" VerticalAlignment="Top"  Margin="30 0 0 0" Foreground="#FF3580BF"  Grid.ColumnSpan="2"></TextBlock>
+
+                            <materialDesign:PackIcon  Kind="Key" ToolTip="Estado del servicio"  Foreground="#FF3580BF" Grid.Row="14" Height="25" Width="25" />
+                            <TextBlock Text=":" ToolTip="Estado del servicio" VerticalAlignment="Top" Foreground="#FF3580BF" TextAlignment="Left"  Grid.Row="14" Margin="25 0 0 0 " FontSize="18" FontFamily="Nirmala UI Semilight"></TextBlock>
+                            <TextBlock  Name="LbEstadoServicioLocal" ToolTip="Estado del servicio" Text="No disponible" VerticalAlignment="Top" Foreground="#FF3580BF"  Grid.Row="14" Grid.Column="1" Margin="-75 0 0 0" FontSize="18" FontFamily="Nirmala UI Semilight"></TextBlock>
+                            
+                            <materialDesign:PackIcon  Kind="SerialPort" ToolTip="Puerto del Servidor"  Foreground="#FF3580BF" Grid.Row="15" Height="25" Width="25" />
+                            <TextBlock Text=":" ToolTip="Puerto del Servidor" VerticalAlignment="Top" Foreground="#FF3580BF" TextAlignment="Left"  Grid.Row="15" Margin="25 0 0 0 " FontSize="18" FontFamily="Nirmala UI Semilight"></TextBlock>
+                            <TextBlock  Name="LbPuertoServidor" ToolTip="Puerto del Servidor" Text="0" VerticalAlignment="Top" Foreground="#FF3580BF"  Grid.Row="15" Grid.Column="1" Margin="-75 0 0 0" FontSize="18" FontFamily="Nirmala UI Semilight"></TextBlock>
+                          
+                            <materialDesign:PackIcon  Kind="Server" ToolTip="Nombre o IP Servidor"  Foreground="#FF3580BF" Grid.Row="16" Height="25" Width="25" />
+                            <TextBlock Text=":" ToolTip="Nombre o IP Servidor" VerticalAlignment="Top" Foreground="#FF3580BF" TextAlignment="Left"  Grid.Row="16" Margin="25 0 0 0 " FontSize="18" FontFamily="Nirmala UI Semilight"></TextBlock>
+                            <TextBlock  Name="LbNombreIPServidor" ToolTip="Nombre o IP Servidor" Text="No disponible" VerticalAlignment="Top" Foreground="#FF3580BF"  Grid.Row="16" Grid.Column="1" Margin="-75 0 0 0" FontSize="18" FontFamily="Nirmala UI Semilight"></TextBlock>
+
+                            <StackPanel Visibility="Collapsed" Grid.Row="15">
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
                                 <materialDesign:PackIcon Visibility="Hidden" Kind="AccountCardDetails" Foreground="#FF3580BF" Grid.Row="9" Height="25" Width="25" Margin="0 0 0 0" />
                                 <TextBlock Visibility="Hidden" Text="Nombre:"  Grid.Row="9" Foreground="#FF3580BF"   FontSize="18" FontFamily="Nirmala UI Semilight"  VerticalAlignment="Top" FontWeight="Bold" Margin="27 0 0 0"/>
                                 <TextBlock  Visibility="Hidden" Name="lbNombreUsuario" Margin="-8 0 0 0"  Text="No Disponible" Foreground="#FF3580BF" Grid.Row="9" Grid.Column="1" FontSize="18" FontFamily="Nirmala UI Semilight"  VerticalAlignment="Top" FontWeight="Bold"/>
@@ -285,6 +419,7 @@
                         </Grid>
                     </Border>
                 </Border>
+                
                 <Border Name="blicencia" BorderBrush="#e9e9e9"  BorderThickness="6" Background="White">
                     <Grid Name="glicencia">
                         <Grid.RowDefinitions>
@@ -364,7 +499,7 @@
                                 <Button Name="BtnAgregarLicencia"  Grid.Row="4" Height="30" Width="100" HorizontalAlignment="Left" Click="BtnAgregarLicencia_Click" Visibility="Hidden">Agregar</Button>
                                 <Button Name="BtnFinalizarCancelarActualizacionLicencia" Grid.Row="4" Height="30" Width="100" HorizontalAlignment="Left" Content="Cancelar" Visibility="Hidden" Click="BtnFinalizarCancelarActualizacionLicencia_Click"></Button>
                                 <Button Name="BtnActualizarLicencia" Grid.Row="4" Grid.Column="1" Height="30" Width="100" HorizontalAlignment="Left" Click="BtnActualizarLicencia_Click" >Actualizar</Button>
-                                <Button Name="BtnComprovarLicencia" Grid.Row="4" Grid.Column="1" Height="30" Width="105" HorizontalAlignment="Left" Visibility="Hidden" Click="BtnComprovarLicencia_Click">Comprovar</Button>
+                                <Button Name="BtnComprovarLicencia" Grid.Row="4" Grid.Column="1" Height="30" Width="105" HorizontalAlignment="Left" Visibility="Hidden" Click="BtnComprovarLicencia_Click">Comprobar</Button>
 
 
                                 <TextBlock Text="Status:" VerticalAlignment="Bottom" Foreground="#FF3580BF" FontSize="18" FontWeight="Bold" Grid.Row="1" Margin="5,0,5,5"></TextBlock>
@@ -385,11 +520,11 @@
                     <Frame Name="frame" NavigationUIVisibility="Hidden"></Frame>
                 </Border>
             </Grid>
-            <materialDesign:Card Name="CMenu" Background="#FF3580BF"   VerticalAlignment="Top" Width="34" Height="34" HorizontalAlignment="Left"  Margin="45 5 5 5">
-                <materialDesign:PopupBox Name="popmenu"     PlacementMode="BottomAndAlignLeftEdges" BorderBrush="{x:Null}" Width="34" Height="34" Padding="0" StaysOpen="False"   Foreground="White" HorizontalAlignment="Center">
-                    <materialDesign:PopupBox.ToggleCheckedContent>
-                        <materialDesign:PackIcon Kind="Pencil" Width="24" Height="24" />
-                    </materialDesign:PopupBox.ToggleCheckedContent>
+            <materialDesign:Card Name="CMenu" Background="#FF3580BF"   VerticalAlignment="Top" Width="40" Height="40" HorizontalAlignment="Left"  Margin="65 5 5 5">
+                <materialDesign:PopupBox Name="popmenu"       PlacementMode="BottomAndAlignLeftEdges" BorderBrush="{x:Null}" Width="40" Height="40" Padding="0" StaysOpen="False"   Foreground="White" HorizontalAlignment="Center">
+                    <materialDesign:PopupBox.ToggleContent>
+                        <materialDesign:PackIcon x:Name="popmenuicon" Kind="DotsVertical" Foreground="White" Width="40" Height="40" />
+                    </materialDesign:PopupBox.ToggleContent>
                     <StackPanel Width="150" Name="sPMenu">
                         <!--<Button x:Name="BtnLicencia" Content="Licencia" Click="BtnLicencia_Click">
                         </Button>-->
@@ -404,25 +539,23 @@
                     </StackPanel>
                 </materialDesign:PopupBox>
             </materialDesign:Card>
-            <StackPanel Name="sPbtnsMenuPrincipal" Orientation="Horizontal" VerticalAlignment="Top" Height="50" HorizontalAlignment="Left"  Margin="0 0 0 0">
-                <Button x:Name="BtnOpenMenu" Width="35" Height="35" Padding="0" Background="#FF3580BF"  BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Click="BtnOpenMenu_Click">
-                    <materialDesign:PackIcon Name="IcoOpenMenu" Kind="Menu" Foreground="White"/>
+            <StackPanel Name="sPbtnsMenuPrincipal" Orientation="Horizontal" VerticalAlignment="Top" Height="74" HorizontalAlignment="Left"  Margin="0 0 0 0">
+                <Button x:Name="BtnOpenMenu" Width="41" Height="41" Padding="0" Background="#FF3580BF"  BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Click="BtnOpenMenu_Click">
+                    <materialDesign:PackIcon Name="IcoOpenMenu" Kind="Menu" Foreground="White" Height="40" Width="40"/>
                 </Button>
-                <Button x:Name="BtnCloseMenu" Width="35" Height="35" Padding="0" Background="White"  BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Click="BtnCloseMenu_Click" Visibility="Collapsed">
-                    <materialDesign:PackIcon Name="IcoCloseMenu" Kind="Menu" Foreground="#FF3580BF"/>
+                <Button x:Name="BtnCloseMenu" Width="41" Height="41" Padding="0" Background="White"  BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Click="BtnCloseMenu_Click" Visibility="Collapsed">
+                    <materialDesign:PackIcon Name="IcoCloseMenu" Kind="Menu" Foreground="#FF3580BF" Height="40" Width="40"/>
                 </Button>
 
             </StackPanel>
-            <materialDesign:Card    VerticalAlignment="Top" Background="Transparent" HorizontalAlignment="Right"  Margin="45 5 5 5" Width="150">
-                <StackPanel HorizontalAlignment="Right">
-                    <Button Name="btnMinimizarApp"  Width="23" Height="23" Margin="0 0 15 0"  Padding="0" Background="#FF3580BF"  HorizontalAlignment="Center" Click="btnMinimizarApp_Click" >
-                        <materialDesign:PackIcon  Kind="WindowMinimize"  Padding="0" Foreground="White" Width="23" Height="23" HorizontalAlignment="Center" Margin="-1 0 0 0" />
-                    </Button>
-                    <Button Name="btnCerrarApp"  Width="23" Height="23" Margin="45 -23 0 0" Padding="0" Background="#FF3580BF"  HorizontalAlignment="Center" Click="btnCerrarApp_Click" >
-                        <materialDesign:PackIcon  Kind="CloseBox"  Padding="0" Foreground="White" Width="23" Height="23" HorizontalAlignment="Center" Margin="-1 0 0 0" />
-                    </Button>
-                </StackPanel>
-            </materialDesign:Card>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40" HorizontalAlignment="Right" Margin="0 3 10 0">
+                <Button Name="btnMinimizarApp"  Width="30" Height="30" Margin="0 0 15 0"  Padding="0" Background="#FF3580BF"  HorizontalAlignment="Center" Click="btnMinimizarApp_Click" >
+                    <materialDesign:PackIcon  Kind="WindowMinimize"  Padding="0" Foreground="White" Width="23" Height="23" HorizontalAlignment="Center" Margin="-1 0 0 0" />
+                </Button>
+                <Button Name="btnCerrarApp"  Width="30" Height="30" Margin="0 0 15 0" Padding="0" Background="#FF3580BF"  HorizontalAlignment="Center" Click="btnCerrarApp_Click" >
+                    <materialDesign:PackIcon  Kind="Close"  Padding="0" Foreground="White" Width="23" Height="23" HorizontalAlignment="Center" Margin="-1 0 0 0" />
+                </Button>
+            </StackPanel>
         </Grid>
     </Border>
 </Window>

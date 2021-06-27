@@ -82,6 +82,9 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=2.4.1.1101, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.2.4.1.1101\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Client, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.1.0\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
@@ -101,6 +104,9 @@
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.Imaging, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="SplashScreen, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SplashScreen.Winforms.1.0.0\lib\SplashScreen.dll</HintPath>
     </Reference>
@@ -139,10 +145,20 @@
     <Compile Include="Modelo\Img.cs" />
     <Compile Include="Modelo\Papel.cs" />
     <Compile Include="Modelo\ServiceHelper.cs" />
+<<<<<<< HEAD
+=======
+    <Compile Include="Modelo\Servicio.cs" />
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
     <Compile Include="Modelo\Turno.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Util\RdlcComponentGenerator.cs" />
     <Compile Include="Util\RdlcGenerator.cs" />
+<<<<<<< HEAD
+=======
+    <Compile Include="Vista\Acerca de Tinotrix.xaml.cs">
+      <DependentUpon>Acerca de Tinotrix.xaml</DependentUpon>
+    </Compile>
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
     <Compile Include="Vista\Autentificacion.xaml.cs">
       <DependentUpon>Autentificacion.xaml</DependentUpon>
     </Compile>
@@ -179,6 +195,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Informe\VInfFotosCliente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Acerca de Tinotrix.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -303,6 +323,11 @@
     <Resource Include="Assets\Tinotrix2019.3.0.155x550.png" />
     <Resource Include="Assets\BienvenidoATinotrix2019.3.0.112x1000.png" />
     <Resource Include="Assets\logotipo2019.3.0.150x150.png" />
+<<<<<<< HEAD
+=======
+    <Resource Include="Assets\IngOsbelLugo.jpg" />
+    <Resource Include="Assets\IngTinoco.jpg" />
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
     <Content Include="BaseDeDatos\script.sql" />
     <Resource Include="logotipo2019.2.0.72x75.ico" />
     <Resource Include="logotipo2019.2.0.64x67.ico" />

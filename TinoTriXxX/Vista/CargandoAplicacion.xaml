@@ -24,12 +24,21 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
+<<<<<<< HEAD
         <Rectangle  RadiusX="8" RadiusY="8 " Height="100" Width="354" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-120 70 0 0" >
+=======
+        <Rectangle  Visibility="Collapsed"  RadiusX="8" RadiusY="8 " Height="100" Width="354" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-120 70 0 0" >
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
             <Rectangle.Fill >
                 <ImageBrush ImageSource="../Assets/Tinotrix2019.3.0.155x550.png" />
             </Rectangle.Fill>
         </Rectangle>
+<<<<<<< HEAD
         <Label Content="Version 1.0"></Label>
+=======
+        <TextBlock Margin="115 80 0 0" Foreground="White"  FontSize="80" FontFamily="Lucida Sans">TINOTRIX</TextBlock>
+        <Label Content="Version 1.0.0.9"></Label><!--AQUI ESTA LA VERSION-->
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
         <Label Content="Todos los derechos reservados" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="9"></Label>
         <StackPanel Margin="0,170,0,50"  Visibility="Collapsed">
             <TextBlock Text="Tinotrix" Foreground="White" HorizontalAlignment="Center" FontSize="48" FontWeight="Bold"/>
@@ -48,5 +57,7 @@
             Código Postal: 77710, Colonia: GONZALO GUERRERO, 
             PLAYA DEL CARMEN, SOLIDARIDAD, QUINTANA ROO, MEXICO
         </TextBlock>
+        <ProgressBar
+  IsIndeterminate="True" Margin="0 250 0 0" />
     </Grid>
 </Window>

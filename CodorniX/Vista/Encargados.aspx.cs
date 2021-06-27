@@ -526,7 +526,7 @@ namespace CodorniX.Vista
                 {
                     txtEmpresa.Text = SesionActual.uidEmpresaActual.ToString();
                 }
-                ImgEncargado.ImageUrl = "Imgenes/Default.jpg";
+                ImgEncargado.ImageUrl = "Imagenes/logotipo2019.1.0.400x400.png";
                 ImgEncargado.DataBind();
                 #endregion
 

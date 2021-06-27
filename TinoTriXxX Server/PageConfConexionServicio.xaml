@@ -1,0 +1,52 @@
+﻿<Page x:Class="TinoTriXxX.PageConfConexionServicio"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+       xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+      xmlns:local="clr-namespace:TinoTriXxX"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageConfConexionServicio">
+    <Grid>
+        <Grid>
+            <TextBlock Foreground="#FF3580BF" Margin="0 0 0 0"
+             Style="{StaticResource MaterialDesignHeadlineTextBlock}" HorizontalAlignment="Center">
+                          Configuracion de servicio de conexion
+            </TextBlock>
+            <TextBlock Foreground="#FF3580BF" Margin="0 40 0 0"
+             Style="{StaticResource MaterialDesignHeadlineTextBlock}" HorizontalAlignment="Center" FontSize="14" TextWrapping="Wrap">
+                         Esta seccion permite la comunicacion entre TINOTRIX SERVIDOR y las cliente de manera 
+                         que pueden ser actualizadas y mantiene el producto funcion a todos los servicios y beneficios.
+            </TextBlock>
+            <TextBlock Foreground="#FF3580BF" Margin="0 80 0 0"
+                            Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                         Puerto
+            </TextBlock>
+            <TextBox x:Name="TxtPuertoServer"
+                              materialDesign:HintAssist.Hint="Ejemplo: 8000" Margin="0 105 0 0 "
+                              materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                              materialDesign:HintAssist.FloatingScale="0.50"
+                              Text="" VerticalAlignment="Top"  Foreground="#FF3580BF"
+                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                              FontSize="20" />
+            <TextBlock Foreground="#FF3580BF"  Margin="0 150 0 0" Visibility="Collapsed"
+                            Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                         Direccion IP servidor
+            </TextBlock>
+            <TextBox x:Name="TxtIpServer" Visibility="Collapsed"
+                              materialDesign:HintAssist.Hint="Ejemplo: 192.168.0.1" Margin="0 175 0 0 "
+                              materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                              materialDesign:HintAssist.FloatingScale="0.50"
+                              Text="" VerticalAlignment="Top"  Foreground="#FF3580BF"
+                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                              FontSize="20" />
+           <Button x:Name="btnGuardarConfConexionServicio"  Margin="10 170 10 0" VerticalAlignment="Top" HorizontalAlignment="Left"
+                Width="40" Height="40" Padding="0" Background="#FF3580BF"  BorderBrush="{x:Null}" 
+                Grid.Column="2" Click="BtnGuardarConfConexionServicio_Click"  ToolTip="Confirmar cambios" >
+                <materialDesign:PackIcon Kind="Check" Width="40" Height="40" />
+            </Button>
+        </Grid>
+    </Grid>
+</Page>

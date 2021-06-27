@@ -6,11 +6,9 @@
       xmlns:local="clr-namespace:TinoTriXxX"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      
       Title="PagePrincipal" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
-
     <Grid>
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF3580BF" FontSize="30">Menu principal</Label>
+        
 
     </Grid>
 </Page>

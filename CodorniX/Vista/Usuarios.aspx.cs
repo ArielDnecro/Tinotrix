@@ -530,7 +530,7 @@ namespace CodorniX.Vista
                     Empresa empresa = (Empresa)Session["EmpresaActual"];
                     txtEmpresa.Text = empresa.UidEmpresa.ToString();
                 }
-                ImgUsuario.ImageUrl = "Imgenes/Default.jpg";
+                ImgUsuario.ImageUrl = "Imagenes/logotipo2019.1.0.400x400.png";
                 ImgUsuario.DataBind();
                 #endregion
 
@@ -2252,7 +2252,6 @@ namespace CodorniX.Vista
             tabBackend.Enable();
             tabFrontend.Enable();
         }
-
         protected void tabBackend_Click(object sender, EventArgs e)
         {
             accesoBackside.Visible = false;
@@ -2267,7 +2266,6 @@ namespace CodorniX.Vista
             tabBackend.Disable();
             tabFrontend.Enable();
         }
-
         protected void tabFrontend_Click(object sender, EventArgs e)
         {
             accesoBackside.Visible = false;
@@ -2282,7 +2280,6 @@ namespace CodorniX.Vista
             tabBackend.Enable();
             tabFrontend.Disable();
         }
-
         protected void dgvEmpresa_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -2301,7 +2298,6 @@ namespace CodorniX.Vista
             ViewState["DireccionPreviousRow"] = null;
             ViewState["TelefonoPreviousRow"] = null;
         }
-
         protected void dgvEmpresa_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
@@ -2311,7 +2307,6 @@ namespace CodorniX.Vista
             }
 
         }
-
         protected void tabEmpresas_Click(object sender, EventArgs e)
         {
             panelTelefonos.Visible = false;
@@ -2339,7 +2334,6 @@ namespace CodorniX.Vista
                 PanelBusquedas.Visible = true;
             }
         }
-
         protected void DdPerfil_SelectedIndexChanged(object sender, EventArgs e)
         {
             GenerarCampos(true);

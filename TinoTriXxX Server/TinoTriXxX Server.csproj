@@ -13,6 +13,7 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,7 +26,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -52,8 +52,27 @@
     <ApplicationIcon>logotiposerver2019.3.3.64x64.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Imaging, Version=2.2.5.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Imaging.2.2.5\lib\AForge.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Math, Version=2.2.5.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Math.2.2.5\lib\AForge.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.2.2.5\lib\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
     <Reference Include="Dragablz, Version=0.0.3.203, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dragablz.0.0.3.203\lib\net45\Dragablz.dll</HintPath>
+    </Reference>
+    <Reference Include="LibPrintTicket, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>F:\LibPrintTicket.dll</HintPath>
     </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
@@ -61,9 +80,46 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=2.4.1.1101, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.2.4.1.1101\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.1.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Cors, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Cors.4.0.1\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Diagnostics, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Diagnostics.2.1.0\lib\net40\Microsoft.Owin.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.HttpListener, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.HttpListener.2.1.0\lib\net45\Microsoft.Owin.Host.HttpListener.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Hosting, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Hosting.2.1.0\lib\net45\Microsoft.Owin.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+<<<<<<< HEAD
     <Reference Include="System.ServiceProcess" />
+=======
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web.Cors, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -85,6 +141,33 @@
     <Compile Include="Autentificacion.xaml.cs">
       <DependentUpon>Autentificacion.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+=======
+    <Compile Include="Camara.xaml.cs">
+      <DependentUpon>Camara.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CargandoAplicacion.xaml.cs">
+      <DependentUpon>CargandoAplicacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Impresora.cs" />
+    <Compile Include="Modelo\Servicio.cs" />
+    <Compile Include="Modelo\Ticket2.cs" />
+    <Compile Include="Modelo\_Foto.cs" />
+    <Compile Include="PageConfConexionServicio.xaml.cs">
+      <DependentUpon>PageConfConexionServicio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFotosCliente.xaml.cs">
+      <DependentUpon>PageFotosCliente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageImpresoras.xaml.cs">
+      <DependentUpon>PageImpresoras.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SinConexionInternet.xaml.cs">
+      <DependentUpon>SinConexionInternet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VistaModelo\Servidor_Chat.cs" />
+    <Compile Include="VistaModelo\VariablesGlobal.cs" />
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
     <Compile Include="Vista\DBLocal.xaml.cs">
       <DependentUpon>DBLocal.xaml</DependentUpon>
     </Compile>
@@ -103,6 +186,33 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< HEAD
+=======
+    <Page Include="Camara.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CargandoAplicacion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageConfConexionServicio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFotosCliente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageImpresoras.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SinConexionInternet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
     <Page Include="Vista\DBLocal.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -168,27 +278,18 @@
     <Resource Include="Assets\ciudadnoche.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\silueta-hombre-foto.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\login6.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\login5.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\login4.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\leopardoacostadocamara.png" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Resource Include="Assets\paisajeverde.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\sinusuario.png" />
   </ItemGroup>
   <ItemGroup>
+=======
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
     <ProjectReference Include="..\LibCodorniX\TinotriX.Common.csproj">
       <Project>{949fb113-9029-46c9-811e-481148a336dc}</Project>
       <Name>TinotriX.Common</Name>
@@ -198,12 +299,15 @@
     <Resource Include="logotiposerver2019.3.3.64x64.ico" />
     <Resource Include="logotiposerver2019.3.2.64x64.ico" />
     <Resource Include="logotiposerver2019.3.1.64x64.ico" />
+<<<<<<< HEAD
     <Resource Include="Assets\logotipotinotrix.png" />
     <Resource Include="Assets\logotinotrix.png" />
     <Resource Include="Assets\logo.png" />
     <Resource Include="Assets\lt.png" />
     <Resource Include="Assets\LTn.png" />
     <Resource Include="Assets\lt2.png" />
+=======
+>>>>>>> dbac16a27acfe069ffa037d12af6bbd626ce7b37
     <Resource Include="Assets\logotiposerver2019.3.3.150x150.png" />
   </ItemGroup>
   <ItemGroup>
@@ -217,6 +321,22 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Imagenes\usuario\" />
+    <Folder Include="pagecliente\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\vacio.png" />
+    <Resource Include="Assets\LogoSinInternet.423x423.png" />
+    <Resource Include="Assets\AppMainNewYorkBackGround.jpg" />
+    <Resource Include="Assets\AppMainBackGround.jpg" />
+    <Resource Include="Assets\AppLoadBackGround.png" />
+    <Resource Include="Assets\FondoEditor.png" />
+    <Content Include="BaseDeDatos\script.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

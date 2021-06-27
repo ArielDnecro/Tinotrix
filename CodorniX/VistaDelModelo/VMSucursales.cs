@@ -27,6 +27,7 @@ namespace CodorniX.VistaDelModelo
         private TipoSucursal.Repository tipoSucursalRepository = new TipoSucursal.Repository();
         private UnidadMedida.Repository UnidadMedidaRepository = new UnidadMedida.Repository();
         private SucursalPapel.Repository PapelRepository = new SucursalPapel.Repository();
+        private SucursalServidor.Repository ServidorRepository = new SucursalServidor.Repository();
 
         #region sucursales
         private List<Sucursal> _Sucursales;
@@ -202,6 +203,15 @@ namespace CodorniX.VistaDelModelo
         //    set { _EnuOrdenFP= value; }
         //}
         #endregion Papel
+
+        #region servidor
+        private SucursalServidor _Servidor;
+        public SucursalServidor Servidor
+        {
+            get { return _Servidor; }
+            set { _Servidor = value; }
+        }
+        #endregion servidor
 
         #region varios
         private IList<Status> _ListaStatus;
@@ -575,6 +585,36 @@ namespace CodorniX.VistaDelModelo
             }
         }
         #endregion Papel
+
+        #region servidor
+        public bool ObtenerServidor() {
+            bool existe = false;
+            if (_Sucursal.UidSucursal != Guid.Empty) {
+                _Servidor = ServidorRepository.Obtener(_Sucursal.UidSucursal);
+                if (!String.IsNullOrEmpty(_Servidor.StrNombreIP))
+                {
+                    if (_Servidor.UidSucursal != Guid.Empty)
+                    {
+                        existe = true;
+                    }
+                }
+            }
+            return existe;
+        }
+        public void EliminarServidor() {
+            if (_Sucursal.UidSucursal != Guid.Empty)
+            {
+                 ServidorRepository.Eliminar(_Sucursal.UidSucursal);
+            }
+         }
+        public void SalvarServidor(String StrServidorIP, String StrPuerto) {
+            SucursalServidor server = new SucursalServidor();
+            server.UidSucursal = _Sucursal.UidSucursal;
+            server.StrNombreIP = StrServidorIP;
+            server.StrPuerto = StrPuerto;
+            ServidorRepository.Salvar(server);
+        }
+        #endregion servidor
         //ObtenerStatus -> funcion que sirve en impresoras y fotografias.
         public void ObtenerStatus()
         {
