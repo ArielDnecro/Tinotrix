@@ -48,6 +48,7 @@ namespace TinoTriXxX.Modelo
 
                 return licencia;
             }
+
             public bool Revocar()
             {
                 try

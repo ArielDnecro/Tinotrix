@@ -16,21 +16,23 @@
      <link rel="stylesheet" href="../Assets/Login/font-awesome.min.css" />
      <link rel="stylesheet" href="../Assets/Login/form-elements.css" />
      <link rel="stylesheet" href="../Assets/Login/style.css" />
-    
-
+     <script src="../Assets/Login/jquery-1.11.1.min.js"></script>
+    <script src="../Assets/Login/bootstrap.min.js"></script>
+    <script src="../Assets/Login/jquery.backstretch.min.js"></script>
+    <script src="../Assets/Login/scripts.js"></script>
 </head>
 <body>
-   
-        <!-- Top content  Orden de servicio automatizado-->
+    <form  id="idPag" runat="server">
+        <!-- Top content -->
         <div class="top-content">
-            <div ><%--inner-bg--%>
+            <div class="inner-bg">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8 col-sm-offset-2 text">
-                            <h1><strong>TINOTRIX</strong></h1>
+                            <h1><strong>Tinotrix</strong></h1>
                             <div class="description">
                             	<p>
-                                    GESTION DE SERVICIO FOTOGRAFICO
+                                    Orden de servicio automatizado
                             	</p>
                             </div>
                         </div>
@@ -47,20 +49,20 @@
                         		</div>
                             </div>
                             <div class="form-bottom">
-			                    <form role="form"  method="post" class="login-form" runat="server">
+			                   <!-- <form role="form" class="login-form">!-->
 			                    	<div class="form-group">
-                                        <asp:TextBox ID="txtUsuario" runat="server" Font-Size="Large" CssClass="input-group-lg form-password form-control" placeholder="Correo o Usuario" type="text" >
+                                        <asp:TextBox ID="txtUsuario" runat="server" CssClass="input-group-lg form-password form-control" placeholder="Correo o Usuario" type="text" >
                                         </asp:TextBox>
                                     </div>
                                     <div class="form-group">
-                                        <asp:TextBox ID="txtPassword" runat="server" Font-Size="Large" CssClass="input-group-lg form-password form-control" placeholder="Contraseña" type="password" >
+                                        <asp:TextBox ID="txtPassword" runat="server" CssClass="input-group-lg form-password form-control" placeholder="Contraseña" type="password" >
                                         </asp:TextBox>
                                         <asp:Label ID="lblMensaje" runat="server" ForeColor="Red"></asp:Label>
                                     </div>
-			                        <%--<div class="form-group">--%>
-                                        <asp:Button ID="btnLogin"  OnClick="btnLogin_Click" CssClass="btn btn-primary navbar   form-control "    runat="server" Text="Iniciar"  Font-Size="X-Large" />
-                                    <%--</div>--%>
-			                    </form>
+			                        
+                                    <asp:Button ID="btnLogin"  OnClick="btnLogin_Click" CssClass="btn btn-sm btn-default btn-primary form-control"   runat="server" Text="Iniciar Sesión" Font-Bold="True" />
+                                
+			                    <!--</form>!-->
 		                    </div>
                         </div>
                     </div>
@@ -68,9 +70,6 @@
             </div>
            
         </div>
-    <script src="../Assets/Login/jquery-1.11.1.min.js"></script>
-    <script src="../Assets/Login/bootstrap.min.js"></script>
-    <script src="../Assets/Login/jquery.backstretch.min.js"></script>
-    <script src="../Assets/Login/scripts.js"></script>
+        </form>
 </body>
 </html>

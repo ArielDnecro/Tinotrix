@@ -317,7 +317,7 @@ namespace CodorniX.Vista
                     else
                         todos += "," + value;
                 }
-                ImgEmpresas.ImageUrl = "Imagenes/logotipo2019.1.0.400x400.png";
+                ImgEmpresas.ImageUrl = "Imgenes/Default.jpg";
                 ImgEmpresas.DataBind();
             }
            

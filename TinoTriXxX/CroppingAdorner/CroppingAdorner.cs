@@ -18,28 +18,22 @@ namespace DAP.Adorners
     public class CroppingAdorner : Adorner
 	{
         double Arriba;
-        double Derecha;
-        private double _cpxThumbWidth;
-        public double cpxThumbWidth
-        {
-            get { return _cpxThumbWidth; }
-            set { _cpxThumbWidth = value; }
-        }
+    double Derecha;
         #region Private variables
         public int IntHandle;
 		// Width of the thumbs.  I know these really aren't "pixels", but px
 		// is still a good mnemonic.
-		//private const int _cpxThumbWidth = 6;
-        
-        // PuncturedRect to hold the "Cropping" portion of the adorner
-        private PuncturedRect _prCropMask;
+		private const int _cpxThumbWidth = 6;
+
+		// PuncturedRect to hold the "Cropping" portion of the adorner
+		private PuncturedRect _prCropMask;
 
 		// Canvas to hold the thumbs so they can be moved in response to the user
 		private Canvas _cnvThumbs;
 
 		// Cropping adorner uses Thumbs for visual elements.  
 		// The Thumbs have built-in mouse input handling.
-		//private CropThumb _crtTopLeft, _crtTopRight, _crtBottomLeft, _crtBottomRight;
+		private CropThumb _crtTopLeft, _crtTopRight, _crtBottomLeft, _crtBottomRight;
 		private CropThumb _crtTop, _crtLeft, _crtBottom, _crtRight;
 
 		// To store and manage the adorner's visual children.
@@ -80,7 +74,6 @@ namespace DAP.Adorners
 
         
 		#endregion
-
         //public static readonly MouseEventHandler m = EventManager.RegisterRoutedEvent(
         //    "CropChanged",
         //    RoutingStrategy.Bubble,
@@ -96,8 +89,7 @@ namespace DAP.Adorners
         //        base.RemoveHandler(CroppingAdorner.m, value);
         //    }
         //}
-	
-        #region Dependency Properties
+		#region Dependency Properties
 		static public DependencyProperty FillProperty = Shape.FillProperty.AddOwner(typeof(CroppingAdorner));
 
 		public Brush Fill
@@ -120,12 +112,10 @@ namespace DAP.Adorners
 		#region Constructor
 		static CroppingAdorner()
 		{
-            
-
-            Color clr = Colors.Black;
+			Color clr = Colors.Black;
 			System.Drawing.Graphics g = System.Drawing.Graphics.FromHwnd((IntPtr)0);
-            //g.DrawEllipse(clr, g.DpiX, g.DpiY, 200, 600);
-            s_dpiX = g.DpiX;
+
+			s_dpiX = g.DpiX;
 			s_dpiY = g.DpiY;
 			clr.A = 80;
 			FillProperty.OverrideMetadata(typeof(CroppingAdorner),
@@ -134,12 +124,10 @@ namespace DAP.Adorners
 					new PropertyChangedCallback(FillPropChanged)));
 		}
 
-		public CroppingAdorner(UIElement adornedElement, Rect rcInit, double DouTmPuntoExt)
+		public CroppingAdorner(UIElement adornedElement, Rect rcInit)
 			: base(adornedElement)
 		{
-            _cpxThumbWidth = DouTmPuntoExt;
-            
-            _vc = new VisualCollection(this);
+			_vc = new VisualCollection(this);
 			_prCropMask = new PuncturedRect();
 			_prCropMask.IsHitTestVisible = false;
 			_prCropMask.RectInterior = rcInit;
@@ -160,14 +148,14 @@ namespace DAP.Adorners
             //BuildCorner(ref _crtBottomLeft, Cursors.SizeNESW);
             //BuildCorner(ref _crtBottomRight, Cursors.SizeNWSE);
 
-            BuildCorner(ref _crtTop, Cursors.Arrow);
-            BuildCorner(ref _crtBottom, Cursors.Arrow);
-            BuildCorner(ref _crtLeft, Cursors.Arrow);
-            BuildCorner(ref _crtRight, Cursors.Arrow);
-            //BuildCorner(ref _crtTopLeft, Cursors.Arrow);
-            //BuildCorner(ref _crtTopRight, Cursors.Arrow);
-            //BuildCorner(ref _crtBottomLeft, Cursors.Arrow);
-            //BuildCorner(ref _crtBottomRight, Cursors.Arrow);
+            //BuildCorner(ref _crtTop, Cursors.Arrow);
+            //BuildCorner(ref _crtBottom, Cursors.Arrow);
+            //BuildCorner(ref _crtLeft, Cursors.Arrow);
+            //BuildCorner(ref _crtRight, Cursors.Arrow);
+            BuildCorner(ref _crtTopLeft, Cursors.Arrow);
+            BuildCorner(ref _crtTopRight, Cursors.Arrow);
+            BuildCorner(ref _crtBottomLeft, Cursors.Arrow);
+            BuildCorner(ref _crtBottomRight, Cursors.Arrow);
 
             // Add handlers for Cropping.
             //_crtBottomLeft.DragDelta += new DragDeltaEventHandler(HandleBottomLeft);
@@ -440,12 +428,8 @@ namespace DAP.Adorners
 		private void BuildCorner(ref CropThumb crt, Cursor crs)
 		{
 			if (crt != null) return;
-          //  crt = new CropThumb((int)cpxThumbWidth);
-             if (_cpxThumbWidth ==0 || _cpxThumbWidth ==null )
-            {
-                _cpxThumbWidth = 6;
-            }
-            crt = new CropThumb((int)_cpxThumbWidth);
+
+			crt = new CropThumb(_cpxThumbWidth);
 
 			// Set some arbitrary visual characteristics.
 			crt.Cursor = crs;
@@ -490,8 +474,7 @@ namespace DAP.Adorners
 			protected override void OnRender(DrawingContext drawingContext)
 			{
 				drawingContext.DrawRoundedRectangle(Brushes.White, new Pen(Brushes.Black, 1), new Rect(new Size(_cpx, _cpx)), 1, 1);
-               // drawingContext.DrawEllipse(Brushes.White, new Pen(Brushes.Black, 1), new System.Windows.Point(_cpx, _cpx), 1, 1);
-            }
+			}
 			#endregion
 
 			#region Positioning

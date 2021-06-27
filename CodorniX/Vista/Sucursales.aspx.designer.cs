@@ -508,24 +508,6 @@ namespace CodorniX.Vista {
         protected global::System.Web.UI.WebControls.LinkButton tabLicencias;
         
         /// <summary>
-        /// Control activeServidor.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl activeServidor;
-        
-        /// <summary>
-        /// Control tabServidor.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton tabServidor;
-        
-        /// <summary>
         /// Control panelDatosSucursal.
         /// </summary>
         /// <remarks>
@@ -1012,6 +994,15 @@ namespace CodorniX.Vista {
         protected global::System.Web.UI.WebControls.TextBox uidImpresora;
         
         /// <summary>
+        /// Control frmGrpDescripcionImpresora.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel frmGrpDescripcionImpresora;
+        
+        /// <summary>
         /// Control txtDescripcionImpresora.
         /// </summary>
         /// <remarks>
@@ -1021,6 +1012,15 @@ namespace CodorniX.Vista {
         protected global::System.Web.UI.WebControls.TextBox txtDescripcionImpresora;
         
         /// <summary>
+        /// Control frmGrpMarca.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel frmGrpMarca;
+        
+        /// <summary>
         /// Control txtMarca.
         /// </summary>
         /// <remarks>
@@ -1028,6 +1028,15 @@ namespace CodorniX.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMarca;
+        
+        /// <summary>
+        /// Control frmGrpModelo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel frmGrpModelo;
         
         /// <summary>
         /// Control txtModelo.
@@ -1640,42 +1649,6 @@ namespace CodorniX.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView dgvLicencias;
-        
-        /// <summary>
-        /// Control panelServidor.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder panelServidor;
-        
-        /// <summary>
-        /// Control lblErrorServer.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorServer;
-        
-        /// <summary>
-        /// Control txtServidorIp.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtServidorIp;
-        
-        /// <summary>
-        /// Control txtPuerto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPuerto;
         
         /// <summary>
         /// Control btnCancelarNuevoPapel.

@@ -5,69 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TinoTriXxX"
       mc:Ignorable="d" 
-      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-       xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="PageConfiguracion" Loaded="Page_Loaded">
+      Title="PageConfiguracion">
 
     <Grid Background="#424242">
-        <!--<Label HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="30">Configuracion</Label>-->
-        <Grid Margin="0 60 0 0">
-            <dragablz:TabablzControl>
-                <!--<dragablz:TabablzControl.InterTabController>
-                    <dragablz:InterTabController/>
-                </dragablz:TabablzControl.InterTabController>-->
-                <TabItem Header="Conexion servidor" >
-                    <Grid>
-                        <TextBlock  Margin="0 0 0 0" Foreground="White"
-                        Style="{StaticResource MaterialDesignHeadlineTextBlock}" HorizontalAlignment="Center">
-                          Configuracion de servicio de conexion
-                        </TextBlock>
-                        <TextBlock Foreground="White" Margin="10 40 10 0"
-                         Style="{StaticResource MaterialDesignHeadlineTextBlock}" HorizontalAlignment="Center" FontSize="14" TextWrapping="Wrap">
-                         Esta seccion permite la comunicacion entre TINOTRIX SERVIDOR y este producto de manera 
-                         que pueden ser actualizadas y mantiene el producto funcion a todos los servicios y beneficios.
-                        </TextBlock>
-                        <TextBlock Foreground="White" Margin="0 80 0 0"
-                            Style="{StaticResource MaterialDesignHeadlineTextBlock}">
-                         Puerto
-                        </TextBlock>
-                        <TextBox x:Name="TxtPuertoServer"
-                              materialDesign:HintAssist.Hint="Ejemplo: 8000" Margin="0 105 0 0 "
-                              materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
-                              materialDesign:HintAssist.FloatingScale="0.50"
-                              Text="" VerticalAlignment="Top"  Foreground="White"
-                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                              FontSize="20" />
-                        <TextBlock Foreground="White" Margin="0 150 0 0"
-                            Style="{StaticResource MaterialDesignHeadlineTextBlock}">
-                         Direccion IP servidor
-                        </TextBlock>
-                        <TextBox x:Name="TxtIpServer"
-                              materialDesign:HintAssist.Hint="Ejemplo: 192.168.0.1" Margin="0 175 0 0 "
-                              materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
-                              materialDesign:HintAssist.FloatingScale="0.50"
-                              Text="" VerticalAlignment="Top"  Foreground="White"
-                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                              FontSize="20" />
-                        
-                        <Button  Name="btnPingPrueba" Content="Prueba conexion" Click="BtnPingPrueba_Click" Background="Transparent" BorderBrush="#00e676"  Width="160" Margin="280 240 10 0" VerticalAlignment="Top" HorizontalAlignment="Left" ></Button>
-                        <TextBlock Foreground="White" Margin="320 270 10 0"
-                         Style="{StaticResource MaterialDesignHeadlineTextBlock}" HorizontalAlignment="Left" FontSize="10" TextWrapping="Wrap">
-                         Solo necesita la IP
-                        </TextBlock>
-                        <Button  Name="btnGuardarConfServidor" Content="Guardar" Click="BtnGuardarConfServidor_Click" Background="Transparent" BorderBrush="#00e676"  Width="130" Margin="540 240 10 0" VerticalAlignment="Top" HorizontalAlignment="Left" ></Button>
-                        <Button  Name="btnDescargarConf" Content="Descargar Configuracion" Click="BtnDescargarConf_Click"  Background="Transparent" BorderBrush="#00e676"  Width="230" Margin="30 240 10 0" VerticalAlignment="Top" HorizontalAlignment="Left" ></Button>
-
-                    </Grid>
-                </TabItem>
-                <!--<TabItem Visibility="Collapsed">
-                    <TabItem.Header>
-                        <materialDesign:PackIcon Kind="Help" Foreground="{DynamicResource PrimaryHueLightBrush}"/>
-                    </TabItem.Header>
-                    <Hyperlink  Foreground="White" >http://tinotrix.gearhostpreview.com</Hyperlink>
-                </TabItem>-->
-            </dragablz:TabablzControl>
-        </Grid>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="30">Configuracion</Label>
     </Grid>
 </Page>

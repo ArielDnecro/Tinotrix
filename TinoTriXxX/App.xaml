@@ -5,39 +5,19 @@
              xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
              StartupUri="/Vista/mainwindow.xaml">
     <Application.Resources>
-        
         <ResourceDictionary> <!--paso 2-->
-
             <ResourceDictionary.MergedDictionaries>
-               
-                
-                
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Green.xaml" />
-               
-                
-                <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Blue.xaml" />-->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Blue.xaml" />
                 <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />-->
                 <!-- Include the Dragablz style 241018-->
                 <ResourceDictionary Source="pack://application:,,,/Dragablz;component/Themes/materialdesign.xaml"/>
-                
-                
-                
-                 <ResourceDictionary>
-                     <!--include your secondary pallette--> 
-                    <ResourceDictionary.MergedDictionaries>
-                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Green.xaml" />
-                    </ResourceDictionary.MergedDictionaries>
-
-                     <!--include a single secondary accent color (and the associated forecolour)--> 
-                    <SolidColorBrush x:Key="SecondaryAccentBrush" Color="{StaticResource Accent200}"/>
-                    <!--<SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="{StaticResource Accent200Foreground}"/>-->
-                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
             <!-- tell Dragablz tab control to use the Material Design theme 241018-->
             <Style TargetType="{x:Type dragablz:TabablzControl}" BasedOn="{StaticResource MaterialDesignTabablzControlStyle}" />
-           
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

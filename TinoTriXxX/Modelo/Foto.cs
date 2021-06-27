@@ -12,15 +12,9 @@ using TinoTriXxX.ConexionBaseDatos;
 
 namespace TinoTriXxX.Modelo
 {
-    //public class Foo
-    //{
-    //    public int Id { get; set; }
-    //    public DateTime IAmSoSmall { get; set; }    // wants to be smalldatetime in SQL
-    //}
     public class Foto
     {
-        //public DbSet<Foo> Foos { get; set; }
-        #region propiedades
+      #region propiedades
         protected Guid _UidFoto;
         public Guid UidFoto
         {
@@ -91,8 +85,10 @@ namespace TinoTriXxX.Modelo
         public new class Repository
         {
             Conexion Conexionhost = new Conexion();
+
             //DataTable table = new DataTable();
             //Foto Turno = new Foto();
+
             public List<Foto> CargarFotos(Guid uidsucursal)
             {
                 List<Foto> fotos = new List<Foto>();
@@ -139,38 +135,8 @@ namespace TinoTriXxX.Modelo
                 return fotos;
             }
 
-            public bool NuevaImpresion( Guid UidSucursal, Guid UidFoto, string DtTmVenta, int IntFotos, int IntCosto)
-            {
-                try
-                {
-                    SqlCommand comando = new SqlCommand();
-                    comando.CommandType = CommandType.StoredProcedure;
-                    comando.CommandText = "Wpf_AddVenta";
-
-                    comando.Parameters.Add("@UidSucursal", SqlDbType.UniqueIdentifier);
-                    comando.Parameters["@UidSucursal"].Value = UidSucursal;
-
-                    comando.Parameters.Add("@UidFoto", SqlDbType.UniqueIdentifier);
-                    comando.Parameters["@UidFoto"].Value = UidFoto;
-
-                    comando.Parameters.Add("@DtTmVenta", SqlDbType.SmallDateTime);
-                    comando.Parameters["@DtTmVenta"].Value = DtTmVenta;
-
-                    comando.Parameters.Add("@IntFotos", SqlDbType.Int);
-                    comando.Parameters["@IntFotos"].Value = IntFotos;
-
-                    comando.Parameters.Add("@IntCosto", SqlDbType.Int);
-                    comando.Parameters["@IntCosto"].Value = IntCosto;
-                     
-                    return Conexionhost.ManipilacionDeDatos(comando);
-                }
-                catch (Exception e)
-                {
-                    throw new FotoException("(Nueva venta impresion fotos) " + e.Message);
-                }
-            }
-
             protected Konection _Conexion = new Konection();
+
             public double CargarMedidaLocal(string StrMedida) {
 
                 DataTable table = new DataTable();
