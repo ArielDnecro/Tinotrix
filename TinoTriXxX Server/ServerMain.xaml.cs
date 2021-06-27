@@ -15,6 +15,10 @@ using System.Windows.Shapes;
 using TinoTriXxX.VistaModelo;
 using System.Windows.Threading;
 using System.Windows.Media.Animation;
+using System.Threading;
+using Microsoft.Win32;
+using System.Data.SqlClient;
+using TinoTriXxX.Vista;
 
 namespace TinoTriXxX
 {
@@ -25,26 +29,83 @@ namespace TinoTriXxX
     {
         VM_Escritorio VM = new VM_Escritorio();
         Color TemaAzulEstandar = (Color)ColorConverter.ConvertFromString("#FF3580BF");
-       
+        Color TemaDoradoEstandar = (Color)ColorConverter.ConvertFromString("#ffc107");
         Boolean CumpleConTodoRequisito;
+        bool arranquesesionapp = false;//con esta variable controlo la forma en que se cierra la ventana de inicio de sesion, se cierra solo la ventana o la app completa
+
         public MainWindow()
         {
-            InitializeComponent();
+            AplicarCultura();
+            RedireccionarBasico();
 
-            
-            acceso();
+
+            InitializeComponent();
+            //arranquesesionapp = true;
             frame.NavigationService.Navigate(new PagePrincipal());
+            acceso();
+            
             bframe.Visibility = Visibility.Visible;
             blicencia.Visibility = Visibility.Hidden;
-            VM.ObtenerSession();
-            if (VM.Session.UidUsusario == Guid.Empty)
+            
+        }
+        private void AplicarCultura()
+        {
+            System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("ES-Mx");
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+        }
+        public void RedireccionarBasico()
+        {
+            string sourceRegistro = string.Empty;
+            try
             {
-                Autentificacion au = new Autentificacion(VM, false);
-                au.ShowDialog();
-                SessionConf();
+                sourceRegistro = Registry.GetValue(@"HKEY_CURRENT_USER\TinotrixServer", "Source", "NULL").ToString();
+            }
+            catch (Exception) { sourceRegistro = string.Empty; }
+
+            //Validar si el registro no existe o tiene un valor nulo 
+            if (!string.IsNullOrEmpty(sourceRegistro))
+            {
+                //Prueba la conexión con el source guardado en el registro de windows 
+                if (PruebaConexionRegistro(sourceRegistro))
+                {
+                    TinoTriXxX.Properties.Settings.Default["Source"] = sourceRegistro;
+                }
+                else
+                {
+                    DBLocal wBDLocal = new DBLocal();
+                    wBDLocal.ShowDialog();
+                }
+            }
+            //Validar si el registro existe o tiene un valor nulo 
+            else
+            {
+                DBLocal wBDLocal = new DBLocal();
+                wBDLocal.ShowDialog();
             }
         }
-        
+        public bool PruebaConexionRegistro(string source)
+        {
+            int intentos = 3;
+            bool aux = false;
+            SqlConnection _sqlConeccion;
+            string stringConnection = string.Empty;
+
+            stringConnection = @"Data Source=" + source + ";Initial Catalog=TinotrixServer;Integrated Security=True;Connection Timeout=1";
+
+            for (int i = 0; i < intentos; i++)
+                try
+                {
+                    _sqlConeccion = new SqlConnection(stringConnection);
+                    _sqlConeccion.Open();
+                    aux = true;
+                    _sqlConeccion.Close();
+                    break;
+                }
+                catch (Exception) { }
+
+            return aux;
+        }
         #region Eventos de la vista
         private void AplicarEfecto(Window win, int NivelDegradado)
         {
@@ -66,7 +127,9 @@ namespace TinoTriXxX
             IcoOpenMenu.Foreground = new SolidColorBrush(TemaAzulEstandar);
             CMenu.Background = Brushes.White;
             popmenu.Foreground = new SolidColorBrush(TemaAzulEstandar);
-            listViewItem.IsEnabled = false;
+            LVIMenu.IsEnabled = false;
+            LVIMenu.Background = Brushes.Transparent;
+            LVILicencia.Background = Brushes.Transparent;
         }
         void TemaAppHabilitado()
         {
@@ -74,9 +137,16 @@ namespace TinoTriXxX
             sPbtnsMenuPrincipal.Visibility = Visibility.Visible;
             GridBarraEstado.Visibility = Visibility.Visible;
 
-            listViewItem.IsEnabled = true;
-
+            LVIMenu.IsEnabled = true;
+            LVIMenu.Background = new SolidColorBrush(TemaDoradoEstandar); //esta parte se movera debido a que es llamado por varias funciones
             //sPMenu.Children.Add(btniniciarturno);
+            //VM.ObtenerSession();
+            //if (VM.Session.UidUsusario == Guid.Empty)
+            //{
+            //    Autentificacion au = new Autentificacion(VM, arranquesesionapp);
+            //    au.ShowDialog();
+            //    //SessionConf();
+            //}
         }
         private void BtnOpenMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -93,6 +163,8 @@ namespace TinoTriXxX
 
             CMenu.Background = Brushes.White;
             popmenu.Foreground = new SolidColorBrush(TemaAzulEstandar);
+
+            
         }
         private void BtnCloseMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -129,6 +201,8 @@ namespace TinoTriXxX
             blicencia.Visibility = Visibility.Visible;
             bframe.Visibility = Visibility.Hidden;
             cerrarmenu();
+            LVIMenu.Background = Brushes.Transparent;
+            LVILicencia.Background = new SolidColorBrush(TemaDoradoEstandar); ;
         }
 
         private void BtnMenuHome_Click(object sender, RoutedEventArgs e)
@@ -137,6 +211,8 @@ namespace TinoTriXxX
             blicencia.Visibility = Visibility.Hidden;
             bframe.Visibility = Visibility.Visible;
             cerrarmenu();
+            LVIMenu.Background = new SolidColorBrush(TemaDoradoEstandar);
+            LVILicencia.Background = Brushes.Transparent;
         }
         void cerrarmenu()
         {
@@ -162,7 +238,13 @@ namespace TinoTriXxX
         private void BtnActualizarLicencia_Click(object sender, RoutedEventArgs e)
         {
             //HabilitarActualizacionLicencia();//06 oct 18
-            ComprovarValidacionLicencia();
+            VM.ObtenerLicenciaLocal();
+            if (VM.LicenciaLocal.UidLicencia != Guid.Empty)
+            {
+                ComprovarValidacionLicencia();
+            }
+            LVIMenu.Background = Brushes.Transparent;
+            LVILicencia.Background = new SolidColorBrush(TemaDoradoEstandar);
         }
         void CancelarActulizacionLicencia()
         {
@@ -322,7 +404,7 @@ namespace TinoTriXxX
                     }
                 }
             }
-            SessionConf();
+             SessionConf();//este paso no se hace porque ya esta en temaapphabilitado();
             TurnoConf();
             //prueba aun
             //VM.LicenciaLocal = null;
@@ -386,7 +468,7 @@ namespace TinoTriXxX
                         else
                         {
                             //ActualizacionExitosaYFuncional();
-
+                            arranquesesionapp = true;
                             MessageBox.Show("¡Actualizacion de Licencia exitosa!", "Tinotrix", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                         }
                     }
@@ -400,6 +482,8 @@ namespace TinoTriXxX
             }
 
             ComprovarValidacionLicencia();
+            LVIMenu.Background = Brushes.Transparent;
+            LVILicencia.Background = new SolidColorBrush(TemaDoradoEstandar);
         }
         private void BtnRevocarLicencia_Click(object sender, RoutedEventArgs e)
         {
@@ -578,7 +662,7 @@ namespace TinoTriXxX
                 DateTime saveNow = DateTime.Now;
                 DateTime myDt;
                 myDt = DateTime.SpecifyKind(saveNow, DateTimeKind.Utc);
-                VM.RevocarTurno(VM.Turno.UidFolio,  myDt.ToString("T"), myDt.ToString("d"), VM.Turno.IntTFotos, VM.Turno.IntTCosto);
+                VM.RevocarTurno(VM.Turno.UidFolio,  myDt.ToString("HH:mm:ss"), myDt.ToString("dd/MM/yyyy"), VM.Turno.IntTFotos, VM.Turno.IntTCosto);
                 TurnoConf();
             }
             else if (result == MessageBoxResult.No)

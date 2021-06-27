@@ -12,7 +12,7 @@
     <Grid>
         
         <Rectangle RadiusY="8" RadiusX="8" Fill="White"/>
-        <Image Source="Assets/lt2.png" Margin="-290,-250,0,0" Stretch="Uniform"  Height="300"  Width="250"/>
+        <Image Source="Assets/logotiposerver2019.3.3.150x150.png" Margin="-290,-250,0,0" Stretch="Uniform"  Height="130"  Width="130"/>
         <Image Source="Assets/ciudadnoche.png" Margin="310,0,0,0" Stretch="UniformToFill"/>
         <Rectangle Margin="310,0,0,0">
                 <Rectangle.Fill >
@@ -43,7 +43,8 @@
                 <CheckBox Content="Recordar usuario" Margin="5,10" Foreground="#707070"/>
                 <Label Content="Olvide mi contraseña" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" Foreground="#707070"/>
             </Grid>
-           <Button Name="btnEntrar"  HorizontalAlignment="Center" Content="Entrar"  FontSize="18" Width="100" Background="#FF307CD6" BorderBrush="#FF307CD6" Click="btnEntrar_Click"/>
+                <Button Name="btnSiguiente"  HorizontalAlignment="Center" Content="Siguiente"  FontSize="18" Width="120" Background="#FF307CD6" BorderBrush="#FF307CD6" Click="BtnSiguiente_Click"/>
+                <Button Name="btnEntrar"  HorizontalAlignment="Center" Content="Entrar"  FontSize="18" Width="100" Background="#FF307CD6" BorderBrush="#FF307CD6" Click="btnEntrar_Click" Visibility="Collapsed"/>
             <StackPanel Orientation="Horizontal" Margin="10,35" Visibility="Hidden">
                 <Label Content="Ou acesse com" Foreground="#707070" VerticalAlignment="Center"/>
                 <Button HorizontalAlignment="Center" FontFamily="Impact" FontSize="18" Background="#FF3D56AC" BorderBrush="#FF3D56AC">

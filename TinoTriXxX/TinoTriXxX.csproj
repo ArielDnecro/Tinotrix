@@ -49,7 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>logotipo2019.2.0.64x67.ico</ApplicationIcon>
+    <ApplicationIcon>logotipo2019.3.0.64x64.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -131,6 +131,7 @@
     </ApplicationDefinition>
     <Compile Include="CroppingAdorner\CroppingAdorner.cs" />
     <Compile Include="CroppingAdorner\PuncturedRect.cs" />
+    <Compile Include="Informe\ReportPreview.xaml.cs" />
     <Compile Include="Informe\VInfFotosCliente.xaml.cs">
       <DependentUpon>VInfFotosCliente.xaml</DependentUpon>
     </Compile>
@@ -138,7 +139,10 @@
     <Compile Include="Modelo\Img.cs" />
     <Compile Include="Modelo\Papel.cs" />
     <Compile Include="Modelo\ServiceHelper.cs" />
+    <Compile Include="Modelo\Turno.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Util\RdlcComponentGenerator.cs" />
+    <Compile Include="Util\RdlcGenerator.cs" />
     <Compile Include="Vista\Autentificacion.xaml.cs">
       <DependentUpon>Autentificacion.xaml</DependentUpon>
     </Compile>
@@ -167,6 +171,13 @@
       <DependentUpon>PagePrincipal.xaml</DependentUpon>
     </Compile>
     <Compile Include="VistaModelo\VM_Escritorio.cs" />
+    <Compile Include="Vista\SinConexionInternet.xaml.cs">
+      <DependentUpon>SinConexionInternet.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Informe\ReportPreview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Informe\VInfFotosCliente.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -208,6 +219,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vista\SinConexionInternet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Modelo\LicenciaLocal.cs" />
@@ -224,27 +239,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Informe\Credencial\Credencial2.rdlc" />
-    <EmbeddedResource Include="Informe\Credencial\Credencial3.rdlc" />
-    <EmbeddedResource Include="Informe\Credencial\Credencial4.rdlc" />
-    <EmbeddedResource Include="Informe\Credencial\Credencial5.rdlc" />
-    <EmbeddedResource Include="Informe\Foto1.rdlc" />
-    <EmbeddedResource Include="Informe\Foto2.rdlc" />
-    <EmbeddedResource Include="Informe\Foto3.rdlc" />
-    <EmbeddedResource Include="Informe\Foto4.rdlc" />
-    <EmbeddedResource Include="Informe\Foto5.rdlc" />
-    <EmbeddedResource Include="Informe\Foto6.rdlc" />
-    <EmbeddedResource Include="Informe\Foto7.rdlc" />
-    <EmbeddedResource Include="Informe\Infantil\Infantil2.rdlc" />
-    <EmbeddedResource Include="Informe\Infantil\Infantil3.rdlc" />
-    <EmbeddedResource Include="Informe\Infantil\Infantil4.rdlc" />
-    <EmbeddedResource Include="Informe\Infantil\Infantil5.rdlc" />
-    <EmbeddedResource Include="Informe\Infantil\Infantil6.rdlc" />
-    <EmbeddedResource Include="Informe\Militar\Militar2.rdlc" />
-    <EmbeddedResource Include="Informe\Militar\Militar3.rdlc" />
-    <EmbeddedResource Include="Informe\Militar\Militar4.rdlc" />
-    <EmbeddedResource Include="Informe\Militar\Militar5.rdlc" />
-    <EmbeddedResource Include="Informe\Titulo\Titulo2.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -266,41 +260,19 @@
     <Resource Include="Assets\ciudadnoche.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\silueta-hombre-foto.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\login6.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\login5.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\login4.png" />
+    <Resource Include="Assets\LogoSinInternet.423x423.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\leopardoacostadocamara.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\paisajeverde.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\sinusuario.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LibCodorniX\CodorniX.Common.csproj">
+    <ProjectReference Include="..\LibCodorniX\TinotriX.Common.csproj">
       <Project>{949fb113-9029-46c9-811e-481148a336dc}</Project>
-      <Name>CodorniX.Common</Name>
+      <Name>TinotriX.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\AppLoadBackGround.png" />
-    <Resource Include="Assets\IrisCamera.png" />
-    <Resource Include="Assets\IrisCameraBlancoTransparente.png" />
-    <Resource Include="Assets\logo2019.png" />
-    <Resource Include="Assets\logo2019.200x275.png" />
-    <Resource Include="Assets\logo2019.400x550.png" />
-    <Resource Include="Assets\logo2019.720x990.png" />
-    <Resource Include="Assets\logotipo2019.72x72.png" />
     <Resource Include="logotipo2019.72x72.ico" />
     <Resource Include="Imagenes\vacio.png" />
     <Resource Include="Imagenes\usuarioejemplo\userejemplo1.jpg" />
@@ -321,23 +293,22 @@
     <Resource Include="Imagenes\usuarioejemplo\userejemplo7.jpg" />
     <Resource Include="Imagenes\usuarioejemplo\userejemplo8.jpg" />
     <Resource Include="Imagenes\usuarioejemplo\userejemplo9.jpg" />
-    <Resource Include="Assets\logotipo2019.72x72.ico" />
     <Resource Include="Assets\TinotrixBlanco.162x550.png" />
-    <Resource Include="Assets\logo2019.2.0.200X275.png" />
-    <Resource Include="Assets\logo2019.2.0.400X550.png" />
-    <Resource Include="Assets\logo2019.2.0.720X990.png" />
-    <Resource Include="Assets\logotipo2019.2.0.150x157.png" />
-    <Resource Include="Assets\logotipo2019.2.0.72x75.ico" />
-    <Resource Include="Assets\logotipo2019.2.0.72x75.png" />
     <Resource Include="Assets\TinotrixBlanco2019.2.0.99x550.png" />
     <Resource Include="Assets\AppMainBackGround.jpg" />
     <Resource Include="Assets\AppMainNewYorkBackGround.jpg" />
-    <Resource Include="Assets\logotipo2019.2.0.64x67.ico" />
-    <Resource Include="Assets\logotipo2019.2.0.64x67.png" />
-    <Resource Include="Assets\logotipoconfondo2019.2.0.80x84.png" />
+    <Resource Include="Assets\logotipo2019.3.0.64x64.ico" />
+    <Resource Include="Assets\logotipo2019.3.0.64x64.png" />
+    <Resource Include="Assets\logotipo2019.3.0.80x80.png" />
+    <Resource Include="Assets\Tinotrix2019.3.0.155x550.png" />
+    <Resource Include="Assets\BienvenidoATinotrix2019.3.0.112x1000.png" />
+    <Resource Include="Assets\logotipo2019.3.0.150x150.png" />
     <Content Include="BaseDeDatos\script.sql" />
     <Resource Include="logotipo2019.2.0.72x75.ico" />
     <Resource Include="logotipo2019.2.0.64x67.ico" />
+    <Resource Include="logotipo2019.2.0.64x67~1.ico" />
+    <Resource Include="logotipo2019.2.0.64x64.ico" />
+    <Resource Include="logotipo2019.3.0.64x64.ico" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -351,7 +322,6 @@
     <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Assets\lt2.png" />
     <Resource Include="Assets\FondoEditor.png" />
   </ItemGroup>
   <ItemGroup>

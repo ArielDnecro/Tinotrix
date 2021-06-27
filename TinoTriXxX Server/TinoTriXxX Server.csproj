@@ -48,6 +48,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logotiposerver2019.3.3.64x64.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Dragablz, Version=0.0.3.203, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dragablz.0.0.3.203\lib\net45\Dragablz.dll</HintPath>
@@ -60,6 +63,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -81,7 +85,11 @@
     <Compile Include="Autentificacion.xaml.cs">
       <DependentUpon>Autentificacion.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\DBLocal.xaml.cs">
+      <DependentUpon>DBLocal.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\EmpresaLocal.cs" />
+    <Compile Include="Modelo\ServiceHelper.cs" />
     <Compile Include="Modelo\Session.cs" />
     <Compile Include="Modelo\Turno.cs" />
     <Compile Include="PageLicencia.xaml.cs">
@@ -94,6 +102,10 @@
     <Page Include="Autentificacion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\DBLocal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Login.xaml">
       <SubType>Designer</SubType>
@@ -177,25 +189,22 @@
     <Resource Include="Assets\sinusuario.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LibCodorniX\CodorniX.Common.csproj">
+    <ProjectReference Include="..\LibCodorniX\TinotriX.Common.csproj">
       <Project>{949fb113-9029-46c9-811e-481148a336dc}</Project>
-      <Name>CodorniX.Common</Name>
+      <Name>TinotriX.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="logotiposerver2019.3.3.64x64.ico" />
+    <Resource Include="logotiposerver2019.3.2.64x64.ico" />
+    <Resource Include="logotiposerver2019.3.1.64x64.ico" />
     <Resource Include="Assets\logotipotinotrix.png" />
     <Resource Include="Assets\logotinotrix.png" />
     <Resource Include="Assets\logo.png" />
     <Resource Include="Assets\lt.png" />
     <Resource Include="Assets\LTn.png" />
     <Resource Include="Assets\lt2.png" />
-    <Content Include="BdTinotrixServer.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="BdTinotrixServer_log.ldf">
-      <DependentUpon>BdTinotrixServer.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Assets\logotiposerver2019.3.3.150x150.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

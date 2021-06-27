@@ -23,6 +23,8 @@ using TinoTriXxX.Informe;
 using System.Drawing.Drawing2D;
 using System.Drawing.Printing;
 using ImageMagick;
+using System.Threading;
+using System.Windows.Threading;
 
 namespace TinoTriXxX
 {
@@ -56,6 +58,7 @@ namespace TinoTriXxX
         Foto foto = null;
         string sourceFileOriginal = null;
         String filePathElegidaImprimir = null;
+        bool ProcesoComienza;
         //System.Drawing.Image imagenfinal = null;
         public PageFotos(VM_Escritorio vm)
         {
@@ -109,7 +112,7 @@ namespace TinoTriXxX
 
                 Rect rc = _clp.ClippingRectangle;
                 tblkClippingRectangle.Text = string.Format(
-                    "Clipping Rectangle: ({0:N1}, {1:N1}, {2:N1}, {3:N1})",
+                    "Area de recorte: ({0:N1}, {1:N1}, {2:N1}, {3:N1})",
                     rc.Left,
                     rc.Top,
                     rc.Right,
@@ -387,6 +390,7 @@ namespace TinoTriXxX
                 btnRegresarListaFotos.Visibility = Visibility.Visible;
                 btnCapturarFoto.Visibility = Visibility.Visible;
                 btnCargarFoto.Visibility = Visibility.Visible;
+                btnDescargarFoto.Visibility = Visibility.Visible;
                 BFotoUsuario.Visibility = Visibility.Visible;
                 ImgFondoEditor1.Visibility = Visibility.Visible;
                 ImgFondoEditor2.Visibility = Visibility.Visible;
@@ -422,6 +426,7 @@ namespace TinoTriXxX
 
             btnCapturarFoto.Visibility = Visibility.Hidden;
             btnCargarFoto.Visibility = Visibility.Hidden;
+            btnDescargarFoto.Visibility = Visibility.Hidden;
             GFotoSeleccionada.Visibility = Visibility.Hidden;
             btnRegresarListaFotos.Visibility = Visibility.Hidden;
             BFotoUsuario.Visibility = Visibility.Hidden;
@@ -431,7 +436,7 @@ namespace TinoTriXxX
             // SvFotoUsuario.Visibility = Visibility.Hidden;
             //ImgFotoUsuario.Source = null;
             lbNombreFotoUsuario.Visibility = Visibility.Hidden;
-            lbNombreFotoUsuario.Content = "";
+            lbNombreFotoUsuario.Text = "";
             tblkClippingRectangle.Visibility = Visibility.Hidden;
             //-imgCrop.Visibility = Visibility.Hidden;
             btnRotacionMenos90.Visibility = Visibility.Hidden;
@@ -467,7 +472,7 @@ namespace TinoTriXxX
                 ImageName = dlg.SafeFileName;
                  sourceFileOriginal = dlg.FileName;
                 lbNombreFotoUsuario.Visibility = Visibility.Visible;
-                lbNombreFotoUsuario.Content = sourceFileOriginal;
+                lbNombreFotoUsuario.Text = sourceFileOriginal;
                 //System.Windows.Controls.Image  _image = new System.Windows.Controls.Image();
                 //bi.BeginInit();
                 //bi.UriSource = new System.Uri(sourceFile);
@@ -555,6 +560,7 @@ namespace TinoTriXxX
         {
             //btnSeleccionFoto.Visibility = Visibility.Hidden;
             btnCargarFoto.Visibility = Visibility.Visible;
+            btnDescargarFoto.Visibility = Visibility.Visible;
             BtnAfirmarElegirFoto.Visibility = Visibility.Hidden;
             BtnCancelarElegirFoto.Visibility = Visibility.Hidden;
             //imgCrop.Visibility = Visibility.Hidden;
@@ -589,52 +595,42 @@ namespace TinoTriXxX
             //        break;
             //}
         }
-        private void BtnAfirmarElegirFoto_Click(object sender, RoutedEventArgs e)
+        private async void BtnAfirmarElegirFoto_Click(object sender, RoutedEventArgs e)
         {
-            //GridMenu.IsEnabled = true;
-            ////-imgCrop.Visibility = Visibility.Visible;
-            //btnRotacionMenos90.Visibility = Visibility.Hidden;
-            //btnRotacion90.Visibility = Visibility.Hidden;
-            //BtnAfirmarElegirFoto.Visibility = Visibility.Hidden;
-            //BtnCancelarElegirFoto.Visibility = Visibility.Hidden;
-            ////RecSombraSeleccionadora.Visibility = Visibility.Hidden;
-            //ImgFotoUsuario.Visibility = Visibility.Collapsed;
-            //tblkClippingRectangle.Visibility = Visibility.Collapsed;
-            ////btnSeleccionFoto.Visibility = Visibility.Hidden;
-            //btnCargarFoto.Visibility = Visibility.Hidden;
-            //btnCapturarFoto.Visibility = Visibility.Hidden;
-            //btnRegresarEscogerFoto.Visibility = Visibility.Visible;
-            //BtnImprimir.Visibility = Visibility.Visible;
+            if (VM.TurnoServidorAbierto(VM.Sucursal.UidSucursal) == true)
+            {
+                CancellationTokenSource tokenSource = new CancellationTokenSource();
+                Dispatcher.Invoke(DispatcherPriority.Send, new ThreadStart(delegate { ShowLoadingText(tokenSource.Token); }));
+                ////await Task.Run(() => reportPreview.ShowDialog());
+                //await this.Dispatcher.BeginInvoke((Action)(() => { AfimarFotoElegida(); }));
 
+                this.Dispatcher.Invoke(DispatcherPriority.Normal, new ThreadStart(delegate { AfimarFotoElegida(); }));
+                tokenSource.Cancel();
+            }
+            else {
+                MessageBox.Show("No hay un encargado en turno que le pueda atender");
+            }
+        }
+        private void AfimarFotoElegida() 
+        {
 
-
+            //string StrIniciando = string.Empty;
+            //for (int i = 0; i < 100000; i++) { StrIniciando += i.ToString(); }
             String Directorio = path + "\\Imagenes\\usuario\\"; //"C:\\Users\\Iudex\\Documents\\TinoTrix\\Clone\\Tinotrix\\TinoTriXxX"
                                                                 // C: \Users\Iudex\Documents\TinoTrix\Clone\Tinotrix\TinoTriXxX\Imagenes\usuario
             String Extencion = System.IO.Path.GetExtension(sourceFileOriginal);
             String Archivo = "FotoFinalUsuario_" + DateTime.Now.ToString(" MM-dd-yyyy HH-mm-ss") + ".png";
-            filePathElegidaImprimir = Directorio + Archivo ;
+            filePathElegidaImprimir = Directorio + Archivo;
             System.Windows.Controls.Image UserImage = imgCrop;
-
-            //System.Drawing.Image imgd = System.Drawing.Image.FromFile(@"C:\Users\...\Pictures\book.jpg");
-
-            //Bitmap bmp = (Bitmap)Bitmap.FromFile(@"C:\testimage.bmp");
-            //Bitmap newImage = ResizeBitmap(bmp, Ancho, Alto);
-            //Bitmap bmp = (Bitmap)Bitmap.FromFile(@"C:\testimage.bmp");
-            //bmp += new System.Windows.Forms.PaintEventHandler(ResizeImagen);
-
-            // System.Windows.Controls.Image image = System.Windows.Controls.Image.filw("foo.png");
-            //Bitmap bitmap = new Bitmap(imgCrop, new System.Windows.Size(320, 480)); // or some math to resize it to 1/2
-            //bitmap.Save("foo2.png", System.Drawing.Imaging.ImageFormat.Png);
-
             var encoder = new PngBitmapEncoder();
             //"JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
             encoder.Frames.Add(BitmapFrame.Create((BitmapSource)UserImage.Source));
             using (FileStream stream = new FileStream(filePathElegidaImprimir, FileMode.Create)) encoder.Save(stream);
-
             RedimencionarImagenElegida();
-
-            VInfFotosCliente frm = new VInfFotosCliente(filePathElegidaImprimir, imgCrop, foto, VM.Papel);
-            frm.ShowDialog();
+            //VInfFotosCliente frm = new VInfFotosCliente(filePathElegidaImprimir, imgCrop, foto, VM.Papel);
+            //frm.ShowDialog();
+            ReportPreview reportPreview = new ReportPreview(filePathElegidaImprimir, foto, VM.Papel);
+            reportPreview.ShowDialog();
             //FotoFinal ff = new FotoFinal(filePathElegidaImprimir, imgCrop, foto, VM.Papel);
             //ff.ShowDialog();
             //File.Delete(filePathElegidaImprimir);
@@ -763,6 +759,32 @@ namespace TinoTriXxX
 
         #endregion
 
+        #region otras funciones
+        private async void ShowLoadingText(CancellationToken token)
+        {
+            BCargando.Visibility = Visibility.Visible;
+
+            try
+            {
+                while (!token.IsCancellationRequested)
+                {
+                    txtLoading.Text = "Cargando";
+                    await Task.Delay(500, token);
+                    txtLoading.Text = "Cargando.";
+                    await Task.Delay(500, token);
+                    txtLoading.Text = "Cargando..";
+                    await Task.Delay(500, token);
+                    txtLoading.Text = "Cargando...";
+                    await Task.Delay(500, token);
+                }
+            }
+            catch (TaskCanceledException)
+            {
+                BCargando.Visibility = Visibility.Hidden;
+            }
+        }
+        #endregion otras funciones
+
         //private void BtnImprimir_Click(object sender, RoutedEventArgs e)
         //{ 
 
@@ -859,7 +881,7 @@ namespace TinoTriXxX
         //    return (Imagen2);
         //}
 
-        
+
 
         // FrameWithinGrid.Navigate(new System.Uri("Page1.xaml",UriKind.RelativeOrAbsolute));
         //Process.start();

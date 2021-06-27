@@ -58,9 +58,6 @@ namespace CodorniX.ConexionDB
             return Resultado;
         }
 
-
-
-
         public DataTable Busquedas(SqlCommand comando)
         {
             DataTable Tabla = new DataTable();
@@ -82,9 +79,6 @@ namespace CodorniX.ConexionDB
             }
             return Tabla;
         }
-
-
-
         #endregion
 
     }

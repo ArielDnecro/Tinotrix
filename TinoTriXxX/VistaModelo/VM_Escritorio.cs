@@ -29,6 +29,7 @@ namespace TinoTriXxX.VistaModelo
         private EmpresaLocal.Repository EmpresaLocalRepository = new EmpresaLocal.Repository();
         private Foto.Repository FotoRepository = new Foto.Repository();
         private Papel.Repository PapelRepository = new Papel.Repository();
+        private Turno.Repository TurnoRepository = new Turno.Repository();
         DBLogin login = new DBLogin();
 
         #region empresa
@@ -165,8 +166,6 @@ namespace TinoTriXxX.VistaModelo
         }
         #endregion Papel
         #endregion Propiedades
-
-
         #region funciones
         public void ActualizarEmpresaLocal(Guid UIDEmpresa)
             {
@@ -245,7 +244,6 @@ namespace TinoTriXxX.VistaModelo
                 {
                     _Usuario = UsuarioRepositiry.Find(idusuario);
                 }
-
                 public void ActualizarSession(Guid UIDSession)
                 {
                     try
@@ -276,12 +274,17 @@ namespace TinoTriXxX.VistaModelo
           return FotoRepository.CargarMedidaLocal(StrMedida);
         }
         #endregion FOTO
-
         #region Papel
         public void CargarPapel(Guid UIDSucursal) {
             _Papel = PapelRepository.Find(UIDSucursal);
         }
         #endregion Papel
+        #region turno
+        public bool TurnoServidorAbierto(Guid sucursal)
+        {
+            return TurnoRepository.TurnoServidorAbierto(sucursal);
+        }
+        #endregion turno
         #endregion funciones 
         #region Excepciones
         public class VM_EscritorioException : Exception

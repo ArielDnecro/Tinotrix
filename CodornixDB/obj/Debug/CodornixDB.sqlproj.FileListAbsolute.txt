@@ -1,3 +1,0 @@
-C:\Users\chess\Documents\Source\Repos\codornix\CodornixDB\bin\Debug\CodornixDB.dacpac
-C:\Users\chess\Documents\Source\Repos\codornix\CodornixDB\bin\Debug\CodornixDB.dll
-C:\Users\chess\Documents\Source\Repos\codornix\CodornixDB\bin\Debug\CodornixDB.pdb

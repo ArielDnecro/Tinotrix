@@ -9,6 +9,5 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("bdtinotrixserver.mdf")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("bdtinotrixserver_log.ldf")]
 
 
