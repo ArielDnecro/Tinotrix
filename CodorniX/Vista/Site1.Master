@@ -154,6 +154,12 @@
                                         <li id="activoSucursales" runat="server">
                                             <a href="Sucursales.aspx">Datos</a>
                                         </li>
+                                        <li id="activoFotografiasTramite" runat="server">
+                                            <a href="FotografiasTramite.aspx">Fotografía trámite</a>
+                                        </li>
+                                        <li id="activoFotografiasComercial" runat="server">
+                                            <a href="FotografiasComercial.aspx">Fotografía comercial</a>
+                                        </li>
                                         <li id="activoEncargados" runat="server">
                                             <a href="Encargados.aspx">Encargados</a>
                                         </li>

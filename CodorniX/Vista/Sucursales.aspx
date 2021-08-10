@@ -1302,6 +1302,9 @@
             </div>
         </div>
     </div>
+
+
+    <%-- procedimientos de confirmaciones y acceso al lado servidor--%>
     <div class="modal fade" id="VConfimacionEditarPapel"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -1379,44 +1382,6 @@
                                 </div>
                             </div>
      </div>
-    <style type="text/css">
-        
-        .tooltipDemo
-        {           
-            position: relative;
-            display: inline;
-            text-decoration: none;
-            left: 5px;
-            top: 0px;     
-        }
-        .tooltipDemo::before
-        {
-            border: solid;
-            border-color: transparent #FF8F35;
-            border-width: 6px 6px 6px 0px;
-            bottom: 21px;
-            content: "";
-            left: 155px;
-            top: 5px;
-            position: absolute;
-            z-index: 95;          
-        }
-        .tooltipDemo::after
-        {
-            background: #FF8F35;
-            background: rgb(255, 143, 53);
-            border-radius: 5px;
-            color: #fff;
-            width: 150px;
-            left: 160px;
-            top: -5px;           
-            content:  attr(href) ;
-            position: absolute;           
-            padding: 5px 15px;          
-            z-index: 95;           
-        }       
-
-    </style>
 
     <script  runat="server">
 
@@ -1457,10 +1422,50 @@
             btnAgregarFotoC_Click(sender, e);
         }
     </script>
-    
+
+    <%--tooltip para mostrar campos con valores no permitidos--%>
+    <style type="text/css">
+        
+        .tooltipDemo
+        {           
+            position: relative;
+            display: inline;
+            text-decoration: none;
+            left: 5px;
+            top: 0px;     
+        }
+        .tooltipDemo::before
+        {
+            border: solid;
+            border-color: transparent #FF8F35;
+            border-width: 6px 6px 6px 0px;
+            bottom: 21px;
+            content: "";
+            left: 155px;
+            top: 5px;
+            position: absolute;
+            z-index: 95;          
+        }
+        .tooltipDemo::after
+        {
+            background: #FF8F35;
+            background: rgb(255, 143, 53);
+            border-radius: 5px;
+            color: #fff;
+            width: 150px;
+            left: 160px;
+            top: -5px;           
+            content:  attr(href) ;
+            position: absolute;           
+            padding: 5px 15px;          
+            z-index: 95;           
+        }       
+
+    </style>
+        
      <!-- Copiar licencias -->
  <%--<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>--%>
-<script>
+  <script>
 
     //$(document).ready(function () {
     //    AgregarClaseCeldaGrid('dgvLicencias');
@@ -1506,6 +1511,7 @@
     }
 </script>
 
+<!-- Datapicker -->
     <script>
         //<![CDATA[
         function enableDatapicker() {
@@ -1519,6 +1525,7 @@
         }
         //]]>
     </script>
+
     <!-- Modal -->
     <div id="mdlError" class="modal fade" role="dialog">
         <div class="modal-dialog modal-sm">

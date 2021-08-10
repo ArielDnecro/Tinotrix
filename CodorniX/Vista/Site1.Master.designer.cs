@@ -7,11 +7,13 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace CodorniX.Vista {
-    
-    
-    public partial class Site1 {
-        
+namespace CodorniX.Vista
+{
+
+
+    public partial class Site1
+    {
+
         /// <summary>
         /// Control head.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CodorniX.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
-        
+
         /// <summary>
         /// Control form1.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CodorniX.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
         /// <summary>
         /// Control btnCancelar.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CodorniX.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancelar;
-        
+
         /// <summary>
         /// Control btnConfirmar.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CodorniX.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnConfirmar;
-        
+
         /// <summary>
         /// Control btnHome.
         /// </summary>
@@ -56,7 +58,7 @@ namespace CodorniX.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnHome;
-        
+
         /// <summary>
         /// Control menuEmpresas.
         /// </summary>
@@ -65,7 +67,7 @@ namespace CodorniX.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl menuEmpresas;
-        
+
         /// <summary>
         /// Control activoEmpresa.
         /// </summary>
@@ -74,7 +76,7 @@ namespace CodorniX.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl activoEmpresa;
-        
+
         /// <summary>
         /// Control activoAdmin.
         /// </summary>
@@ -83,7 +85,7 @@ namespace CodorniX.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl activoAdmin;
-        
+
         /// <summary>
         /// Control activoPerfiles.
         /// </summary>
@@ -92,7 +94,7 @@ namespace CodorniX.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl activoPerfiles;
-        
+
         /// <summary>
         /// Control menuSucursales.
         /// </summary>
@@ -101,7 +103,7 @@ namespace CodorniX.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl menuSucursales;
-        
+
         /// <summary>
         /// Control activoSucursales.
         /// </summary>
@@ -110,7 +112,25 @@ namespace CodorniX.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl activoSucursales;
-        
+
+        /// <summary>
+        /// Control activoFotografiasTramite.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl activoFotografiasTramite;
+
+        /// <summary>
+        /// Control activoFotografiasComercial.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl activoFotografiasComercial;
+
         /// <summary>
         /// Control activoEncargados.
         /// </summary>
@@ -119,7 +139,7 @@ namespace CodorniX.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl activoEncargados;
-        
+
         /// <summary>
         /// Control activoHistoricoVentas.
         /// </summary>
@@ -128,7 +148,7 @@ namespace CodorniX.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl activoHistoricoVentas;
-        
+
         /// <summary>
         /// Control empresaActual.
         /// </summary>
@@ -137,7 +157,7 @@ namespace CodorniX.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl empresaActual;
-        
+
         /// <summary>
         /// Control lblEmpresa.
         /// </summary>
@@ -146,7 +166,7 @@ namespace CodorniX.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblEmpresa;
-        
+
         /// <summary>
         /// Control sucursalActual.
         /// </summary>
@@ -155,7 +175,7 @@ namespace CodorniX.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl sucursalActual;
-        
+
         /// <summary>
         /// Control lblSucursal.
         /// </summary>
@@ -164,7 +184,7 @@ namespace CodorniX.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSucursal;
-        
+
         /// <summary>
         /// Control ContenidoDelSitio.
         /// </summary>
@@ -173,7 +193,7 @@ namespace CodorniX.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder ContenidoDelSitio;
-        
+
         /// <summary>
         /// Control lblUsuario.
         /// </summary>

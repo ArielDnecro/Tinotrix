@@ -264,6 +264,8 @@
     <Content Include="Vista\Bienvenido.aspx" />
     <Content Include="Vista\Empresas.aspx" />
     <Content Include="Vista\Encargados.aspx" />
+    <Content Include="Vista\FotografiasComercial.aspx" />
+    <Content Include="Vista\FotografiasTramite.aspx" />
     <Content Include="Vista\Global.asax" />
     <Content Include="Vista\HistoricoVentas.aspx" />
     <Content Include="Vista\Home.aspx" />
@@ -384,6 +386,20 @@
     </Compile>
     <Compile Include="Vista\Encargados.aspx.designer.cs">
       <DependentUpon>Encargados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\FotografiasComercial.aspx.cs">
+      <DependentUpon>FotografiasComercial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\FotografiasComercial.aspx.designer.cs">
+      <DependentUpon>FotografiasComercial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\FotografiasTramite.aspx.cs">
+      <DependentUpon>FotografiasTramite.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\FotografiasTramite.aspx.designer.cs">
+      <DependentUpon>FotografiasTramite.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -70,6 +70,14 @@ namespace CodorniX.Vista
         {
             activoSucursales.Attributes["class"] = "active";
         }
+        public void ActivarFotografiasTramite()
+        {
+            activoFotografiasTramite.Attributes["class"] = "active";
+        }
+        public void ActivarFotografiasComercial()
+        {
+            activoFotografiasComercial.Attributes["class"] = "active";
+        }
         public void ActivarHistoricoVentas()
         {
             activoHistoricoVentas.Attributes["class"] = "active"; 
@@ -101,6 +109,8 @@ namespace CodorniX.Vista
             activoAdmin.Visible = false;
             menuEmpresas.Visible = false;
             activoSucursales.Visible = false;
+            activoFotografiasTramite.Visible = false;
+            activoFotografiasComercial.Visible = false;
             activoEncargados.Visible = false;
             activoHistoricoVentas.Visible = false;
             menuSucursales.Visible = false;
@@ -113,6 +123,8 @@ namespace CodorniX.Vista
             if (empresa != null)
             {
                 activoSucursales.Visible = true;
+                activoFotografiasTramite.Visible = true;
+                activoFotografiasComercial.Visible = true;
                 activoHistoricoVentas.Visible = true;
                 empresaActual.Visible = true;
                 lblEmpresa.Text = empresa.StrNombreComercial;
@@ -121,6 +133,8 @@ namespace CodorniX.Vista
             {
                 menuSucursales.Visible = false;
                 activoSucursales.Visible = false;
+                activoFotografiasTramite.Visible = false;
+                activoFotografiasComercial.Visible = false;
                 activoHistoricoVentas.Visible = false;
                 empresaActual.Visible = false;
             }

@@ -29,6 +29,7 @@ namespace CodorniX
                 if (string.IsNullOrEmpty(conn))
                return "Data Source=den1.mssql7.gear.host;Initial Catalog=tinotrix;User ID=tinotrix;Password=Oe2CSy-uA1_1";
               //return " Data Source = AMON; User ID = sa; Password = 123; Initial Catalog = CodorniXBase; Connection Timeout = 0; Persist Security Info = True; Connect Timeout = 0";
+              //return " Data Source =.; User ID = sa; Password = 123; Initial Catalog = tinotrix; Connection Timeout = 0; Persist Security Info = True; Connect Timeout = 0";
 
                 return conn;
             }
