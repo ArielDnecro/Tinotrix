@@ -223,14 +223,14 @@
                             <asp:LinkButton ID="tabTelefonos" runat="server" Text="Teléfonos" OnClick="tabTelefonos_Click" /></li>
                         <li id="activeImpresoras" runat="server">
                             <asp:LinkButton ID="tabImpresoras" runat="server" Text="Impresoras" OnClick="tabImpresoras_Click" /></li>
-                        <li id="activeFotografias" runat="server">
+                       <%-- <li id="activeFotografias" runat="server">
                             <asp:LinkButton ID="tabFotografias" runat="server" Text="Foto tramite" OnClick="tabFotografias_Click" /></li>
                          <li id="activePapel" runat="server">
                             <asp:LinkButton ID="tabPapel" runat="server" Text="Papel tramite" OnClick="tabPapel_Click" /></li>
                         <li id="activeFotografiasC" runat="server">
                             <asp:LinkButton ID="tabFotografiasC" runat="server" Text="Foto comercial" OnClick="tabFotografiasC_Click"/></li>
                          <li id="activePapelC" runat="server">
-                            <asp:LinkButton ID="tabPapelC" runat="server" Text="Papel comercial" OnClick="tabPapelC_Click" /></li>
+                            <asp:LinkButton ID="tabPapelC" runat="server" Text="Papel comercial" OnClick="tabPapelC_Click" /></li>--%>
                         <li id="activeLicencias" runat="server">
                             <asp:LinkButton ID="tabLicencias" runat="server" Text="Licencias" OnClick="tabLicencias_Click" /></li>
                         <li id="activeServidor" runat="server">
@@ -504,7 +504,7 @@
                         </div>
                     </asp:PlaceHolder>
 
-                    <asp:PlaceHolder ID="panelFotos" Visible="false" runat="server">
+                 <%--   <asp:PlaceHolder ID="panelFotos" Visible="false" runat="server">
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="btn-group">
@@ -716,10 +716,7 @@
                              <div class="row">
                                 <div class="col-xs-12">
                                      <div class="btn-group">
-                                        <%--<asp:LinkButton ID="btnAgregarFotoPapel" runat="server" CssClass="btn btn-default btn-sm disabled" OnClick="btnAgregarFotoPapel_Click">
-                                            <span class="glyphicon glyphicon-plus"></span>
-                                            Nuevo
-                                        </asp:LinkButton>--%>
+                                       
                                         <asp:LinkButton ID="btnEditarFotoPapel" runat="server"  CssClass="btn btn-default btn-sm disabled" OnClick="btnEditarFotoPapel_Click">
                                             <span class="glyphicon glyphicon-edit"></span>
                                             Editar
@@ -788,7 +785,7 @@
                                         <EmptyDataTemplate>No hay fotografias para tramite en papel para tramite asignados a está sucursal</EmptyDataTemplate>
                                         <Columns>
                                             <asp:ButtonField CommandName="Select" HeaderStyle-CssClass="hide" FooterStyle-CssClass="hide" ItemStyle-CssClass="hide" />
-                                            <%--<asp:BoundField DataField="StrDescripcion" HeaderText="Descripcion" />--%>
+                                           
 
                                             <asp:TemplateField>
                                                     <HeaderTemplate>
@@ -810,10 +807,10 @@
                                                   </asp:LinkButton>
                                                 </HeaderTemplate>
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lbFotoRotadoPapel_icon" runat="server"><!--nombre id basado en los botones-->
+                                                    <asp:Label ID="lbFotoRotadoPapel_icon" runat="server">
                                                         <span class="glyphicon glyphicon glyphicon-ok"></span>
                                                     </asp:Label>
-                                                    <asp:Label ID="lbFotoNoRotadoPapel_icon" runat="server"><!--nombre id basado en los botones-->
+                                                    <asp:Label ID="lbFotoNoRotadoPapel_icon" runat="server">
                                                         <span class="glyphicon glyphicon glyphicon-remove"></span>
                                                     </asp:Label>
                                                 </ItemTemplate>
@@ -1102,7 +1099,7 @@
                                             <EmptyDataTemplate>No hay fotografias comercial en papel comercial asignados a está sucursal</EmptyDataTemplate>
                                             <Columns>
                                                 <asp:ButtonField CommandName="Select" HeaderStyle-CssClass="hide" FooterStyle-CssClass="hide" ItemStyle-CssClass="hide" />
-                                                <%--<asp:BoundField DataField="StrDescripcion" HeaderText="Descripcion" />--%>
+                                              
 
                                                 <asp:TemplateField>
                                                       <HeaderTemplate>
@@ -1124,10 +1121,10 @@
                                                       </asp:LinkButton>
                                                     </HeaderTemplate>
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lbFotoRotadoPapel_icon" runat="server"><!--nombre id basado en los botones-->
+                                                        <asp:Label ID="lbFotoRotadoPapel_icon" runat="server">
                                                             <span class="glyphicon glyphicon glyphicon-ok"></span>
                                                         </asp:Label>
-                                                        <asp:Label ID="lbFotoNoRotadoPapel_icon" runat="server"><!--nombre id basado en los botones-->
+                                                        <asp:Label ID="lbFotoNoRotadoPapel_icon" runat="server">
                                                             <span class="glyphicon glyphicon glyphicon-remove"></span>
                                                         </asp:Label>
                                                     </ItemTemplate>
@@ -1138,7 +1135,7 @@
                                     </div>
                                </div>
                          </div>
-                     </asp:PlaceHolder>
+                     </asp:PlaceHolder>--%>
 
                     <asp:PlaceHolder ID="panelLicencias" Visible="false" runat="server">
                         <div class="row" style="padding-top: 40px;">
@@ -1305,7 +1302,7 @@
 
 
     <%-- procedimientos de confirmaciones y acceso al lado servidor--%>
-    <div class="modal fade" id="VConfimacionEditarPapel"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <%--<div class="modal fade" id="VConfimacionEditarPapel"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -1381,29 +1378,22 @@
                                     </div>
                                 </div>
                             </div>
-     </div>
+     </div>--%>
 
-    <script  runat="server">
+    <%--<script  runat="server">
 
         void CancelarActualizacionFotos(Object sender, EventArgs e)
         {
-            //txtDescripcionFoto.Text = "te lo acepto.jpg";
-            //RFV_txtDescripcionFoto.Enabled = false;
             btnCancelarFoto_Click( sender,  e);
         }
         void OKActualizacionFotos(Object sender, EventArgs e) {
-            //RFV_txtDescripcionFoto.Enabled = true;
+           
             if (Page.IsValid)
             {
                 btnOKFoto_Click(sender, e);
             }
         }
-        //void ModoEdicionFotos(Object sender, EventArgs e) {
-
-
-        //    btnEditarFoto_Click(sender, e);
-        //    //  RFV_txtDescripcionFoto.Enabled = true;
-        //}
+        
         void ModoAgregacionFotos(Object sender, EventArgs e) {
             btnAgregarFoto_Click(sender, e);
         }
@@ -1421,7 +1411,7 @@
         void ModoAgregacionFotosC(Object sender, EventArgs e) {
             btnAgregarFotoC_Click(sender, e);
         }
-    </script>
+    </script>--%>
 
     <%--tooltip para mostrar campos con valores no permitidos--%>
     <style type="text/css">
@@ -1560,4 +1550,5 @@
              }
          }
       </script>
+
 </asp:Content>

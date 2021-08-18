@@ -578,17 +578,17 @@ namespace CodorniX.Vista
                 SucursalPapel Papel = new SucursalPapel();
                 //SucursalPapel Papel = (SucursalPapel)ViewState["Papel"];
 
-                //if (!string.IsNullOrWhiteSpace(UidPapel.Text))
-                //{
+                if (!string.IsNullOrWhiteSpace(UidPapel.Text))
+                {
                     VM.ObtenerPapel(new Guid(uidSucursal.Text));
                     Papel = VM.Papel;
                     Papel.UidPapel = new Guid(UidPapel.Text);
-                //}
-                //else
-                //{
+                }
+                else
+                {
 
-                //    Papel.UidPapel = empresa.UidSucursal;
-                //}
+                    Papel.UidPapel = empresa.UidSucursal;
+                }
 
 
                 Papel.StrDescripcion = txtNombrePapel.Text;
@@ -2062,11 +2062,10 @@ namespace CodorniX.Vista
             {
                 btnEditarPapel.AddCssClass("disabled");
                 HabilitarFormularioPapel();
-                //HabilitarFormularioFotoPapel();
                 LimpiarFormularioFotoPapel();
                 LimpiarFormularioPapel();
-                //btnOkPapel
-                //btnCancelarPapel.
+                btnOkPapel.Visible = true;
+                btnCancelarPapel.Visible = true;
                 List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
 
 

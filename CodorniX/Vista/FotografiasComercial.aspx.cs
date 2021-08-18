@@ -30,24 +30,24 @@ namespace CodorniX.Vista
         {
             get
             {
-                if (ViewState["FotoCRemoved"] == null)
-                    ViewState["FotoCRemoved"] = new List<SucursalFotoC>();
+                if (Session["FotoCRemoved"] == null)
+                    Session["FotoCRemoved"] = new List<SucursalFotoC>();
 
-                return (List<SucursalFotoC>)ViewState["FotoCRemoved"];
+                return (List<SucursalFotoC>)Session["FotoCRemoved"];
             }
         }
         private bool EditingMode
         {
             get
             {
-                if (ViewState["EditingMode"] == null)
+                if (Session["EditingMode"] == null)
                     return false;
 
-                return (bool)ViewState["EditingMode"];
+                return (bool)Session["EditingMode"];
             }
             set
             {
-                ViewState["EditingMode"] = value;
+                Session["EditingMode"] = value;
             }
         }
 
@@ -220,28 +220,28 @@ namespace CodorniX.Vista
             uidSucursal.Text = VM.Sucursal.UidSucursal.ToString();
 
             int pos = -1;
-            if (ViewState["SucursalPreviousRow"] != null)
+            if (Session["SucursalPreviousRow"] != null)
             {
-                pos = (int)ViewState["SucursalPreviousRow"];
+                pos = (int)Session["SucursalPreviousRow"];
                 GridViewRow previousRow = dgvSucursales.Rows[pos];
                 previousRow.RemoveCssClass("success");
             }
 
-            ViewState["SucursalPreviousRow"] = dgvSucursales.SelectedIndex;
+            Session["SucursalPreviousRow"] = dgvSucursales.SelectedIndex;
             dgvSucursales.SelectedRow.AddCssClass("success");
 
             #endregion Rellenar datos generales
 
             #region Rellenar Impresoras
             VM.ObtenerImpresoras();
-            ViewState["Impresoras"] = VM.Impresoras;
+            Session["Impresoras"] = VM.Impresoras;
             #endregion Rellenar Impresoras
 
             #region Rellenar fotos Comerciales
             // VM.ObtenerImpresoras();
             if (VM.Impresoras.Count >= 1)
             {
-                ddImpresoraFotoC.DataSource = ViewState["Impresoras"];
+                ddImpresoraFotoC.DataSource = Session["Impresoras"];
                 ddImpresoraFotoC.DataValueField = "UidImpresora";
                 ddImpresoraFotoC.DataTextField = "StrDescripcion";
                 ddImpresoraFotoC.DataBind();
@@ -259,7 +259,7 @@ namespace CodorniX.Vista
             //---------------------------------------------------------------------------------
             VM.ObtenerfotosC();
 
-            ViewState["FotosC"] = VM.FotosC;
+            Session["FotosC"] = VM.FotosC;
             FotoCRemoved.Clear();
             DatabindFotografiasC();
 
@@ -271,7 +271,7 @@ namespace CodorniX.Vista
             if (VM.PapelC.UidPapel != Guid.Empty)
             {
                 UidPapelC.Text = VM.PapelC.UidPapel.ToString();
-                //ViewState["Papel"] = VM.Papel;
+                //Session["Papel"] = VM.Papel;
             }
 
             txtNombrePapelC.Text = VM.PapelC.StrDescripcion.ToString();
@@ -296,13 +296,13 @@ namespace CodorniX.Vista
        
         private void SortSucursal(string SortExpression, SortDirection SortDirection, bool same = false)
         {
-            List<Sucursal> empresas = (List<Sucursal>)ViewState["Sucursales"];
+            List<Sucursal> empresas = (List<Sucursal>)Session["Sucursales"];
 
-            if (SortExpression == (string)ViewState["SortColumn"] && !same)
+            if (SortExpression == (string)Session["SortColumn"] && !same)
             {
                 // We are resorting the same column, so flip the sort direction
                 SortDirection =
-                    ((SortDirection)ViewState["SortColumnDirection"] == SortDirection.Ascending) ?
+                    ((SortDirection)Session["SortColumnDirection"] == SortDirection.Ascending) ?
                     SortDirection.Descending : SortDirection.Ascending;
             }
 
@@ -340,13 +340,13 @@ namespace CodorniX.Vista
                 }
             }
             dgvSucursales.DataSource = empresas;
-            ViewState["SortColumn"] = SortExpression;
-            ViewState["SortColumnDirection"] = SortDirection;
+            Session["SortColumn"] = SortExpression;
+            Session["SortColumnDirection"] = SortDirection;
         }
         protected void dgvSucursales_Sorting(object sender, GridViewSortEventArgs e)
         {
             // Invalidate Last position
-            ViewState["SucursalPreviousRow"] = null;
+            Session["SucursalPreviousRow"] = null;
             SortSucursal(e.SortExpression, e.SortDirection);
 
             dgvSucursales.DataBind();
@@ -354,16 +354,16 @@ namespace CodorniX.Vista
         protected void dgvSucursales_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             // Invalidate Last Position
-            ViewState["SucursalPreviousRow"] = null;
-            if (ViewState["SortColumn"] != null && ViewState["SortColumnDirection"] != null)
+            Session["SucursalPreviousRow"] = null;
+            if (Session["SortColumn"] != null && Session["SortColumnDirection"] != null)
             {
-                string SortExpression = (string)ViewState["SortColumn"];
-                SortDirection SortDirection = (SortDirection)ViewState["SortColumnDirection"];
+                string SortExpression = (string)Session["SortColumn"];
+                SortDirection SortDirection = (SortDirection)Session["SortColumnDirection"];
                 SortSucursal(SortExpression, SortDirection, true);
             }
             else
             {
-                dgvSucursales.DataSource = ViewState["Sucursales"];
+                dgvSucursales.DataSource = Session["Sucursales"];
             }
             dgvSucursales.PageIndex = e.NewPageIndex;
             dgvSucursales.DataBind();
@@ -434,7 +434,7 @@ namespace CodorniX.Vista
                 Response.Redirect("Sucursales.aspx");
             }
             #region Actualizar GridViews
-            ViewState["Sucursales"] = VM.Sucursales;
+            Session["Sucursales"] = VM.Sucursales;
             dgvSucursales.DataSource = VM.Sucursales;
             dgvSucursales.DataBind();
             dgvSucursales.Visible = true;
@@ -483,7 +483,7 @@ namespace CodorniX.Vista
             {
                 ActivarCamposDatos(true);
                
-                List<SucursalImpresora> impresoras = (List<SucursalImpresora>)ViewState["Impresoras"];
+                List<SucursalImpresora> impresoras = (List<SucursalImpresora>)Session["Impresoras"];
                 if (impresoras.Count >= 1)
                 {
                     btnAgregarFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");//05/10/17
@@ -559,19 +559,19 @@ namespace CodorniX.Vista
 
                 #region Papel comercial
                 SucursalPapelC PapelC = new SucursalPapelC();
-                //SucursalPapel Papel = (SucursalPapel)ViewState["Papel"];
+                //SucursalPapel Papel = (SucursalPapel)Session["Papel"];
 
-                //if (!string.IsNullOrWhiteSpace(UidPapelC.Text))
-                //{
+                if (!string.IsNullOrWhiteSpace(UidPapelC.Text))
+                {
                     VM.ObtenerPapelC(new Guid(uidSucursal.Text));
                     PapelC = VM.PapelC;
                     PapelC.UidPapel = new Guid(UidPapelC.Text);
-                //}
-                //else
-                //{
+                }
+                else
+                {
 
-                //    PapelC.UidPapel = empresa.UidSucursal;
-                //}
+                    PapelC.UidPapel = empresa.UidSucursal;
+                }
 
 
                 PapelC.StrDescripcion = txtNombrePapelC.Text;
@@ -601,7 +601,7 @@ namespace CodorniX.Vista
 
                 #region Impresoras
 
-                List<SucursalImpresora> impresoras = (List<SucursalImpresora>)ViewState["Impresoras"];
+                List<SucursalImpresora> impresoras = (List<SucursalImpresora>)Session["Impresoras"];
                 int NoImpresoras = impresoras.Count;
 
                 #endregion impresoras
@@ -612,7 +612,7 @@ namespace CodorniX.Vista
                 if (NoImpresoras >= 1)
                 {
                     //Begin Fotografias
-                    List<SucursalFotoC> fotosC = (List<SucursalFotoC>)ViewState["FotosC"];
+                    List<SucursalFotoC> fotosC = (List<SucursalFotoC>)Session["FotosC"];
                     VM.GuardarFotosC(fotosC, empresa.UidSucursal);
                     VM.EliminarFotosC(FotoCRemoved);
                     //End Fotografias
@@ -733,7 +733,7 @@ namespace CodorniX.Vista
                     if (VM.PapelC.UidPapel != Guid.Empty)
                     {
                         UidPapelC.Text = VM.PapelC.UidPapel.ToString();
-                        //ViewState["Papel"] = VM.Papel;
+                        //Session["Papel"] = VM.Papel;
                     }
 
                     txtNombrePapelC.Text = VM.PapelC.StrDescripcion.ToString();
@@ -746,7 +746,7 @@ namespace CodorniX.Vista
 
 
                     VM.ObtenerfotosC();
-                    ViewState["FotosC"] = VM.FotosC;
+                    Session["FotosC"] = VM.FotosC;
                     FotoCRemoved.Clear();
                     DatabindFotografiasC();
 
@@ -1002,9 +1002,9 @@ namespace CodorniX.Vista
                 //btnEliminarFoto.Disable();
 
                 int pos = -1;
-                if (ViewState["FotoCPreviousRow"] != null)
+                if (Session["FotoCPreviousRow"] != null)
                 {
-                    pos = (int)ViewState["FotoCPreviousRow"];
+                    pos = (int)Session["FotoCPreviousRow"];
                     GridViewRow previousRow = dgvFotosC.Rows[pos];
                     previousRow.RemoveCssClass("success");
                 }
@@ -1087,7 +1087,7 @@ namespace CodorniX.Vista
                 ToolAltoFotoDescC.Visible = false;
                 ToolAnchoFotoDescC.HRef = "";
                 ToolAnchoFotoDescC.Visible = false;
-                List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+                List<SucursalFotoC> fotos = (List<SucursalFotoC>)Session["FotosC"];
                 SucursalFotoC foto = null;
                 int pos = -1;
                 if (!string.IsNullOrWhiteSpace(uidFotoC.Text))
@@ -1125,7 +1125,7 @@ namespace CodorniX.Vista
                     fotos.Insert(pos, foto);
 
 
-                ViewState["FotosC"] = fotos;
+                Session["FotosC"] = fotos;
                 DatabindFotografiasC();
                 DataBindFotografiasPapelC();
                 LimpiarFormularioFotografiasC();
@@ -1178,7 +1178,7 @@ namespace CodorniX.Vista
                     //btnEliminarFoto.Enable();
                     btnEditarFotoC.Enable();
 
-                    List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+                    List<SucursalFotoC> fotos = (List<SucursalFotoC>)Session["FotosC"];
                     SucursalFotoC foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == dgvFotosC.SelectedDataKey.Value.ToString()).First();
 
                     uidFotoC.Text = foto.UidFoto.ToString();
@@ -1228,20 +1228,20 @@ namespace CodorniX.Vista
 
                 Guid uid = new Guid(uidFotoC.Text);
 
-                List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+                List<SucursalFotoC> fotos = (List<SucursalFotoC>)Session["FotosC"];
                 SucursalFotoC foto = fotos.Select(x => x).Where(x => x.UidFoto == uid).First();
                 fotos.Remove(foto);
                 FotoCRemoved.Add(foto);
 
                 LimpiarFormularioFotografiasC();
 
-                ViewState["FotosC"] = fotos;
+                Session["FotosC"] = fotos;
                 DatabindFotografiasC();
 
                 btnCancelarEliminarFotoC.Visible = false;
                 btnAceptarEliminarFotoC.Visible = false;
                 lblAceptarEliminarFotoC.Visible = false;
-                ViewState["FotoCPreviousRow"] = null;
+                Session["FotoCPreviousRow"] = null;
 
 
                 PnErrorFotoCSucursal.Visible = false;
@@ -1306,7 +1306,7 @@ namespace CodorniX.Vista
             try
             {
 
-                List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+                List<SucursalFotoC> fotos = (List<SucursalFotoC>)Session["FotosC"];
                 SucursalFotoC foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == dgvFotosC.SelectedDataKey.Value.ToString()).First();
 
                 uidFotoC.Text = foto.UidFoto.ToString();
@@ -1336,14 +1336,14 @@ namespace CodorniX.Vista
                 }
 
                 int pos = -1;
-                if (ViewState["FotoCPreviousRow"] != null)
+                if (Session["FotoCPreviousRow"] != null)
                 {
-                    pos = (int)ViewState["FotoCPreviousRow"];
+                    pos = (int)Session["FotoCPreviousRow"];
                     GridViewRow previousRow = dgvFotosC.Rows[pos];
                     previousRow.RemoveCssClass("success");
                 }
 
-                ViewState["FotoCPreviousRow"] = dgvFotosC.SelectedIndex;
+                Session["FotoCPreviousRow"] = dgvFotosC.SelectedIndex;
                 dgvFotosC.SelectedRow.AddCssClass("success");
 
 
@@ -1457,7 +1457,7 @@ namespace CodorniX.Vista
         }
         void DatabindFotografiasC()//
         {
-            List<SucursalFotoC> Fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+            List<SucursalFotoC> Fotos = (List<SucursalFotoC>)Session["FotosC"];
 
             dgvFotosC.DataSource = Fotos;
             dgvFotosC.DataBind();
@@ -1749,7 +1749,7 @@ namespace CodorniX.Vista
         void DataBindFotografiasPapelC()//
         {
 
-            List<SucursalFotoC> Fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+            List<SucursalFotoC> Fotos = (List<SucursalFotoC>)Session["FotosC"];
             List<SucursalFotoC> FotosX = new List<SucursalFotoC>();
             SucursalFotoC fotox = new SucursalFotoC(); fotox.StrDescripcion = "[Selecciona]"; FotosX.Add(fotox);
 
@@ -1827,7 +1827,7 @@ namespace CodorniX.Vista
             try
             {
                 DataBindFotografiasPapelC();
-                List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+                List<SucursalFotoC> fotos = (List<SucursalFotoC>)Session["FotosC"];
                 SucursalFotoC foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == dvgFotosPapelC.SelectedDataKey.Value.ToString()).First();
                 UidFotoPapelC.Text = foto.UidFoto.ToString();
                 txtFxFilaC.Text = foto.VchFila.ToString();
@@ -1849,14 +1849,14 @@ namespace CodorniX.Vista
                 }
 
                 int pos = -1;
-                if (ViewState["FotoCPreviousRow"] != null)
+                if (Session["FotoCPreviousRow"] != null)
                 {
-                    pos = (int)ViewState["FotoCPreviousRow"];
+                    pos = (int)Session["FotoCPreviousRow"];
                     GridViewRow previousRow = dvgFotosPapelC.Rows[pos];
                     previousRow.RemoveCssClass("success");
                 }
 
-                ViewState["FotoCPreviousRow"] = dvgFotosPapelC.SelectedIndex;
+                Session["FotoCPreviousRow"] = dvgFotosPapelC.SelectedIndex;
                 dvgFotosPapelC.SelectedRow.AddCssClass("success");
 
 
@@ -1911,7 +1911,7 @@ namespace CodorniX.Vista
                 ToolMInferiorC.Visible = false;
                 ToolMIzquierdoC.Visible = false;
                 ToolMSuperiorC.Visible = false;
-                List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+                List<SucursalFotoC> fotos = (List<SucursalFotoC>)Session["FotosC"];
                 SucursalFotoC foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == DdlFotoC.SelectedValue.ToString()).First();
                 //dgvFotos.SelectedDataKey.Value.ToString()).First();
                 double CEspdisponible = ConMMColumnaC(foto);
@@ -1966,7 +1966,7 @@ namespace CodorniX.Vista
                     ToolFxFilaC.Visible = false;
                 }
                 lblErrorFotoC.Visible = true;
-                //List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
+                //List<SucursalFoto> fotos = (List<SucursalFoto>)Session["Fotos"];
                 SucursalFotoC photo = null;
                 int pos = -1;
                 if (!string.IsNullOrWhiteSpace(UidFotoPapelC.Text))
@@ -1992,7 +1992,7 @@ namespace CodorniX.Vista
                 else
                     fotos.Insert(pos, photo);
 
-                ViewState["FotosC"] = fotos;
+                Session["FotosC"] = fotos;
                 DataBindFotografiasPapelC();
                 LimpiarFormularioFotoPapelC();
                 DesHabilitarFormularioFotoPapelC();
@@ -2043,12 +2043,11 @@ namespace CodorniX.Vista
             {
                 btnEditarPapelC.AddCssClass("disabled");
                 HabilitarFormularioPapelC();
-                //HabilitarFormularioFotoPapel();
                 LimpiarFormularioFotoPapelC();
                 LimpiarFormularioPapelC();
-                //btnOkPapel
-                //btnCancelarPapel.
-                List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+                btnOkPapelC.Visible = true;
+                btnCancelarPapelC.Visible = true;
+                List<SucursalFotoC> fotos = (List<SucursalFotoC>)Session["FotosC"];
 
 
                 foreach (SucursalFotoC f in fotos)
@@ -2057,7 +2056,7 @@ namespace CodorniX.Vista
                     f.VchFila = "";
                     f.BooRotarEnPapel = false;
                 }
-                ViewState["FotosC"] = fotos;
+                Session["FotosC"] = fotos;
                 DataBindFotografiasPapelC();
 
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#VConfimacionNuevoPapelC", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#VConfimacionNuevoPapelC').hide();", true);
@@ -2165,7 +2164,7 @@ namespace CodorniX.Vista
         {
             try
             {
-                List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+                List<SucursalFotoC> fotos = (List<SucursalFotoC>)Session["FotosC"];
                 if (e.SortExpression == lbOrdenFPPorC.Text)
                 {
                     if (lbOrdenFPC.Text == Orden.ASC.ToString())
@@ -2185,7 +2184,7 @@ namespace CodorniX.Vista
                 Orden Ordenn = (Orden)Enum.Parse(typeof(Orden), lbOrdenFPC.Text, true);
                 //var txt = (HtmlInputText)dvgFotosPapel.FindControl("txt");
                 List<SucursalFotoC> fotosOrdenNueva = VM.OrdenarListaFPC(e.SortExpression, Ordenn, fotos);
-                ViewState["FotosC"] = fotosOrdenNueva;
+                Session["FotosC"] = fotosOrdenNueva;
                 DataBindFotografiasPapelC();
 
                 PnErrorFotoPapelCSucursal.Visible = false;

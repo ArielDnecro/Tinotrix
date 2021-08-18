@@ -61,26 +61,26 @@ namespace CodorniX.Vista
             }
         }
 
-        private List<SucursalFoto> FotoRemoved
-        {
-            get
-            {
-                if (ViewState["FotoRemoved"] == null)
-                    ViewState["FotoRemoved"] = new List<SucursalFoto>();
+        //private List<SucursalFoto> FotoRemoved
+        //{
+        //    get
+        //    {
+        //        if (ViewState["FotoRemoved"] == null)
+        //            ViewState["FotoRemoved"] = new List<SucursalFoto>();
 
-                return (List<SucursalFoto>)ViewState["FotoRemoved"];
-            }
-        }
-        private List<SucursalFotoC> FotoCRemoved
-        {
-            get
-            {
-                if (ViewState["FotoCRemoved"] == null)
-                    ViewState["FotoCRemoved"] = new List<SucursalFotoC>();
+        //        return (List<SucursalFoto>)ViewState["FotoRemoved"];
+        //    }
+        //}
+        //private List<SucursalFotoC> FotoCRemoved
+        //{
+        //    get
+        //    {
+        //        if (ViewState["FotoCRemoved"] == null)
+        //            ViewState["FotoCRemoved"] = new List<SucursalFotoC>();
 
-                return (List<SucursalFotoC>)ViewState["FotoCRemoved"];
-            }
-        }
+        //        return (List<SucursalFotoC>)ViewState["FotoCRemoved"];
+        //    }
+        //}
         private List<SucursalLicencia> LicenciaRemoved
         {
             get
@@ -152,7 +152,7 @@ namespace CodorniX.Vista
 
                 dgvImpresoras.Enabled = true;
 
-                dgvFotos.Enabled = true;
+                //dgvFotos.Enabled = true;
 
                 dgvLicencias.Enabled = true;
 
@@ -187,7 +187,7 @@ namespace CodorniX.Vista
 
                 dgvImpresoras.Enabled = false;
 
-                dgvFotos.Enabled = false;
+                //dgvFotos.Enabled = false;
 
                 dgvLicencias.Enabled = true;
                 EditingMode = false;
@@ -321,13 +321,13 @@ namespace CodorniX.Vista
                 btnCancelarEliminarImpresora.Visible = false;
                 lblAceptarEliminarImpresora.Visible = false;
 
-                btnAceptarEliminarFoto.Visible = false;
-                btnCancelarEliminarFoto.Visible = false;
-                lblAceptarEliminarFoto.Visible = false;
+                //btnAceptarEliminarFoto.Visible = false;
+                //btnCancelarEliminarFoto.Visible = false;
+                //lblAceptarEliminarFoto.Visible = false;
 
-                btnAceptarEliminarFotoC.Visible = false;
-                btnCancelarEliminarFotoC.Visible = false;
-                lblAceptarEliminarFotoC.Visible = false;
+                //btnAceptarEliminarFotoC.Visible = false;
+                //btnCancelarEliminarFotoC.Visible = false;
+                //lblAceptarEliminarFotoC.Visible = false;
                 
                 #endregion Botones de aceptar eliminar 
 
@@ -362,17 +362,17 @@ namespace CodorniX.Vista
                 dgvImpresoras.DataSource = null;
                 dgvImpresoras.DataBind();
 
-                dgvFotos.DataSource = null;
-                dgvFotos.DataBind();
+                //dgvFotos.DataSource = null;
+                //dgvFotos.DataBind();
 
-                dvgFotosPapel.DataSource = null;
-                dvgFotosPapel.DataBind();
+                //dvgFotosPapel.DataSource = null;
+                //dvgFotosPapel.DataBind();
 
-                dgvFotosC.DataSource = null;
-                dgvFotosC.DataBind();
+                //dgvFotosC.DataSource = null;
+                //dgvFotosC.DataBind();
 
-                dvgFotosPapelC.DataSource = null;
-                dvgFotosPapelC.DataBind();
+                //dvgFotosPapelC.DataSource = null;
+                //dvgFotosPapelC.DataBind();
 
                 dgvLicencias.DataSource = null;
                 dgvLicencias.DataBind();
@@ -381,17 +381,17 @@ namespace CodorniX.Vista
 
                 #region Obtener listas de DropDownList (dd)
                 //-----------------------------------------------------------------------------
-                VM.ObtenerMedidas();
+                //VM.ObtenerMedidas();
 
-                ddMedidaFoto.DataSource = VM.Medidas;
-                ddMedidaFoto.DataValueField = "UidMedida";
-                ddMedidaFoto.DataTextField = "VchMedida";
-                ddMedidaFoto.DataBind();
+                //ddMedidaFoto.DataSource = VM.Medidas;
+                //ddMedidaFoto.DataValueField = "UidMedida";
+                //ddMedidaFoto.DataTextField = "VchMedida";
+                //ddMedidaFoto.DataBind();
 
-                ddMedidaFotoC.DataSource = VM.Medidas;
-                ddMedidaFotoC.DataValueField = "UidMedida";
-                ddMedidaFotoC.DataTextField = "VchMedida";
-                ddMedidaFotoC.DataBind();
+                //ddMedidaFotoC.DataSource = VM.Medidas;
+                //ddMedidaFotoC.DataValueField = "UidMedida";
+                //ddMedidaFotoC.DataTextField = "VchMedida";
+                //ddMedidaFotoC.DataBind();
                 //-----------------------------------------------------------------------------
 
                 VM.ObtenerPaises();
@@ -423,14 +423,14 @@ namespace CodorniX.Vista
                 ddActivo.DataTextField = "StrStatus";
                 ddActivo.DataBind();
 
-                ddActivoFoto.DataSource = VM.ListaStatus;
-                ddActivoFoto.DataValueField = "UidStatus";
-                ddActivoFoto.DataTextField = "StrStatus";
-                ddActivoFoto.DataBind();
-                ddActivoFotoC.DataSource = VM.ListaStatus;
-                ddActivoFotoC.DataValueField = "UidStatus";
-                ddActivoFotoC.DataTextField = "StrStatus";
-                ddActivoFotoC.DataBind();
+                //ddActivoFoto.DataSource = VM.ListaStatus;
+                //ddActivoFoto.DataValueField = "UidStatus";
+                //ddActivoFoto.DataTextField = "StrStatus";
+                //ddActivoFoto.DataBind();
+                //ddActivoFotoC.DataSource = VM.ListaStatus;
+                //ddActivoFotoC.DataValueField = "UidStatus";
+                //ddActivoFotoC.DataTextField = "StrStatus";
+                //ddActivoFotoC.DataBind();
 
                 ddActivoSucursal.DataSource = VM.ListaStatus;
                 ddActivoSucursal.DataValueField = "UidStatus";
@@ -591,118 +591,118 @@ namespace CodorniX.Vista
             dgvImpresoras.DataBind();
             #endregion Rellenar Impresoras
 
-            #region Rellenar fotos
-            VM.ObtenerImpresoras();
-            if (VM.Impresoras.Count >= 1)
-            {
-                ddImpresoraFoto.DataSource = ViewState["Impresoras"];
-                ddImpresoraFoto.DataValueField = "UidImpresora";
-                ddImpresoraFoto.DataTextField = "StrDescripcion";
-                ddImpresoraFoto.DataBind();
-                ddImpresoraFoto.SelectedIndex = 0;
-            }
-            else
-            {
-                ddImpresoraFoto.DataSource = null;
-                ddImpresoraFoto.Items.Clear();
-                ddImpresoraFoto.DataBind();
-            }
-            //---------------------------------------------------------------------------------
-            //btnAgregarFoto.AddCssClass("disabled");
-            //btnAgregarFoto.Enabled = false;
-            //txtDescripcionFoto.Enabled = false;
-            //txtPrecioFoto.Enabled = false;
-            //txtAltoFoto.Enabled = false;
-            //txtAnchoFoto.Enabled = false;
-            DesHabilitarFormularioFotografias();
-            //---------------------------------------------------------------------------------
-
-            //ddActivoFoto.SelectedIndex = 0;
-            //---------------------------------------------------------------------------------
-            VM.Obtenerfotos();
-
-            ViewState["Fotos"] = VM.Fotos;
-            FotoRemoved.Clear();
-            //dgvFotos.DataSource = ViewState["Fotos"];
-            //dgvFotos.DataBind();
-            DatabindFotografias();
-
-            #endregion Rellenar fotos
-
-            #region Rellenar Papel
-            VM.ObtenerPapel(VM.Sucursal.UidSucursal);
-            
-            if (VM.Papel.UidPapel != Guid.Empty) {
-                UidPapel.Text = VM.Papel.UidPapel.ToString();
-                //ViewState["Papel"] = VM.Papel;
-            }
-
-            txtNombrePapel.Text = VM.Papel.StrDescripcion.ToString();
-            txtAltoPapel.Text = VM.Papel.VchAlto.ToString();
-            txtAnchoPapel.Text = VM.Papel.VchAncho.ToString();
-            txtMargenSuperior.Text = VM.Papel.VchSuperior.ToString();
-            txtMargenInferior.Text = VM.Papel.VchInferior.ToString();
-            txtMargenDerecho.Text = VM.Papel.VchDerecho.ToString();
-            txtMargenIzquierdo.Text = VM.Papel.VchIzquierdo.ToString();
-            DataBindFotografiasPapel();
-            DesHabilitarFormularioFotoPapel();
-            DesHabilitarFormularioPapel();
-            LimpiarFormularioFotoPapel();
-            btnOKFotoPapel.Visible = false;
-            btnCancelarFotoPapel.Visible = false;
-            #endregion Rellenar Papel
-
-            #region Rellenar fotos Comerciales
+           // #region Rellenar fotos
            // VM.ObtenerImpresoras();
-            if (VM.Impresoras.Count >= 1)
-            {
-                ddImpresoraFotoC.DataSource = ViewState["Impresoras"];
-                ddImpresoraFotoC.DataValueField = "UidImpresora";
-                ddImpresoraFotoC.DataTextField = "StrDescripcion";
-                ddImpresoraFotoC.DataBind();
-                ddImpresoraFotoC.SelectedIndex = 0;
-            }
-            else
-            {
-                ddImpresoraFotoC.DataSource = null;
-                ddImpresoraFotoC.Items.Clear();
-                ddImpresoraFotoC.DataBind();
-            }
-            //---------------------------------------------------------------------------------
+           // if (VM.Impresoras.Count >= 1)
+           // {
+           //     ddImpresoraFoto.DataSource = ViewState["Impresoras"];
+           //     ddImpresoraFoto.DataValueField = "UidImpresora";
+           //     ddImpresoraFoto.DataTextField = "StrDescripcion";
+           //     ddImpresoraFoto.DataBind();
+           //     ddImpresoraFoto.SelectedIndex = 0;
+           // }
+           // else
+           // {
+           //     ddImpresoraFoto.DataSource = null;
+           //     ddImpresoraFoto.Items.Clear();
+           //     ddImpresoraFoto.DataBind();
+           // }
+           // //---------------------------------------------------------------------------------
+           // //btnAgregarFoto.AddCssClass("disabled");
+           // //btnAgregarFoto.Enabled = false;
+           // //txtDescripcionFoto.Enabled = false;
+           // //txtPrecioFoto.Enabled = false;
+           // //txtAltoFoto.Enabled = false;
+           // //txtAnchoFoto.Enabled = false;
+           // DesHabilitarFormularioFotografias();
+           // //---------------------------------------------------------------------------------
+
+           // //ddActivoFoto.SelectedIndex = 0;
+           // //---------------------------------------------------------------------------------
+           // VM.Obtenerfotos();
+
+           // ViewState["Fotos"] = VM.Fotos;
+           // FotoRemoved.Clear();
+           // //dgvFotos.DataSource = ViewState["Fotos"];
+           // //dgvFotos.DataBind();
+           // DatabindFotografias();
+
+           // #endregion Rellenar fotos
+
+           // #region Rellenar Papel
+           // VM.ObtenerPapel(VM.Sucursal.UidSucursal);
             
-            DesHabilitarFormularioFotografiasC();
-            //---------------------------------------------------------------------------------
-            VM.ObtenerfotosC();
+           // if (VM.Papel.UidPapel != Guid.Empty) {
+           //     UidPapel.Text = VM.Papel.UidPapel.ToString();
+           //     //ViewState["Papel"] = VM.Papel;
+           // }
 
-            ViewState["FotosC"] = VM.FotosC;
-            FotoCRemoved.Clear();
-            DatabindFotografiasC();
+           // txtNombrePapel.Text = VM.Papel.StrDescripcion.ToString();
+           // txtAltoPapel.Text = VM.Papel.VchAlto.ToString();
+           // txtAnchoPapel.Text = VM.Papel.VchAncho.ToString();
+           // txtMargenSuperior.Text = VM.Papel.VchSuperior.ToString();
+           // txtMargenInferior.Text = VM.Papel.VchInferior.ToString();
+           // txtMargenDerecho.Text = VM.Papel.VchDerecho.ToString();
+           // txtMargenIzquierdo.Text = VM.Papel.VchIzquierdo.ToString();
+           // DataBindFotografiasPapel();
+           // DesHabilitarFormularioFotoPapel();
+           // DesHabilitarFormularioPapel();
+           // LimpiarFormularioFotoPapel();
+           // btnOKFotoPapel.Visible = false;
+           // btnCancelarFotoPapel.Visible = false;
+           // #endregion Rellenar Papel
 
-            #endregion Rellenar fotos comerciales
+           // #region Rellenar fotos Comerciales
+           //// VM.ObtenerImpresoras();
+           // if (VM.Impresoras.Count >= 1)
+           // {
+           //     ddImpresoraFotoC.DataSource = ViewState["Impresoras"];
+           //     ddImpresoraFotoC.DataValueField = "UidImpresora";
+           //     ddImpresoraFotoC.DataTextField = "StrDescripcion";
+           //     ddImpresoraFotoC.DataBind();
+           //     ddImpresoraFotoC.SelectedIndex = 0;
+           // }
+           // else
+           // {
+           //     ddImpresoraFotoC.DataSource = null;
+           //     ddImpresoraFotoC.Items.Clear();
+           //     ddImpresoraFotoC.DataBind();
+           // }
+           // //---------------------------------------------------------------------------------
+            
+           // DesHabilitarFormularioFotografiasC();
+           // //---------------------------------------------------------------------------------
+           // VM.ObtenerfotosC();
 
-            #region Rellenar Papel comerciales
-            VM.ObtenerPapelC(VM.Sucursal.UidSucursal);
+           // ViewState["FotosC"] = VM.FotosC;
+           // FotoCRemoved.Clear();
+           // DatabindFotografiasC();
 
-            if (VM.PapelC.UidPapel != Guid.Empty)
-            {
-                UidPapelC.Text = VM.PapelC.UidPapel.ToString();
-                //ViewState["Papel"] = VM.Papel;
-            }
+           // #endregion Rellenar fotos comerciales
 
-            txtNombrePapelC.Text = VM.PapelC.StrDescripcion.ToString();
-            txtAltoPapelC.Text = VM.PapelC.VchAlto.ToString();
-            txtAnchoPapelC.Text = VM.PapelC.VchAncho.ToString();
-            txtMargenSuperiorC.Text = VM.PapelC.VchSuperior.ToString();
-            txtMargenInferiorC.Text = VM.PapelC.VchInferior.ToString();
-            txtMargenDerechoC.Text = VM.PapelC.VchDerecho.ToString();
-            txtMargenIzquierdoC.Text = VM.PapelC.VchIzquierdo.ToString();
-            DataBindFotografiasPapelC();
-            DesHabilitarFormularioFotoPapelC();
-            DesHabilitarFormularioPapelC();
-            LimpiarFormularioFotoPapelC();
-            btnOKFotoPapelC.Visible = false;
-            btnCancelarFotoPapelC.Visible = false;
-            #endregion Rellenar Papel comerciales
+           // #region Rellenar Papel comerciales
+           // VM.ObtenerPapelC(VM.Sucursal.UidSucursal);
+
+           // if (VM.PapelC.UidPapel != Guid.Empty)
+           // {
+           //     UidPapelC.Text = VM.PapelC.UidPapel.ToString();
+           //     //ViewState["Papel"] = VM.Papel;
+           // }
+
+           // txtNombrePapelC.Text = VM.PapelC.StrDescripcion.ToString();
+           // txtAltoPapelC.Text = VM.PapelC.VchAlto.ToString();
+           // txtAnchoPapelC.Text = VM.PapelC.VchAncho.ToString();
+           // txtMargenSuperiorC.Text = VM.PapelC.VchSuperior.ToString();
+           // txtMargenInferiorC.Text = VM.PapelC.VchInferior.ToString();
+           // txtMargenDerechoC.Text = VM.PapelC.VchDerecho.ToString();
+           // txtMargenIzquierdoC.Text = VM.PapelC.VchIzquierdo.ToString();
+           // DataBindFotografiasPapelC();
+           // DesHabilitarFormularioFotoPapelC();
+           // DesHabilitarFormularioPapelC();
+           // LimpiarFormularioFotoPapelC();
+           // btnOKFotoPapelC.Visible = false;
+           // btnCancelarFotoPapelC.Visible = false;
+           // #endregion Rellenar Papel comerciales
 
             #region Rellenar Licencias
             // dgvLicencias.Columns[6].Visible = false; //17 de agosto del 18
@@ -897,8 +897,8 @@ namespace CodorniX.Vista
             dgvImpresoras.DataSource = null;
             dgvImpresoras.DataBind();
 
-            dgvFotos.DataSource = null;
-            dgvFotos.DataBind();
+            //dgvFotos.DataSource = null;
+            //dgvFotos.DataBind();
             #endregion Actualizar GridViews
 
         }
@@ -958,15 +958,15 @@ namespace CodorniX.Vista
             dgvImpresoras.DataSource = ViewState["Impresoras"];
             dgvImpresoras.DataBind();
 
-            ViewState["Fotos"] = new List<SucursalFoto>();
-            FotoRemoved.Clear();
+            //ViewState["Fotos"] = new List<SucursalFoto>();
+            //FotoRemoved.Clear();
             //dgvFotos.DataSource = ViewState["Fotos"];
             //dgvFotos.DataBind();
-            DatabindFotografias();
+            //DatabindFotografias();
 
-            ViewState["FotosC"] = new List<SucursalFotoC>();
-            FotoCRemoved.Clear();
-            DatabindFotografiasC();
+            //ViewState["FotosC"] = new List<SucursalFotoC>();
+            //FotoCRemoved.Clear();
+            //DatabindFotografiasC();
 
             Session["Licencias"] = new List<SucursalLicencia>();
             LicenciaRemoved.Clear();
@@ -986,11 +986,11 @@ namespace CodorniX.Vista
             btnAgregarImpresora.Enabled = true;
 
 
-            btnAgregarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
-            btnAgregarFoto.Enabled = true;
+            //btnAgregarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
+            //btnAgregarFoto.Enabled = true;
 
-            btnAgregarFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
-            btnAgregarFotoC.Enabled = true;
+            //btnAgregarFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
+            //btnAgregarFotoC.Enabled = true;
 
             btnGenerarLicencia.RemoveCssClass("disabled").RemoveCssClass("hidden");
             btnGenerarLicencia.Enabled = true;
@@ -999,22 +999,22 @@ namespace CodorniX.Vista
             txtCantMaqLicencia.Enabled = true;
             txtCantMaqLicencia.RemoveCssClass("disabled");
 
-            btnOkPapel.Visible = true;
-            btnCancelarPapel.Visible = true;
-            btnEditarPapel.AddCssClass("disabled");
-            //btnNuevoPapel.AddCssClass("disabled");
-            LimpiarFormularioPapel();
-            LimpiarFormularioFotoPapel();
-            HabilitarFormularioPapel();
-            DataBindFotografiasPapel();
+            //btnOkPapel.Visible = true;
+            //btnCancelarPapel.Visible = true;
+            //btnEditarPapel.AddCssClass("disabled");
+            ////btnNuevoPapel.AddCssClass("disabled");
+            //LimpiarFormularioPapel();
+            //LimpiarFormularioFotoPapel();
+            //HabilitarFormularioPapel();
+            //DataBindFotografiasPapel();
 
-            btnOkPapelC.Visible = true;
-            btnCancelarPapelC.Visible = true;
-            btnEditarPapelC.AddCssClass("disabled");
-            LimpiarFormularioPapelC();
-            LimpiarFormularioFotoPapelC();
-            HabilitarFormularioPapelC();
-            DataBindFotografiasPapelC();
+            //btnOkPapelC.Visible = true;
+            //btnCancelarPapelC.Visible = true;
+            //btnEditarPapelC.AddCssClass("disabled");
+            //LimpiarFormularioPapelC();
+            //LimpiarFormularioFotoPapelC();
+            //HabilitarFormularioPapelC();
+            //DataBindFotografiasPapelC();
 
             txtServidorIp.RemoveCssClass("disabled");
             txtPuerto.RemoveCssClass("disabled");
@@ -1055,20 +1055,20 @@ namespace CodorniX.Vista
             btnAgregarDireccion.RemoveCssClass("disabled").RemoveCssClass("hidden");
             btnAgregarDireccion.Enabled = true;
 
-            List<SucursalImpresora> impresoras = (List<SucursalImpresora>)ViewState["Impresoras"];
-            if (impresoras.Count >= 1)
-            {
-                btnAgregarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");//05/10/17
-                btnAgregarFoto.Enabled = true;
+            //List<SucursalImpresora> impresoras = (List<SucursalImpresora>)ViewState["Impresoras"];
+            //if (impresoras.Count >= 1)
+            //{
+            //    btnAgregarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");//05/10/17
+            //    btnAgregarFoto.Enabled = true;
 
-                btnAgregarFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");//05/10/17
-                btnAgregarFotoC.Enabled = true;
-            }
-            else
-            {
-                btnAgregarFoto.AddCssClass("disabled");
-                btnAgregarFotoC.AddCssClass("disabled");
-            }
+            //    btnAgregarFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");//05/10/17
+            //    btnAgregarFotoC.Enabled = true;
+            //}
+            //else
+            //{
+            //    btnAgregarFoto.AddCssClass("disabled");
+            //    btnAgregarFotoC.AddCssClass("disabled");
+            //}
             btnAgregarImpresora.RemoveCssClass("disabled").RemoveCssClass("hidden");
             btnAgregarImpresora.Enabled = true;
 
@@ -1096,50 +1096,50 @@ namespace CodorniX.Vista
                 btnEditarImpresora.Enable();
                 btnEliminarImpresora.Enable();
             }
-            if (uidFoto.Text.Length > 0)
-            {
-                btnEditarFoto.Enable();
-                //btnEliminarFoto.Enable();
-            }
-            //if (UidPapel.Text.Length > 0)
+            //if (uidFoto.Text.Length > 0)
             //{
-                btnEditarPapel.Enable();
+            //    btnEditarFoto.Enable();
+            //    //btnEliminarFoto.Enable();
+            //}
+            ////if (UidPapel.Text.Length > 0)
+            ////{
+            //    btnEditarPapel.Enable();
             
-                        //}
-            //btnOkPapel.Visible = true;
-            //btnCancelarPapel.Visible = true;
-            //btnEditarPapel.AddCssClass("disabled");
-            //btnNuevoPapel.RemoveCssClass("disabled");
-            DataBindFotografiasPapel();
-            if (Guid.Empty != new Guid(DdlFoto.SelectedValue.ToString()) && !String.IsNullOrWhiteSpace(DdlFoto.SelectedValue.ToString()))
-            { }
-            else { UidFotoPapel.Text = ""; }
-            if ( !String.IsNullOrWhiteSpace(UidFotoPapel.Text) && Guid.Empty!=new Guid(UidFotoPapel.Text) )
-            {
-                btnEditarFotoPapel.RemoveCssClass("disabled").RemoveCssClass("hidden") ;
-                btnEditarFotoPapel.Enabled = true; btnEditarFotoPapel.Visible = true;
-                btnOKFotoPapel.Visible = false;
-                btnCancelarFotoPapel.Visible = false;
-            }
+            //            //}
+            ////btnOkPapel.Visible = true;
+            ////btnCancelarPapel.Visible = true;
+            ////btnEditarPapel.AddCssClass("disabled");
+            ////btnNuevoPapel.RemoveCssClass("disabled");
+            //DataBindFotografiasPapel();
+            //if (Guid.Empty != new Guid(DdlFoto.SelectedValue.ToString()) && !String.IsNullOrWhiteSpace(DdlFoto.SelectedValue.ToString()))
+            //{ }
+            //else { UidFotoPapel.Text = ""; }
+            //if ( !String.IsNullOrWhiteSpace(UidFotoPapel.Text) && Guid.Empty!=new Guid(UidFotoPapel.Text) )
+            //{
+            //    btnEditarFotoPapel.RemoveCssClass("disabled").RemoveCssClass("hidden") ;
+            //    btnEditarFotoPapel.Enabled = true; btnEditarFotoPapel.Visible = true;
+            //    btnOKFotoPapel.Visible = false;
+            //    btnCancelarFotoPapel.Visible = false;
+            //}
 
 
-                if (uidFotoC.Text.Length > 0)
-                {
-                    btnEditarFotoC.Enable();
-                }
-                btnEditarPapelC.Enable();
+            //    if (uidFotoC.Text.Length > 0)
+            //    {
+            //        btnEditarFotoC.Enable();
+            //    }
+            //    btnEditarPapelC.Enable();
                 
-                DataBindFotografiasPapelC();
-                if (Guid.Empty != new Guid(DdlFotoC.SelectedValue.ToString()) && !String.IsNullOrWhiteSpace(DdlFotoC.SelectedValue.ToString()))
-                { }
-                else { UidFotoPapelC.Text = ""; }
-                if (!String.IsNullOrWhiteSpace(UidFotoPapelC.Text) && Guid.Empty != new Guid(UidFotoPapelC.Text))
-                {
-                    btnEditarFotoPapelC.RemoveCssClass("disabled").RemoveCssClass("hidden");
-                    btnEditarFotoPapelC.Enabled = true; btnEditarFotoPapelC.Visible = true;
-                    btnOKFotoPapelC.Visible = false;
-                    btnCancelarFotoPapelC.Visible = false;
-                }
+            //    DataBindFotografiasPapelC();
+            //    if (Guid.Empty != new Guid(DdlFotoC.SelectedValue.ToString()) && !String.IsNullOrWhiteSpace(DdlFotoC.SelectedValue.ToString()))
+            //    { }
+            //    else { UidFotoPapelC.Text = ""; }
+            //    if (!String.IsNullOrWhiteSpace(UidFotoPapelC.Text) && Guid.Empty != new Guid(UidFotoPapelC.Text))
+            //    {
+            //        btnEditarFotoPapelC.RemoveCssClass("disabled").RemoveCssClass("hidden");
+            //        btnEditarFotoPapelC.Enabled = true; btnEditarFotoPapelC.Visible = true;
+            //        btnOKFotoPapelC.Visible = false;
+            //        btnCancelarFotoPapelC.Visible = false;
+            //    }
 
 
                 // HabilitarFormularioPapel();
@@ -1218,81 +1218,81 @@ namespace CodorniX.Vista
                 empresa.RutaImagen = ViewState["rutaimg"].ToString();
 
             VM.GuardarSucursal(empresa);
-                if (ValidarCamposPapel() == false)
-                {
-                    return;
-                }
-                #region Papel
-                SucursalPapel Papel = new SucursalPapel();
-            //SucursalPapel Papel = (SucursalPapel)ViewState["Papel"];
+            //    if (ValidarCamposPapel() == false)
+            //    {
+            //        return;
+            //    }
+            //    #region Papel
+            //    SucursalPapel Papel = new SucursalPapel();
+            ////SucursalPapel Papel = (SucursalPapel)ViewState["Papel"];
 
-            if (!string.IsNullOrWhiteSpace(UidPapel.Text))
-            {
-                VM.ObtenerPapel(new Guid(uidSucursal.Text));
-                Papel = VM.Papel;
-                Papel.UidPapel = new Guid(UidPapel.Text);
-            }
-            else
-            {
+            //if (!string.IsNullOrWhiteSpace(UidPapel.Text))
+            //{
+            //    VM.ObtenerPapel(new Guid(uidSucursal.Text));
+            //    Papel = VM.Papel;
+            //    Papel.UidPapel = new Guid(UidPapel.Text);
+            //}
+            //else
+            //{
 
-                Papel.UidPapel = empresa.UidSucursal;
-            }
+            //    Papel.UidPapel = empresa.UidSucursal;
+            //}
 
             
-            Papel.StrDescripcion = txtNombrePapel.Text;
-            Papel.VchAlto = txtAltoPapel.Text;
-            Papel.VchAncho = txtAnchoPapel.Text;
-            Papel.VchSuperior = txtMargenSuperior.Text;
-            Papel.VchInferior = txtMargenInferior.Text;
-            Papel.VchDerecho = txtMargenDerecho.Text;
-            Papel.VchIzquierdo = txtMargenIzquierdo.Text;
-            VM.GuardarPapel(Papel);
+            //Papel.StrDescripcion = txtNombrePapel.Text;
+            //Papel.VchAlto = txtAltoPapel.Text;
+            //Papel.VchAncho = txtAnchoPapel.Text;
+            //Papel.VchSuperior = txtMargenSuperior.Text;
+            //Papel.VchInferior = txtMargenInferior.Text;
+            //Papel.VchDerecho = txtMargenDerecho.Text;
+            //Papel.VchIzquierdo = txtMargenIzquierdo.Text;
+            //VM.GuardarPapel(Papel);
 
-            LimpiarFormularioPapel();
-            DesHabilitarFormularioPapel();
-            LimpiarFormularioFotoPapel();
-            DesHabilitarFormularioFotoPapel();
-            dvgFotosPapel.DataSource = null;
-            dvgFotosPapel.DataBind();
-                #endregion Papel
+            //LimpiarFormularioPapel();
+            //DesHabilitarFormularioPapel();
+            //LimpiarFormularioFotoPapel();
+            //DesHabilitarFormularioFotoPapel();
+            //dvgFotosPapel.DataSource = null;
+            //dvgFotosPapel.DataBind();
+            //    #endregion Papel
 
-                if (ValidarCamposPapelC() == false)
-                {
-                    return;
-                }
-                #region Papel comercial
-                SucursalPapelC PapelC = new SucursalPapelC();
-                //SucursalPapel Papel = (SucursalPapel)ViewState["Papel"];
+            //    if (ValidarCamposPapelC() == false)
+            //    {
+            //        return;
+            //    }
+            //    #region Papel comercial
+            //    SucursalPapelC PapelC = new SucursalPapelC();
+            //    //SucursalPapel Papel = (SucursalPapel)ViewState["Papel"];
 
-                if (!string.IsNullOrWhiteSpace(UidPapelC.Text))
-                {
-                    VM.ObtenerPapelC(new Guid(uidSucursal.Text));
-                    PapelC = VM.PapelC;
-                    PapelC.UidPapel = new Guid(UidPapelC.Text);
-                }
-                else
-                {
+            //    if (!string.IsNullOrWhiteSpace(UidPapelC.Text))
+            //    {
+            //        VM.ObtenerPapelC(new Guid(uidSucursal.Text));
+            //        PapelC = VM.PapelC;
+            //        PapelC.UidPapel = new Guid(UidPapelC.Text);
+            //    }
+            //    else
+            //    {
 
-                    PapelC.UidPapel = empresa.UidSucursal;
-                }
+            //        PapelC.UidPapel = empresa.UidSucursal;
+            //    }
 
 
-                PapelC.StrDescripcion = txtNombrePapelC.Text;
-                PapelC.VchAlto = txtAltoPapelC.Text;
-                PapelC.VchAncho = txtAnchoPapelC.Text;
-                PapelC.VchSuperior = txtMargenSuperiorC.Text;
-                PapelC.VchInferior = txtMargenInferiorC.Text;
-                PapelC.VchDerecho = txtMargenDerechoC.Text;
-                PapelC.VchIzquierdo = txtMargenIzquierdoC.Text;
-                VM.GuardarPapelC(PapelC);
+            //    PapelC.StrDescripcion = txtNombrePapelC.Text;
+            //    PapelC.VchAlto = txtAltoPapelC.Text;
+            //    PapelC.VchAncho = txtAnchoPapelC.Text;
+            //    PapelC.VchSuperior = txtMargenSuperiorC.Text;
+            //    PapelC.VchInferior = txtMargenInferiorC.Text;
+            //    PapelC.VchDerecho = txtMargenDerechoC.Text;
+            //    PapelC.VchIzquierdo = txtMargenIzquierdoC.Text;
+            //    VM.GuardarPapelC(PapelC);
 
-                LimpiarFormularioPapelC();
-                DesHabilitarFormularioPapelC();
-                LimpiarFormularioFotoPapelC();
-                DesHabilitarFormularioFotoPapelC();
-                dvgFotosPapelC.DataSource = null;
-                dvgFotosPapelC.DataBind();
-                #endregion Papel comercial
+            //    LimpiarFormularioPapelC();
+            //    DesHabilitarFormularioPapelC();
+            //    LimpiarFormularioFotoPapelC();
+            //    DesHabilitarFormularioFotoPapelC();
+            //    dvgFotosPapelC.DataSource = null;
+            //    dvgFotosPapelC.DataBind();
+            //    #endregion Papel comercial
                 #endregion proceso de actualizacion de una sucursal
 
                 //-----------------------------------------------------------------------------------
@@ -1396,62 +1396,62 @@ namespace CodorniX.Vista
             ddTipoImpresora.SelectedIndex = 0;
             #endregion impresoras
 
-            #region Fotos
+           // #region Fotos
 
-            //frmGrpDescripcionFoto.RemoveCssClass("has-error");
-            //frmGrpPrecioFoto.RemoveCssClass("has-error");
-            //frmGrpAltoFoto.RemoveCssClass("has-error");
-            //frmGrpAnchoFoto.RemoveCssClass("has-error");
+           // //frmGrpDescripcionFoto.RemoveCssClass("has-error");
+           // //frmGrpPrecioFoto.RemoveCssClass("has-error");
+           // //frmGrpAltoFoto.RemoveCssClass("has-error");
+           // //frmGrpAnchoFoto.RemoveCssClass("has-error");
 
-            if (NoImpresoras >= 1)
-            {
-                //Begin Fotografias
-                List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
-                VM.GuardarFotos(fotos, empresa.UidSucursal);
-                VM.EliminarFotos(FotoRemoved);
-                //End Fotografias
-            }
-            dgvFotos.DataSource = null;
-            dgvFotos.DataBind();
-            ddImpresoraFoto.DataSource = null;
-            ddImpresoraFoto.DataBind();
-            ddImpresoraFoto.Items.Clear();
-            btnAgregarFoto.AddCssClass("disabled");
-            btnEditarFoto.AddCssClass("disabled");
-            //btnEliminarFoto.AddCssClass("disabled");
-            btnOKFoto.AddCssClass("disabled").AddCssClass("hidden");
-            btnCancelarFoto.AddCssClass("disabled").AddCssClass("hidden");
-            LimpiarFormularioFotografias();
-                #endregion Fotos
+           // if (NoImpresoras >= 1)
+           // {
+           //     //Begin Fotografias
+           //     List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
+           //     VM.GuardarFotos(fotos, empresa.UidSucursal);
+           //     VM.EliminarFotos(FotoRemoved);
+           //     //End Fotografias
+           // }
+           // //dgvFotos.DataSource = null;
+           // //dgvFotos.DataBind();
+           // //ddImpresoraFoto.DataSource = null;
+           // //ddImpresoraFoto.DataBind();
+           // //ddImpresoraFoto.Items.Clear();
+           // //btnAgregarFoto.AddCssClass("disabled");
+           // //btnEditarFoto.AddCssClass("disabled");
+           // ////btnEliminarFoto.AddCssClass("disabled");
+           // //btnOKFoto.AddCssClass("disabled").AddCssClass("hidden");
+           // //btnCancelarFoto.AddCssClass("disabled").AddCssClass("hidden");
+           // //LimpiarFormularioFotografias();
+           //     #endregion Fotos
 
 
-           #region Fotos comerciales
+           //#region Fotos comerciales
 
-                //frmGrpDescripcionFoto.RemoveCssClass("has-error");
-                //frmGrpPrecioFoto.RemoveCssClass("has-error");
-                //frmGrpAltoFoto.RemoveCssClass("has-error");
-                //frmGrpAnchoFoto.RemoveCssClass("has-error");
+           //     //frmGrpDescripcionFoto.RemoveCssClass("has-error");
+           //     //frmGrpPrecioFoto.RemoveCssClass("has-error");
+           //     //frmGrpAltoFoto.RemoveCssClass("has-error");
+           //     //frmGrpAnchoFoto.RemoveCssClass("has-error");
 
-                if (NoImpresoras >= 1)
-                {
-                    //Begin Fotografias
-                    List<SucursalFotoC> fotosC = (List<SucursalFotoC>)ViewState["FotosC"];
-                    VM.GuardarFotosC(fotosC, empresa.UidSucursal);
-                    VM.EliminarFotosC(FotoCRemoved);
-                    //End Fotografias
-                }
-                dgvFotosC.DataSource = null;
-                dgvFotosC.DataBind();
-                ddImpresoraFotoC.DataSource = null;
-                ddImpresoraFotoC.DataBind();
-                ddImpresoraFotoC.Items.Clear();
-                btnAgregarFotoC.AddCssClass("disabled");
-                btnEditarFotoC.AddCssClass("disabled");
-                //btnEliminarFoto.AddCssClass("disabled");
-                btnOKFotoC.AddCssClass("disabled").AddCssClass("hidden");
-                btnCancelarFotoC.AddCssClass("disabled").AddCssClass("hidden");
-                LimpiarFormularioFotografiasC();
-                #endregion Fotos
+           //     if (NoImpresoras >= 1)
+           //     {
+           //         //Begin Fotografias
+           //         List<SucursalFotoC> fotosC = (List<SucursalFotoC>)ViewState["FotosC"];
+           //         VM.GuardarFotosC(fotosC, empresa.UidSucursal);
+           //         VM.EliminarFotosC(FotoCRemoved);
+           //         //End Fotografias
+           //     }
+           //     dgvFotosC.DataSource = null;
+           //     dgvFotosC.DataBind();
+           //     ddImpresoraFotoC.DataSource = null;
+           //     ddImpresoraFotoC.DataBind();
+           //     ddImpresoraFotoC.Items.Clear();
+           //     btnAgregarFotoC.AddCssClass("disabled");
+           //     btnEditarFotoC.AddCssClass("disabled");
+           //     //btnEliminarFoto.AddCssClass("disabled");
+           //     btnOKFotoC.AddCssClass("disabled").AddCssClass("hidden");
+           //     btnCancelarFotoC.AddCssClass("disabled").AddCssClass("hidden");
+           //     LimpiarFormularioFotografiasC();
+           //     #endregion Fotos
 
            #region Licencias
                 // dgvLicencias.Columns[6].Visible = false;
@@ -1516,37 +1516,37 @@ namespace CodorniX.Vista
 
             #endregion Sucursales
 
-            #region Papel
-            //ActivarCamposDatos(false);
-            lblErrorPapel.Visible = false;
-            lblErrorPapel.Text = "";
-            lblErrorFotoPapel.Visible = false;
-            lblErrorFotoPapel.Text = "";
-            //FUImagen.Enabled = false;
-            //frmGrpNombre.RemoveCssClass("has-error");
-            LimpiarFormularioPapel();
-            DesHabilitarFormularioPapel();
-            LimpiarFormularioFotoPapel();
-            DesHabilitarFormularioFotoPapel();
-            btnEditarPapel.Disable();
+            //#region Papel
+            ////ActivarCamposDatos(false);
+            //lblErrorPapel.Visible = false;
+            //lblErrorPapel.Text = "";
+            //lblErrorFotoPapel.Visible = false;
+            //lblErrorFotoPapel.Text = "";
+            ////FUImagen.Enabled = false;
+            ////frmGrpNombre.RemoveCssClass("has-error");
+            //LimpiarFormularioPapel();
+            //DesHabilitarFormularioPapel();
+            //LimpiarFormularioFotoPapel();
+            //DesHabilitarFormularioFotoPapel();
+            //btnEditarPapel.Disable();
 
-                #endregion Papel
+            //    #endregion Papel
 
-                #region Papel comercial
-                //ActivarCamposDatos(false);
-                lblErrorPapelC.Visible = false;
-                lblErrorPapelC.Text = "";
-                lblErrorFotoPapelC.Visible = false;
-                lblErrorFotoPapelC.Text = "";
-                //FUImagen.Enabled = false;
-                //frmGrpNombre.RemoveCssClass("has-error");
-                LimpiarFormularioPapelC();
-                DesHabilitarFormularioPapelC();
-                LimpiarFormularioFotoPapelC();
-                DesHabilitarFormularioFotoPapelC();
-                btnEditarPapelC.Disable();
+            //    #region Papel comercial
+            //    //ActivarCamposDatos(false);
+            //    lblErrorPapelC.Visible = false;
+            //    lblErrorPapelC.Text = "";
+            //    lblErrorFotoPapelC.Visible = false;
+            //    lblErrorFotoPapelC.Text = "";
+            //    //FUImagen.Enabled = false;
+            //    //frmGrpNombre.RemoveCssClass("has-error");
+            //    LimpiarFormularioPapelC();
+            //    DesHabilitarFormularioPapelC();
+            //    LimpiarFormularioFotoPapelC();
+            //    DesHabilitarFormularioFotoPapelC();
+            //    btnEditarPapelC.Disable();
 
-                #endregion Papel comercial
+            //    #endregion Papel comercial
 
                 #region Direcciones
                 lblErrorDirIz.Visible = false;
@@ -1624,67 +1624,67 @@ namespace CodorniX.Vista
             btnCancelarEliminarImpresora_Click(sender, e);
             #endregion Impresoras
 
-            #region Fotos
-            //DesActivarValidacionFotografias();
-            DesHabilitarFormularioFotografias();
+            //#region Fotos
+            ////DesActivarValidacionFotografias();
+            //DesHabilitarFormularioFotografias();
 
-            lblErrorFoto.Visible = false;
-            lblErrorFoto.Text = "";
+            //lblErrorFoto.Visible = false;
+            //lblErrorFoto.Text = "";
 
-            btnAgregarFoto.AddCssClass("disabled");
-            btnEditarFoto.AddCssClass("disabled");
-            //btnEliminarFoto.AddCssClass("disabled");
+            //btnAgregarFoto.AddCssClass("disabled");
+            //btnEditarFoto.AddCssClass("disabled");
+            ////btnEliminarFoto.AddCssClass("disabled");
 
-            btnOKFoto.AddCssClass("disabled").AddCssClass("hidden");
-            btnCancelarFoto.AddCssClass("disabled").AddCssClass("hidden");
+            //btnOKFoto.AddCssClass("disabled").AddCssClass("hidden");
+            //btnCancelarFoto.AddCssClass("disabled").AddCssClass("hidden");
 
-            txtDescripcionFoto.Text = string.Empty;
-            txtPrecioFoto.Text = string.Empty;
-            txtPrecioFotoTicket.Text = string.Empty;
-            txtPrecioFotoServidor.Text = string.Empty;
-            txtAltoFoto.Text = string.Empty;
-            txtAnchoFoto.Text = string.Empty;
-            txtAltoFotoDesc.Text = string.Empty;
-            txtAnchoFotoDesc.Text = string.Empty;
-            ddActivo.SelectedIndex = 0;
-            ddTipoImpresora.SelectedIndex = 0;
+            //txtDescripcionFoto.Text = string.Empty;
+            //txtPrecioFoto.Text = string.Empty;
+            //txtPrecioFotoTicket.Text = string.Empty;
+            //txtPrecioFotoServidor.Text = string.Empty;
+            //txtAltoFoto.Text = string.Empty;
+            //txtAnchoFoto.Text = string.Empty;
+            //txtAltoFotoDesc.Text = string.Empty;
+            //txtAnchoFotoDesc.Text = string.Empty;
+            //ddActivo.SelectedIndex = 0;
+            //ddTipoImpresora.SelectedIndex = 0;
 
-            //frmGrpDescripcionFoto.RemoveCssClass("has-error");
-            //frmGrpPrecioFoto.RemoveCssClass("has-error");
-            //frmGrpAltoFoto.RemoveCssClass("has-error");
-            //frmGrpAnchoFoto.RemoveCssClass("has-error");
+            ////frmGrpDescripcionFoto.RemoveCssClass("has-error");
+            ////frmGrpPrecioFoto.RemoveCssClass("has-error");
+            ////frmGrpAltoFoto.RemoveCssClass("has-error");
+            ////frmGrpAnchoFoto.RemoveCssClass("has-error");
 
-            btnCancelarEliminarFoto_Click(sender, e);
-                #endregion Fotos
+            //btnCancelarEliminarFoto_Click(sender, e);
+            //    #endregion Fotos
 
-                #region Fotos comerciales
-                //DesActivarValidacionFotografias();
-                DesHabilitarFormularioFotografiasC();
+            //    #region Fotos comerciales
+            //    //DesActivarValidacionFotografias();
+            //    DesHabilitarFormularioFotografiasC();
 
-                lblErrorFotoC.Visible = false;
-                lblErrorFotoC.Text = "";
+            //    lblErrorFotoC.Visible = false;
+            //    lblErrorFotoC.Text = "";
 
-                btnAgregarFotoC.AddCssClass("disabled");
-                btnEditarFotoC.AddCssClass("disabled");
-                //btnEliminarFoto.AddCssClass("disabled");
+            //    btnAgregarFotoC.AddCssClass("disabled");
+            //    btnEditarFotoC.AddCssClass("disabled");
+            //    //btnEliminarFoto.AddCssClass("disabled");
 
-                btnOKFotoC.AddCssClass("disabled").AddCssClass("hidden");
-                btnCancelarFotoC.AddCssClass("disabled").AddCssClass("hidden");
+            //    btnOKFotoC.AddCssClass("disabled").AddCssClass("hidden");
+            //    btnCancelarFotoC.AddCssClass("disabled").AddCssClass("hidden");
 
-                txtDescripcionFotoC.Text = string.Empty;
-                txtPrecioFotoC.Text = string.Empty;
-                txtPrecioFotoTicketC.Text = string.Empty;
-                txtPrecioFotoServidorC.Text = string.Empty;
-                txtAltoFotoC.Text = string.Empty;
-                txtAnchoFotoC.Text = string.Empty;
-                txtAltoFotoDescC.Text = string.Empty;
-                txtAnchoFotoDescC.Text = string.Empty;
-                //ddActivo.SelectedIndex = 0;
-                //ddTipoImpresora.SelectedIndex = 0;
+            //    txtDescripcionFotoC.Text = string.Empty;
+            //    txtPrecioFotoC.Text = string.Empty;
+            //    txtPrecioFotoTicketC.Text = string.Empty;
+            //    txtPrecioFotoServidorC.Text = string.Empty;
+            //    txtAltoFotoC.Text = string.Empty;
+            //    txtAnchoFotoC.Text = string.Empty;
+            //    txtAltoFotoDescC.Text = string.Empty;
+            //    txtAnchoFotoDescC.Text = string.Empty;
+            //    //ddActivo.SelectedIndex = 0;
+            //    //ddTipoImpresora.SelectedIndex = 0;
 
                 
-                btnCancelarEliminarFotoC_Click(sender, e);
-                #endregion Fotos comerciales
+            //    btnCancelarEliminarFotoC_Click(sender, e);
+            //    #endregion Fotos comerciales
 
                 #region Licencias
                 // dgvLicencias.Columns[6].Visible = false;
@@ -1717,17 +1717,17 @@ namespace CodorniX.Vista
                 dgvImpresoras.DataSource = null;
                 dgvImpresoras.DataBind();
 
-                dgvFotos.DataSource = null;
-                dgvFotos.DataBind();
+                //dgvFotos.DataSource = null;
+                //dgvFotos.DataBind();
 
-                dvgFotosPapel.DataSource = null;
-                dvgFotosPapel.DataBind();
+                //dvgFotosPapel.DataSource = null;
+                //dvgFotosPapel.DataBind();
 
-                dgvFotosC.DataSource = null;
-                dgvFotosC.DataBind();
+                //dgvFotosC.DataSource = null;
+                //dgvFotosC.DataBind();
 
-                dvgFotosPapelC.DataSource = null;
-                dvgFotosPapelC.DataBind();
+                //dvgFotosPapelC.DataSource = null;
+                //dvgFotosPapelC.DataBind();
                 
                 btnEditarSucursal.Disable();
 
@@ -1763,37 +1763,37 @@ namespace CodorniX.Vista
                 ImgSucursales.ImageUrl = Page.ResolveUrl(VM.Sucursal.RutaImagen);
 
 
-                VM.ObtenerPapel(VM.Sucursal.UidSucursal);
+                //VM.ObtenerPapel(VM.Sucursal.UidSucursal);
 
-                if (VM.Papel.UidPapel != Guid.Empty)
-                {
-                    UidPapel.Text = VM.Papel.UidPapel.ToString();
-                    //ViewState["Papel"] = VM.Papel;
-                }
+                //if (VM.Papel.UidPapel != Guid.Empty)
+                //{
+                //    UidPapel.Text = VM.Papel.UidPapel.ToString();
+                //    //ViewState["Papel"] = VM.Papel;
+                //}
 
-                txtNombrePapel.Text = VM.Papel.StrDescripcion.ToString();
-                txtAltoPapel.Text = VM.Papel.VchAlto.ToString();
-                txtAnchoPapel.Text = VM.Papel.VchAncho.ToString();
-                txtMargenSuperior.Text = VM.Papel.VchSuperior.ToString();
-                txtMargenInferior.Text = VM.Papel.VchInferior.ToString();
-                txtMargenDerecho.Text = VM.Papel.VchDerecho.ToString();
-                txtMargenIzquierdo.Text = VM.Papel.VchIzquierdo.ToString();
+                //txtNombrePapel.Text = VM.Papel.StrDescripcion.ToString();
+                //txtAltoPapel.Text = VM.Papel.VchAlto.ToString();
+                //txtAnchoPapel.Text = VM.Papel.VchAncho.ToString();
+                //txtMargenSuperior.Text = VM.Papel.VchSuperior.ToString();
+                //txtMargenInferior.Text = VM.Papel.VchInferior.ToString();
+                //txtMargenDerecho.Text = VM.Papel.VchDerecho.ToString();
+                //txtMargenIzquierdo.Text = VM.Papel.VchIzquierdo.ToString();
 
-                    VM.ObtenerPapelC(VM.Sucursal.UidSucursal);
+                //    VM.ObtenerPapelC(VM.Sucursal.UidSucursal);
 
-                    if (VM.PapelC.UidPapel != Guid.Empty)
-                    {
-                        UidPapelC.Text = VM.PapelC.UidPapel.ToString();
-                        //ViewState["Papel"] = VM.Papel;
-                    }
+                //    if (VM.PapelC.UidPapel != Guid.Empty)
+                //    {
+                //        UidPapelC.Text = VM.PapelC.UidPapel.ToString();
+                //        //ViewState["Papel"] = VM.Papel;
+                //    }
 
-                    txtNombrePapelC.Text = VM.PapelC.StrDescripcion.ToString();
-                    txtAltoPapelC.Text = VM.PapelC.VchAlto.ToString();
-                    txtAnchoPapelC.Text = VM.PapelC.VchAncho.ToString();
-                    txtMargenSuperiorC.Text = VM.PapelC.VchSuperior.ToString();
-                    txtMargenInferiorC.Text = VM.PapelC.VchInferior.ToString();
-                    txtMargenDerechoC.Text = VM.PapelC.VchDerecho.ToString();
-                    txtMargenIzquierdoC.Text = VM.PapelC.VchIzquierdo.ToString();
+                //    txtNombrePapelC.Text = VM.PapelC.StrDescripcion.ToString();
+                //    txtAltoPapelC.Text = VM.PapelC.VchAlto.ToString();
+                //    txtAnchoPapelC.Text = VM.PapelC.VchAncho.ToString();
+                //    txtMargenSuperiorC.Text = VM.PapelC.VchSuperior.ToString();
+                //    txtMargenInferiorC.Text = VM.PapelC.VchInferior.ToString();
+                //    txtMargenDerechoC.Text = VM.PapelC.VchDerecho.ToString();
+                //    txtMargenIzquierdoC.Text = VM.PapelC.VchIzquierdo.ToString();
 
                 VM.ObtenerDirecciones();
                 ViewState["Direcciones"] = VM.Direcciones;
@@ -1813,19 +1813,19 @@ namespace CodorniX.Vista
                 dgvImpresoras.DataSource = ViewState["Impresoras"];
                 dgvImpresoras.DataBind();
 
-                VM.Obtenerfotos();
-                ViewState["Fotos"] = VM.Fotos;
-                FotoRemoved.Clear();
+                //VM.Obtenerfotos();
+                //ViewState["Fotos"] = VM.Fotos;
+                //FotoRemoved.Clear();
                 //dgvFotos.DataSource = ViewState["Fotos"];
                 //dgvFotos.DataBind();
-                DatabindFotografias();
+                //DatabindFotografias();
 
-                    VM.ObtenerfotosC();
-                    ViewState["FotosC"] = VM.FotosC;
-                    FotoCRemoved.Clear();
+                //    VM.ObtenerfotosC();
+                //    ViewState["FotosC"] = VM.FotosC;
+                //    FotoCRemoved.Clear();
                     //dgvFotos.DataSource = ViewState["Fotos"];
                     //dgvFotos.DataBind();
-                    DatabindFotografiasC();
+                    //DatabindFotografiasC();
 
                if (VM.Direcciones.Count == 0)
                 {
@@ -1890,17 +1890,17 @@ namespace CodorniX.Vista
             panelImpresoras.Visible = false;
             activeImpresoras.Attributes["class"] = "";
 
-            panelFotos.Visible = false;
-            activeFotografias.Attributes["class"] = "";
+            //panelFotos.Visible = false;
+            //activeFotografias.Attributes["class"] = "";
 
-            panelPapel.Visible = false;
-            activePapel.Attributes["class"] = "";
+            //panelPapel.Visible = false;
+            //activePapel.Attributes["class"] = "";
 
-            panelFotosC.Visible = false;
-            activeFotografiasC.Attributes["class"] = "";
+            //panelFotosC.Visible = false;
+            //activeFotografiasC.Attributes["class"] = "";
 
-            panelPapelC.Visible = false;
-            activePapelC.Attributes["class"] = "";
+            //panelPapelC.Visible = false;
+            //activePapelC.Attributes["class"] = "";
 
             panelLicencias.Visible = false;
             activeLicencias.Attributes["class"] = "";
@@ -1945,20 +1945,20 @@ namespace CodorniX.Vista
             panelImpresoras.Visible = false;
             activeImpresoras.Attributes["class"] = "";
 
-            panelFotos.Visible = false;
-            activeFotografias.Attributes["class"] = "";
+            //panelFotos.Visible = false;
+            //activeFotografias.Attributes["class"] = "";
 
             panelLicencias.Visible = false;
             activeLicencias.Attributes["class"] = "";
 
-            panelPapel.Visible = false;
-            activePapel.Attributes["class"] = "";
+            //panelPapel.Visible = false;
+            //activePapel.Attributes["class"] = "";
 
-            panelFotosC.Visible = false;
-            activeFotografiasC.Attributes["class"] = "";
+            //panelFotosC.Visible = false;
+            //activeFotografiasC.Attributes["class"] = "";
 
-            panelPapelC.Visible = false;
-            activePapelC.Attributes["class"] = "";
+            //panelPapelC.Visible = false;
+            //activePapelC.Attributes["class"] = "";
         }
         protected void tabTelefonos_Click(object sender, EventArgs e) // modificado 28/09/17
         {
@@ -1990,20 +1990,20 @@ namespace CodorniX.Vista
             panelImpresoras.Visible = false;
             activeImpresoras.Attributes["class"] = "";
 
-            panelFotos.Visible = false;
-            activeFotografias.Attributes["class"] = "";
+            //panelFotos.Visible = false;
+            //activeFotografias.Attributes["class"] = "";
 
             panelLicencias.Visible = false;
             activeLicencias.Attributes["class"] = "";
 
-            panelPapel.Visible = false;
-            activePapel.Attributes["class"] = "";
+            //panelPapel.Visible = false;
+            //activePapel.Attributes["class"] = "";
 
-            panelFotosC.Visible = false;
-            activeFotografiasC.Attributes["class"] = "";
+            //panelFotosC.Visible = false;
+            //activeFotografiasC.Attributes["class"] = "";
 
-            panelPapelC.Visible = false;
-            activePapelC.Attributes["class"] = "";
+            //panelPapelC.Visible = false;
+            //activePapelC.Attributes["class"] = "";
 
             if (EditingModeDireccion)
                 btnCancelarDireccion_Click(null, null);
@@ -2044,20 +2044,20 @@ namespace CodorniX.Vista
             panelImpresoras.Visible = true;
             activeImpresoras.Attributes["class"] = "active";
 
-            panelFotos.Visible = false;
-            activeFotografias.Attributes["class"] = "";
+            //panelFotos.Visible = false;
+            //activeFotografias.Attributes["class"] = "";
 
             panelLicencias.Visible = false;
             activeLicencias.Attributes["class"] = "";
 
-            panelPapel.Visible = false;
-            activePapel.Attributes["class"] = "";
+            //panelPapel.Visible = false;
+            //activePapel.Attributes["class"] = "";
 
-            panelFotosC.Visible = false;
-            activeFotografiasC.Attributes["class"] = "";
+            //panelFotosC.Visible = false;
+            //activeFotografiasC.Attributes["class"] = "";
 
-            panelPapelC.Visible = false;
-            activePapelC.Attributes["class"] = "";
+            //panelPapelC.Visible = false;
+            //activePapelC.Attributes["class"] = "";
 
             if (EditingModeDireccion)
                 btnCancelarDireccion_Click(null, null);
@@ -2068,207 +2068,207 @@ namespace CodorniX.Vista
 
             }
         }
-        protected void tabFotografias_Click(object sender, EventArgs e)
-        {
-            _tabFoto();
-        }
-        void _tabFoto()
-        {
+        //protected void tabFotografias_Click(object sender, EventArgs e)
+        //{
+        //    _tabFoto();
+        //}
+        //void _tabFoto()
+        //{
 
-            //lblErrorTelefono.Visible = false;
-            //lblErrorSucursal.Visible = false;
-            //lblErrorDireccion.Visible = false;
-            //lblErrorImpresora.Visible = false;
-            //lblErrorFoto.Visible = false;
-            //lblErrorLicencia.Visible = false;
-            //lblErrorPapel.Visible = false;
-            //lblErrorFotoPapel.Visible = false;
-            //lblErrorServer.Visible = false;
+        //    //lblErrorTelefono.Visible = false;
+        //    //lblErrorSucursal.Visible = false;
+        //    //lblErrorDireccion.Visible = false;
+        //    //lblErrorImpresora.Visible = false;
+        //    //lblErrorFoto.Visible = false;
+        //    //lblErrorLicencia.Visible = false;
+        //    //lblErrorPapel.Visible = false;
+        //    //lblErrorFotoPapel.Visible = false;
+        //    //lblErrorServer.Visible = false;
 
-            panelServidor.Visible = false;
-            activeServidor.Attributes["class"] = "";
+        //    panelServidor.Visible = false;
+        //    activeServidor.Attributes["class"] = "";
 
-            panelDatosSucursal.Visible = false;
-            activeDatos.Attributes["class"] = "";
+        //    panelDatosSucursal.Visible = false;
+        //    activeDatos.Attributes["class"] = "";
 
-            panelDirecciones.Visible = false;
-            activeDirecciones.Attributes["class"] = "";
+        //    panelDirecciones.Visible = false;
+        //    activeDirecciones.Attributes["class"] = "";
 
-            panelTelefonos.Visible = false;
-            activeTelefonos.Attributes["class"] = "";
+        //    panelTelefonos.Visible = false;
+        //    activeTelefonos.Attributes["class"] = "";
 
-            panelImpresoras.Visible = false;
-            activeImpresoras.Attributes["class"] = "";
+        //    panelImpresoras.Visible = false;
+        //    activeImpresoras.Attributes["class"] = "";
 
-            panelFotos.Visible = true;
-            activeFotografias.Attributes["class"] = "active";
+        //    panelFotos.Visible = true;
+        //    activeFotografias.Attributes["class"] = "active";
 
-            panelLicencias.Visible = false;
-            activeLicencias.Attributes["class"] = "";
+        //    panelLicencias.Visible = false;
+        //    activeLicencias.Attributes["class"] = "";
 
-            panelPapel.Visible = false;
-            activePapel.Attributes["class"] = "";
+        //    panelPapel.Visible = false;
+        //    activePapel.Attributes["class"] = "";
 
-            panelFotosC.Visible = false;
-            activeFotografiasC.Attributes["class"] = "";
+        //    panelFotosC.Visible = false;
+        //    activeFotografiasC.Attributes["class"] = "";
 
-            panelPapelC.Visible = false;
-            activePapelC.Attributes["class"] = "";
+        //    panelPapelC.Visible = false;
+        //    activePapelC.Attributes["class"] = "";
 
-            if (EditingModeDireccion)
-                btnCancelarDireccion_Click(null, null);
-            else
-            {
-                panelDireccion.Visible = false;
-                panelSucursal.Visible = true;
+        //    if (EditingModeDireccion)
+        //        btnCancelarDireccion_Click(null, null);
+        //    else
+        //    {
+        //        panelDireccion.Visible = false;
+        //        panelSucursal.Visible = true;
 
-            }
-        }
-        protected void tabPapel_Click(object sender, EventArgs e)
-        {
-            _tabPapel();
-        }
-        void _tabPapel()
-        {
-            //lblErrorTelefono.Visible = false;
-            //lblErrorSucursal.Visible = false;
-            //lblErrorDireccion.Visible = false;
-            //lblErrorImpresora.Visible = false;
-            //lblErrorFoto.Visible = false;
-            //lblErrorLicencia.Visible = false;
-            //lblErrorPapel.Visible = false;
-            //lblErrorFotoPapel.Visible = false;
-            //lblErrorServer.Visible = false;
+        //    }
+        //}
+        //protected void tabPapel_Click(object sender, EventArgs e)
+        //{
+        //    _tabPapel();
+        //}
+        //void _tabPapel()
+        //{
+        //    //lblErrorTelefono.Visible = false;
+        //    //lblErrorSucursal.Visible = false;
+        //    //lblErrorDireccion.Visible = false;
+        //    //lblErrorImpresora.Visible = false;
+        //    //lblErrorFoto.Visible = false;
+        //    //lblErrorLicencia.Visible = false;
+        //    //lblErrorPapel.Visible = false;
+        //    //lblErrorFotoPapel.Visible = false;
+        //    //lblErrorServer.Visible = false;
 
-            panelDatosSucursal.Visible = false;
-            activeDatos.Attributes["class"] = "";
+        //    panelDatosSucursal.Visible = false;
+        //    activeDatos.Attributes["class"] = "";
 
-            panelDirecciones.Visible = false;
-            activeDirecciones.Attributes["class"] = "";
+        //    panelDirecciones.Visible = false;
+        //    activeDirecciones.Attributes["class"] = "";
 
-            panelTelefonos.Visible = false;
-            activeTelefonos.Attributes["class"] = "";
+        //    panelTelefonos.Visible = false;
+        //    activeTelefonos.Attributes["class"] = "";
 
-            panelImpresoras.Visible = false;
-            activeImpresoras.Attributes["class"] = "";
+        //    panelImpresoras.Visible = false;
+        //    activeImpresoras.Attributes["class"] = "";
 
-            panelFotos.Visible = false;
-            activeFotografias.Attributes["class"] = "";
+        //    panelFotos.Visible = false;
+        //    activeFotografias.Attributes["class"] = "";
 
-            panelLicencias.Visible = false;
-            activeLicencias.Attributes["class"] = "";
+        //    panelLicencias.Visible = false;
+        //    activeLicencias.Attributes["class"] = "";
 
-            panelPapel.Visible = true;
-            activePapel.Attributes["class"] = "active";
+        //    panelPapel.Visible = true;
+        //    activePapel.Attributes["class"] = "active";
 
-            panelFotosC.Visible = false;
-            activeFotografiasC.Attributes["class"] = "";
+        //    panelFotosC.Visible = false;
+        //    activeFotografiasC.Attributes["class"] = "";
 
-            panelPapelC.Visible = false;
-            activePapelC.Attributes["class"] = "";
+        //    panelPapelC.Visible = false;
+        //    activePapelC.Attributes["class"] = "";
 
-            panelServidor.Visible = false;
-            activeServidor.Attributes["class"] = "";
-
-
-            if (EditingModeDireccion)
-                btnCancelarDireccion_Click(null, null);
-            else
-            {
-                panelDireccion.Visible = false;
-                panelSucursal.Visible = true;
-
-            }
-        }
-        protected void tabFotografiasC_Click(object sender, EventArgs e)
-        {
-            _tabFotoC();
-        }
-        void _tabFotoC() {
-            panelServidor.Visible = false;
-            activeServidor.Attributes["class"] = "";
-
-            panelDatosSucursal.Visible = false;
-            activeDatos.Attributes["class"] = "";
-
-            panelDirecciones.Visible = false;
-            activeDirecciones.Attributes["class"] = "";
-
-            panelTelefonos.Visible = false;
-            activeTelefonos.Attributes["class"] = "";
-
-            panelImpresoras.Visible = false;
-            activeImpresoras.Attributes["class"] = "";
-
-            panelFotos.Visible = false;
-            activeFotografias.Attributes["class"] = "";
-
-            panelLicencias.Visible = false;
-            activeLicencias.Attributes["class"] = "";
-
-            panelPapel.Visible = false;
-            activePapel.Attributes["class"] = "";
-
-            panelFotosC.Visible = true;
-            activeFotografiasC.Attributes["class"] = "active";
-
-            panelPapelC.Visible = false;
-            activePapelC.Attributes["class"] = "";
-
-            if (EditingModeDireccion)
-                btnCancelarDireccion_Click(null, null);
-            else
-            {
-                panelDireccion.Visible = false;
-                panelSucursal.Visible = true;
-
-            }
-        }
-        protected void tabPapelC_Click(object sender, EventArgs e)
-        {
-            _tabPapelC();
-        }
-        void _tabPapelC() {
-            panelDatosSucursal.Visible = false;
-            activeDatos.Attributes["class"] = "";
-
-            panelDirecciones.Visible = false;
-            activeDirecciones.Attributes["class"] = "";
-
-            panelTelefonos.Visible = false;
-            activeTelefonos.Attributes["class"] = "";
-
-            panelImpresoras.Visible = false;
-            activeImpresoras.Attributes["class"] = "";
-
-            panelFotos.Visible = false;
-            activeFotografias.Attributes["class"] = "";
-
-            panelLicencias.Visible = false;
-            activeLicencias.Attributes["class"] = "";
-
-            panelPapel.Visible = false;
-            activePapel.Attributes["class"] = "";
-
-            panelFotosC.Visible = false;
-            activeFotografiasC.Attributes["class"] = "";
-
-            panelPapelC.Visible = true;
-            activePapelC.Attributes["class"] = "active";
-
-            panelServidor.Visible = false;
-            activeServidor.Attributes["class"] = "";
+        //    panelServidor.Visible = false;
+        //    activeServidor.Attributes["class"] = "";
 
 
-            if (EditingModeDireccion)
-                btnCancelarDireccion_Click(null, null);
-            else
-            {
-                panelDireccion.Visible = false;
-                panelSucursal.Visible = true;
+        //    if (EditingModeDireccion)
+        //        btnCancelarDireccion_Click(null, null);
+        //    else
+        //    {
+        //        panelDireccion.Visible = false;
+        //        panelSucursal.Visible = true;
 
-            }
-        }
+        //    }
+        //}
+        //protected void tabFotografiasC_Click(object sender, EventArgs e)
+        //{
+        //    _tabFotoC();
+        //}
+        //void _tabFotoC() {
+        //    panelServidor.Visible = false;
+        //    activeServidor.Attributes["class"] = "";
+
+        //    panelDatosSucursal.Visible = false;
+        //    activeDatos.Attributes["class"] = "";
+
+        //    panelDirecciones.Visible = false;
+        //    activeDirecciones.Attributes["class"] = "";
+
+        //    panelTelefonos.Visible = false;
+        //    activeTelefonos.Attributes["class"] = "";
+
+        //    panelImpresoras.Visible = false;
+        //    activeImpresoras.Attributes["class"] = "";
+
+        //    panelFotos.Visible = false;
+        //    activeFotografias.Attributes["class"] = "";
+
+        //    panelLicencias.Visible = false;
+        //    activeLicencias.Attributes["class"] = "";
+
+        //    panelPapel.Visible = false;
+        //    activePapel.Attributes["class"] = "";
+
+        //    panelFotosC.Visible = true;
+        //    activeFotografiasC.Attributes["class"] = "active";
+
+        //    panelPapelC.Visible = false;
+        //    activePapelC.Attributes["class"] = "";
+
+        //    if (EditingModeDireccion)
+        //        btnCancelarDireccion_Click(null, null);
+        //    else
+        //    {
+        //        panelDireccion.Visible = false;
+        //        panelSucursal.Visible = true;
+
+        //    }
+        //}
+        //protected void tabPapelC_Click(object sender, EventArgs e)
+        //{
+        //    _tabPapelC();
+        //}
+        //void _tabPapelC() {
+        //    panelDatosSucursal.Visible = false;
+        //    activeDatos.Attributes["class"] = "";
+
+        //    panelDirecciones.Visible = false;
+        //    activeDirecciones.Attributes["class"] = "";
+
+        //    panelTelefonos.Visible = false;
+        //    activeTelefonos.Attributes["class"] = "";
+
+        //    panelImpresoras.Visible = false;
+        //    activeImpresoras.Attributes["class"] = "";
+
+        //    panelFotos.Visible = false;
+        //    activeFotografias.Attributes["class"] = "";
+
+        //    panelLicencias.Visible = false;
+        //    activeLicencias.Attributes["class"] = "";
+
+        //    panelPapel.Visible = false;
+        //    activePapel.Attributes["class"] = "";
+
+        //    panelFotosC.Visible = false;
+        //    activeFotografiasC.Attributes["class"] = "";
+
+        //    panelPapelC.Visible = true;
+        //    activePapelC.Attributes["class"] = "active";
+
+        //    panelServidor.Visible = false;
+        //    activeServidor.Attributes["class"] = "";
+
+
+        //    if (EditingModeDireccion)
+        //        btnCancelarDireccion_Click(null, null);
+        //    else
+        //    {
+        //        panelDireccion.Visible = false;
+        //        panelSucursal.Visible = true;
+
+        //    }
+        //}
         protected void tabLicencias_Click(object sender, EventArgs e)
         {
             _tabLicencias();
@@ -2297,20 +2297,20 @@ namespace CodorniX.Vista
             panelImpresoras.Visible = false;
             activeImpresoras.Attributes["class"] = "";
 
-            panelFotos.Visible = false;
-            activeFotografias.Attributes["class"] = "";
+            //panelFotos.Visible = false;
+            //activeFotografias.Attributes["class"] = "";
 
             panelLicencias.Visible = true;
             activeLicencias.Attributes["class"] = "active";
 
-            panelPapel.Visible = false;
-            activePapel.Attributes["class"] = "";
+            //panelPapel.Visible = false;
+            //activePapel.Attributes["class"] = "";
 
-            panelFotosC.Visible = false;
-            activeFotografiasC.Attributes["class"] = "";
+            //panelFotosC.Visible = false;
+            //activeFotografiasC.Attributes["class"] = "";
 
-            panelPapelC.Visible = false;
-            activePapelC.Attributes["class"] = "";
+            //panelPapelC.Visible = false;
+            //activePapelC.Attributes["class"] = "";
 
             panelServidor.Visible = false;
             activeServidor.Attributes["class"] = "";
@@ -2352,20 +2352,20 @@ namespace CodorniX.Vista
             panelImpresoras.Visible = false;
             activeImpresoras.Attributes["class"] = "";
 
-            panelFotos.Visible = false;
-            activeFotografias.Attributes["class"] = "";
+            //panelFotos.Visible = false;
+            //activeFotografias.Attributes["class"] = "";
 
             panelLicencias.Visible = false;
             activeLicencias.Attributes["class"] = "";
 
-            panelPapel.Visible = false;
-            activePapel.Attributes["class"] = "";
+            //panelPapel.Visible = false;
+            //activePapel.Attributes["class"] = "";
 
-            panelFotosC.Visible = false;
-            activeFotografiasC.Attributes["class"] = "";
+            //panelFotosC.Visible = false;
+            //activeFotografiasC.Attributes["class"] = "";
 
-            panelPapelC.Visible = false;
-            activePapelC.Attributes["class"] = "";
+            //panelPapelC.Visible = false;
+            //activePapelC.Attributes["class"] = "";
 
             panelServidor.Visible = true;
             activeServidor.Attributes["class"] = "active";
@@ -3592,17 +3592,17 @@ namespace CodorniX.Vista
             dgvImpresoras.DataBind();
             //--------------------------------------------------------------------------------------------
             //Actualizar Ddl Impresora en fotos
-            if (impresoras.Count >= 1)
-            {
-                btnAgregarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");// Al agregar una impresora a ddl de las, entonces hablito el boton nuevo
-                btnAgregarFoto.Enabled = true;
+            //if (impresoras.Count >= 1)
+            //{
+            //    btnAgregarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");// Al agregar una impresora a ddl de las, entonces hablito el boton nuevo
+            //    btnAgregarFoto.Enabled = true;
 
-                ddImpresoraFoto.DataSource = impresoras;
-                ddImpresoraFoto.DataValueField = "UidImpresora";
-                ddImpresoraFoto.DataTextField = "StrDescripcion";
-                ddImpresoraFoto.DataBind();
-                ddImpresoraFoto.SelectedIndex = 0;
-            }
+            //    ddImpresoraFoto.DataSource = impresoras;
+            //    ddImpresoraFoto.DataValueField = "UidImpresora";
+            //    ddImpresoraFoto.DataTextField = "StrDescripcion";
+            //    ddImpresoraFoto.DataBind();
+            //    ddImpresoraFoto.SelectedIndex = 0;
+            //}
 
             //--------------------------------------------------------------------------------------------
             LimpiarFormularioImpresoras();
@@ -3887,713 +3887,713 @@ namespace CodorniX.Vista
 
         #endregion Panel derecho (Impresoras)
 
-        #region Panel derecho (Fotografias)
-        public bool ValidarCamposFoto()
-        {
-            bool FotoBIen = true;
+//        #region Panel derecho (Fotografias)
+//        public bool ValidarCamposFoto()
+//        {
+//            bool FotoBIen = true;
 
-            #region vacios
+//            #region vacios
 
-            if (string.IsNullOrWhiteSpace(txtDescripcionFoto.Text))
-            {
-                txtDescripcionFoto.Focus();
-                txtDescripcionFoto.BorderColor = Color.FromName("#f00800");
-                FotoBIen = false;
-            }
-            if (string.IsNullOrWhiteSpace(txtPrecioFoto.Text))
-            {
-                txtPrecioFoto.Focus();
-                txtPrecioFoto.BorderColor = Color.FromName("#f00800");
-                FotoBIen = false;
-            }
-            if (string.IsNullOrWhiteSpace(txtPrecioFotoTicket.Text))
-            {
-                txtPrecioFotoTicket.Focus();
-                txtPrecioFotoTicket.BorderColor = Color.FromName("#f00800");
-                FotoBIen = false;
-            }
-            if (string.IsNullOrWhiteSpace(txtPrecioFotoServidor.Text))
-            {
-                txtPrecioFotoServidor.Focus();
-                txtPrecioFotoServidor.BorderColor = Color.FromName("#f00800");
-                FotoBIen = false;
-            }
-            if (string.IsNullOrWhiteSpace(txtAltoFoto.Text))
-            {
-                txtAltoFoto.Focus();
-                txtAltoFoto.BorderColor = Color.FromName("#f00800");
-                FotoBIen = false;
-            }
-            if (string.IsNullOrWhiteSpace(txtAnchoFoto.Text))
-            {
-                txtAnchoFoto.Focus();
-                txtAnchoFoto.BorderColor = Color.FromName("#f00800");
-                FotoBIen = false;
-            }
-            if (string.IsNullOrWhiteSpace(txtAltoFotoDesc.Text))
-            {
-                txtAltoFotoDesc.Focus();
-                txtAltoFotoDesc.BorderColor = Color.FromName("#f00800");
-                FotoBIen = false;
-            }
-            if (string.IsNullOrWhiteSpace(txtAnchoFotoDesc.Text))
-            {
-                txtAnchoFotoDesc.Focus();
-                txtAnchoFotoDesc.BorderColor = Color.FromName("#f00800");
-                FotoBIen = false;
-            }
+//            if (string.IsNullOrWhiteSpace(txtDescripcionFoto.Text))
+//            {
+//                txtDescripcionFoto.Focus();
+//                txtDescripcionFoto.BorderColor = Color.FromName("#f00800");
+//                FotoBIen = false;
+//            }
+//            if (string.IsNullOrWhiteSpace(txtPrecioFoto.Text))
+//            {
+//                txtPrecioFoto.Focus();
+//                txtPrecioFoto.BorderColor = Color.FromName("#f00800");
+//                FotoBIen = false;
+//            }
+//            if (string.IsNullOrWhiteSpace(txtPrecioFotoTicket.Text))
+//            {
+//                txtPrecioFotoTicket.Focus();
+//                txtPrecioFotoTicket.BorderColor = Color.FromName("#f00800");
+//                FotoBIen = false;
+//            }
+//            if (string.IsNullOrWhiteSpace(txtPrecioFotoServidor.Text))
+//            {
+//                txtPrecioFotoServidor.Focus();
+//                txtPrecioFotoServidor.BorderColor = Color.FromName("#f00800");
+//                FotoBIen = false;
+//            }
+//            if (string.IsNullOrWhiteSpace(txtAltoFoto.Text))
+//            {
+//                txtAltoFoto.Focus();
+//                txtAltoFoto.BorderColor = Color.FromName("#f00800");
+//                FotoBIen = false;
+//            }
+//            if (string.IsNullOrWhiteSpace(txtAnchoFoto.Text))
+//            {
+//                txtAnchoFoto.Focus();
+//                txtAnchoFoto.BorderColor = Color.FromName("#f00800");
+//                FotoBIen = false;
+//            }
+//            if (string.IsNullOrWhiteSpace(txtAltoFotoDesc.Text))
+//            {
+//                txtAltoFotoDesc.Focus();
+//                txtAltoFotoDesc.BorderColor = Color.FromName("#f00800");
+//                FotoBIen = false;
+//            }
+//            if (string.IsNullOrWhiteSpace(txtAnchoFotoDesc.Text))
+//            {
+//                txtAnchoFotoDesc.Focus();
+//                txtAnchoFotoDesc.BorderColor = Color.FromName("#f00800");
+//                FotoBIen = false;
+//            }
 
-            if (FotoBIen == false)
-            {
-                _tabFoto();
-                lblErrorFoto.Text = "Ningun campo debe estar vacio";//va despues que tab papel
-                lblErrorFoto.Visible = true;
-                PnErrorFotoSucursal.Visible = true;
-                return FotoBIen;
-            }
+//            if (FotoBIen == false)
+//            {
+//                _tabFoto();
+//                lblErrorFoto.Text = "Ningun campo debe estar vacio";//va despues que tab papel
+//                lblErrorFoto.Visible = true;
+//                PnErrorFotoSucursal.Visible = true;
+//                return FotoBIen;
+//            }
 
-            #endregion vacios
-            lblErrorFoto.Text = "";//va despues que tab papel
-            lblErrorFoto.Visible = false;
-            PnErrorFotoSucursal.Visible = false;
-            #region Es numero
+//            #endregion vacios
+//            lblErrorFoto.Text = "";//va despues que tab papel
+//            lblErrorFoto.Visible = false;
+//            PnErrorFotoSucursal.Visible = false;
+//            #region Es numero
 
-            //char[] charsRead = new char[txtAltoPapel.Text.Length];
-            foreach (char c in txtPrecioFoto.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
-                    if (c.ToString() != ".")
-                    {
-                        txtPrecioFoto.Focus();
-                        txtPrecioFoto.BorderColor = Color.FromName("#f00800");
-                        ToolPrecioFoto.HRef = "Solo debe contener 1 numero";
-                        ToolPrecioFoto.Visible = true;
-                        FotoBIen = false;
-                    }
-                }
-            }
-            foreach (char c in txtPrecioFotoTicket.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
-                    if (c.ToString() != ".")
-                    {
-                        txtPrecioFotoTicket.Focus();
-                        txtPrecioFotoTicket.BorderColor = Color.FromName("#f00800");
-                        ToolPrecioTicket.HRef = "Solo debe contener 1 numero";
-                        ToolPrecioTicket.Visible = true;
-                        FotoBIen = false;
-                    }
-                }
-            }
-            foreach (char c in txtPrecioFotoServidor.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
-                    if (c.ToString() != ".")
-                    {
-                        txtPrecioFotoServidor.Focus();
-                        txtPrecioFotoServidor.BorderColor = Color.FromName("#f00800");
-                        ToolPrecioServidor.HRef = "Solo debe contener 1 numero";
-                        ToolPrecioServidor.Visible = true;
-                        FotoBIen = false;
-                    }
-                }
-            }
-            foreach (char c in txtAltoFoto.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
-                    if (c.ToString() != ".")
-                    {
-                        txtAltoFoto.Focus();
-                        txtAltoFoto.BorderColor = Color.FromName("#f00800");
-                        ToolAltoFoto.HRef = "Solo debe contener 1 numero";
-                        ToolAltoFoto.Visible = true;
-                        FotoBIen = false;
-                    }
-                }
-            }
-            foreach (char c in txtAnchoFoto.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
-                    if (c.ToString() != ".")
-                    {
-                        txtAnchoFoto.Focus();
-                        txtAnchoFoto.BorderColor = Color.FromName("#f00800");
-                        ToolAnchoFoto.HRef = "Solo debe contener 1 numero";
-                        ToolAnchoFoto.Visible = true;
-                        FotoBIen = false;
-                    }
-                }
-            }
-            foreach (char c in txtAltoFotoDesc.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
-                    if (c.ToString() != ".")
-                    {
-                        txtAltoFotoDesc.Focus();
-                        txtAltoFotoDesc.BorderColor = Color.FromName("#f00800");
-                        ToolAltoFotoDesc.HRef = "Solo debe contener 1 numero";
-                        ToolAltoFotoDesc.Visible = true;
-                        FotoBIen = false;
-                    }
-                }
-            }
-            foreach (char c in txtAnchoFotoDesc.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
-                    if (c.ToString() != ".")
-                    {
-                        txtAnchoFotoDesc.Focus();
-                        txtAnchoFotoDesc.BorderColor = Color.FromName("#f00800");
-                        ToolAnchoFotoDesc.HRef = "Solo debe contener 1 numero";
-                        ToolAnchoFotoDesc.Visible = true;
-                        FotoBIen = false;
-                    }
-                }
-            }
-            if (FotoBIen == false)
-            {
-                _tabFoto();
-                lblErrorFoto.Text = "Todos los campos en formato correcto";
-                lblErrorFoto.Visible = true;
-                PnErrorFotoSucursal.Visible = true;
-                return FotoBIen;
-            }
-            #endregion Es numero
-            lblErrorFoto.Text = "";//va despues que tab papel
-            lblErrorFoto.Visible = false;
-            PnErrorFotoSucursal.Visible = false;
-            #region prototipo
-            //#region digitos
-            //if (txtAltoPapel.Text.Length < 3)
-            //{
-            //    txtAltoPapel.Focus();
-            //    txtAltoPapel.BorderColor = Color.FromName("#f00800");
-            //    ToolAltoPapel.HRef = "Minimo debe ser 1 numero de 3 digitos";
-            //    ToolAltoPapel.Visible = true;
-            //    PapelBIen = false;
-            //}
-            //if (txtAnchoPapel.Text.Length < 3)
-            //{
-            //    txtAnchoPapel.Focus();
-            //    txtAnchoPapel.BorderColor = Color.FromName("#f00800");
-            //    ToolAnchoPapel.HRef = "Minimo debe ser 1 numero de 3 digitos";
-            //    ToolAnchoPapel.Visible = true;
-            //    PapelBIen = false;
-            //}
-            //if (PapelBIen == false)
-            //{
-            //    _tabPapel();
-            //    lblErrorPapel.Text = "Alto y Ancho deben tener al menos 3 digitos";//va despues que tab papel
-            //    lblErrorPapel.Visible = true;
-            //    PnErrorPapelSucursal.Visible = true;
-            //    return PapelBIen;
-            //}
-            //#endregion digitos
-            //lblErrorFoto.Text = "";//va despues que tab papel
-            //lblErrorFoto.Visible = false;
-            //PnErrorFotoSucursal.Visible = false;
-            #endregion prototipo
-            return FotoBIen;
-        }
-        protected void btnAgregarFoto_Click(object sender, EventArgs e)
-        {
-            try { 
-            //ActivarValidacionFotografias();
-            uidFoto.Text = string.Empty;
+//            //char[] charsRead = new char[txtAltoPapel.Text.Length];
+//            foreach (char c in txtPrecioFoto.Text)
+//            {
+//                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+//                {
+//                    if (c.ToString() != ".")
+//                    {
+//                        txtPrecioFoto.Focus();
+//                        txtPrecioFoto.BorderColor = Color.FromName("#f00800");
+//                        ToolPrecioFoto.HRef = "Solo debe contener 1 numero";
+//                        ToolPrecioFoto.Visible = true;
+//                        FotoBIen = false;
+//                    }
+//                }
+//            }
+//            foreach (char c in txtPrecioFotoTicket.Text)
+//            {
+//                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+//                {
+//                    if (c.ToString() != ".")
+//                    {
+//                        txtPrecioFotoTicket.Focus();
+//                        txtPrecioFotoTicket.BorderColor = Color.FromName("#f00800");
+//                        ToolPrecioTicket.HRef = "Solo debe contener 1 numero";
+//                        ToolPrecioTicket.Visible = true;
+//                        FotoBIen = false;
+//                    }
+//                }
+//            }
+//            foreach (char c in txtPrecioFotoServidor.Text)
+//            {
+//                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+//                {
+//                    if (c.ToString() != ".")
+//                    {
+//                        txtPrecioFotoServidor.Focus();
+//                        txtPrecioFotoServidor.BorderColor = Color.FromName("#f00800");
+//                        ToolPrecioServidor.HRef = "Solo debe contener 1 numero";
+//                        ToolPrecioServidor.Visible = true;
+//                        FotoBIen = false;
+//                    }
+//                }
+//            }
+//            foreach (char c in txtAltoFoto.Text)
+//            {
+//                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+//                {
+//                    if (c.ToString() != ".")
+//                    {
+//                        txtAltoFoto.Focus();
+//                        txtAltoFoto.BorderColor = Color.FromName("#f00800");
+//                        ToolAltoFoto.HRef = "Solo debe contener 1 numero";
+//                        ToolAltoFoto.Visible = true;
+//                        FotoBIen = false;
+//                    }
+//                }
+//            }
+//            foreach (char c in txtAnchoFoto.Text)
+//            {
+//                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+//                {
+//                    if (c.ToString() != ".")
+//                    {
+//                        txtAnchoFoto.Focus();
+//                        txtAnchoFoto.BorderColor = Color.FromName("#f00800");
+//                        ToolAnchoFoto.HRef = "Solo debe contener 1 numero";
+//                        ToolAnchoFoto.Visible = true;
+//                        FotoBIen = false;
+//                    }
+//                }
+//            }
+//            foreach (char c in txtAltoFotoDesc.Text)
+//            {
+//                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+//                {
+//                    if (c.ToString() != ".")
+//                    {
+//                        txtAltoFotoDesc.Focus();
+//                        txtAltoFotoDesc.BorderColor = Color.FromName("#f00800");
+//                        ToolAltoFotoDesc.HRef = "Solo debe contener 1 numero";
+//                        ToolAltoFotoDesc.Visible = true;
+//                        FotoBIen = false;
+//                    }
+//                }
+//            }
+//            foreach (char c in txtAnchoFotoDesc.Text)
+//            {
+//                if (char.IsLetter(c) || char.IsWhiteSpace(c))
+//                {
+//                    if (c.ToString() != ".")
+//                    {
+//                        txtAnchoFotoDesc.Focus();
+//                        txtAnchoFotoDesc.BorderColor = Color.FromName("#f00800");
+//                        ToolAnchoFotoDesc.HRef = "Solo debe contener 1 numero";
+//                        ToolAnchoFotoDesc.Visible = true;
+//                        FotoBIen = false;
+//                    }
+//                }
+//            }
+//            if (FotoBIen == false)
+//            {
+//                _tabFoto();
+//                lblErrorFoto.Text = "Todos los campos en formato correcto";
+//                lblErrorFoto.Visible = true;
+//                PnErrorFotoSucursal.Visible = true;
+//                return FotoBIen;
+//            }
+//            #endregion Es numero
+//            lblErrorFoto.Text = "";//va despues que tab papel
+//            lblErrorFoto.Visible = false;
+//            PnErrorFotoSucursal.Visible = false;
+//            #region prototipo
+//            //#region digitos
+//            //if (txtAltoPapel.Text.Length < 3)
+//            //{
+//            //    txtAltoPapel.Focus();
+//            //    txtAltoPapel.BorderColor = Color.FromName("#f00800");
+//            //    ToolAltoPapel.HRef = "Minimo debe ser 1 numero de 3 digitos";
+//            //    ToolAltoPapel.Visible = true;
+//            //    PapelBIen = false;
+//            //}
+//            //if (txtAnchoPapel.Text.Length < 3)
+//            //{
+//            //    txtAnchoPapel.Focus();
+//            //    txtAnchoPapel.BorderColor = Color.FromName("#f00800");
+//            //    ToolAnchoPapel.HRef = "Minimo debe ser 1 numero de 3 digitos";
+//            //    ToolAnchoPapel.Visible = true;
+//            //    PapelBIen = false;
+//            //}
+//            //if (PapelBIen == false)
+//            //{
+//            //    _tabPapel();
+//            //    lblErrorPapel.Text = "Alto y Ancho deben tener al menos 3 digitos";//va despues que tab papel
+//            //    lblErrorPapel.Visible = true;
+//            //    PnErrorPapelSucursal.Visible = true;
+//            //    return PapelBIen;
+//            //}
+//            //#endregion digitos
+//            //lblErrorFoto.Text = "";//va despues que tab papel
+//            //lblErrorFoto.Visible = false;
+//            //PnErrorFotoSucursal.Visible = false;
+//            #endregion prototipo
+//            return FotoBIen;
+//        }
+//        protected void btnAgregarFoto_Click(object sender, EventArgs e)
+//        {
+//            try { 
+//            //ActivarValidacionFotografias();
+//            uidFoto.Text = string.Empty;
 
-            LimpiarFormularioFotografias();
-            HabilitarFormularioFotografias();
+//            LimpiarFormularioFotografias();
+//            HabilitarFormularioFotografias();
             
-            btnOKFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
-            btnOKFoto.Enabled = true;
-            btnCancelarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
-            btnCancelarFoto.Enabled = true;
+//            btnOKFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
+//            btnOKFoto.Enabled = true;
+//            btnCancelarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
+//            btnCancelarFoto.Enabled = true;
 
-            btnAgregarFoto.Disable();
-            btnEditarFoto.Disable();
-            //btnEliminarFoto.Disable();
+//            btnAgregarFoto.Disable();
+//            btnEditarFoto.Disable();
+//            //btnEliminarFoto.Disable();
 
-            int pos = -1;
-            if (ViewState["FotoPreviousRow"] != null)
-            {
-                pos = (int)ViewState["FotoPreviousRow"];
-                GridViewRow previousRow = dgvFotos.Rows[pos];
-                previousRow.RemoveCssClass("success");
-            }
-
-
-                PnErrorFotoSucursal.Visible = false;
-                lblErrorFoto.Visible = false;
-                lblErrorFoto.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoSucursal.Visible = true;
-                lblErrorFoto.Visible = true;
-                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
-            }
-
-        }
-        protected void btnEditarFoto_Click(object sender, EventArgs e)
-        {
-            try { 
-            HabilitarFormularioFotografias();
-
-            btnAgregarFoto.Enabled = false;
-            btnAgregarFoto.AddCssClass("disabled");
-
-            btnEditarFoto.Enabled = false;
-            btnEditarFoto.AddCssClass("disabled");
-
-            //btnEliminarFoto.Enabled = false;
-            //btnEliminarFoto.AddCssClass("disabled");
-
-            btnOKFoto.Enabled = true;
-            btnOKFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
-
-            btnCancelarFoto.Enabled = true;
-            btnCancelarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#VConfimacionEditarFoto", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#VConfimacionEditarFoto').hide();", true);
+//            int pos = -1;
+//            if (ViewState["FotoPreviousRow"] != null)
+//            {
+//                pos = (int)ViewState["FotoPreviousRow"];
+//                GridViewRow previousRow = dgvFotos.Rows[pos];
+//                previousRow.RemoveCssClass("success");
+//            }
 
 
-                PnErrorFotoSucursal.Visible = false;
-                lblErrorFoto.Visible = false;
-                lblErrorFoto.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoSucursal.Visible = true;
-                lblErrorFoto.Visible = true;
-                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
-            }
+//                PnErrorFotoSucursal.Visible = false;
+//                lblErrorFoto.Visible = false;
+//                lblErrorFoto.Text = "";
+//            }
+//            catch (Exception x)
+//            {
+//                PnErrorFotoSucursal.Visible = true;
+//                lblErrorFoto.Visible = true;
+//                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+//            }
 
-        }
-        protected void btnEliminarFoto_Click(object sender, EventArgs e)
-        {
-            lblAceptarEliminarFoto.Visible = true;
-            lblAceptarEliminarFoto.Text = "¿Desea eliminar La foto seleccionada?";
-            btnAceptarEliminarFoto.Visible = true;
-            btnCancelarEliminarFoto.Visible = true;
-        }
-        protected void btnOKFoto_Click(object sender, EventArgs e)
-        {
-            try {
+//        }
+//        protected void btnEditarFoto_Click(object sender, EventArgs e)
+//        {
+//            try { 
+//            HabilitarFormularioFotografias();
 
-                if (ValidarCamposFoto() == false)
-                {
-                    return;
-                }
-                ToolPrecioFoto.HRef = "";
-                ToolPrecioFoto.Visible = false;
-                ToolPrecioTicket.HRef = "";
-                ToolPrecioTicket.Visible = false;
-                ToolPrecioServidor.HRef = "";
-                ToolPrecioServidor.Visible = false;
-                ToolAltoFoto.HRef = "";
-                ToolAltoFoto.Visible = false;
-                ToolAnchoFoto.HRef = "";
-                ToolAnchoFoto.Visible = false;
-                ToolAltoFotoDesc.HRef = "";
-                ToolAltoFotoDesc.Visible = false;
-                ToolAnchoFotoDesc.HRef = "";
-                ToolAnchoFotoDesc.Visible = false;
-                List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
-                SucursalFoto foto = null;
-                int pos = -1;
-                if (!string.IsNullOrWhiteSpace(uidFoto.Text))
-                {
-                    IEnumerable<SucursalFoto> dir = from i in fotos where i.UidFoto.ToString() == uidFoto.Text select i;
-                    foto = dir.First();
-                    pos = fotos.IndexOf(foto);
-                    fotos.Remove(foto);
-                }
-                else
-                {
-                    foto = new SucursalFoto();
-                    foto.UidFoto = Guid.NewGuid();
-                }
-                //a partir de aqui agrega los datos al objeto
-                foto.UidImpresora = new Guid(ddImpresoraFoto.SelectedValue);
-                foto.StrDescripcion = txtDescripcionFoto.Text;
-                foto.StrPrecio = txtPrecioFoto.Text;
-                foto.StrPrecioTicket = txtPrecioFotoTicket.Text;
-                foto.StrPrecioServidor = txtPrecioFotoServidor.Text;
-                foto.VchAlto = txtAltoFoto.Text;
-                foto.VchAncho = txtAnchoFoto.Text;
-                foto.VchAltoDesc = txtAltoFotoDesc.Text;
-                foto.VchAnchoDesc = txtAnchoFotoDesc.Text;
-                foto.UidStatus = new Guid(ddActivoFoto.SelectedValue);
-                foto.StrStatus = ddActivoFoto.SelectedItem.Text;
-                foto.BooRotarEnPapel =false;
-                foto.VchColumna = "";
-                foto.VchFila = "";
-                foto.UidMedida = new Guid(ddMedidaFoto.SelectedValue);
-                foto.VchMedida = ddMedidaFoto.SelectedItem.Text;
-                if (pos < 0)
-                    fotos.Add(foto);
-                else
-                    fotos.Insert(pos, foto);
+//            btnAgregarFoto.Enabled = false;
+//            btnAgregarFoto.AddCssClass("disabled");
+
+//            btnEditarFoto.Enabled = false;
+//            btnEditarFoto.AddCssClass("disabled");
+
+//            //btnEliminarFoto.Enabled = false;
+//            //btnEliminarFoto.AddCssClass("disabled");
+
+//            btnOKFoto.Enabled = true;
+//            btnOKFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
+
+//            btnCancelarFoto.Enabled = true;
+//            btnCancelarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
+//            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#VConfimacionEditarFoto", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#VConfimacionEditarFoto').hide();", true);
+
+
+//                PnErrorFotoSucursal.Visible = false;
+//                lblErrorFoto.Visible = false;
+//                lblErrorFoto.Text = "";
+//            }
+//            catch (Exception x)
+//            {
+//                PnErrorFotoSucursal.Visible = true;
+//                lblErrorFoto.Visible = true;
+//                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+//            }
+
+//        }
+//        protected void btnEliminarFoto_Click(object sender, EventArgs e)
+//        {
+//            lblAceptarEliminarFoto.Visible = true;
+//            lblAceptarEliminarFoto.Text = "¿Desea eliminar La foto seleccionada?";
+//            btnAceptarEliminarFoto.Visible = true;
+//            btnCancelarEliminarFoto.Visible = true;
+//        }
+//        protected void btnOKFoto_Click(object sender, EventArgs e)
+//        {
+//            try {
+
+//                if (ValidarCamposFoto() == false)
+//                {
+//                    return;
+//                }
+//                ToolPrecioFoto.HRef = "";
+//                ToolPrecioFoto.Visible = false;
+//                ToolPrecioTicket.HRef = "";
+//                ToolPrecioTicket.Visible = false;
+//                ToolPrecioServidor.HRef = "";
+//                ToolPrecioServidor.Visible = false;
+//                ToolAltoFoto.HRef = "";
+//                ToolAltoFoto.Visible = false;
+//                ToolAnchoFoto.HRef = "";
+//                ToolAnchoFoto.Visible = false;
+//                ToolAltoFotoDesc.HRef = "";
+//                ToolAltoFotoDesc.Visible = false;
+//                ToolAnchoFotoDesc.HRef = "";
+//                ToolAnchoFotoDesc.Visible = false;
+//                List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
+//                SucursalFoto foto = null;
+//                int pos = -1;
+//                if (!string.IsNullOrWhiteSpace(uidFoto.Text))
+//                {
+//                    IEnumerable<SucursalFoto> dir = from i in fotos where i.UidFoto.ToString() == uidFoto.Text select i;
+//                    foto = dir.First();
+//                    pos = fotos.IndexOf(foto);
+//                    fotos.Remove(foto);
+//                }
+//                else
+//                {
+//                    foto = new SucursalFoto();
+//                    foto.UidFoto = Guid.NewGuid();
+//                }
+//                //a partir de aqui agrega los datos al objeto
+//                foto.UidImpresora = new Guid(ddImpresoraFoto.SelectedValue);
+//                foto.StrDescripcion = txtDescripcionFoto.Text;
+//                foto.StrPrecio = txtPrecioFoto.Text;
+//                foto.StrPrecioTicket = txtPrecioFotoTicket.Text;
+//                foto.StrPrecioServidor = txtPrecioFotoServidor.Text;
+//                foto.VchAlto = txtAltoFoto.Text;
+//                foto.VchAncho = txtAnchoFoto.Text;
+//                foto.VchAltoDesc = txtAltoFotoDesc.Text;
+//                foto.VchAnchoDesc = txtAnchoFotoDesc.Text;
+//                foto.UidStatus = new Guid(ddActivoFoto.SelectedValue);
+//                foto.StrStatus = ddActivoFoto.SelectedItem.Text;
+//                foto.BooRotarEnPapel =false;
+//                foto.VchColumna = "";
+//                foto.VchFila = "";
+//                foto.UidMedida = new Guid(ddMedidaFoto.SelectedValue);
+//                foto.VchMedida = ddMedidaFoto.SelectedItem.Text;
+//                if (pos < 0)
+//                    fotos.Add(foto);
+//                else
+//                    fotos.Insert(pos, foto);
 
            
-                ViewState["Fotos"] = fotos;
-                DatabindFotografias();
-                DataBindFotografiasPapel();
-                LimpiarFormularioFotografias();
-                DesHabilitarFormularioFotografias();
-                btnOKFoto.AddCssClass("hidden").AddCssClass("disabled");
-                btnOKFoto.Enabled = false;
-                btnCancelarFoto.AddCssClass("hidden").AddCssClass("disabled");
-                btnCancelarFoto.Enabled = false;
-                btnEditarFoto.AddCssClass("disabled").AddCssClass("hidden");
-                btnEditarFoto.Enabled = false;
-                btnAgregarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
-                btnAgregarFoto.Enabled = true;
+//                ViewState["Fotos"] = fotos;
+//                DatabindFotografias();
+//                DataBindFotografiasPapel();
+//                LimpiarFormularioFotografias();
+//                DesHabilitarFormularioFotografias();
+//                btnOKFoto.AddCssClass("hidden").AddCssClass("disabled");
+//                btnOKFoto.Enabled = false;
+//                btnCancelarFoto.AddCssClass("hidden").AddCssClass("disabled");
+//                btnCancelarFoto.Enabled = false;
+//                btnEditarFoto.AddCssClass("disabled").AddCssClass("hidden");
+//                btnEditarFoto.Enabled = false;
+//                btnAgregarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
+//                btnAgregarFoto.Enabled = true;
 
 
-                PnErrorFotoSucursal.Visible = false;
-                lblErrorFoto.Visible = false;
-                lblErrorFoto.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoSucursal.Visible = true;
-                lblErrorFoto.Visible = true;
-                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
-            }
+//                PnErrorFotoSucursal.Visible = false;
+//                lblErrorFoto.Visible = false;
+//                lblErrorFoto.Text = "";
+//            }
+//            catch (Exception x)
+//            {
+//                PnErrorFotoSucursal.Visible = true;
+//                lblErrorFoto.Visible = true;
+//                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+//            }
 
-        }
-        protected void btnCancelarFoto_Click(object sender, EventArgs e)
-        {
-            try { 
-            //frmGrpDescripcionFoto.RemoveCssClass("has-error");
-            //frmGrpPrecioFoto.RemoveCssClass("has-error");
-            //frmGrpAltoFoto.RemoveCssClass("has-error");
-            //frmGrpAnchoFoto.RemoveCssClass("has-error");
+//        }
+//        protected void btnCancelarFoto_Click(object sender, EventArgs e)
+//        {
+//            try { 
+//            //frmGrpDescripcionFoto.RemoveCssClass("has-error");
+//            //frmGrpPrecioFoto.RemoveCssClass("has-error");
+//            //frmGrpAltoFoto.RemoveCssClass("has-error");
+//            //frmGrpAnchoFoto.RemoveCssClass("has-error");
 
-            DesHabilitarFormularioFotografias();
+//            DesHabilitarFormularioFotografias();
 
-            btnOKFoto.AddCssClass("hidden").AddCssClass("disabled");
-            btnOKFoto.Enabled = false;
-            btnCancelarFoto.AddCssClass("hidden").AddCssClass("disabled");
-            btnCancelarFoto.Enabled = false;
+//            btnOKFoto.AddCssClass("hidden").AddCssClass("disabled");
+//            btnOKFoto.Enabled = false;
+//            btnCancelarFoto.AddCssClass("hidden").AddCssClass("disabled");
+//            btnCancelarFoto.Enabled = false;
 
-            btnAgregarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
-            btnAgregarFoto.Enabled = true;
-
-
-            if (uidFoto.Text.Length == 0)
-            {
-                btnEditarFoto.Disable();
-                LimpiarFormularioFotografias();
-            }
-            else
-            {
-                //btnEliminarFoto.Enable();
-                btnEditarFoto.Enable();
-
-                List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
-                SucursalFoto foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == dgvFotos.SelectedDataKey.Value.ToString()).First();
-
-                uidFoto.Text = foto.UidFoto.ToString();
-
-                txtDescripcionFoto.Text = foto.StrDescripcion;
-                txtPrecioFoto.Text = foto.StrPrecio;
-                txtPrecioFotoTicket.Text = foto.StrPrecioTicket;
-                txtPrecioFotoServidor.Text = foto.StrPrecioServidor;
-                txtAltoFoto.Text = foto.VchAlto.ToString();
-                txtAnchoFoto.Text = foto.VchAncho.ToString();
-                txtAltoFotoDesc.Text = foto.VchAltoDesc.ToString();
-                txtAnchoFotoDesc.Text = foto.VchAnchoDesc.ToString();
-                txtFxColumna.Text = foto.VchColumna;
-                txtFxFila.Text = foto.VchFila;
-                CbRotarImagenPapel.Checked = foto.BooRotarEnPapel;
-
-                ddActivoFoto.SelectedValue = foto.UidStatus.ToString();
-                ddMedidaFoto.SelectedValue = foto.UidMedida.ToString();
-            }
+//            btnAgregarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
+//            btnAgregarFoto.Enabled = true;
 
 
-                PnErrorFotoSucursal.Visible = false;
-                lblErrorFoto.Visible = false;
-                lblErrorFoto.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoSucursal.Visible = true;
-                lblErrorFoto.Visible = true;
-                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
-            }
+//            if (uidFoto.Text.Length == 0)
+//            {
+//                btnEditarFoto.Disable();
+//                LimpiarFormularioFotografias();
+//            }
+//            else
+//            {
+//                //btnEliminarFoto.Enable();
+//                btnEditarFoto.Enable();
 
-        }
-        protected void btnAceptarEliminarFoto_Click(object sender, EventArgs e)
-        {
-            try { 
+//                List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
+//                SucursalFoto foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == dgvFotos.SelectedDataKey.Value.ToString()).First();
 
-            btnAgregarFoto.Enabled = true;
-            btnAgregarFoto.RemoveCssClass("disabled");
+//                uidFoto.Text = foto.UidFoto.ToString();
 
-            btnOKFoto.Enabled = false;
-            btnOKFoto.AddCssClass("hidden").AddCssClass("disabled");
+//                txtDescripcionFoto.Text = foto.StrDescripcion;
+//                txtPrecioFoto.Text = foto.StrPrecio;
+//                txtPrecioFotoTicket.Text = foto.StrPrecioTicket;
+//                txtPrecioFotoServidor.Text = foto.StrPrecioServidor;
+//                txtAltoFoto.Text = foto.VchAlto.ToString();
+//                txtAnchoFoto.Text = foto.VchAncho.ToString();
+//                txtAltoFotoDesc.Text = foto.VchAltoDesc.ToString();
+//                txtAnchoFotoDesc.Text = foto.VchAnchoDesc.ToString();
+//                txtFxColumna.Text = foto.VchColumna;
+//                txtFxFila.Text = foto.VchFila;
+//                CbRotarImagenPapel.Checked = foto.BooRotarEnPapel;
 
-            btnCancelarFoto.Enabled = false;
-            btnCancelarFoto.AddCssClass("hidden").AddCssClass("disabled");
-
-            Guid uid = new Guid(uidFoto.Text);
-
-            List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
-            SucursalFoto foto = fotos.Select(x => x).Where(x => x.UidFoto == uid).First();
-            fotos.Remove(foto);
-            FotoRemoved.Add(foto);
-
-            //uidFoto.Text = string.Empty;
-
-            //txtDescripcionFoto.Text = string.Empty;
-            //txtPrecioFoto.Text = string.Empty;
-            //txtAltoFoto.Text = string.Empty;
-            //txtAnchoFoto.Text = string.Empty;
-            //txtFxFila.Text = string.Empty;
-            //txtFxColumna.Text = string.Empty;
-            //CbRotarImagenPapel.Checked = false;
-            //ddActivoFoto.SelectedIndex = 0;
-            //ddMedidaFoto.SelectedIndex = 0;
-
-            LimpiarFormularioFotografias();
-
-            //dgvFotos.DataSource = fotos;
-            ViewState["Fotos"] = fotos;
-            //dgvFotos.DataBind();
-            DatabindFotografias();
-
-            btnCancelarEliminarFoto.Visible = false;
-            btnAceptarEliminarFoto.Visible = false;
-            lblAceptarEliminarFoto.Visible = false;
-            ViewState["FotoPreviousRow"] = null;
+//                ddActivoFoto.SelectedValue = foto.UidStatus.ToString();
+//                ddMedidaFoto.SelectedValue = foto.UidMedida.ToString();
+//            }
 
 
-            PnErrorFotoSucursal.Visible = false;
-            lblErrorFoto.Visible = false;
-            lblErrorFoto.Text = "";
-        }
-            catch (Exception x)
-            {
-                PnErrorFotoSucursal.Visible = true;
-                lblErrorFoto.Visible = true;
-                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
-            }
+//                PnErrorFotoSucursal.Visible = false;
+//                lblErrorFoto.Visible = false;
+//                lblErrorFoto.Text = "";
+//            }
+//            catch (Exception x)
+//            {
+//                PnErrorFotoSucursal.Visible = true;
+//                lblErrorFoto.Visible = true;
+//                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+//            }
 
-}
-        protected void btnCancelarEliminarFoto_Click(object sender, EventArgs e)
-        {
-            try { 
-            //esta funcion parece ser llamada por otras
-            btnCancelarEliminarFoto.Visible = false;
-            btnAceptarEliminarFoto.Visible = false;
-            lblAceptarEliminarFoto.Visible = false;
+//        }
+//        protected void btnAceptarEliminarFoto_Click(object sender, EventArgs e)
+//        {
+//            try { 
+
+//            btnAgregarFoto.Enabled = true;
+//            btnAgregarFoto.RemoveCssClass("disabled");
+
+//            btnOKFoto.Enabled = false;
+//            btnOKFoto.AddCssClass("hidden").AddCssClass("disabled");
+
+//            btnCancelarFoto.Enabled = false;
+//            btnCancelarFoto.AddCssClass("hidden").AddCssClass("disabled");
+
+//            Guid uid = new Guid(uidFoto.Text);
+
+//            List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
+//            SucursalFoto foto = fotos.Select(x => x).Where(x => x.UidFoto == uid).First();
+//            fotos.Remove(foto);
+//            FotoRemoved.Add(foto);
+
+//            //uidFoto.Text = string.Empty;
+
+//            //txtDescripcionFoto.Text = string.Empty;
+//            //txtPrecioFoto.Text = string.Empty;
+//            //txtAltoFoto.Text = string.Empty;
+//            //txtAnchoFoto.Text = string.Empty;
+//            //txtFxFila.Text = string.Empty;
+//            //txtFxColumna.Text = string.Empty;
+//            //CbRotarImagenPapel.Checked = false;
+//            //ddActivoFoto.SelectedIndex = 0;
+//            //ddMedidaFoto.SelectedIndex = 0;
+
+//            LimpiarFormularioFotografias();
+
+//            //dgvFotos.DataSource = fotos;
+//            ViewState["Fotos"] = fotos;
+//            //dgvFotos.DataBind();
+//            DatabindFotografias();
+
+//            btnCancelarEliminarFoto.Visible = false;
+//            btnAceptarEliminarFoto.Visible = false;
+//            lblAceptarEliminarFoto.Visible = false;
+//            ViewState["FotoPreviousRow"] = null;
 
 
-                PnErrorFotoSucursal.Visible = false;
-                lblErrorFoto.Visible = false;
-                lblErrorFoto.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoSucursal.Visible = true;
-                lblErrorFoto.Visible = true;
-                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
-            }
+//            PnErrorFotoSucursal.Visible = false;
+//            lblErrorFoto.Visible = false;
+//            lblErrorFoto.Text = "";
+//        }
+//            catch (Exception x)
+//            {
+//                PnErrorFotoSucursal.Visible = true;
+//                lblErrorFoto.Visible = true;
+//                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+//            }
 
-        }
-        protected void dgvFotos_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            try { 
+//}
+//        protected void btnCancelarEliminarFoto_Click(object sender, EventArgs e)
+//        {
+//            try { 
+//            //esta funcion parece ser llamada por otras
+//            btnCancelarEliminarFoto.Visible = false;
+//            btnAceptarEliminarFoto.Visible = false;
+//            lblAceptarEliminarFoto.Visible = false;
 
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(dgvFotos, "Select$" + e.Row.RowIndex);
-            }
+
+//                PnErrorFotoSucursal.Visible = false;
+//                lblErrorFoto.Visible = false;
+//                lblErrorFoto.Text = "";
+//            }
+//            catch (Exception x)
+//            {
+//                PnErrorFotoSucursal.Visible = true;
+//                lblErrorFoto.Visible = true;
+//                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+//            }
+
+//        }
+//        protected void dgvFotos_RowDataBound(object sender, GridViewRowEventArgs e)
+//        {
+//            try { 
+
+//            if (e.Row.RowType == DataControlRowType.DataRow)
+//            {
+//                e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(dgvFotos, "Select$" + e.Row.RowIndex);
+//            }
 
 
-                PnErrorFotoSucursal.Visible = false;
-                lblErrorFoto.Visible = false;
-                lblErrorFoto.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoSucursal.Visible = true;
-                lblErrorFoto.Visible = true;
-                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
-            }
+//                PnErrorFotoSucursal.Visible = false;
+//                lblErrorFoto.Visible = false;
+//                lblErrorFoto.Text = "";
+//            }
+//            catch (Exception x)
+//            {
+//                PnErrorFotoSucursal.Visible = true;
+//                lblErrorFoto.Visible = true;
+//                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+//            }
 
-        }
-        protected void dgvFotos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try { 
+//        }
+//        protected void dgvFotos_SelectedIndexChanged(object sender, EventArgs e)
+//        {
+//            try { 
 
-            List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
-            SucursalFoto foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == dgvFotos.SelectedDataKey.Value.ToString()).First();
+//            List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
+//            SucursalFoto foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == dgvFotos.SelectedDataKey.Value.ToString()).First();
 
-            uidFoto.Text = foto.UidFoto.ToString();
-            ddImpresoraFoto.SelectedValue = foto.UidImpresora.ToString();
-            txtDescripcionFoto.Text = foto.StrDescripcion;
-            txtPrecioFoto.Text = foto.StrPrecio;
-            txtPrecioFotoTicket.Text = foto.StrPrecioTicket;
-            txtPrecioFotoServidor.Text = foto.StrPrecioServidor;
-            txtAltoFoto.Text = foto.VchAlto.ToString();
-            txtAnchoFoto.Text = foto.VchAncho.ToString();
-            txtAltoFotoDesc.Text = foto.VchAltoDesc.ToString();
-            txtAnchoFotoDesc.Text = foto.VchAnchoDesc.ToString();
-            ddActivoFoto.SelectedValue = foto.UidStatus.ToString();//no se si se necesite seccionar tambien la uid
-            ddMedidaFoto.SelectedValue = foto.UidMedida.ToString();
+//            uidFoto.Text = foto.UidFoto.ToString();
+//            ddImpresoraFoto.SelectedValue = foto.UidImpresora.ToString();
+//            txtDescripcionFoto.Text = foto.StrDescripcion;
+//            txtPrecioFoto.Text = foto.StrPrecio;
+//            txtPrecioFotoTicket.Text = foto.StrPrecioTicket;
+//            txtPrecioFotoServidor.Text = foto.StrPrecioServidor;
+//            txtAltoFoto.Text = foto.VchAlto.ToString();
+//            txtAnchoFoto.Text = foto.VchAncho.ToString();
+//            txtAltoFotoDesc.Text = foto.VchAltoDesc.ToString();
+//            txtAnchoFotoDesc.Text = foto.VchAnchoDesc.ToString();
+//            ddActivoFoto.SelectedValue = foto.UidStatus.ToString();//no se si se necesite seccionar tambien la uid
+//            ddMedidaFoto.SelectedValue = foto.UidMedida.ToString();
             
             
-            if (EditingMode)
-            {
-                btnEditarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
-                btnEditarFoto.Enabled = true;
-                //btnEliminarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
-                //btnEliminarFoto.Enabled = true;
-                btnOKFoto.AddCssClass("disabled").AddCssClass("hidden");
-                btnOKFoto.Enabled = false;
-                btnCancelarFoto.AddCssClass("disabled").AddCssClass("hidden");
-                btnCancelarFoto.Enabled = false;
-            }
+//            if (EditingMode)
+//            {
+//                btnEditarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
+//                btnEditarFoto.Enabled = true;
+//                //btnEliminarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
+//                //btnEliminarFoto.Enabled = true;
+//                btnOKFoto.AddCssClass("disabled").AddCssClass("hidden");
+//                btnOKFoto.Enabled = false;
+//                btnCancelarFoto.AddCssClass("disabled").AddCssClass("hidden");
+//                btnCancelarFoto.Enabled = false;
+//            }
 
-            int pos = -1;
-            if (ViewState["FotoPreviousRow"] != null)
-            {
-                pos = (int)ViewState["FotoPreviousRow"];
-                GridViewRow previousRow = dgvFotos.Rows[pos];
-                previousRow.RemoveCssClass("success");
-            }
+//            int pos = -1;
+//            if (ViewState["FotoPreviousRow"] != null)
+//            {
+//                pos = (int)ViewState["FotoPreviousRow"];
+//                GridViewRow previousRow = dgvFotos.Rows[pos];
+//                previousRow.RemoveCssClass("success");
+//            }
 
-            ViewState["FotoPreviousRow"] = dgvFotos.SelectedIndex;
-            dgvFotos.SelectedRow.AddCssClass("success");
+//            ViewState["FotoPreviousRow"] = dgvFotos.SelectedIndex;
+//            dgvFotos.SelectedRow.AddCssClass("success");
 
 
-                PnErrorFotoSucursal.Visible = false;
-                lblErrorFoto.Visible = false;
-                lblErrorFoto.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoSucursal.Visible = true;
-                lblErrorFoto.Visible = true;
-                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
-            }
-        }
-        void LimpiarFormularioFotografias()
-        {
-            //solo son texbox
-            uidFoto.Text = string.Empty;
-            txtDescripcionFoto.Text = string.Empty;
-            txtPrecioFoto.Text = string.Empty;
-            txtPrecioFotoTicket.Text = string.Empty;
-            txtPrecioFotoServidor.Text = string.Empty;
-            txtAltoFoto.Text = string.Empty;
-            txtAnchoFoto.Text = string.Empty;
-            txtAltoFotoDesc.Text = string.Empty;
-            txtAnchoFotoDesc.Text = string.Empty;
-            ddActivoFoto.SelectedIndex = 0;
-            ddMedidaFoto.SelectedIndex = 0;
-        }
-        void DesHabilitarFormularioFotografias()
-        {
-            if (ddImpresoraFoto.DataSource != null)
-            {
-                ddImpresoraFoto.SelectedIndex = 0;
-            }
-            ddImpresoraFoto.AddCssClass("disabled");
-            ddImpresoraFoto.Enabled = false;
+//                PnErrorFotoSucursal.Visible = false;
+//                lblErrorFoto.Visible = false;
+//                lblErrorFoto.Text = "";
+//            }
+//            catch (Exception x)
+//            {
+//                PnErrorFotoSucursal.Visible = true;
+//                lblErrorFoto.Visible = true;
+//                lblErrorFoto.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+//            }
+//        }
+//        void LimpiarFormularioFotografias()
+//        {
+//            //solo son texbox
+//            uidFoto.Text = string.Empty;
+//            txtDescripcionFoto.Text = string.Empty;
+//            txtPrecioFoto.Text = string.Empty;
+//            txtPrecioFotoTicket.Text = string.Empty;
+//            txtPrecioFotoServidor.Text = string.Empty;
+//            txtAltoFoto.Text = string.Empty;
+//            txtAnchoFoto.Text = string.Empty;
+//            txtAltoFotoDesc.Text = string.Empty;
+//            txtAnchoFotoDesc.Text = string.Empty;
+//            ddActivoFoto.SelectedIndex = 0;
+//            ddMedidaFoto.SelectedIndex = 0;
+//        }
+//        void DesHabilitarFormularioFotografias()
+//        {
+//            if (ddImpresoraFoto.DataSource != null)
+//            {
+//                ddImpresoraFoto.SelectedIndex = 0;
+//            }
+//            ddImpresoraFoto.AddCssClass("disabled");
+//            ddImpresoraFoto.Enabled = false;
 
-            txtDescripcionFoto.Enabled = false;
-            txtDescripcionFoto.AddCssClass("disabled");
+//            txtDescripcionFoto.Enabled = false;
+//            txtDescripcionFoto.AddCssClass("disabled");
 
-            txtPrecioFoto.Enabled = false;
-            txtPrecioFoto.AddCssClass("disabled");
+//            txtPrecioFoto.Enabled = false;
+//            txtPrecioFoto.AddCssClass("disabled");
 
-            txtPrecioFotoTicket.Enabled = false;
-            txtPrecioFotoTicket.AddCssClass("disabled");
+//            txtPrecioFotoTicket.Enabled = false;
+//            txtPrecioFotoTicket.AddCssClass("disabled");
 
-            txtPrecioFotoServidor.Enabled = false;
-            txtPrecioFotoServidor.AddCssClass("disabled");
+//            txtPrecioFotoServidor.Enabled = false;
+//            txtPrecioFotoServidor.AddCssClass("disabled");
 
-            txtAltoFoto.Enabled = false;
-            txtAltoFoto.AddCssClass("disabled");
+//            txtAltoFoto.Enabled = false;
+//            txtAltoFoto.AddCssClass("disabled");
 
-            txtAnchoFoto.Enabled = false;
-            txtAnchoFoto.AddCssClass("disabled");
+//            txtAnchoFoto.Enabled = false;
+//            txtAnchoFoto.AddCssClass("disabled");
 
-            txtAltoFotoDesc.Enabled = false;
-            txtAltoFotoDesc.AddCssClass("disabled");
+//            txtAltoFotoDesc.Enabled = false;
+//            txtAltoFotoDesc.AddCssClass("disabled");
 
-            txtAnchoFotoDesc.Enabled = false;
-            txtAnchoFotoDesc.AddCssClass("disabled");
+//            txtAnchoFotoDesc.Enabled = false;
+//            txtAnchoFotoDesc.AddCssClass("disabled");
 
-            ddActivoFoto.SelectedIndex = 0;
-            ddActivoFoto.AddCssClass("disabled");
-            ddActivoFoto.Enabled = false;
+//            ddActivoFoto.SelectedIndex = 0;
+//            ddActivoFoto.AddCssClass("disabled");
+//            ddActivoFoto.Enabled = false;
 
-            ddMedidaFoto.SelectedIndex = 0;
-            ddMedidaFoto.AddCssClass("disabled");
-            ddMedidaFoto.Enabled = false;
+//            ddMedidaFoto.SelectedIndex = 0;
+//            ddMedidaFoto.AddCssClass("disabled");
+//            ddMedidaFoto.Enabled = false;
 
            
-        }
-        void HabilitarFormularioFotografias()
-        {
-            ddImpresoraFoto.SelectedIndex = 0;
-            ddImpresoraFoto.RemoveCssClass("disabled");
-            ddImpresoraFoto.Enabled = true;
+//        }
+//        void HabilitarFormularioFotografias()
+//        {
+//            ddImpresoraFoto.SelectedIndex = 0;
+//            ddImpresoraFoto.RemoveCssClass("disabled");
+//            ddImpresoraFoto.Enabled = true;
 
-            txtDescripcionFoto.Enabled = true;
-            txtDescripcionFoto.RemoveCssClass("disabled");
+//            txtDescripcionFoto.Enabled = true;
+//            txtDescripcionFoto.RemoveCssClass("disabled");
 
-            txtPrecioFoto.Enabled = true;
-            txtPrecioFoto.RemoveCssClass("disabled");
+//            txtPrecioFoto.Enabled = true;
+//            txtPrecioFoto.RemoveCssClass("disabled");
 
-            txtPrecioFotoTicket.Enabled = true;
-            txtPrecioFotoTicket.RemoveCssClass("disabled");
+//            txtPrecioFotoTicket.Enabled = true;
+//            txtPrecioFotoTicket.RemoveCssClass("disabled");
 
-            txtPrecioFotoServidor.Enabled = true;
-            txtPrecioFotoServidor.RemoveCssClass("disabled");
+//            txtPrecioFotoServidor.Enabled = true;
+//            txtPrecioFotoServidor.RemoveCssClass("disabled");
 
-            txtAltoFoto.Enabled = true;
-            txtAltoFoto.RemoveCssClass("disabled");
+//            txtAltoFoto.Enabled = true;
+//            txtAltoFoto.RemoveCssClass("disabled");
 
-            txtAnchoFoto.Enabled = true;
-            txtAnchoFoto.RemoveCssClass("disabled");
+//            txtAnchoFoto.Enabled = true;
+//            txtAnchoFoto.RemoveCssClass("disabled");
 
-            txtAltoFotoDesc.Enabled = true;
-            txtAltoFotoDesc.RemoveCssClass("disabled");
+//            txtAltoFotoDesc.Enabled = true;
+//            txtAltoFotoDesc.RemoveCssClass("disabled");
 
-            txtAnchoFotoDesc.Enabled = true;
-            txtAnchoFotoDesc.RemoveCssClass("disabled");
+//            txtAnchoFotoDesc.Enabled = true;
+//            txtAnchoFotoDesc.RemoveCssClass("disabled");
 
-            ddActivoFoto.SelectedIndex = 0;
-            ddActivoFoto.RemoveCssClass("disabled");
-            ddActivoFoto.Enabled = true;
+//            ddActivoFoto.SelectedIndex = 0;
+//            ddActivoFoto.RemoveCssClass("disabled");
+//            ddActivoFoto.Enabled = true;
 
-            ddMedidaFoto.SelectedIndex = 0;
-            ddMedidaFoto.RemoveCssClass("disabled");
-            ddMedidaFoto.Enabled = true;
+//            ddMedidaFoto.SelectedIndex = 0;
+//            ddMedidaFoto.RemoveCssClass("disabled");
+//            ddMedidaFoto.Enabled = true;
             
-        }
-        void DatabindFotografias()
-        {
-            List<SucursalFoto> Fotos = (List<SucursalFoto>)ViewState["Fotos"];
+//        }
+//        void DatabindFotografias()
+//        {
+//            List<SucursalFoto> Fotos = (List<SucursalFoto>)ViewState["Fotos"];
 
-            // txtCantMaqLicencia.Text ="EnuOrden: "+ Licencias[0].EnuOrden.ToString() + " StrOrdenaPor: " + Licencias[0].StrOrdenaPor.ToString();
-            dgvFotos.DataSource = Fotos;
-            dgvFotos.DataBind();
-        }
-        #endregion Panel derecho (Fotografias)
+//            // txtCantMaqLicencia.Text ="EnuOrden: "+ Licencias[0].EnuOrden.ToString() + " StrOrdenaPor: " + Licencias[0].StrOrdenaPor.ToString();
+//            dgvFotos.DataSource = Fotos;
+//            dgvFotos.DataBind();
+//        }
+//        #endregion Panel derecho (Fotografias)
 
         #region Panel derecho (Licencias)
         protected void btnGenerarLicencia_Click(object sender, EventArgs e)//listo 23/11/17
@@ -4960,2168 +4960,705 @@ namespace CodorniX.Vista
 
         #endregion Panel derecho (Licencias)
 
-        #region Panel derecho (Papel)
-        void DesHabilitarFormularioPapel() {
-            txtNombrePapel.Enabled=false;
-            txtAltoPapel.Enabled = false;
-            txtAnchoPapel.Enabled = false;
-            txtMargenSuperior.Enabled = false;
-            txtMargenInferior.Enabled = false;
-            txtMargenDerecho.Enabled = false;
-            txtMargenIzquierdo.Enabled = false;
-        }
-        void DesHabilitarFormularioFotoPapel() {
-            //if (DdlFoto.DataSource != null)
-            //{
-            //    DdlFoto.SelectedIndex = 0;
-            //}
-            //DdlFoto.AddCssClass("disabled");
-            //DdlFoto.Enabled = false;
+        //#region Panel derecho (Papel)
+        //void DesHabilitarFormularioPapel() {
+        //    txtNombrePapel.Enabled=false;
+        //    txtAltoPapel.Enabled = false;
+        //    txtAnchoPapel.Enabled = false;
+        //    txtMargenSuperior.Enabled = false;
+        //    txtMargenInferior.Enabled = false;
+        //    txtMargenDerecho.Enabled = false;
+        //    txtMargenIzquierdo.Enabled = false;
+        //}
+        //void DesHabilitarFormularioFotoPapel() {
+        //    //if (DdlFoto.DataSource != null)
+        //    //{
+        //    //    DdlFoto.SelectedIndex = 0;
+        //    //}
+        //    //DdlFoto.AddCssClass("disabled");
+        //    //DdlFoto.Enabled = false;
 
-            CbRotarImagenPapel.AddCssClass("disabled");
-            CbRotarImagenPapel.Enabled = false;
+        //    CbRotarImagenPapel.AddCssClass("disabled");
+        //    CbRotarImagenPapel.Enabled = false;
 
-            txtFxFila.Enabled = false;
-            txtFxFila.AddCssClass("disabled");
+        //    txtFxFila.Enabled = false;
+        //    txtFxFila.AddCssClass("disabled");
 
-            txtFxColumna.Enabled = false;
-            txtFxColumna.AddCssClass("disabled");
-        }
-        void HabilitarFormularioPapel() {
-            txtNombrePapel.Enabled = true;
-            txtAltoPapel.Enabled = true;
-            txtAnchoPapel.Enabled = true;
-            txtMargenSuperior.Enabled = true;
-            txtMargenInferior.Enabled = true;
-            txtMargenDerecho.Enabled = true;
-            txtMargenIzquierdo.Enabled = true;
+        //    txtFxColumna.Enabled = false;
+        //    txtFxColumna.AddCssClass("disabled");
+        //}
+        //void HabilitarFormularioPapel() {
+        //    txtNombrePapel.Enabled = true;
+        //    txtAltoPapel.Enabled = true;
+        //    txtAnchoPapel.Enabled = true;
+        //    txtMargenSuperior.Enabled = true;
+        //    txtMargenInferior.Enabled = true;
+        //    txtMargenDerecho.Enabled = true;
+        //    txtMargenIzquierdo.Enabled = true;
 
            
-        }
-        void HabilitarFormularioFotoPapel() {
-            //if (DdlFoto.DataSource != null)
-            //{
-            //    DdlFoto.SelectedIndex = 0;
-            //}
-            //DdlFoto.RemoveCssClass("disabled");
-            //DdlFoto.Enabled = true;
+        //}
+        //void HabilitarFormularioFotoPapel() {
+        //    //if (DdlFoto.DataSource != null)
+        //    //{
+        //    //    DdlFoto.SelectedIndex = 0;
+        //    //}
+        //    //DdlFoto.RemoveCssClass("disabled");
+        //    //DdlFoto.Enabled = true;
 
-            CbRotarImagenPapel.RemoveCssClass("disabled");
-            CbRotarImagenPapel.Enabled = true;
-            txtFxFila.Enabled = true;
-            txtFxFila.RemoveCssClass("disabled");
-            txtFxColumna.Enabled = true;
-            txtFxColumna.RemoveCssClass("disabled");
-        }
-        void LimpiarFormularioPapel() {
-            txtNombrePapel.Text="";
-            txtAltoPapel.Text = "";
-            txtAnchoPapel.Text = "";
-            txtMargenSuperior.Text = "";
-            txtMargenInferior.Text = "";
-            txtMargenDerecho.Text = "";
-            txtMargenIzquierdo.Text = "";
+        //    CbRotarImagenPapel.RemoveCssClass("disabled");
+        //    CbRotarImagenPapel.Enabled = true;
+        //    txtFxFila.Enabled = true;
+        //    txtFxFila.RemoveCssClass("disabled");
+        //    txtFxColumna.Enabled = true;
+        //    txtFxColumna.RemoveCssClass("disabled");
+        //}
+        //void LimpiarFormularioPapel() {
+        //    txtNombrePapel.Text="";
+        //    txtAltoPapel.Text = "";
+        //    txtAnchoPapel.Text = "";
+        //    txtMargenSuperior.Text = "";
+        //    txtMargenInferior.Text = "";
+        //    txtMargenDerecho.Text = "";
+        //    txtMargenIzquierdo.Text = "";
 
-            txtNombrePapel.BorderColor = Color.FromName("#FF3580BF");
-            txtAltoPapel.BorderColor = Color.FromName("#FF3580BF");
-            txtAnchoPapel.BorderColor = Color.FromName("#FF3580BF");
-            txtMargenSuperior.BorderColor = Color.FromName("#FF3580BF");
-            txtMargenInferior.BorderColor = Color.FromName("#FF3580BF");
-            txtMargenDerecho.BorderColor = Color.FromName("#FF3580BF");
-            txtMargenIzquierdo.BorderColor = Color.FromName("#FF3580BF");
+        //    txtNombrePapel.BorderColor = Color.FromName("#FF3580BF");
+        //    txtAltoPapel.BorderColor = Color.FromName("#FF3580BF");
+        //    txtAnchoPapel.BorderColor = Color.FromName("#FF3580BF");
+        //    txtMargenSuperior.BorderColor = Color.FromName("#FF3580BF");
+        //    txtMargenInferior.BorderColor = Color.FromName("#FF3580BF");
+        //    txtMargenDerecho.BorderColor = Color.FromName("#FF3580BF");
+        //    txtMargenIzquierdo.BorderColor = Color.FromName("#FF3580BF");
 
-            lblErrorPapel.Text = "";
-            lblErrorPapel.Visible = false;
+        //    lblErrorPapel.Text = "";
+        //    lblErrorPapel.Visible = false;
 
-            ToolAltoPapel.Visible = false;
-            ToolAnchoPapel.Visible = false;
-            ToolMSuperior.Visible = false;
-            ToolMInferior.Visible = false;
-            ToolMDerecho.Visible = false;
-            ToolMIzquierdo.Visible = false;
+        //    ToolAltoPapel.Visible = false;
+        //    ToolAnchoPapel.Visible = false;
+        //    ToolMSuperior.Visible = false;
+        //    ToolMInferior.Visible = false;
+        //    ToolMDerecho.Visible = false;
+        //    ToolMIzquierdo.Visible = false;
 
-            ToolAltoPapel.HRef = "";
-            ToolAnchoPapel.HRef = "";
-            ToolMSuperior.HRef = "";
-            ToolMInferior.HRef = "";
-            ToolMDerecho.HRef = "";
-            ToolMIzquierdo.HRef = "";
-        }
-        void LimpiarFormularioFotoPapel() {
+        //    ToolAltoPapel.HRef = "";
+        //    ToolAnchoPapel.HRef = "";
+        //    ToolMSuperior.HRef = "";
+        //    ToolMInferior.HRef = "";
+        //    ToolMDerecho.HRef = "";
+        //    ToolMIzquierdo.HRef = "";
+        //}
+        //void LimpiarFormularioFotoPapel() {
 
-            txtFxColumna.Text = string.Empty;
-            txtFxFila.Text = string.Empty;
-            CbRotarImagenPapel.Checked = false;
+        //    txtFxColumna.Text = string.Empty;
+        //    txtFxFila.Text = string.Empty;
+        //    CbRotarImagenPapel.Checked = false;
 
-            lblErrorFotoPapel.Text = "";
-            lblErrorFotoPapel.Visible = false;
+        //    lblErrorFotoPapel.Text = "";
+        //    lblErrorFotoPapel.Visible = false;
 
-        }
-        public  bool ValidarCamposPapel() {
-            bool PapelBIen = true;
+        //}
+        //public  bool ValidarCamposPapel() {
+        //    bool PapelBIen = true;
 
-            #region vacios
+        //    #region vacios
 
             
-            if (string.IsNullOrWhiteSpace(txtNombrePapel.Text))
-            {
-                txtNombrePapel.Focus();
-                txtNombrePapel.BorderColor = Color.FromName("#f00800");
-                PapelBIen = false;
-            }
+        //    if (string.IsNullOrWhiteSpace(txtNombrePapel.Text))
+        //    {
+        //        txtNombrePapel.Focus();
+        //        txtNombrePapel.BorderColor = Color.FromName("#f00800");
+        //        PapelBIen = false;
+        //    }
 
-            if (string.IsNullOrWhiteSpace(txtAltoPapel.Text))
-            {
-                txtAltoPapel.Focus();
-                txtAltoPapel.BorderColor = Color.FromName("#f00800");
-                PapelBIen = false;
-            }
-            if (string.IsNullOrWhiteSpace(txtAnchoPapel.Text))
-            {
-                txtAnchoPapel.Focus();
-                txtAnchoPapel.BorderColor = Color.FromName("#f00800");
-                PapelBIen = false;
-            }
-
-
-            if (string.IsNullOrWhiteSpace(txtMargenSuperior.Text))
-            {
-                txtMargenSuperior.Focus();
-                txtMargenSuperior.BorderColor = Color.FromName("#f00800");
-                PapelBIen = false;
-            }
+        //    if (string.IsNullOrWhiteSpace(txtAltoPapel.Text))
+        //    {
+        //        txtAltoPapel.Focus();
+        //        txtAltoPapel.BorderColor = Color.FromName("#f00800");
+        //        PapelBIen = false;
+        //    }
+        //    if (string.IsNullOrWhiteSpace(txtAnchoPapel.Text))
+        //    {
+        //        txtAnchoPapel.Focus();
+        //        txtAnchoPapel.BorderColor = Color.FromName("#f00800");
+        //        PapelBIen = false;
+        //    }
 
 
-            if (string.IsNullOrWhiteSpace(txtMargenInferior.Text))
-            {
-                txtMargenInferior.Focus();
-                txtMargenInferior.BorderColor = Color.FromName("#f00800");
-                PapelBIen = false;
-            }
+        //    if (string.IsNullOrWhiteSpace(txtMargenSuperior.Text))
+        //    {
+        //        txtMargenSuperior.Focus();
+        //        txtMargenSuperior.BorderColor = Color.FromName("#f00800");
+        //        PapelBIen = false;
+        //    }
 
 
-            if (string.IsNullOrWhiteSpace(txtMargenDerecho.Text))
-            {
-                txtMargenDerecho.Focus();
-                txtMargenDerecho.BorderColor = Color.FromName("#f00800");
-                PapelBIen = false;
-            }
+        //    if (string.IsNullOrWhiteSpace(txtMargenInferior.Text))
+        //    {
+        //        txtMargenInferior.Focus();
+        //        txtMargenInferior.BorderColor = Color.FromName("#f00800");
+        //        PapelBIen = false;
+        //    }
 
 
-            if (string.IsNullOrWhiteSpace(txtMargenIzquierdo.Text))
-            {
-                txtMargenIzquierdo.Focus();
-                txtMargenIzquierdo.BorderColor = Color.FromName("#f00800");
-                PapelBIen = false;
-            }
+        //    if (string.IsNullOrWhiteSpace(txtMargenDerecho.Text))
+        //    {
+        //        txtMargenDerecho.Focus();
+        //        txtMargenDerecho.BorderColor = Color.FromName("#f00800");
+        //        PapelBIen = false;
+        //    }
 
 
-            if (PapelBIen == false)
-            {
-                _tabPapel();
-                lblErrorPapel.Text = "Ningun campo debe estar vacio";//va despues que tab papel
-                lblErrorPapel.Visible = true;
-                PnErrorPapelSucursal.Visible = true;
-                return PapelBIen;
-            }
+        //    if (string.IsNullOrWhiteSpace(txtMargenIzquierdo.Text))
+        //    {
+        //        txtMargenIzquierdo.Focus();
+        //        txtMargenIzquierdo.BorderColor = Color.FromName("#f00800");
+        //        PapelBIen = false;
+        //    }
 
-            #endregion vacios
-            lblErrorPapel.Text = "";//va despues que tab papel
-            lblErrorPapel.Visible = false;
-            PnErrorPapelSucursal.Visible = false;
-            #region Es numero
 
-            //char[] charsRead = new char[txtAltoPapel.Text.Length];
-            foreach (char c in txtAltoPapel.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
+        //    if (PapelBIen == false)
+        //    {
+        //        _tabPapel();
+        //        lblErrorPapel.Text = "Ningun campo debe estar vacio";//va despues que tab papel
+        //        lblErrorPapel.Visible = true;
+        //        PnErrorPapelSucursal.Visible = true;
+        //        return PapelBIen;
+        //    }
 
-                    txtAltoPapel.Focus();
-                    txtAltoPapel.BorderColor = Color.FromName("#f00800");
-                    ToolAltoPapel.HRef = "Solo debe contener 1 numero";
-                    ToolAltoPapel.Visible = true;
-                    PapelBIen = false;
-                }
-            }
-            foreach (char c in txtAnchoPapel.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
+        //    #endregion vacios
+        //    lblErrorPapel.Text = "";//va despues que tab papel
+        //    lblErrorPapel.Visible = false;
+        //    PnErrorPapelSucursal.Visible = false;
+        //    #region Es numero
 
-                    txtAnchoPapel.Focus();
-                    txtAnchoPapel.BorderColor = Color.FromName("#f00800");
-                    ToolAnchoPapel.HRef = "Solo debe contener 1 numero";
-                    ToolAnchoPapel.Visible = true;
-                    PapelBIen = false;
-                }
-            }
-            foreach (char c in txtMargenSuperior.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
+        //    //char[] charsRead = new char[txtAltoPapel.Text.Length];
+        //    foreach (char c in txtAltoPapel.Text)
+        //    {
+        //        if (char.IsLetter(c) || char.IsWhiteSpace(c))
+        //        {
 
-                    txtMargenSuperior.Focus();
-                    txtMargenSuperior.BorderColor = Color.FromName("#f00800");
-                    ToolMSuperior.HRef = "Solo debe contener 1 numero";
-                    ToolMSuperior.Visible = true;
-                    PapelBIen = false;
-                }
-            }
-            foreach (char c in txtMargenInferior.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
+        //            txtAltoPapel.Focus();
+        //            txtAltoPapel.BorderColor = Color.FromName("#f00800");
+        //            ToolAltoPapel.HRef = "Solo debe contener 1 numero";
+        //            ToolAltoPapel.Visible = true;
+        //            PapelBIen = false;
+        //        }
+        //    }
+        //    foreach (char c in txtAnchoPapel.Text)
+        //    {
+        //        if (char.IsLetter(c) || char.IsWhiteSpace(c))
+        //        {
 
-                    txtMargenInferior.Focus();
-                    txtMargenInferior.BorderColor = Color.FromName("#f00800");
-                    ToolMInferior.HRef = "Solo debe contener 1 numero";
-                    ToolMInferior.Visible = true;
-                    PapelBIen = false;
-                }
-            }
-            foreach (char c in txtMargenDerecho.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
+        //            txtAnchoPapel.Focus();
+        //            txtAnchoPapel.BorderColor = Color.FromName("#f00800");
+        //            ToolAnchoPapel.HRef = "Solo debe contener 1 numero";
+        //            ToolAnchoPapel.Visible = true;
+        //            PapelBIen = false;
+        //        }
+        //    }
+        //    foreach (char c in txtMargenSuperior.Text)
+        //    {
+        //        if (char.IsLetter(c) || char.IsWhiteSpace(c))
+        //        {
 
-                    txtMargenDerecho.Focus();
-                    txtMargenDerecho.BorderColor = Color.FromName("#f00800");
-                    ToolMDerecho.HRef = "Solo debe contener 1 numero";
-                    ToolMDerecho.Visible = true;
-                    PapelBIen = false;
-                }
-            }
-            foreach (char c in txtMargenIzquierdo.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
+        //            txtMargenSuperior.Focus();
+        //            txtMargenSuperior.BorderColor = Color.FromName("#f00800");
+        //            ToolMSuperior.HRef = "Solo debe contener 1 numero";
+        //            ToolMSuperior.Visible = true;
+        //            PapelBIen = false;
+        //        }
+        //    }
+        //    foreach (char c in txtMargenInferior.Text)
+        //    {
+        //        if (char.IsLetter(c) || char.IsWhiteSpace(c))
+        //        {
 
-                    txtMargenIzquierdo.Focus();
-                    txtMargenIzquierdo.BorderColor = Color.FromName("#f00800");
-                    ToolMIzquierdo.HRef = "Solo debe contener 1 numero";
-                    ToolMIzquierdo.Visible = true;
-                    PapelBIen = false;
-                }
-            }
-            if (PapelBIen == false)
-            {
-                _tabPapel();
-                lblErrorPapel.Text = "Todos los campos en formato correcto";//va despues que tab papel
-                lblErrorPapel.Visible = true;
-                PnErrorPapelSucursal.Visible = true;
-                return PapelBIen;
-            }
-            #endregion Es numero
-            lblErrorPapel.Text = "";//va despues que tab papel
-            lblErrorPapel.Visible = false;
-            PnErrorPapelSucursal.Visible = false;
-            #region digitos
-            if (txtAltoPapel.Text.Length<3) {
-                txtAltoPapel.Focus();
-                txtAltoPapel.BorderColor = Color.FromName("#f00800");
-                ToolAltoPapel.HRef = "Minimo debe ser 1 numero de 3 digitos";
-                ToolAltoPapel.Visible = true;
-                PapelBIen = false;
-            }
-            if (txtAnchoPapel.Text.Length < 3)
-            {
-                txtAnchoPapel.Focus();
-                txtAnchoPapel.BorderColor = Color.FromName("#f00800");
-                ToolAnchoPapel.HRef = "Minimo debe ser 1 numero de 3 digitos";
-                ToolAnchoPapel.Visible = true;
-                PapelBIen = false;
-            }
-            if (PapelBIen == false)
-            {
-                _tabPapel();
-                lblErrorPapel.Text = "Alto y Ancho deben tener al menos 3 digitos";//va despues que tab papel
-                lblErrorPapel.Visible = true;
-                PnErrorPapelSucursal.Visible = true;
-                return PapelBIen;
-            }
-            #endregion digitos
-            lblErrorPapel.Text = "";//va despues que tab papel
-            lblErrorPapel.Visible = false;
-            PnErrorPapelSucursal.Visible = false;
-            return PapelBIen;
-        }
-        void DataBindFotografiasPapel() {
+        //            txtMargenInferior.Focus();
+        //            txtMargenInferior.BorderColor = Color.FromName("#f00800");
+        //            ToolMInferior.HRef = "Solo debe contener 1 numero";
+        //            ToolMInferior.Visible = true;
+        //            PapelBIen = false;
+        //        }
+        //    }
+        //    foreach (char c in txtMargenDerecho.Text)
+        //    {
+        //        if (char.IsLetter(c) || char.IsWhiteSpace(c))
+        //        {
+
+        //            txtMargenDerecho.Focus();
+        //            txtMargenDerecho.BorderColor = Color.FromName("#f00800");
+        //            ToolMDerecho.HRef = "Solo debe contener 1 numero";
+        //            ToolMDerecho.Visible = true;
+        //            PapelBIen = false;
+        //        }
+        //    }
+        //    foreach (char c in txtMargenIzquierdo.Text)
+        //    {
+        //        if (char.IsLetter(c) || char.IsWhiteSpace(c))
+        //        {
+
+        //            txtMargenIzquierdo.Focus();
+        //            txtMargenIzquierdo.BorderColor = Color.FromName("#f00800");
+        //            ToolMIzquierdo.HRef = "Solo debe contener 1 numero";
+        //            ToolMIzquierdo.Visible = true;
+        //            PapelBIen = false;
+        //        }
+        //    }
+        //    if (PapelBIen == false)
+        //    {
+        //        _tabPapel();
+        //        lblErrorPapel.Text = "Todos los campos en formato correcto";//va despues que tab papel
+        //        lblErrorPapel.Visible = true;
+        //        PnErrorPapelSucursal.Visible = true;
+        //        return PapelBIen;
+        //    }
+        //    #endregion Es numero
+        //    lblErrorPapel.Text = "";//va despues que tab papel
+        //    lblErrorPapel.Visible = false;
+        //    PnErrorPapelSucursal.Visible = false;
+        //    #region digitos
+        //    if (txtAltoPapel.Text.Length<3) {
+        //        txtAltoPapel.Focus();
+        //        txtAltoPapel.BorderColor = Color.FromName("#f00800");
+        //        ToolAltoPapel.HRef = "Minimo debe ser 1 numero de 3 digitos";
+        //        ToolAltoPapel.Visible = true;
+        //        PapelBIen = false;
+        //    }
+        //    if (txtAnchoPapel.Text.Length < 3)
+        //    {
+        //        txtAnchoPapel.Focus();
+        //        txtAnchoPapel.BorderColor = Color.FromName("#f00800");
+        //        ToolAnchoPapel.HRef = "Minimo debe ser 1 numero de 3 digitos";
+        //        ToolAnchoPapel.Visible = true;
+        //        PapelBIen = false;
+        //    }
+        //    if (PapelBIen == false)
+        //    {
+        //        _tabPapel();
+        //        lblErrorPapel.Text = "Alto y Ancho deben tener al menos 3 digitos";//va despues que tab papel
+        //        lblErrorPapel.Visible = true;
+        //        PnErrorPapelSucursal.Visible = true;
+        //        return PapelBIen;
+        //    }
+        //    #endregion digitos
+        //    lblErrorPapel.Text = "";//va despues que tab papel
+        //    lblErrorPapel.Visible = false;
+        //    PnErrorPapelSucursal.Visible = false;
+        //    return PapelBIen;
+        //}
+        //void DataBindFotografiasPapel() {
            
-                List<SucursalFoto> Fotos = (List<SucursalFoto>)ViewState["Fotos"];
-                List<SucursalFoto> FotosX = new List<SucursalFoto>();
-                SucursalFoto fotox = new SucursalFoto(); fotox.StrDescripcion = "[Selecciona]"; FotosX.Add(fotox);
+        //        List<SucursalFoto> Fotos = (List<SucursalFoto>)ViewState["Fotos"];
+        //        List<SucursalFoto> FotosX = new List<SucursalFoto>();
+        //        SucursalFoto fotox = new SucursalFoto(); fotox.StrDescripcion = "[Selecciona]"; FotosX.Add(fotox);
 
-                // txtCantMaqLicencia.Text ="EnuOrden: "+ Licencias[0].EnuOrden.ToString() + " StrOrdenaPor: " + Licencias[0].StrOrdenaPor.ToString();
-                dvgFotosPapel.DataSource = Fotos;
-                dvgFotosPapel.DataBind();
-                int cant = dvgFotosPapel.Rows.Count - 1; //el menos 1 es debido porque en el gridview se maneja a partir del 0 y  Licencias.Count a partir del 1
-                for (int i = 0; i <= cant; i++) // i comienza desde 0 porque recorre todo el gridview y el gridview comienza desde 0 igual que el Array aunque utilizando el count lo obtienes comenzando a partir del 1
-                {
-                   if (Fotos[i].VchFila=="" && Fotos[i].VchColumna=="" && Fotos[i].BooRotarEnPapel == false) {
-                         dvgFotosPapel.Rows[i].Visible = false;
-                           FotosX.Add(Fotos[i]); 
-                   } else {
-                        if (Fotos[i].BooRotarEnPapel == false)
-                        {
-                            ((Label)dvgFotosPapel.Rows[i].FindControl("lbFotoRotadoPapel_icon")).Visible = false;
-                            ((Label)dvgFotosPapel.Rows[i].FindControl("lbFotoNoRotadoPapel_icon")).Visible = true;
-                        }
-                        else
-                        {
-                            ((Label)dvgFotosPapel.Rows[i].FindControl("lbFotoRotadoPapel_icon")).Visible = true;
-                            ((Label)dvgFotosPapel.Rows[i].FindControl("lbFotoNoRotadoPapel_icon")).Visible = false;
-                        }
-                   }
-                }
+        //        // txtCantMaqLicencia.Text ="EnuOrden: "+ Licencias[0].EnuOrden.ToString() + " StrOrdenaPor: " + Licencias[0].StrOrdenaPor.ToString();
+        //        dvgFotosPapel.DataSource = Fotos;
+        //        dvgFotosPapel.DataBind();
+        //        int cant = dvgFotosPapel.Rows.Count - 1; //el menos 1 es debido porque en el gridview se maneja a partir del 0 y  Licencias.Count a partir del 1
+        //        for (int i = 0; i <= cant; i++) // i comienza desde 0 porque recorre todo el gridview y el gridview comienza desde 0 igual que el Array aunque utilizando el count lo obtienes comenzando a partir del 1
+        //        {
+        //           if (Fotos[i].VchFila=="" && Fotos[i].VchColumna=="" && Fotos[i].BooRotarEnPapel == false) {
+        //                 dvgFotosPapel.Rows[i].Visible = false;
+        //                   FotosX.Add(Fotos[i]); 
+        //           } else {
+        //                if (Fotos[i].BooRotarEnPapel == false)
+        //                {
+        //                    ((Label)dvgFotosPapel.Rows[i].FindControl("lbFotoRotadoPapel_icon")).Visible = false;
+        //                    ((Label)dvgFotosPapel.Rows[i].FindControl("lbFotoNoRotadoPapel_icon")).Visible = true;
+        //                }
+        //                else
+        //                {
+        //                    ((Label)dvgFotosPapel.Rows[i].FindControl("lbFotoRotadoPapel_icon")).Visible = true;
+        //                    ((Label)dvgFotosPapel.Rows[i].FindControl("lbFotoNoRotadoPapel_icon")).Visible = false;
+        //                }
+        //           }
+        //        }
             
-            DdlFoto.DataSource = FotosX;
-            DdlFoto.DataValueField = "UidFoto";
-            DdlFoto.DataTextField = "StrDescripcion";
-            DdlFoto.DataBind();
-            //ListItem li;
-            //li = new ListItem("[Seleccionar]", "");
-            //DdlFoto.Items.Add(li);
-            //DdlFoto.SelectedItem.Text = li.Text;
-        }
-        protected void dvgFotosPapel_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            try { 
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(dvgFotosPapel, "Select$" + e.Row.RowIndex);
-            }
-            if (e.Row.RowType == DataControlRowType.Header) {
+        //    DdlFoto.DataSource = FotosX;
+        //    DdlFoto.DataValueField = "UidFoto";
+        //    DdlFoto.DataTextField = "StrDescripcion";
+        //    DdlFoto.DataBind();
+        //    //ListItem li;
+        //    //li = new ListItem("[Seleccionar]", "");
+        //    //DdlFoto.Items.Add(li);
+        //    //DdlFoto.SelectedItem.Text = li.Text;
+        //}
+        //protected void dvgFotosPapel_RowDataBound(object sender, GridViewRowEventArgs e)
+        //{
+        //    try { 
+        //    if (e.Row.RowType == DataControlRowType.DataRow)
+        //    {
+        //        e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(dvgFotosPapel, "Select$" + e.Row.RowIndex);
+        //    }
+        //    if (e.Row.RowType == DataControlRowType.Header) {
 
-                switch (lbOrdenFPPor.Text)
-                {
-                    case "Descripcion":
-                        if (lbOrdenFP.Text =="ASC")
-                        {
-                            ((HtmlGenericControl)e.Row.FindControl("IcoDescripcionFP")).Attributes["class"] = Global.OrdenDescendente;
-                        }
-                        else
-                        {
-                            ((HtmlGenericControl)e.Row.FindControl("IcoDescripcionFP")).Attributes["class"] = Global.OrdenAscendente;
-                        }
-                        break;
-                }
-            }
+        //        switch (lbOrdenFPPor.Text)
+        //        {
+        //            case "Descripcion":
+        //                if (lbOrdenFP.Text =="ASC")
+        //                {
+        //                    ((HtmlGenericControl)e.Row.FindControl("IcoDescripcionFP")).Attributes["class"] = Global.OrdenDescendente;
+        //                }
+        //                else
+        //                {
+        //                    ((HtmlGenericControl)e.Row.FindControl("IcoDescripcionFP")).Attributes["class"] = Global.OrdenAscendente;
+        //                }
+        //                break;
+        //        }
+        //    }
 
-                PnErrorFotoPapelSucursal.Visible = false;
-                lblErrorFotoPapel.Visible = false;
-                lblErrorFotoPapel.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoPapelSucursal.Visible = true;
-                lblErrorFotoPapel.Visible = true;
-                lblErrorFotoPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
-            }
+        //        PnErrorFotoPapelSucursal.Visible = false;
+        //        lblErrorFotoPapel.Visible = false;
+        //        lblErrorFotoPapel.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorFotoPapelSucursal.Visible = true;
+        //        lblErrorFotoPapel.Visible = true;
+        //        lblErrorFotoPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
+        //    }
 
-        }
-        protected void dvgFotosPapel_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try { 
-            DataBindFotografiasPapel();
-            List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
-            SucursalFoto foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == dvgFotosPapel.SelectedDataKey.Value.ToString()).First();
-            UidFotoPapel.Text = foto.UidFoto.ToString();
-            txtFxFila.Text = foto.VchFila.ToString();
-            txtFxColumna.Text = foto.VchColumna.ToString();
-            CbRotarImagenPapel.Checked = foto.BooRotarEnPapel;
-            DdlFoto.Items.Insert(0, new ListItem(foto.StrDescripcion, foto.UidFoto.ToString() ));
-            btnEditarFotoPapel.Text = "Editar";
-            DesHabilitarFormularioFotoPapel();
-            if (EditingMode)
-            {
-                btnEditarFotoPapel.RemoveCssClass("disabled").RemoveCssClass("hidden");
-                btnEditarFotoPapel.Enabled = true;
-                //btnEliminarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
-                //btnEliminarFoto.Enabled = true;
-                btnOKFotoPapel.AddCssClass("disabled").AddCssClass("hidden");
-                btnOKFotoPapel.Enabled = false;
-                btnCancelarFotoPapel.AddCssClass("disabled").AddCssClass("hidden");
-                btnCancelarFotoPapel.Enabled = false;
-            }
+        //}
+        //protected void dvgFotosPapel_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    try { 
+        //    DataBindFotografiasPapel();
+        //    List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
+        //    SucursalFoto foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == dvgFotosPapel.SelectedDataKey.Value.ToString()).First();
+        //    UidFotoPapel.Text = foto.UidFoto.ToString();
+        //    txtFxFila.Text = foto.VchFila.ToString();
+        //    txtFxColumna.Text = foto.VchColumna.ToString();
+        //    CbRotarImagenPapel.Checked = foto.BooRotarEnPapel;
+        //    DdlFoto.Items.Insert(0, new ListItem(foto.StrDescripcion, foto.UidFoto.ToString() ));
+        //    btnEditarFotoPapel.Text = "Editar";
+        //    DesHabilitarFormularioFotoPapel();
+        //    if (EditingMode)
+        //    {
+        //        btnEditarFotoPapel.RemoveCssClass("disabled").RemoveCssClass("hidden");
+        //        btnEditarFotoPapel.Enabled = true;
+        //        //btnEliminarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
+        //        //btnEliminarFoto.Enabled = true;
+        //        btnOKFotoPapel.AddCssClass("disabled").AddCssClass("hidden");
+        //        btnOKFotoPapel.Enabled = false;
+        //        btnCancelarFotoPapel.AddCssClass("disabled").AddCssClass("hidden");
+        //        btnCancelarFotoPapel.Enabled = false;
+        //    }
 
-            int pos = -1;
-            if (ViewState["FotoPreviousRow"] != null)
-            {
-                pos = (int)ViewState["FotoPreviousRow"];
-                GridViewRow previousRow = dvgFotosPapel.Rows[pos];
-                previousRow.RemoveCssClass("success");
-            }
+        //    int pos = -1;
+        //    if (ViewState["FotoPreviousRow"] != null)
+        //    {
+        //        pos = (int)ViewState["FotoPreviousRow"];
+        //        GridViewRow previousRow = dvgFotosPapel.Rows[pos];
+        //        previousRow.RemoveCssClass("success");
+        //    }
 
-            ViewState["FotoPreviousRow"] = dvgFotosPapel.SelectedIndex;
-            dvgFotosPapel.SelectedRow.AddCssClass("success");
+        //    ViewState["FotoPreviousRow"] = dvgFotosPapel.SelectedIndex;
+        //    dvgFotosPapel.SelectedRow.AddCssClass("success");
 
 
-                PnErrorFotoPapelSucursal.Visible = false;
-                lblErrorFotoPapel.Visible = false;
-                lblErrorFotoPapel.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoPapelSucursal.Visible = true;
-                lblErrorFotoPapel.Visible = true;
-                lblErrorFotoPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
-            }
+        //        PnErrorFotoPapelSucursal.Visible = false;
+        //        lblErrorFotoPapel.Visible = false;
+        //        lblErrorFotoPapel.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorFotoPapelSucursal.Visible = true;
+        //        lblErrorFotoPapel.Visible = true;
+        //        lblErrorFotoPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
+        //    }
 
-        }
-        protected void btnEditarFotoPapel_Click(object sender, EventArgs e)
-        {
-            try { 
-            HabilitarFormularioFotoPapel();
-            btnEditarFotoPapel.AddCssClass("disabled");
-            btnCancelarFotoPapel.Visible = true;
-            btnOKFotoPapel.Visible = true;
-            btnCancelarFotoPapel.RemoveCssClass("hidden").RemoveCssClass("disabled");
-            btnOKFotoPapel.RemoveCssClass("hidden").RemoveCssClass("disabled");
-            btnOKFotoPapel.Enabled = true;
-            btnCancelarFotoPapel.Enabled = true;
+        //}
+        //protected void btnEditarFotoPapel_Click(object sender, EventArgs e)
+        //{
+        //    try { 
+        //    HabilitarFormularioFotoPapel();
+        //    btnEditarFotoPapel.AddCssClass("disabled");
+        //    btnCancelarFotoPapel.Visible = true;
+        //    btnOKFotoPapel.Visible = true;
+        //    btnCancelarFotoPapel.RemoveCssClass("hidden").RemoveCssClass("disabled");
+        //    btnOKFotoPapel.RemoveCssClass("hidden").RemoveCssClass("disabled");
+        //    btnOKFotoPapel.Enabled = true;
+        //    btnCancelarFotoPapel.Enabled = true;
 
-                PnErrorFotoPapelSucursal.Visible = false;
-                lblErrorFotoPapel.Visible = false;
-                lblErrorFotoPapel.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoPapelSucursal.Visible = true;
-                lblErrorFotoPapel.Visible = true;
-                lblErrorFotoPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
-            }
+        //        PnErrorFotoPapelSucursal.Visible = false;
+        //        lblErrorFotoPapel.Visible = false;
+        //        lblErrorFotoPapel.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorFotoPapelSucursal.Visible = true;
+        //        lblErrorFotoPapel.Visible = true;
+        //        lblErrorFotoPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
+        //    }
 
-        }
-        protected void btnOKFotoPapel_Click(object sender, EventArgs e)
-        {
-            try { 
-            if (ValidarCamposPapel() == false)
-            {
-                return;
-            }
-            ToolAltoPapel.Visible = false;
-            ToolAnchoPapel.Visible = false;
-            ToolMDerecho.Visible = false;
-            ToolMInferior.Visible = false;
-            ToolMIzquierdo.Visible = false;
-            ToolMSuperior.Visible = false;
-            List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
-            SucursalFoto foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == DdlFoto.SelectedValue.ToString()).First();
-            //dgvFotos.SelectedDataKey.Value.ToString()).First();
-            double CEspdisponible = ConMMColumna(foto);
-            double FEspdisponible = ConMMFila(foto);
-            NumberFormatInfo punto = new NumberFormatInfo(); punto.NumberDecimalSeparator = ".";
+        //}
+        //protected void btnOKFotoPapel_Click(object sender, EventArgs e)
+        //{
+        //    try { 
+        //    if (ValidarCamposPapel() == false)
+        //    {
+        //        return;
+        //    }
+        //    ToolAltoPapel.Visible = false;
+        //    ToolAnchoPapel.Visible = false;
+        //    ToolMDerecho.Visible = false;
+        //    ToolMInferior.Visible = false;
+        //    ToolMIzquierdo.Visible = false;
+        //    ToolMSuperior.Visible = false;
+        //    List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
+        //    SucursalFoto foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == DdlFoto.SelectedValue.ToString()).First();
+        //    //dgvFotos.SelectedDataKey.Value.ToString()).First();
+        //    double CEspdisponible = ConMMColumna(foto);
+        //    double FEspdisponible = ConMMFila(foto);
+        //    NumberFormatInfo punto = new NumberFormatInfo(); punto.NumberDecimalSeparator = ".";
 
-            //tarea pendiente validar si estan vacios columna y fila
-            if (CbRotarImagenPapel.Checked == false)
-            {
-                if (CEspdisponible - (double.Parse(txtFxColumna.Text, punto) * double.Parse(foto.VchAncho, punto)) <= 0)
-                {
-                    txtFxColumna.BorderColor = Color.FromName("#f00800");
-                    txtFxColumna.Focus();
-                    ToolFxColumna.HRef = "Excede del espacio diponible";
-                    ToolFxColumna.Visible = true;
-                    return;
-                }
-                ToolFxColumna.HRef = "";
-                ToolFxColumna.Visible = false;
-                if (FEspdisponible - (double.Parse(txtFxFila.Text, punto) * double.Parse(foto.VchAlto, punto)) <= 0)
-                {
-                    txtFxFila.BorderColor = Color.FromName("#f00800");
-                    txtFxFila.Focus();
-                    ToolFxFila.HRef = "Excede del espacio diponible";
-                    ToolFxFila.Visible = true;
-                    return;
-                }
-                ToolFxFila.HRef = "";
-                ToolFxFila.Visible = false;
-            }
-            else {
-                if (CEspdisponible - (double.Parse(txtFxColumna.Text, punto) * double.Parse(foto.VchAlto, punto)) <= 0)
-                {
-                    txtFxColumna.BorderColor = Color.FromName("#f00800");
-                    txtFxColumna.Focus();
-                    ToolFxColumna.HRef = "Excede del espacio diponible";
-                    ToolFxColumna.Visible = true;
-                    return;
-                }
-                ToolFxColumna.HRef = "";
-                ToolFxColumna.Visible = false;
-                if (FEspdisponible - (double.Parse(txtFxFila.Text, punto) * double.Parse(foto.VchAncho, punto)) <= 0)
-                {
-                    txtFxFila.BorderColor = Color.FromName("#f00800");
-                    txtFxFila.Focus();
-                    ToolFxFila.HRef = "Excede del espacio diponible";
-                    ToolFxFila.Visible = true;
-                    return;
-                }
-                ToolFxFila.HRef = "";
-                ToolFxFila.Visible = false;
-            }
-            lblErrorFoto.Visible = true;
-            //List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
-            SucursalFoto photo = null;
-            int pos = -1;
-            if (!string.IsNullOrWhiteSpace(UidFotoPapel.Text))
-            {
-                IEnumerable<SucursalFoto> dir = from i in fotos where i.UidFoto.ToString() == DdlFoto.SelectedValue.ToString() select i;
-                photo = dir.First();
-                pos = fotos.IndexOf(photo);
-                fotos.Remove(photo);
-            }
-            else
-            {
-                photo = new SucursalFoto();
-                photo.UidFoto = Guid.NewGuid();
-            }
-            photo.BooRotarEnPapel = CbRotarImagenPapel.Checked;
-            photo.VchColumna = txtFxColumna.Text;
-            photo.VchFila = txtFxFila.Text;
-            photo.UidFoto = new Guid(UidFotoPapel.Text);
-            photo.StrDescripcion = DdlFoto.SelectedItem.Text;
+        //    //tarea pendiente validar si estan vacios columna y fila
+        //    if (CbRotarImagenPapel.Checked == false)
+        //    {
+        //        if (CEspdisponible - (double.Parse(txtFxColumna.Text, punto) * double.Parse(foto.VchAncho, punto)) <= 0)
+        //        {
+        //            txtFxColumna.BorderColor = Color.FromName("#f00800");
+        //            txtFxColumna.Focus();
+        //            ToolFxColumna.HRef = "Excede del espacio diponible";
+        //            ToolFxColumna.Visible = true;
+        //            return;
+        //        }
+        //        ToolFxColumna.HRef = "";
+        //        ToolFxColumna.Visible = false;
+        //        if (FEspdisponible - (double.Parse(txtFxFila.Text, punto) * double.Parse(foto.VchAlto, punto)) <= 0)
+        //        {
+        //            txtFxFila.BorderColor = Color.FromName("#f00800");
+        //            txtFxFila.Focus();
+        //            ToolFxFila.HRef = "Excede del espacio diponible";
+        //            ToolFxFila.Visible = true;
+        //            return;
+        //        }
+        //        ToolFxFila.HRef = "";
+        //        ToolFxFila.Visible = false;
+        //    }
+        //    else {
+        //        if (CEspdisponible - (double.Parse(txtFxColumna.Text, punto) * double.Parse(foto.VchAlto, punto)) <= 0)
+        //        {
+        //            txtFxColumna.BorderColor = Color.FromName("#f00800");
+        //            txtFxColumna.Focus();
+        //            ToolFxColumna.HRef = "Excede del espacio diponible";
+        //            ToolFxColumna.Visible = true;
+        //            return;
+        //        }
+        //        ToolFxColumna.HRef = "";
+        //        ToolFxColumna.Visible = false;
+        //        if (FEspdisponible - (double.Parse(txtFxFila.Text, punto) * double.Parse(foto.VchAncho, punto)) <= 0)
+        //        {
+        //            txtFxFila.BorderColor = Color.FromName("#f00800");
+        //            txtFxFila.Focus();
+        //            ToolFxFila.HRef = "Excede del espacio diponible";
+        //            ToolFxFila.Visible = true;
+        //            return;
+        //        }
+        //        ToolFxFila.HRef = "";
+        //        ToolFxFila.Visible = false;
+        //    }
+        //    lblErrorFoto.Visible = true;
+        //    //List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
+        //    SucursalFoto photo = null;
+        //    int pos = -1;
+        //    if (!string.IsNullOrWhiteSpace(UidFotoPapel.Text))
+        //    {
+        //        IEnumerable<SucursalFoto> dir = from i in fotos where i.UidFoto.ToString() == DdlFoto.SelectedValue.ToString() select i;
+        //        photo = dir.First();
+        //        pos = fotos.IndexOf(photo);
+        //        fotos.Remove(photo);
+        //    }
+        //    else
+        //    {
+        //        photo = new SucursalFoto();
+        //        photo.UidFoto = Guid.NewGuid();
+        //    }
+        //    photo.BooRotarEnPapel = CbRotarImagenPapel.Checked;
+        //    photo.VchColumna = txtFxColumna.Text;
+        //    photo.VchFila = txtFxFila.Text;
+        //    photo.UidFoto = new Guid(UidFotoPapel.Text);
+        //    photo.StrDescripcion = DdlFoto.SelectedItem.Text;
 
-            if (pos < 0)
-                fotos.Add(photo);
-            else
-                fotos.Insert(pos, photo);
+        //    if (pos < 0)
+        //        fotos.Add(photo);
+        //    else
+        //        fotos.Insert(pos, photo);
             
-            ViewState["Fotos"] = fotos;
-            DataBindFotografiasPapel();
-            LimpiarFormularioFotoPapel();
-            DesHabilitarFormularioFotoPapel();
-            btnOKFotoPapel.AddCssClass("hidden").AddCssClass("disabled");
-            btnOKFotoPapel.Enabled = false;
-            btnCancelarFotoPapel.AddCssClass("hidden").AddCssClass("disabled");
-            btnCancelarFotoPapel.Enabled = false;
-            btnEditarFotoPapel.AddCssClass("disabled").AddCssClass("hidden");
-            btnEditarFotoPapel.Enabled = false;
+        //    ViewState["Fotos"] = fotos;
+        //    DataBindFotografiasPapel();
+        //    LimpiarFormularioFotoPapel();
+        //    DesHabilitarFormularioFotoPapel();
+        //    btnOKFotoPapel.AddCssClass("hidden").AddCssClass("disabled");
+        //    btnOKFotoPapel.Enabled = false;
+        //    btnCancelarFotoPapel.AddCssClass("hidden").AddCssClass("disabled");
+        //    btnCancelarFotoPapel.Enabled = false;
+        //    btnEditarFotoPapel.AddCssClass("disabled").AddCssClass("hidden");
+        //    btnEditarFotoPapel.Enabled = false;
 
 
-                PnErrorFotoPapelSucursal.Visible = false;
-                lblErrorFotoPapel.Visible = false;
-                lblErrorFotoPapel.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoPapelSucursal.Visible = true;
-                lblErrorFotoPapel.Visible = true;
-                lblErrorFotoPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
-            }
+        //        PnErrorFotoPapelSucursal.Visible = false;
+        //        lblErrorFotoPapel.Visible = false;
+        //        lblErrorFotoPapel.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorFotoPapelSucursal.Visible = true;
+        //        lblErrorFotoPapel.Visible = true;
+        //        lblErrorFotoPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
+        //    }
 
-        }
-        protected void btnCancelarFotoPapel_Click(object sender, EventArgs e)
-        {
-            try { 
-            DesHabilitarFormularioFotoPapel();
-            btnEditarFotoPapel.RemoveCssClass("disabled");
-            btnCancelarFotoPapel.Visible = false;
-            btnOKFotoPapel.Visible = false;
+        //}
+        //protected void btnCancelarFotoPapel_Click(object sender, EventArgs e)
+        //{
+        //    try { 
+        //    DesHabilitarFormularioFotoPapel();
+        //    btnEditarFotoPapel.RemoveCssClass("disabled");
+        //    btnCancelarFotoPapel.Visible = false;
+        //    btnOKFotoPapel.Visible = false;
 
-                PnErrorFotoPapelSucursal.Visible = false;
-                lblErrorFotoPapel.Visible = false;
-                lblErrorFotoPapel.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoPapelSucursal.Visible = true;
-                lblErrorFotoPapel.Visible = true;
-                lblErrorFotoPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
-            }
+        //        PnErrorFotoPapelSucursal.Visible = false;
+        //        lblErrorFotoPapel.Visible = false;
+        //        lblErrorFotoPapel.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorFotoPapelSucursal.Visible = true;
+        //        lblErrorFotoPapel.Visible = true;
+        //        lblErrorFotoPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
+        //    }
 
-        }
-        protected void btnEditarPapel_Click(object sender, EventArgs e)
-        {
-            try { 
-            btnEditarPapel.AddCssClass("disabled");
-            HabilitarFormularioPapel();
-            //HabilitarFormularioFotoPapel();
-            LimpiarFormularioFotoPapel();
-            LimpiarFormularioPapel();
-            //btnOkPapel
-            //btnCancelarPapel.
-            List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
+        //}
+        //protected void btnEditarPapel_Click(object sender, EventArgs e)
+        //{
+        //    try { 
+        //    btnEditarPapel.AddCssClass("disabled");
+        //    HabilitarFormularioPapel();
+        //    //HabilitarFormularioFotoPapel();
+        //    LimpiarFormularioFotoPapel();
+        //    LimpiarFormularioPapel();
+        //    //btnOkPapel
+        //    //btnCancelarPapel.
+        //    List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
 
 
-            foreach (SucursalFoto f in fotos)
-            {
-                f.VchColumna = "";
-                f.VchFila = "";
-                f.BooRotarEnPapel = false;
-            }
-            ViewState["Fotos"] = fotos;
-            DataBindFotografiasPapel();
+        //    foreach (SucursalFoto f in fotos)
+        //    {
+        //        f.VchColumna = "";
+        //        f.VchFila = "";
+        //        f.BooRotarEnPapel = false;
+        //    }
+        //    ViewState["Fotos"] = fotos;
+        //    DataBindFotografiasPapel();
             
-            //DdlFoto.DataSource = ViewState["Fotos"];
-            //DdlFoto.DataValueField = "UidFoto";
-            //DdlFoto.DataTextField = "StrDescripcion";
-            //DdlFoto.DataBind();
+        //    //DdlFoto.DataSource = ViewState["Fotos"];
+        //    //DdlFoto.DataValueField = "UidFoto";
+        //    //DdlFoto.DataTextField = "StrDescripcion";
+        //    //DdlFoto.DataBind();
 
           
-            //  ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#VConfimacionNuevoPapel').modal('hide');", true);
-            //  ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#VConfimacionNuevoPapel').modal('hide');", true);
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#VConfimacionNuevoPapel", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#VConfimacionNuevoPapel').hide();", true);
-
-                PnErrorPapelSucursal.Visible = false;
-                lblErrorPapel.Visible = false;
-                lblErrorPapel.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorPapelSucursal.Visible = true;
-                lblErrorPapel.Visible = true;
-                lblErrorPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
-            }
-
-        }
-        protected void btnOkPapel_Click(object sender, EventArgs e)
-        {
-            try { 
-            DesHabilitarFormularioPapel();
-            btnOkPapel.Visible = false;
-            btnCancelarPapel.Visible = false;
-
-                PnErrorPapelSucursal.Visible = false;
-                lblErrorPapel.Visible = false;
-                lblErrorPapel.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorPapelSucursal.Visible = true;
-                lblErrorPapel.Visible = true;
-                lblErrorPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
-            }
-
-        }
-        protected void btnCancelarPapel_Click(object sender, EventArgs e)
-        {
-
-        }
-        protected void DdlFoto_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try { 
-
-            if (Guid.Empty != new Guid(DdlFoto.SelectedValue.ToString()) && !String.IsNullOrWhiteSpace(DdlFoto.SelectedValue.ToString()))
-            {
-                if (EditingMode)
-                {
-                    btnEditarFotoPapel.RemoveCssClass("disabled").RemoveCssClass("hidden");
-                    btnEditarFotoPapel.Enabled = true;
-                }
-                UidFotoPapel.Text = DdlFoto.SelectedValue.ToString();
-            }
-            else
-            {
-                btnEditarFotoPapel.AddCssClass("disabled").RemoveCssClass("hidden");
-                btnEditarFotoPapel.Enabled = false;
-                UidFotoPapel.Text = "";
-            }
-            DesHabilitarFormularioFotoPapel();
-            btnEditarFotoPapel.Text = "Nuevo";
-            btnOKFotoPapel.AddCssClass("disabled").AddCssClass("hidden");
-            btnOKFotoPapel.Enabled = false;
-            btnCancelarFotoPapel.AddCssClass("disabled").AddCssClass("hidden");
-            btnCancelarFotoPapel.Enabled = false;
-
-                PnErrorFotoPapelSucursal.Visible = false;
-                lblErrorFotoPapel.Visible = false;
-                lblErrorFotoPapel.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoPapelSucursal.Visible = true;
-                lblErrorFotoPapel.Visible = true;
-                lblErrorFotoPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
-            }
-
-        }
-        public double ConMMColumna(SucursalFoto foto)
-        {
-            double CEspDisponible;
-            SucursalPapel Papel1 = new SucursalPapel();
-            Papel1.VchAncho = txtAnchoPapel.Text;
-            Papel1.VchDerecho = txtMargenDerecho.Text;
-            Papel1.VchIzquierdo = txtMargenIzquierdo.Text;
-
-            double CEspDisponibleMilimetros = (double.Parse(Papel1.VchAncho) - (double.Parse(Papel1.VchDerecho) + double.Parse(Papel1.VchIzquierdo)));
-            CEspDisponible = ConversionMedidaMilimetros(CEspDisponibleMilimetros, foto.VchMedida);
-
-            return CEspDisponible;
-        }
-        public double ConMMFila(SucursalFoto foto)
-        {
-            double FEspDisponible;
-            SucursalPapel Papel1 = new SucursalPapel();
-            Papel1.VchAlto = txtAltoPapel.Text;
-            Papel1.VchSuperior = txtMargenSuperior.Text;
-            Papel1.VchInferior = txtMargenInferior.Text;
-            double FEspDisponibleMilimetros = (double.Parse(Papel1.VchAlto) - (double.Parse(Papel1.VchInferior) + double.Parse(Papel1.VchSuperior)));
-            FEspDisponible = ConversionMedidaMilimetros(FEspDisponibleMilimetros, foto.VchMedida);
-            return FEspDisponible;
-        }
-        public double ConversionMedidaMilimetros(double Dou, String StrMedida)
-        {
-
-            switch (StrMedida)
-            {
-                case "Centimetro":
-                    Dou = Dou * 0.1;
-                    break;
-                case "Pulgada":
-                    Dou = Dou * 0.0393701;
-                    break;
-                default:
-                    Dou = Dou * 0.1;
-                    break;
-            }
-            return Dou;
-        }
-        protected void dvgFotosPapel_Sorting(object sender, GridViewSortEventArgs e)
-        {
-            try { 
-            List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
-            if (e.SortExpression == lbOrdenFPPor.Text)
-            {
-                if (lbOrdenFP.Text == Orden.ASC.ToString())
-                {
-                    lbOrdenFP.Text = Orden.DESC.ToString();
-                }
-                else
-                {
-                    lbOrdenFP.Text = Orden.ASC.ToString();
-                }
-            }
-            else
-            {
-                lbOrdenFPPor.Text = e.SortExpression;
-                lbOrdenFP.Text = Orden.ASC.ToString();
-            }
-            Orden Ordenn = (Orden)Enum.Parse(typeof(Orden), lbOrdenFP.Text, true);
-            //var txt = (HtmlInputText)dvgFotosPapel.FindControl("txt");
-            List<SucursalFoto> fotosOrdenNueva = VM.OrdenarListaFP(e.SortExpression, Ordenn, fotos);
-            ViewState["Fotos"] = fotosOrdenNueva;
-            DataBindFotografiasPapel();
-
-                PnErrorFotoPapelSucursal.Visible = false;
-                lblErrorFotoPapel.Visible = false;
-                lblErrorFotoPapel.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoPapelSucursal.Visible = true;
-                lblErrorFotoPapel.Visible = true;
-                lblErrorFotoPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
-            }
-
-        }
-
-
-
-        #endregion Panel derecho (Papel)
-
-        
-        #region Panel derecho (Fotografias Comercial)
-        public bool ValidarCamposFotoC()//
-        {
-            bool FotoBIen = true;
-
-            #region vacios
-
-            if (string.IsNullOrWhiteSpace(txtDescripcionFotoC.Text))
-            {
-                txtDescripcionFotoC.Focus();
-                txtDescripcionFotoC.BorderColor = Color.FromName("#f00800");
-                FotoBIen = false;
-            }
-            if (string.IsNullOrWhiteSpace(txtPrecioFotoC.Text))
-            {
-                txtPrecioFotoC.Focus();
-                txtPrecioFotoC.BorderColor = Color.FromName("#f00800");
-                FotoBIen = false;
-            }
-            if (string.IsNullOrWhiteSpace(txtPrecioFotoTicketC.Text))
-            {
-                txtPrecioFotoTicketC.Focus();
-                txtPrecioFotoTicketC.BorderColor = Color.FromName("#f00800");
-                FotoBIen = false;
-            }
-            if (string.IsNullOrWhiteSpace(txtPrecioFotoServidorC.Text))
-            {
-                txtPrecioFotoServidorC.Focus();
-                txtPrecioFotoServidorC.BorderColor = Color.FromName("#f00800");
-                FotoBIen = false;
-            }
-            if (string.IsNullOrWhiteSpace(txtAltoFotoC.Text))
-            {
-                txtAltoFotoC.Focus();
-                txtAltoFotoC.BorderColor = Color.FromName("#f00800");
-                FotoBIen = false;
-            }
-            if (string.IsNullOrWhiteSpace(txtAnchoFotoC.Text))
-            {
-                txtAnchoFotoC.Focus();
-                txtAnchoFotoC.BorderColor = Color.FromName("#f00800");
-                FotoBIen = false;
-            }
-            if (string.IsNullOrWhiteSpace(txtAltoFotoDescC.Text))
-            {
-                txtAltoFotoDescC.Focus();
-                txtAltoFotoDescC.BorderColor = Color.FromName("#f00800");
-                FotoBIen = false;
-            }
-            if (string.IsNullOrWhiteSpace(txtAnchoFotoDescC.Text))
-            {
-                txtAnchoFotoDescC.Focus();
-                txtAnchoFotoDescC.BorderColor = Color.FromName("#f00800");
-                FotoBIen = false;
-            }
-
-            if (FotoBIen == false)
-            {
-                _tabFotoC();
-                lblErrorFotoC.Text = "Ningun campo debe estar vacio";//va despues que tab papel
-                lblErrorFotoC.Visible = true;
-                PnErrorFotoCSucursal.Visible = true;
-                return FotoBIen;
-            }
-
-            #endregion vacios
-            lblErrorFotoC.Text = "";//va despues que tab papel
-            lblErrorFotoC.Visible = false;
-            PnErrorFotoCSucursal.Visible = false;
-            #region Es numero
-
-            //char[] charsRead = new char[txtAltoPapel.Text.Length];
-            foreach (char c in txtPrecioFotoC.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
-                    if (c.ToString() != ".")
-                    {
-                        txtPrecioFotoC.Focus();
-                        txtPrecioFotoC.BorderColor = Color.FromName("#f00800");
-                        ToolPrecioFotoC.HRef = "Solo debe contener 1 numero";
-                        ToolPrecioFotoC.Visible = true;
-                        FotoBIen = false;
-                    }
-                }
-            }
-            foreach (char c in txtPrecioFotoTicketC.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
-                    if (c.ToString() != ".")
-                    {
-                        txtPrecioFotoTicketC.Focus();
-                        txtPrecioFotoTicketC.BorderColor = Color.FromName("#f00800");
-                        ToolPrecioTicketC.HRef = "Solo debe contener 1 numero";
-                        ToolPrecioTicketC.Visible = true;
-                        FotoBIen = false;
-                    }
-                }
-            }
-            foreach (char c in txtPrecioFotoServidorC.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
-                    if (c.ToString() != ".")
-                    {
-                        txtPrecioFotoServidorC.Focus();
-                        txtPrecioFotoServidorC.BorderColor = Color.FromName("#f00800");
-                        ToolPrecioServidorC.HRef = "Solo debe contener 1 numero";
-                        ToolPrecioServidorC.Visible = true;
-                        FotoBIen = false;
-                    }
-                }
-            }
-            foreach (char c in txtAltoFotoC.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
-                    if (c.ToString() != ".")
-                    {
-                        txtAltoFotoC.Focus();
-                        txtAltoFotoC.BorderColor = Color.FromName("#f00800");
-                        ToolAltoFotoC.HRef = "Solo debe contener 1 numero";
-                        ToolAltoFotoC.Visible = true;
-                        FotoBIen = false;
-                    }
-                }
-            }
-            foreach (char c in txtAnchoFotoC.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
-                    if (c.ToString() != ".")
-                    {
-                        txtAnchoFotoC.Focus();
-                        txtAnchoFotoC.BorderColor = Color.FromName("#f00800");
-                        ToolAnchoFotoC.HRef = "Solo debe contener 1 numero";
-                        ToolAnchoFotoC.Visible = true;
-                        FotoBIen = false;
-                    }
-                }
-            }
-            foreach (char c in txtAltoFotoDescC.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
-                    if (c.ToString() != ".")
-                    {
-                        txtAltoFotoDescC.Focus();
-                        txtAltoFotoDescC.BorderColor = Color.FromName("#f00800");
-                        ToolAltoFotoDescC.HRef = "Solo debe contener 1 numero";
-                        ToolAltoFotoDescC.Visible = true;
-                        FotoBIen = false;
-                    }
-                }
-            }
-            foreach (char c in txtAnchoFotoDescC.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
-                    if (c.ToString() != ".")
-                    {
-                        txtAnchoFotoDescC.Focus();
-                        txtAnchoFotoDescC.BorderColor = Color.FromName("#f00800");
-                        ToolAnchoFotoDescC.HRef = "Solo debe contener 1 numero";
-                        ToolAnchoFotoDescC.Visible = true;
-                        FotoBIen = false;
-                    }
-                }
-            }
-            if (FotoBIen == false)
-            {
-                _tabFotoC();
-                lblErrorFotoC.Text = "Todos los campos en formato correcto";
-                lblErrorFotoC.Visible = true;
-                PnErrorFotoCSucursal.Visible = true;
-                return FotoBIen;
-            }
-            #endregion Es numero
-            lblErrorFotoC.Text = "";//va despues que tab papel
-            lblErrorFotoC.Visible = false;
-            PnErrorFotoCSucursal.Visible = false;
-            #region prototipo
-            ///#region digitos
-            //if (txtAltoPapel.Text.Length < 3)
-            //{
-            //    txtAltoPapel.Focus();
-            //    txtAltoPapel.BorderColor = Color.FromName("#f00800");
-            //    ToolAltoPapel.HRef = "Minimo debe ser 1 numero de 3 digitos";
-            //    ToolAltoPapel.Visible = true;
-            //    PapelBIen = false;
-            //}
-            //if (txtAnchoPapel.Text.Length < 3)
-            //{
-            //    txtAnchoPapel.Focus();
-            //    txtAnchoPapel.BorderColor = Color.FromName("#f00800");
-            //    ToolAnchoPapel.HRef = "Minimo debe ser 1 numero de 3 digitos";
-            //    ToolAnchoPapel.Visible = true;
-            //    PapelBIen = false;
-            //}
-            //if (PapelBIen == false)
-            //{
-            //    _tabPapel();
-            //    lblErrorPapel.Text = "Alto y Ancho deben tener al menos 3 digitos";//va despues que tab papel
-            //    lblErrorPapel.Visible = true;
-            //    PnErrorPapelSucursal.Visible = true;
-            //    return PapelBIen;
-            //}
-            //#endregion digitos
-            //lblErrorFoto.Text = "";//va despues que tab papel
-            //lblErrorFoto.Visible = false;
-            //PnErrorFotoSucursal.Visible = false;
-            #endregion prototipo
-            return FotoBIen;
-        }
-        protected void btnAgregarFotoC_Click(object sender, EventArgs e)//
-        {
-            try
-            {
-                //ActivarValidacionFotografias();
-                uidFotoC.Text = string.Empty;
-
-                LimpiarFormularioFotografiasC();
-                HabilitarFormularioFotografiasC();
-
-                btnOKFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
-                btnOKFotoC.Enabled = true;
-                btnCancelarFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
-                btnCancelarFotoC.Enabled = true;
-
-                btnAgregarFotoC.Disable();
-                btnEditarFotoC.Disable();
-                //btnEliminarFoto.Disable();
-
-                int pos = -1;
-                if (ViewState["FotoCPreviousRow"] != null)
-                {
-                    pos = (int)ViewState["FotoCPreviousRow"];
-                    GridViewRow previousRow = dgvFotosC.Rows[pos];
-                    previousRow.RemoveCssClass("success");
-                }
-
-
-                PnErrorFotoCSucursal.Visible = false;
-                lblErrorFotoC.Visible = false;
-                lblErrorFotoC.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoCSucursal.Visible = true;
-                lblErrorFotoC.Visible = true;
-                lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
-            }
-
-        }
-        protected void btnEditarFotoC_Click(object sender, EventArgs e)//
-        {
-            try
-            {
-                HabilitarFormularioFotografiasC();
-
-                btnAgregarFotoC.Enabled = false;
-                btnAgregarFotoC.AddCssClass("disabled");
-
-                btnEditarFotoC.Enabled = false;
-                btnEditarFotoC.AddCssClass("disabled");
-
-                //btnEliminarFoto.Enabled = false;
-                //btnEliminarFoto.AddCssClass("disabled");
-
-                btnOKFotoC.Enabled = true;
-                btnOKFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
-
-                btnCancelarFotoC.Enabled = true;
-                btnCancelarFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#VConfimacionEditarFotoC", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#VConfimacionEditarFoto').hide();", true);
-
-
-                PnErrorFotoCSucursal.Visible = false;
-                lblErrorFotoC.Visible = false;
-                lblErrorFotoC.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoCSucursal.Visible = true;
-                lblErrorFotoC.Visible = true;
-                lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
-            }
-
-        }
-        protected void btnEliminarFotoC_Click(object sender, EventArgs e)//
-        {
-            lblAceptarEliminarFotoC.Visible = true;
-            lblAceptarEliminarFotoC.Text = "¿Desea eliminar La foto seleccionada?";
-            btnAceptarEliminarFotoC.Visible = true;
-            btnCancelarEliminarFotoC.Visible = true;
-        }
-        protected void btnOKFotoC_Click(object sender, EventArgs e)//
-        {
-            try
-            {
-
-                if (ValidarCamposFotoC() == false)
-                {
-                    return;
-                }
-                ToolPrecioFotoC.HRef = "";
-                ToolPrecioFotoC.Visible = false;
-                ToolPrecioTicketC.HRef = "";
-                ToolPrecioTicketC.Visible = false;
-                ToolPrecioServidorC.HRef = "";
-                ToolPrecioServidorC.Visible = false;
-                ToolAltoFotoC.HRef = "";
-                ToolAltoFotoC.Visible = false;
-                ToolAnchoFotoC.HRef = "";
-                ToolAnchoFotoC.Visible = false;
-                ToolAltoFotoDescC.HRef = "";
-                ToolAltoFotoDescC.Visible = false;
-                ToolAnchoFotoDescC.HRef = "";
-                ToolAnchoFotoDescC.Visible = false;
-                List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
-                SucursalFotoC foto = null;
-                int pos = -1;
-                if (!string.IsNullOrWhiteSpace(uidFotoC.Text))
-                {
-                    IEnumerable<SucursalFotoC> dir = from i in fotos where i.UidFoto.ToString() == uidFotoC.Text select i;
-                    foto = dir.First();
-                    pos = fotos.IndexOf(foto);
-                    fotos.Remove(foto);
-                }
-                else
-                {
-                    foto = new SucursalFotoC();
-                    foto.UidFoto = Guid.NewGuid();
-                }
-                //a partir de aqui agrega los datos al objeto
-                foto.UidImpresora = new Guid(ddImpresoraFotoC.SelectedValue);
-                foto.StrDescripcion = txtDescripcionFotoC.Text;
-                foto.StrPrecio = txtPrecioFotoC.Text;
-                foto.StrPrecioTicket = txtPrecioFotoTicketC.Text;
-                foto.StrPrecioServidor = txtPrecioFotoServidorC.Text;
-                foto.VchAlto = txtAltoFotoC.Text;
-                foto.VchAncho = txtAnchoFotoC.Text;
-                foto.VchAltoDesc = txtAltoFotoDescC.Text;
-                foto.VchAnchoDesc = txtAnchoFotoDescC.Text;
-                foto.UidStatus = new Guid(ddActivoFotoC.SelectedValue);
-                foto.StrStatus = ddActivoFotoC.SelectedItem.Text;
-                foto.BooRotarEnPapel = false;
-                foto.VchColumna = "";
-                foto.VchFila = "";
-                foto.UidMedida = new Guid(ddMedidaFotoC.SelectedValue);
-                foto.VchMedida = ddMedidaFotoC.SelectedItem.Text;
-                if (pos < 0)
-                    fotos.Add(foto);
-                else
-                    fotos.Insert(pos, foto);
-
-
-                ViewState["FotosC"] = fotos;
-                DatabindFotografiasC();
-                DataBindFotografiasPapelC();
-                LimpiarFormularioFotografiasC();
-                DesHabilitarFormularioFotografiasC();
-                btnOKFotoC.AddCssClass("hidden").AddCssClass("disabled");
-                btnOKFotoC.Enabled = false;
-                btnCancelarFotoC.AddCssClass("hidden").AddCssClass("disabled");
-                btnCancelarFotoC.Enabled = false;
-                btnEditarFotoC.AddCssClass("disabled").AddCssClass("hidden");
-                btnEditarFotoC.Enabled = false;
-                btnAgregarFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
-                btnAgregarFotoC.Enabled = true;
-
-
-                PnErrorFotoCSucursal.Visible = false;
-                lblErrorFotoC.Visible = false;
-                lblErrorFotoC.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoCSucursal.Visible = true;
-                lblErrorFotoC.Visible = true;
-                lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
-            }
-
-        }
-        protected void btnCancelarFotoC_Click(object sender, EventArgs e)//
-        {
-            try
-            {
-
-                DesHabilitarFormularioFotografiasC();
-
-                btnOKFotoC.AddCssClass("hidden").AddCssClass("disabled");
-                btnOKFotoC.Enabled = false;
-                btnCancelarFotoC.AddCssClass("hidden").AddCssClass("disabled");
-                btnCancelarFotoC.Enabled = false;
-
-                btnAgregarFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
-                btnAgregarFotoC.Enabled = true;
-
-
-                if (uidFotoC.Text.Length == 0)
-                {
-                    btnEditarFotoC.Disable();
-                    LimpiarFormularioFotografiasC();
-                }
-                else
-                {
-                    //btnEliminarFoto.Enable();
-                    btnEditarFotoC.Enable();
-
-                    List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
-                    SucursalFotoC foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == dgvFotosC.SelectedDataKey.Value.ToString()).First();
-
-                    uidFotoC.Text = foto.UidFoto.ToString();
-
-                    txtDescripcionFotoC.Text = foto.StrDescripcion;
-                    txtPrecioFotoC.Text = foto.StrPrecio;
-                    txtPrecioFotoTicketC.Text = foto.StrPrecioTicket;
-                    txtPrecioFotoServidorC.Text = foto.StrPrecioServidor;
-                    txtAltoFotoC.Text = foto.VchAlto.ToString();
-                    txtAnchoFotoC.Text = foto.VchAncho.ToString();
-                    txtAltoFotoDescC.Text = foto.VchAltoDesc.ToString();
-                    txtAnchoFotoDescC.Text = foto.VchAnchoDesc.ToString();
-                    txtFxColumnaC.Text = foto.VchColumna;
-                    txtFxFilaC.Text = foto.VchFila;
-                    CbRotarImagenPapelC.Checked = foto.BooRotarEnPapel;
-
-                    ddActivoFotoC.SelectedValue = foto.UidStatus.ToString();
-                    ddMedidaFotoC.SelectedValue = foto.UidMedida.ToString();
-                }
-
-
-                PnErrorFotoCSucursal.Visible = false;
-                lblErrorFotoC.Visible = false;
-                lblErrorFotoC.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoCSucursal.Visible = true;
-                lblErrorFotoC.Visible = true;
-                lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
-            }
-
-        }
-        protected void btnAceptarEliminarFotoC_Click(object sender, EventArgs e)//
-        {
-            try
-            {
-
-                btnAgregarFotoC.Enabled = true;
-                btnAgregarFotoC.RemoveCssClass("disabled");
-
-                btnOKFotoC.Enabled = false;
-                btnOKFotoC.AddCssClass("hidden").AddCssClass("disabled");
-
-                btnCancelarFotoC.Enabled = false;
-                btnCancelarFotoC.AddCssClass("hidden").AddCssClass("disabled");
-
-                Guid uid = new Guid(uidFotoC.Text);
-
-                List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
-                SucursalFotoC foto = fotos.Select(x => x).Where(x => x.UidFoto == uid).First();
-                fotos.Remove(foto);
-                FotoCRemoved.Add(foto);
-
-                LimpiarFormularioFotografias();
-
-                ViewState["FotosC"] = fotos;
-                DatabindFotografiasC();
-
-                btnCancelarEliminarFotoC.Visible = false;
-                btnAceptarEliminarFotoC.Visible = false;
-                lblAceptarEliminarFotoC.Visible = false;
-                ViewState["FotoCPreviousRow"] = null;
-
-
-                PnErrorFotoCSucursal.Visible = false;
-                lblErrorFotoC.Visible = false;
-                lblErrorFotoC.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoCSucursal.Visible = true;
-                lblErrorFotoC.Visible = true;
-                lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
-            }
-
-        }
-        protected void btnCancelarEliminarFotoC_Click(object sender, EventArgs e)//
-        {
-            try
-            {
-                //esta funcion parece ser llamada por otras
-                btnCancelarEliminarFotoC.Visible = false;
-                btnAceptarEliminarFotoC.Visible = false;
-                lblAceptarEliminarFotoC.Visible = false;
-
-
-                PnErrorFotoCSucursal.Visible = false;
-                lblErrorFotoC.Visible = false;
-                lblErrorFotoC.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoCSucursal.Visible = true;
-                lblErrorFotoC.Visible = true;
-                lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
-            }
-
-        }
-        protected void dgvFotosC_RowDataBound(object sender, GridViewRowEventArgs e)//
-        {
-            try
-            {
-
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(dgvFotosC, "Select$" + e.Row.RowIndex);
-                }
-
-
-                PnErrorFotoCSucursal.Visible = false;
-                lblErrorFotoC.Visible = false;
-                lblErrorFotoC.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoCSucursal.Visible = true;
-                lblErrorFotoC.Visible = true;
-                lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
-            }
-
-        }
-        protected void dgvFotosC_SelectedIndexChanged(object sender, EventArgs e)//
-        {
-            try
-            {
-
-                List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
-                SucursalFotoC foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == dgvFotosC.SelectedDataKey.Value.ToString()).First();
-
-                uidFotoC.Text = foto.UidFoto.ToString();
-                ddImpresoraFotoC.SelectedValue = foto.UidImpresora.ToString();
-                txtDescripcionFotoC.Text = foto.StrDescripcion;
-                txtPrecioFotoC.Text = foto.StrPrecio;
-                txtPrecioFotoTicketC.Text = foto.StrPrecioTicket;
-                txtPrecioFotoServidorC.Text = foto.StrPrecioServidor;
-                txtAltoFotoC.Text = foto.VchAlto.ToString();
-                txtAnchoFotoC.Text = foto.VchAncho.ToString();
-                txtAltoFotoDescC.Text = foto.VchAltoDesc.ToString();
-                txtAnchoFotoDescC.Text = foto.VchAnchoDesc.ToString();
-                ddActivoFotoC.SelectedValue = foto.UidStatus.ToString();//no se si se necesite seccionar tambien la uid
-                ddMedidaFotoC.SelectedValue = foto.UidMedida.ToString();
-
-
-                if (EditingMode)
-                {
-                    btnEditarFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
-                    btnEditarFotoC.Enabled = true;
-                    //btnEliminarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
-                    //btnEliminarFoto.Enabled = true;
-                    btnOKFotoC.AddCssClass("disabled").AddCssClass("hidden");
-                    btnOKFotoC.Enabled = false;
-                    btnCancelarFotoC.AddCssClass("disabled").AddCssClass("hidden");
-                    btnCancelarFotoC.Enabled = false;
-                }
-
-                int pos = -1;
-                if (ViewState["FotoCPreviousRow"] != null)
-                {
-                    pos = (int)ViewState["FotoCPreviousRow"];
-                    GridViewRow previousRow = dgvFotosC.Rows[pos];
-                    previousRow.RemoveCssClass("success");
-                }
-
-                ViewState["FotoCPreviousRow"] = dgvFotosC.SelectedIndex;
-                dgvFotosC.SelectedRow.AddCssClass("success");
-
-
-                PnErrorFotoCSucursal.Visible = false;
-                lblErrorFotoC.Visible = false;
-                lblErrorFotoC.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoCSucursal.Visible = true;
-                lblErrorFotoC.Visible = true;
-                lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
-            }
-        }
-        void LimpiarFormularioFotografiasC()//
-        {
-            //solo son texbox
-            uidFotoC.Text = string.Empty;
-            txtDescripcionFotoC.Text = string.Empty;
-            txtPrecioFotoC.Text = string.Empty;
-            txtPrecioFotoTicketC.Text = string.Empty;
-            txtPrecioFotoServidorC.Text = string.Empty;
-            txtAltoFotoC.Text = string.Empty;
-            txtAnchoFotoC.Text = string.Empty;
-            txtAltoFotoDescC.Text = string.Empty;
-            txtAnchoFotoDescC.Text = string.Empty;
-            ddActivoFotoC.SelectedIndex = 0;
-            ddMedidaFotoC.SelectedIndex = 0;
-        }
-        void DesHabilitarFormularioFotografiasC()//
-        {
-            if (ddImpresoraFotoC.DataSource != null)
-            {
-                ddImpresoraFotoC.SelectedIndex = 0;
-            }
-            ddImpresoraFotoC.AddCssClass("disabled");
-            ddImpresoraFotoC.Enabled = false;
-
-            txtDescripcionFotoC.Enabled = false;
-            txtDescripcionFotoC.AddCssClass("disabled");
-
-            txtPrecioFotoC.Enabled = false;
-            txtPrecioFotoC.AddCssClass("disabled");
-
-            txtPrecioFotoTicketC.Enabled = false;
-            txtPrecioFotoTicketC.AddCssClass("disabled");
-
-            txtPrecioFotoServidorC.Enabled = false;
-            txtPrecioFotoServidorC.AddCssClass("disabled");
-
-            txtAltoFotoC.Enabled = false;
-            txtAltoFotoC.AddCssClass("disabled");
-
-            txtAnchoFotoC.Enabled = false;
-            txtAnchoFotoC.AddCssClass("disabled");
-
-            txtAltoFotoDescC.Enabled = false;
-            txtAltoFotoDescC.AddCssClass("disabled");
-
-            txtAnchoFotoDescC.Enabled = false;
-            txtAnchoFotoDescC.AddCssClass("disabled");
-
-            ddActivoFotoC.SelectedIndex = 0;
-            ddActivoFotoC.AddCssClass("disabled");
-            ddActivoFotoC.Enabled = false;
-
-            ddMedidaFotoC.SelectedIndex = 0;
-            ddMedidaFotoC.AddCssClass("disabled");
-            ddMedidaFotoC.Enabled = false;
-
-
-        }
-        void HabilitarFormularioFotografiasC()//
-        {
-            ddImpresoraFotoC.SelectedIndex = 0;
-            ddImpresoraFotoC.RemoveCssClass("disabled");
-            ddImpresoraFotoC.Enabled = true;
-
-            txtDescripcionFotoC.Enabled = true;
-            txtDescripcionFotoC.RemoveCssClass("disabled");
-
-            txtPrecioFotoC.Enabled = true;
-            txtPrecioFotoC.RemoveCssClass("disabled");
-
-            txtPrecioFotoTicketC.Enabled = true;
-            txtPrecioFotoTicketC.RemoveCssClass("disabled");
-
-            txtPrecioFotoServidorC.Enabled = true;
-            txtPrecioFotoServidorC.RemoveCssClass("disabled");
-
-            txtAltoFotoC.Enabled = true;
-            txtAltoFotoC.RemoveCssClass("disabled");
-
-            txtAnchoFotoC.Enabled = true;
-            txtAnchoFotoC.RemoveCssClass("disabled");
-
-            txtAltoFotoDescC.Enabled = true;
-            txtAltoFotoDescC.RemoveCssClass("disabled");
-
-            txtAnchoFotoDescC.Enabled = true;
-            txtAnchoFotoDescC.RemoveCssClass("disabled");
-
-            ddActivoFotoC.SelectedIndex = 0;
-            ddActivoFotoC.RemoveCssClass("disabled");
-            ddActivoFotoC.Enabled = true;
-
-            ddMedidaFotoC.SelectedIndex = 0;
-            ddMedidaFotoC.RemoveCssClass("disabled");
-            ddMedidaFotoC.Enabled = true;
-
-        }
-        void DatabindFotografiasC()//
-        {
-            List<SucursalFotoC> Fotos = (List<SucursalFotoC>)ViewState["FotosC"];
-            
-            dgvFotosC.DataSource = Fotos;
-            dgvFotosC.DataBind();
-        }
-        #endregion Panel derecho (Fotografias Comercial)
-
-        #region Panel derecho (Papel Comercial)
-        void DesHabilitarFormularioPapelC()//
-        {
-            txtNombrePapelC.Enabled = false;
-            txtAltoPapelC.Enabled = false;
-            txtAnchoPapelC.Enabled = false;
-            txtMargenSuperiorC.Enabled = false;
-            txtMargenInferiorC.Enabled = false;
-            txtMargenDerechoC.Enabled = false;
-            txtMargenIzquierdoC.Enabled = false;
-        }
-        void DesHabilitarFormularioFotoPapelC()//
-        {
-
-            CbRotarImagenPapelC.AddCssClass("disabled");
-            CbRotarImagenPapelC.Enabled = false;
-
-            txtFxFilaC.Enabled = false;
-            txtFxFilaC.AddCssClass("disabled");
-
-            txtFxColumnaC.Enabled = false;
-            txtFxColumnaC.AddCssClass("disabled");
-        }
-        void HabilitarFormularioPapelC()//
-        {
-            txtNombrePapelC.Enabled = true;
-            txtAltoPapelC.Enabled = true;
-            txtAnchoPapelC.Enabled = true;
-            txtMargenSuperiorC.Enabled = true;
-            txtMargenInferiorC.Enabled = true;
-            txtMargenDerechoC.Enabled = true;
-            txtMargenIzquierdoC.Enabled = true;
-
-
-        }
-        void HabilitarFormularioFotoPapelC()//
-        {
-
-            CbRotarImagenPapelC.RemoveCssClass("disabled");
-            CbRotarImagenPapelC.Enabled = true;
-            txtFxFilaC.Enabled = true;
-            txtFxFilaC.RemoveCssClass("disabled");
-            txtFxColumnaC.Enabled = true;
-            txtFxColumnaC.RemoveCssClass("disabled");
-        }
-        void LimpiarFormularioPapelC()//
-        {
-            txtNombrePapelC.Text = "";
-            txtAltoPapelC.Text = "";
-            txtAnchoPapelC.Text = "";
-            txtMargenSuperiorC.Text = "";
-            txtMargenInferiorC.Text = "";
-            txtMargenDerechoC.Text = "";
-            txtMargenIzquierdoC.Text = "";
-
-            txtNombrePapelC.BorderColor = Color.FromName("#FF3580BF");
-            txtAltoPapelC.BorderColor = Color.FromName("#FF3580BF");
-            txtAnchoPapelC.BorderColor = Color.FromName("#FF3580BF");
-            txtMargenSuperiorC.BorderColor = Color.FromName("#FF3580BF");
-            txtMargenInferiorC.BorderColor = Color.FromName("#FF3580BF");
-            txtMargenDerechoC.BorderColor = Color.FromName("#FF3580BF");
-            txtMargenIzquierdoC.BorderColor = Color.FromName("#FF3580BF");
-
-            lblErrorPapelC.Text = "";
-            lblErrorPapelC.Visible = false;
-
-            ToolAltoPapelC.Visible = false;
-            ToolAnchoPapelC.Visible = false;
-            ToolMSuperiorC.Visible = false;
-            ToolMInferiorC.Visible = false;
-            ToolMDerechoC.Visible = false;
-            ToolMIzquierdoC.Visible = false;
-
-            ToolAltoPapelC.HRef = "";
-            ToolAnchoPapelC.HRef = "";
-            ToolMSuperiorC.HRef = "";
-            ToolMInferiorC.HRef = "";
-            ToolMDerechoC.HRef = "";
-            ToolMIzquierdoC.HRef = "";
-        }
-        void LimpiarFormularioFotoPapelC()//
-        {
-
-            txtFxColumnaC.Text = string.Empty;
-            txtFxFilaC.Text = string.Empty;
-            CbRotarImagenPapelC.Checked = false;
-
-            lblErrorFotoPapelC.Text = "";
-            lblErrorFotoPapelC.Visible = false;
-
-        }
-        public bool ValidarCamposPapelC()//
-        {
-            bool PapelBIen = true;
-
-            #region vacios
-
-
-            if (string.IsNullOrWhiteSpace(txtNombrePapelC.Text))
-            {
-                txtNombrePapelC.Focus();
-                txtNombrePapelC.BorderColor = Color.FromName("#f00800");
-                PapelBIen = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtAltoPapelC.Text))
-            {
-                txtAltoPapelC.Focus();
-                txtAltoPapelC.BorderColor = Color.FromName("#f00800");
-                PapelBIen = false;
-            }
-            if (string.IsNullOrWhiteSpace(txtAnchoPapelC.Text))
-            {
-                txtAnchoPapelC.Focus();
-                txtAnchoPapelC.BorderColor = Color.FromName("#f00800");
-                PapelBIen = false;
-            }
-
-
-            if (string.IsNullOrWhiteSpace(txtMargenSuperiorC.Text))
-            {
-                txtMargenSuperiorC.Focus();
-                txtMargenSuperiorC.BorderColor = Color.FromName("#f00800");
-                PapelBIen = false;
-            }
-
-
-            if (string.IsNullOrWhiteSpace(txtMargenInferiorC.Text))
-            {
-                txtMargenInferiorC.Focus();
-                txtMargenInferiorC.BorderColor = Color.FromName("#f00800");
-                PapelBIen = false;
-            }
-
-
-            if (string.IsNullOrWhiteSpace(txtMargenDerechoC.Text))
-            {
-                txtMargenDerechoC.Focus();
-                txtMargenDerechoC.BorderColor = Color.FromName("#f00800");
-                PapelBIen = false;
-            }
-
-
-            if (string.IsNullOrWhiteSpace(txtMargenIzquierdoC.Text))
-            {
-                txtMargenIzquierdoC.Focus();
-                txtMargenIzquierdoC.BorderColor = Color.FromName("#f00800");
-                PapelBIen = false;
-            }
-
-
-            if (PapelBIen == false)
-            {
-                _tabPapelC();
-                lblErrorPapelC.Text = "Ningun campo debe estar vacio";//va despues que tab papel
-                lblErrorPapelC.Visible = true;
-                PnErrorPapelCSucursal.Visible = true;
-                return PapelBIen;
-            }
-
-            #endregion vacios
-            lblErrorPapelC.Text = "";//va despues que tab papel
-            lblErrorPapelC.Visible = false;
-            PnErrorPapelCSucursal.Visible = false;
-            #region Es numero
-
-            //char[] charsRead = new char[txtAltoPapel.Text.Length];
-            foreach (char c in txtAltoPapelC.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
-
-                    txtAltoPapelC.Focus();
-                    txtAltoPapelC.BorderColor = Color.FromName("#f00800");
-                    ToolAltoPapelC.HRef = "Solo debe contener 1 numero";
-                    ToolAltoPapelC.Visible = true;
-                    PapelBIen = false;
-                }
-            }
-            foreach (char c in txtAnchoPapelC.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
-
-                    txtAnchoPapelC.Focus();
-                    txtAnchoPapelC.BorderColor = Color.FromName("#f00800");
-                    ToolAnchoPapelC.HRef = "Solo debe contener 1 numero";
-                    ToolAnchoPapelC.Visible = true;
-                    PapelBIen = false;
-                }
-            }
-            foreach (char c in txtMargenSuperiorC.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
-
-                    txtMargenSuperiorC.Focus();
-                    txtMargenSuperiorC.BorderColor = Color.FromName("#f00800");
-                    ToolMSuperiorC.HRef = "Solo debe contener 1 numero";
-                    ToolMSuperiorC.Visible = true;
-                    PapelBIen = false;
-                }
-            }
-            foreach (char c in txtMargenInferiorC.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
-
-                    txtMargenInferiorC.Focus();
-                    txtMargenInferiorC.BorderColor = Color.FromName("#f00800");
-                    ToolMInferiorC.HRef = "Solo debe contener 1 numero";
-                    ToolMInferiorC.Visible = true;
-                    PapelBIen = false;
-                }
-            }
-            foreach (char c in txtMargenDerechoC.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
-
-                    txtMargenDerechoC.Focus();
-                    txtMargenDerechoC.BorderColor = Color.FromName("#f00800");
-                    ToolMDerechoC.HRef = "Solo debe contener 1 numero";
-                    ToolMDerechoC.Visible = true;
-                    PapelBIen = false;
-                }
-            }
-            foreach (char c in txtMargenIzquierdoC.Text)
-            {
-                if (char.IsLetter(c) || char.IsWhiteSpace(c))
-                {
-
-                    txtMargenIzquierdoC.Focus();
-                    txtMargenIzquierdoC.BorderColor = Color.FromName("#f00800");
-                    ToolMIzquierdoC.HRef = "Solo debe contener 1 numero";
-                    ToolMIzquierdoC.Visible = true;
-                    PapelBIen = false;
-                }
-            }
-            if (PapelBIen == false)
-            {
-                _tabPapelC();
-                lblErrorPapelC.Text = "Todos los campos en formato correcto";//va despues que tab papel
-                lblErrorPapelC.Visible = true;
-                PnErrorPapelCSucursal.Visible = true;
-                return PapelBIen;
-            }
-            #endregion Es numero
-            lblErrorPapelC.Text = "";//va despues que tab papel
-            lblErrorPapelC.Visible = false;
-            PnErrorPapelCSucursal.Visible = false;
-            #region digitos
-            if (txtAltoPapelC.Text.Length < 3)
-            {
-                txtAltoPapelC.Focus();
-                txtAltoPapelC.BorderColor = Color.FromName("#f00800");
-                ToolAltoPapelC.HRef = "Minimo debe ser 1 numero de 3 digitos";
-                ToolAltoPapelC.Visible = true;
-                PapelBIen = false;
-            }
-            if (txtAnchoPapelC.Text.Length < 3)
-            {
-                txtAnchoPapelC.Focus();
-                txtAnchoPapelC.BorderColor = Color.FromName("#f00800");
-                ToolAnchoPapelC.HRef = "Minimo debe ser 1 numero de 3 digitos";
-                ToolAnchoPapelC.Visible = true;
-                PapelBIen = false;
-            }
-            if (PapelBIen == false)
-            {
-                _tabPapelC();
-                lblErrorPapelC.Text = "Alto y Ancho deben tener al menos 3 digitos";//va despues que tab papel
-                lblErrorPapelC.Visible = true;
-                PnErrorPapelCSucursal.Visible = true;
-                return PapelBIen;
-            }
-            #endregion digitos
-            lblErrorPapelC.Text = "";//va despues que tab papel
-            lblErrorPapelC.Visible = false;
-            PnErrorPapelCSucursal.Visible = false;
-            return PapelBIen;
-        }
-        void DataBindFotografiasPapelC()//
-        {
-
-            List<SucursalFotoC> Fotos = (List<SucursalFotoC>)ViewState["FotosC"];
-            List<SucursalFotoC> FotosX = new List<SucursalFotoC>();
-            SucursalFotoC fotox = new SucursalFotoC(); fotox.StrDescripcion = "[Selecciona]"; FotosX.Add(fotox);
-
-            // txtCantMaqLicencia.Text ="EnuOrden: "+ Licencias[0].EnuOrden.ToString() + " StrOrdenaPor: " + Licencias[0].StrOrdenaPor.ToString();
-            dvgFotosPapelC.DataSource = Fotos;
-            dvgFotosPapelC.DataBind();
-            int cant = dvgFotosPapelC.Rows.Count - 1; //el menos 1 es debido porque en el gridview se maneja a partir del 0 y  Licencias.Count a partir del 1
-            for (int i = 0; i <= cant; i++) // i comienza desde 0 porque recorre todo el gridview y el gridview comienza desde 0 igual que el Array aunque utilizando el count lo obtienes comenzando a partir del 1
-            {
-                if (Fotos[i].VchFila == "" && Fotos[i].VchColumna == "" && Fotos[i].BooRotarEnPapel == false)
-                {
-                    dvgFotosPapelC.Rows[i].Visible = false;
-                    FotosX.Add(Fotos[i]);
-                }
-                else
-                {
-                    if (Fotos[i].BooRotarEnPapel == false)
-                    {
-                        ((Label)dvgFotosPapelC.Rows[i].FindControl("lbFotoRotadoPapel_icon")).Visible = false;
-                        ((Label)dvgFotosPapelC.Rows[i].FindControl("lbFotoNoRotadoPapel_icon")).Visible = true;
-                    }
-                    else
-                    {
-                        ((Label)dvgFotosPapelC.Rows[i].FindControl("lbFotoRotadoPapel_icon")).Visible = true;
-                        ((Label)dvgFotosPapelC.Rows[i].FindControl("lbFotoNoRotadoPapel_icon")).Visible = false;
-                    }
-                }
-            }
-
-            DdlFotoC.DataSource = FotosX;
-            DdlFotoC.DataValueField = "UidFoto";
-            DdlFotoC.DataTextField = "StrDescripcion";
-            DdlFotoC.DataBind();
-        }
-        protected void dvgFotosPapelC_RowDataBound(object sender, GridViewRowEventArgs e)//
-        {
-            try
-            {
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(dvgFotosPapelC, "Select$" + e.Row.RowIndex);
-                }
-                if (e.Row.RowType == DataControlRowType.Header)
-                {
-
-                    switch (lbOrdenFPPorC.Text)
-                    {
-                        case "Descripcion":
-                            if (lbOrdenFPC.Text == "ASC")
-                            {
-                                ((HtmlGenericControl)e.Row.FindControl("IcoDescripcionFP")).Attributes["class"] = Global.OrdenDescendente;
-                            }
-                            else
-                            {
-                                ((HtmlGenericControl)e.Row.FindControl("IcoDescripcionFP")).Attributes["class"] = Global.OrdenAscendente;
-                            }
-                            break;
-                    }
-                }
-
-                PnErrorFotoPapelCSucursal.Visible = false;
-                lblErrorFotoPapelC.Visible = false;
-                lblErrorFotoPapelC.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoPapelCSucursal.Visible = true;
-                lblErrorFotoPapelC.Visible = true;
-                lblErrorFotoPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
-            }
-
-        }
-        protected void dvgFotosPapelC_SelectedIndexChanged(object sender, EventArgs e)//
-        {
-            try
-            {
-                DataBindFotografiasPapelC();
-                List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
-                SucursalFotoC foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == dvgFotosPapelC.SelectedDataKey.Value.ToString()).First();
-                UidFotoPapelC.Text = foto.UidFoto.ToString();
-                txtFxFilaC.Text = foto.VchFila.ToString();
-                txtFxColumnaC.Text = foto.VchColumna.ToString();
-                CbRotarImagenPapelC.Checked = foto.BooRotarEnPapel;
-                DdlFotoC.Items.Insert(0, new ListItem(foto.StrDescripcion, foto.UidFoto.ToString()));
-                btnEditarFotoPapelC.Text = "Editar";
-                DesHabilitarFormularioFotoPapelC();
-                if (EditingMode)
-                {
-                    btnEditarFotoPapelC.RemoveCssClass("disabled").RemoveCssClass("hidden");
-                    btnEditarFotoPapelC.Enabled = true;
-                    //btnEliminarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
-                    //btnEliminarFoto.Enabled = true;
-                    btnOKFotoPapelC.AddCssClass("disabled").AddCssClass("hidden");
-                    btnOKFotoPapelC.Enabled = false;
-                    btnCancelarFotoPapelC.AddCssClass("disabled").AddCssClass("hidden");
-                    btnCancelarFotoPapelC.Enabled = false;
-                }
-
-                int pos = -1;
-                if (ViewState["FotoCPreviousRow"] != null)
-                {
-                    pos = (int)ViewState["FotoCPreviousRow"];
-                    GridViewRow previousRow = dvgFotosPapelC.Rows[pos];
-                    previousRow.RemoveCssClass("success");
-                }
-
-                ViewState["FotoCPreviousRow"] = dvgFotosPapelC.SelectedIndex;
-                dvgFotosPapelC.SelectedRow.AddCssClass("success");
-
-
-                PnErrorFotoPapelCSucursal.Visible = false;
-                lblErrorFotoPapelC.Visible = false;
-                lblErrorFotoPapelC.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoPapelCSucursal.Visible = true;
-                lblErrorFotoPapelC.Visible = true;
-                lblErrorFotoPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
-            }
-
-        }
-        protected void btnEditarFotoPapelC_Click(object sender, EventArgs e)//
-        {
-            try
-            {
-                HabilitarFormularioFotoPapelC();
-                btnEditarFotoPapelC.AddCssClass("disabled");
-                btnCancelarFotoPapelC.Visible = true;
-                btnOKFotoPapelC.Visible = true;
-                btnCancelarFotoPapelC.RemoveCssClass("hidden").RemoveCssClass("disabled");
-                btnOKFotoPapelC.RemoveCssClass("hidden").RemoveCssClass("disabled");
-                btnOKFotoPapelC.Enabled = true;
-                btnCancelarFotoPapelC.Enabled = true;
-
-                PnErrorFotoPapelCSucursal.Visible = false;
-                lblErrorFotoPapelC.Visible = false;
-                lblErrorFotoPapelC.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoPapelCSucursal.Visible = true;
-                lblErrorFotoPapelC.Visible = true;
-                lblErrorFotoPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
-            }
-
-        }
-        protected void btnOKFotoPapelC_Click(object sender, EventArgs e)//
-        {
-            try
-            {
-                if (ValidarCamposPapelC() == false)
-                {
-                    return;
-                }
-                ToolAltoPapelC.Visible = false;
-                ToolAnchoPapelC.Visible = false;
-                ToolMDerechoC.Visible = false;
-                ToolMInferiorC.Visible = false;
-                ToolMIzquierdoC.Visible = false;
-                ToolMSuperiorC.Visible = false;
-                List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
-                SucursalFotoC foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == DdlFotoC.SelectedValue.ToString()).First();
-                //dgvFotos.SelectedDataKey.Value.ToString()).First();
-                double CEspdisponible = ConMMColumnaC(foto);
-                double FEspdisponible = ConMMFilaC(foto);
-                NumberFormatInfo punto = new NumberFormatInfo(); punto.NumberDecimalSeparator = ".";
-
-                //tarea pendiente validar si estan vacios columna y fila
-                if (CbRotarImagenPapelC.Checked == false)
-                {
-                    if (CEspdisponible - (double.Parse(txtFxColumnaC.Text, punto) * double.Parse(foto.VchAncho, punto)) <= 0)
-                    {
-                        txtFxColumnaC.BorderColor = Color.FromName("#f00800");
-                        txtFxColumnaC.Focus();
-                        ToolFxColumnaC.HRef = "Excede del espacio diponible";
-                        ToolFxColumnaC.Visible = true;
-                        return;
-                    }
-                    ToolFxColumnaC.HRef = "";
-                    ToolFxColumnaC.Visible = false;
-                    if (FEspdisponible - (double.Parse(txtFxFilaC.Text, punto) * double.Parse(foto.VchAlto, punto)) <= 0)
-                    {
-                        txtFxFilaC.BorderColor = Color.FromName("#f00800");
-                        txtFxFilaC.Focus();
-                        ToolFxFilaC.HRef = "Excede del espacio diponible";
-                        ToolFxFilaC.Visible = true;
-                        return;
-                    }
-                    ToolFxFilaC.HRef = "";
-                    ToolFxFilaC.Visible = false;
-                }
-                else
-                {
-                    if (CEspdisponible - (double.Parse(txtFxColumnaC.Text, punto) * double.Parse(foto.VchAlto, punto)) <= 0)
-                    {
-                        txtFxColumnaC.BorderColor = Color.FromName("#f00800");
-                        txtFxColumnaC.Focus();
-                        ToolFxColumnaC.HRef = "Excede del espacio diponible";
-                        ToolFxColumnaC.Visible = true;
-                        return;
-                    }
-                    ToolFxColumnaC.HRef = "";
-                    ToolFxColumnaC.Visible = false;
-                    if (FEspdisponible - (double.Parse(txtFxFilaC.Text, punto) * double.Parse(foto.VchAncho, punto)) <= 0)
-                    {
-                        txtFxFilaC.BorderColor = Color.FromName("#f00800");
-                        txtFxFilaC.Focus();
-                        ToolFxFilaC.HRef = "Excede del espacio diponible";
-                        ToolFxFilaC.Visible = true;
-                        return;
-                    }
-                    ToolFxFilaC.HRef = "";
-                    ToolFxFilaC.Visible = false;
-                }
-                lblErrorFotoC.Visible = true;
-                //List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
-                SucursalFotoC photo = null;
-                int pos = -1;
-                if (!string.IsNullOrWhiteSpace(UidFotoPapelC.Text))
-                {
-                    IEnumerable<SucursalFotoC> dir = from i in fotos where i.UidFoto.ToString() == DdlFotoC.SelectedValue.ToString() select i;
-                    photo = dir.First();
-                    pos = fotos.IndexOf(photo);
-                    fotos.Remove(photo);
-                }
-                else
-                {
-                    photo = new SucursalFotoC();
-                    photo.UidFoto = Guid.NewGuid();
-                }
-                photo.BooRotarEnPapel = CbRotarImagenPapelC.Checked;
-                photo.VchColumna = txtFxColumnaC.Text;
-                photo.VchFila = txtFxFilaC.Text;
-                photo.UidFoto = new Guid(UidFotoPapelC.Text);
-                photo.StrDescripcion = DdlFotoC.SelectedItem.Text;
-
-                if (pos < 0)
-                    fotos.Add(photo);
-                else
-                    fotos.Insert(pos, photo);
-
-                ViewState["FotosC"] = fotos;
-                DataBindFotografiasPapelC();
-                LimpiarFormularioFotoPapelC();
-                DesHabilitarFormularioFotoPapelC();
-                btnOKFotoPapelC.AddCssClass("hidden").AddCssClass("disabled");
-                btnOKFotoPapelC.Enabled = false;
-                btnCancelarFotoPapelC.AddCssClass("hidden").AddCssClass("disabled");
-                btnCancelarFotoPapelC.Enabled = false;
-                btnEditarFotoPapelC.AddCssClass("disabled").AddCssClass("hidden");
-                btnEditarFotoPapelC.Enabled = false;
-
-
-                PnErrorFotoPapelCSucursal.Visible = false;
-                lblErrorFotoPapelC.Visible = false;
-                lblErrorFotoPapelC.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoPapelCSucursal.Visible = true;
-                lblErrorFotoPapelC.Visible = true;
-                lblErrorFotoPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
-            }
-
-        }
-        protected void btnCancelarFotoPapelC_Click(object sender, EventArgs e)//
-        {
-            try
-            {
-                DesHabilitarFormularioFotoPapelC();
-                btnEditarFotoPapelC.RemoveCssClass("disabled");
-                btnCancelarFotoPapelC.Visible = false;
-                btnOKFotoPapelC.Visible = false;
-
-                PnErrorFotoPapelCSucursal.Visible = false;
-                lblErrorFotoPapelC.Visible = false;
-                lblErrorFotoPapelC.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoPapelCSucursal.Visible = true;
-                lblErrorFotoPapelC.Visible = true;
-                lblErrorFotoPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
-            }
-
-        }
-        protected void btnEditarPapelC_Click(object sender, EventArgs e)//
-        {
-            try
-            {
-                btnEditarPapelC.AddCssClass("disabled");
-                HabilitarFormularioPapelC();
-                //HabilitarFormularioFotoPapel();
-                LimpiarFormularioFotoPapelC();
-                LimpiarFormularioPapelC();
-                //btnOkPapel
-                //btnCancelarPapel.
-                List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
-
-
-                foreach (SucursalFotoC f in fotos)
-                {
-                    f.VchColumna = "";
-                    f.VchFila = "";
-                    f.BooRotarEnPapel = false;
-                }
-                ViewState["FotosC"] = fotos;
-                DataBindFotografiasPapelC();
-
-                //DdlFoto.DataSource = ViewState["Fotos"];
-                //DdlFoto.DataValueField = "UidFoto";
-                //DdlFoto.DataTextField = "StrDescripcion";
-                //DdlFoto.DataBind();
-
-
-                //  ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#VConfimacionNuevoPapel').modal('hide');", true);
-                //  ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#VConfimacionNuevoPapel').modal('hide');", true);
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#VConfimacionNuevoPapelC", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#VConfimacionNuevoPapelC').hide();", true);
-
-                PnErrorPapelCSucursal.Visible = false;
-                lblErrorPapelC.Visible = false;
-                lblErrorPapelC.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorPapelCSucursal.Visible = true;
-                lblErrorPapelC.Visible = true;
-                lblErrorPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
-            }
-
-        }
-        protected void btnOkPapelC_Click(object sender, EventArgs e)//
-        {
-            try
-            {
-                DesHabilitarFormularioPapelC();
-                btnOkPapelC.Visible = false;
-                btnCancelarPapelC.Visible = false;
-
-                PnErrorPapelCSucursal.Visible = false;
-                lblErrorPapelC.Visible = false;
-                lblErrorPapelC.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorPapelCSucursal.Visible = true;
-                lblErrorPapelC.Visible = true;
-                lblErrorPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
-            }
-
-        }
-        protected void btnCancelarPapelC_Click(object sender, EventArgs e)//NO HAY NADA DE PORSI
-        {
-
-        }
-        protected void DdlFotoC_SelectedIndexChanged(object sender, EventArgs e)//
-        {
-            try
-            {
-
-                if (Guid.Empty != new Guid(DdlFotoC.SelectedValue.ToString()) && !String.IsNullOrWhiteSpace(DdlFotoC.SelectedValue.ToString()))
-                {
-                    if (EditingMode)
-                    {
-                        btnEditarFotoPapelC.RemoveCssClass("disabled").RemoveCssClass("hidden");
-                        btnEditarFotoPapelC.Enabled = true;
-                    }
-                    UidFotoPapelC.Text = DdlFotoC.SelectedValue.ToString();
-                }
-                else
-                {
-                    btnEditarFotoPapelC.AddCssClass("disabled").RemoveCssClass("hidden");
-                    btnEditarFotoPapelC.Enabled = false;
-                    UidFotoPapelC.Text = "";
-                }
-                DesHabilitarFormularioFotoPapelC();
-                btnEditarFotoPapelC.Text = "Nuevo";
-                btnOKFotoPapelC.AddCssClass("disabled").AddCssClass("hidden");
-                btnOKFotoPapelC.Enabled = false;
-                btnCancelarFotoPapelC.AddCssClass("disabled").AddCssClass("hidden");
-                btnCancelarFotoPapelC.Enabled = false;
-
-                PnErrorFotoPapelCSucursal.Visible = false;
-                lblErrorFotoPapelC.Visible = false;
-                lblErrorFotoPapelC.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoPapelCSucursal.Visible = true;
-                lblErrorFotoPapelC.Visible = true;
-                lblErrorFotoPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
-            }
-
-        }
-        public double ConMMColumnaC(SucursalFotoC foto)//
-        {
-            double CEspDisponible;
-            SucursalPapelC Papel1 = new SucursalPapelC();
-            Papel1.VchAncho = txtAnchoPapel.Text;
-            Papel1.VchDerecho = txtMargenDerecho.Text;
-            Papel1.VchIzquierdo = txtMargenIzquierdo.Text;
-
-            double CEspDisponibleMilimetros = (double.Parse(Papel1.VchAncho) - (double.Parse(Papel1.VchDerecho) + double.Parse(Papel1.VchIzquierdo)));
-            CEspDisponible = ConversionMedidaMilimetros(CEspDisponibleMilimetros, foto.VchMedida);
-
-            return CEspDisponible;
-        }
-        public double ConMMFilaC(SucursalFotoC foto)
-        {
-            double FEspDisponible;
-            SucursalPapelC Papel1 = new SucursalPapelC();
-            Papel1.VchAlto = txtAltoPapel.Text;
-            Papel1.VchSuperior = txtMargenSuperior.Text;
-            Papel1.VchInferior = txtMargenInferior.Text;
-            double FEspDisponibleMilimetros = (double.Parse(Papel1.VchAlto) - (double.Parse(Papel1.VchInferior) + double.Parse(Papel1.VchSuperior)));
-            FEspDisponible = ConversionMedidaMilimetros(FEspDisponibleMilimetros, foto.VchMedida);
-            return FEspDisponible;
-        }
+        //    //  ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#VConfimacionNuevoPapel').modal('hide');", true);
+        //    //  ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#VConfimacionNuevoPapel').modal('hide');", true);
+        //    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#VConfimacionNuevoPapel", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#VConfimacionNuevoPapel').hide();", true);
+
+        //        PnErrorPapelSucursal.Visible = false;
+        //        lblErrorPapel.Visible = false;
+        //        lblErrorPapel.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorPapelSucursal.Visible = true;
+        //        lblErrorPapel.Visible = true;
+        //        lblErrorPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
+        //    }
+
+        //}
+        //protected void btnOkPapel_Click(object sender, EventArgs e)
+        //{
+        //    try { 
+        //    DesHabilitarFormularioPapel();
+        //    btnOkPapel.Visible = false;
+        //    btnCancelarPapel.Visible = false;
+
+        //        PnErrorPapelSucursal.Visible = false;
+        //        lblErrorPapel.Visible = false;
+        //        lblErrorPapel.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorPapelSucursal.Visible = true;
+        //        lblErrorPapel.Visible = true;
+        //        lblErrorPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
+        //    }
+
+        //}
+        //protected void btnCancelarPapel_Click(object sender, EventArgs e)
+        //{
+
+        //}
+        //protected void DdlFoto_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    try { 
+
+        //    if (Guid.Empty != new Guid(DdlFoto.SelectedValue.ToString()) && !String.IsNullOrWhiteSpace(DdlFoto.SelectedValue.ToString()))
+        //    {
+        //        if (EditingMode)
+        //        {
+        //            btnEditarFotoPapel.RemoveCssClass("disabled").RemoveCssClass("hidden");
+        //            btnEditarFotoPapel.Enabled = true;
+        //        }
+        //        UidFotoPapel.Text = DdlFoto.SelectedValue.ToString();
+        //    }
+        //    else
+        //    {
+        //        btnEditarFotoPapel.AddCssClass("disabled").RemoveCssClass("hidden");
+        //        btnEditarFotoPapel.Enabled = false;
+        //        UidFotoPapel.Text = "";
+        //    }
+        //    DesHabilitarFormularioFotoPapel();
+        //    btnEditarFotoPapel.Text = "Nuevo";
+        //    btnOKFotoPapel.AddCssClass("disabled").AddCssClass("hidden");
+        //    btnOKFotoPapel.Enabled = false;
+        //    btnCancelarFotoPapel.AddCssClass("disabled").AddCssClass("hidden");
+        //    btnCancelarFotoPapel.Enabled = false;
+
+        //        PnErrorFotoPapelSucursal.Visible = false;
+        //        lblErrorFotoPapel.Visible = false;
+        //        lblErrorFotoPapel.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorFotoPapelSucursal.Visible = true;
+        //        lblErrorFotoPapel.Visible = true;
+        //        lblErrorFotoPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
+        //    }
+
+        //}
+        //public double ConMMColumna(SucursalFoto foto)
+        //{
+        //    double CEspDisponible;
+        //    SucursalPapel Papel1 = new SucursalPapel();
+        //    Papel1.VchAncho = txtAnchoPapel.Text;
+        //    Papel1.VchDerecho = txtMargenDerecho.Text;
+        //    Papel1.VchIzquierdo = txtMargenIzquierdo.Text;
+
+        //    double CEspDisponibleMilimetros = (double.Parse(Papel1.VchAncho) - (double.Parse(Papel1.VchDerecho) + double.Parse(Papel1.VchIzquierdo)));
+        //    CEspDisponible = ConversionMedidaMilimetros(CEspDisponibleMilimetros, foto.VchMedida);
+
+        //    return CEspDisponible;
+        //}
+        //public double ConMMFila(SucursalFoto foto)
+        //{
+        //    double FEspDisponible;
+        //    SucursalPapel Papel1 = new SucursalPapel();
+        //    Papel1.VchAlto = txtAltoPapel.Text;
+        //    Papel1.VchSuperior = txtMargenSuperior.Text;
+        //    Papel1.VchInferior = txtMargenInferior.Text;
+        //    double FEspDisponibleMilimetros = (double.Parse(Papel1.VchAlto) - (double.Parse(Papel1.VchInferior) + double.Parse(Papel1.VchSuperior)));
+        //    FEspDisponible = ConversionMedidaMilimetros(FEspDisponibleMilimetros, foto.VchMedida);
+        //    return FEspDisponible;
+        //}
         //public double ConversionMedidaMilimetros(double Dou, String StrMedida)
         //{
 
@@ -7139,46 +5676,1509 @@ namespace CodorniX.Vista
         //    }
         //    return Dou;
         //}
-        protected void dvgFotosPapelC_Sorting(object sender, GridViewSortEventArgs e)
-        {
-            try
-            {
-                List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
-                if (e.SortExpression == lbOrdenFPPorC.Text)
-                {
-                    if (lbOrdenFPC.Text == Orden.ASC.ToString())
-                    {
-                        lbOrdenFPC.Text = Orden.DESC.ToString();
-                    }
-                    else
-                    {
-                        lbOrdenFPC.Text = Orden.ASC.ToString();
-                    }
-                }
-                else
-                {
-                    lbOrdenFPPorC.Text = e.SortExpression;
-                    lbOrdenFPC.Text = Orden.ASC.ToString();
-                }
-                Orden Ordenn = (Orden)Enum.Parse(typeof(Orden), lbOrdenFPC.Text, true);
-                //var txt = (HtmlInputText)dvgFotosPapel.FindControl("txt");
-                List<SucursalFotoC> fotosOrdenNueva = VM.OrdenarListaFPC(e.SortExpression, Ordenn, fotos);
-                ViewState["FotosC"] = fotosOrdenNueva;
-                DataBindFotografiasPapelC();
+        //protected void dvgFotosPapel_Sorting(object sender, GridViewSortEventArgs e)
+        //{
+        //    try { 
+        //    List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
+        //    if (e.SortExpression == lbOrdenFPPor.Text)
+        //    {
+        //        if (lbOrdenFP.Text == Orden.ASC.ToString())
+        //        {
+        //            lbOrdenFP.Text = Orden.DESC.ToString();
+        //        }
+        //        else
+        //        {
+        //            lbOrdenFP.Text = Orden.ASC.ToString();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        lbOrdenFPPor.Text = e.SortExpression;
+        //        lbOrdenFP.Text = Orden.ASC.ToString();
+        //    }
+        //    Orden Ordenn = (Orden)Enum.Parse(typeof(Orden), lbOrdenFP.Text, true);
+        //    //var txt = (HtmlInputText)dvgFotosPapel.FindControl("txt");
+        //    List<SucursalFoto> fotosOrdenNueva = VM.OrdenarListaFP(e.SortExpression, Ordenn, fotos);
+        //    ViewState["Fotos"] = fotosOrdenNueva;
+        //    DataBindFotografiasPapel();
 
-                PnErrorFotoPapelCSucursal.Visible = false;
-                lblErrorFotoPapelC.Visible = false;
-                lblErrorFotoPapelC.Text = "";
-            }
-            catch (Exception x)
-            {
-                PnErrorFotoPapelCSucursal.Visible = true;
-                lblErrorFotoPapelC.Visible = true;
-                lblErrorFotoPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
-            }
+        //        PnErrorFotoPapelSucursal.Visible = false;
+        //        lblErrorFotoPapel.Visible = false;
+        //        lblErrorFotoPapel.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorFotoPapelSucursal.Visible = true;
+        //        lblErrorFotoPapel.Visible = true;
+        //        lblErrorFotoPapel.Text = "Error al editar papel: \n detalle del error...\n" + x;
+        //    }
 
-        }
-        #endregion Panel derecho (Papel comercial)
+        //}
+
+
+
+        //#endregion Panel derecho (Papel)
+
+        
+        //#region Panel derecho (Fotografias Comercial)
+        //public bool ValidarCamposFotoC()//
+        //{
+        //    bool FotoBIen = true;
+
+        //    #region vacios
+
+        //    if (string.IsNullOrWhiteSpace(txtDescripcionFotoC.Text))
+        //    {
+        //        txtDescripcionFotoC.Focus();
+        //        txtDescripcionFotoC.BorderColor = Color.FromName("#f00800");
+        //        FotoBIen = false;
+        //    }
+        //    if (string.IsNullOrWhiteSpace(txtPrecioFotoC.Text))
+        //    {
+        //        txtPrecioFotoC.Focus();
+        //        txtPrecioFotoC.BorderColor = Color.FromName("#f00800");
+        //        FotoBIen = false;
+        //    }
+        //    if (string.IsNullOrWhiteSpace(txtPrecioFotoTicketC.Text))
+        //    {
+        //        txtPrecioFotoTicketC.Focus();
+        //        txtPrecioFotoTicketC.BorderColor = Color.FromName("#f00800");
+        //        FotoBIen = false;
+        //    }
+        //    if (string.IsNullOrWhiteSpace(txtPrecioFotoServidorC.Text))
+        //    {
+        //        txtPrecioFotoServidorC.Focus();
+        //        txtPrecioFotoServidorC.BorderColor = Color.FromName("#f00800");
+        //        FotoBIen = false;
+        //    }
+        //    if (string.IsNullOrWhiteSpace(txtAltoFotoC.Text))
+        //    {
+        //        txtAltoFotoC.Focus();
+        //        txtAltoFotoC.BorderColor = Color.FromName("#f00800");
+        //        FotoBIen = false;
+        //    }
+        //    if (string.IsNullOrWhiteSpace(txtAnchoFotoC.Text))
+        //    {
+        //        txtAnchoFotoC.Focus();
+        //        txtAnchoFotoC.BorderColor = Color.FromName("#f00800");
+        //        FotoBIen = false;
+        //    }
+        //    if (string.IsNullOrWhiteSpace(txtAltoFotoDescC.Text))
+        //    {
+        //        txtAltoFotoDescC.Focus();
+        //        txtAltoFotoDescC.BorderColor = Color.FromName("#f00800");
+        //        FotoBIen = false;
+        //    }
+        //    if (string.IsNullOrWhiteSpace(txtAnchoFotoDescC.Text))
+        //    {
+        //        txtAnchoFotoDescC.Focus();
+        //        txtAnchoFotoDescC.BorderColor = Color.FromName("#f00800");
+        //        FotoBIen = false;
+        //    }
+
+        //    if (FotoBIen == false)
+        //    {
+        //        _tabFotoC();
+        //        lblErrorFotoC.Text = "Ningun campo debe estar vacio";//va despues que tab papel
+        //        lblErrorFotoC.Visible = true;
+        //        PnErrorFotoCSucursal.Visible = true;
+        //        return FotoBIen;
+        //    }
+
+        //    #endregion vacios
+        //    lblErrorFotoC.Text = "";//va despues que tab papel
+        //    lblErrorFotoC.Visible = false;
+        //    PnErrorFotoCSucursal.Visible = false;
+        //    #region Es numero
+
+        //    //char[] charsRead = new char[txtAltoPapel.Text.Length];
+        //    foreach (char c in txtPrecioFotoC.Text)
+        //    {
+        //        if (char.IsLetter(c) || char.IsWhiteSpace(c))
+        //        {
+        //            if (c.ToString() != ".")
+        //            {
+        //                txtPrecioFotoC.Focus();
+        //                txtPrecioFotoC.BorderColor = Color.FromName("#f00800");
+        //                ToolPrecioFotoC.HRef = "Solo debe contener 1 numero";
+        //                ToolPrecioFotoC.Visible = true;
+        //                FotoBIen = false;
+        //            }
+        //        }
+        //    }
+        //    foreach (char c in txtPrecioFotoTicketC.Text)
+        //    {
+        //        if (char.IsLetter(c) || char.IsWhiteSpace(c))
+        //        {
+        //            if (c.ToString() != ".")
+        //            {
+        //                txtPrecioFotoTicketC.Focus();
+        //                txtPrecioFotoTicketC.BorderColor = Color.FromName("#f00800");
+        //                ToolPrecioTicketC.HRef = "Solo debe contener 1 numero";
+        //                ToolPrecioTicketC.Visible = true;
+        //                FotoBIen = false;
+        //            }
+        //        }
+        //    }
+        //    foreach (char c in txtPrecioFotoServidorC.Text)
+        //    {
+        //        if (char.IsLetter(c) || char.IsWhiteSpace(c))
+        //        {
+        //            if (c.ToString() != ".")
+        //            {
+        //                txtPrecioFotoServidorC.Focus();
+        //                txtPrecioFotoServidorC.BorderColor = Color.FromName("#f00800");
+        //                ToolPrecioServidorC.HRef = "Solo debe contener 1 numero";
+        //                ToolPrecioServidorC.Visible = true;
+        //                FotoBIen = false;
+        //            }
+        //        }
+        //    }
+        //    foreach (char c in txtAltoFotoC.Text)
+        //    {
+        //        if (char.IsLetter(c) || char.IsWhiteSpace(c))
+        //        {
+        //            if (c.ToString() != ".")
+        //            {
+        //                txtAltoFotoC.Focus();
+        //                txtAltoFotoC.BorderColor = Color.FromName("#f00800");
+        //                ToolAltoFotoC.HRef = "Solo debe contener 1 numero";
+        //                ToolAltoFotoC.Visible = true;
+        //                FotoBIen = false;
+        //            }
+        //        }
+        //    }
+        //    foreach (char c in txtAnchoFotoC.Text)
+        //    {
+        //        if (char.IsLetter(c) || char.IsWhiteSpace(c))
+        //        {
+        //            if (c.ToString() != ".")
+        //            {
+        //                txtAnchoFotoC.Focus();
+        //                txtAnchoFotoC.BorderColor = Color.FromName("#f00800");
+        //                ToolAnchoFotoC.HRef = "Solo debe contener 1 numero";
+        //                ToolAnchoFotoC.Visible = true;
+        //                FotoBIen = false;
+        //            }
+        //        }
+        //    }
+        //    foreach (char c in txtAltoFotoDescC.Text)
+        //    {
+        //        if (char.IsLetter(c) || char.IsWhiteSpace(c))
+        //        {
+        //            if (c.ToString() != ".")
+        //            {
+        //                txtAltoFotoDescC.Focus();
+        //                txtAltoFotoDescC.BorderColor = Color.FromName("#f00800");
+        //                ToolAltoFotoDescC.HRef = "Solo debe contener 1 numero";
+        //                ToolAltoFotoDescC.Visible = true;
+        //                FotoBIen = false;
+        //            }
+        //        }
+        //    }
+        //    foreach (char c in txtAnchoFotoDescC.Text)
+        //    {
+        //        if (char.IsLetter(c) || char.IsWhiteSpace(c))
+        //        {
+        //            if (c.ToString() != ".")
+        //            {
+        //                txtAnchoFotoDescC.Focus();
+        //                txtAnchoFotoDescC.BorderColor = Color.FromName("#f00800");
+        //                ToolAnchoFotoDescC.HRef = "Solo debe contener 1 numero";
+        //                ToolAnchoFotoDescC.Visible = true;
+        //                FotoBIen = false;
+        //            }
+        //        }
+        //    }
+        //    if (FotoBIen == false)
+        //    {
+        //        _tabFotoC();
+        //        lblErrorFotoC.Text = "Todos los campos en formato correcto";
+        //        lblErrorFotoC.Visible = true;
+        //        PnErrorFotoCSucursal.Visible = true;
+        //        return FotoBIen;
+        //    }
+        //    #endregion Es numero
+        //    lblErrorFotoC.Text = "";//va despues que tab papel
+        //    lblErrorFotoC.Visible = false;
+        //    PnErrorFotoCSucursal.Visible = false;
+        //    #region prototipo
+        //    ///#region digitos
+        //    //if (txtAltoPapel.Text.Length < 3)
+        //    //{
+        //    //    txtAltoPapel.Focus();
+        //    //    txtAltoPapel.BorderColor = Color.FromName("#f00800");
+        //    //    ToolAltoPapel.HRef = "Minimo debe ser 1 numero de 3 digitos";
+        //    //    ToolAltoPapel.Visible = true;
+        //    //    PapelBIen = false;
+        //    //}
+        //    //if (txtAnchoPapel.Text.Length < 3)
+        //    //{
+        //    //    txtAnchoPapel.Focus();
+        //    //    txtAnchoPapel.BorderColor = Color.FromName("#f00800");
+        //    //    ToolAnchoPapel.HRef = "Minimo debe ser 1 numero de 3 digitos";
+        //    //    ToolAnchoPapel.Visible = true;
+        //    //    PapelBIen = false;
+        //    //}
+        //    //if (PapelBIen == false)
+        //    //{
+        //    //    _tabPapel();
+        //    //    lblErrorPapel.Text = "Alto y Ancho deben tener al menos 3 digitos";//va despues que tab papel
+        //    //    lblErrorPapel.Visible = true;
+        //    //    PnErrorPapelSucursal.Visible = true;
+        //    //    return PapelBIen;
+        //    //}
+        //    //#endregion digitos
+        //    //lblErrorFoto.Text = "";//va despues que tab papel
+        //    //lblErrorFoto.Visible = false;
+        //    //PnErrorFotoSucursal.Visible = false;
+        //    #endregion prototipo
+        //    return FotoBIen;
+        //}
+        //protected void btnAgregarFotoC_Click(object sender, EventArgs e)//
+        //{
+        //    try
+        //    {
+        //        //ActivarValidacionFotografias();
+        //        uidFotoC.Text = string.Empty;
+
+        //        LimpiarFormularioFotografiasC();
+        //        HabilitarFormularioFotografiasC();
+
+        //        btnOKFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
+        //        btnOKFotoC.Enabled = true;
+        //        btnCancelarFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
+        //        btnCancelarFotoC.Enabled = true;
+
+        //        btnAgregarFotoC.Disable();
+        //        btnEditarFotoC.Disable();
+        //        //btnEliminarFoto.Disable();
+
+        //        int pos = -1;
+        //        if (ViewState["FotoCPreviousRow"] != null)
+        //        {
+        //            pos = (int)ViewState["FotoCPreviousRow"];
+        //            GridViewRow previousRow = dgvFotosC.Rows[pos];
+        //            previousRow.RemoveCssClass("success");
+        //        }
+
+
+        //        PnErrorFotoCSucursal.Visible = false;
+        //        lblErrorFotoC.Visible = false;
+        //        lblErrorFotoC.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorFotoCSucursal.Visible = true;
+        //        lblErrorFotoC.Visible = true;
+        //        lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+        //    }
+
+        //}
+        //protected void btnEditarFotoC_Click(object sender, EventArgs e)//
+        //{
+        //    try
+        //    {
+        //        HabilitarFormularioFotografiasC();
+
+        //        btnAgregarFotoC.Enabled = false;
+        //        btnAgregarFotoC.AddCssClass("disabled");
+
+        //        btnEditarFotoC.Enabled = false;
+        //        btnEditarFotoC.AddCssClass("disabled");
+
+        //        //btnEliminarFoto.Enabled = false;
+        //        //btnEliminarFoto.AddCssClass("disabled");
+
+        //        btnOKFotoC.Enabled = true;
+        //        btnOKFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
+
+        //        btnCancelarFotoC.Enabled = true;
+        //        btnCancelarFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
+        //        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#VConfimacionEditarFotoC", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#VConfimacionEditarFoto').hide();", true);
+
+
+        //        PnErrorFotoCSucursal.Visible = false;
+        //        lblErrorFotoC.Visible = false;
+        //        lblErrorFotoC.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorFotoCSucursal.Visible = true;
+        //        lblErrorFotoC.Visible = true;
+        //        lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+        //    }
+
+        //}
+        //protected void btnEliminarFotoC_Click(object sender, EventArgs e)//
+        //{
+        //    lblAceptarEliminarFotoC.Visible = true;
+        //    lblAceptarEliminarFotoC.Text = "¿Desea eliminar La foto seleccionada?";
+        //    btnAceptarEliminarFotoC.Visible = true;
+        //    btnCancelarEliminarFotoC.Visible = true;
+        //}
+        //protected void btnOKFotoC_Click(object sender, EventArgs e)//
+        //{
+        //    try
+        //    {
+
+        //        if (ValidarCamposFotoC() == false)
+        //        {
+        //            return;
+        //        }
+        //        ToolPrecioFotoC.HRef = "";
+        //        ToolPrecioFotoC.Visible = false;
+        //        ToolPrecioTicketC.HRef = "";
+        //        ToolPrecioTicketC.Visible = false;
+        //        ToolPrecioServidorC.HRef = "";
+        //        ToolPrecioServidorC.Visible = false;
+        //        ToolAltoFotoC.HRef = "";
+        //        ToolAltoFotoC.Visible = false;
+        //        ToolAnchoFotoC.HRef = "";
+        //        ToolAnchoFotoC.Visible = false;
+        //        ToolAltoFotoDescC.HRef = "";
+        //        ToolAltoFotoDescC.Visible = false;
+        //        ToolAnchoFotoDescC.HRef = "";
+        //        ToolAnchoFotoDescC.Visible = false;
+        //        List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+        //        SucursalFotoC foto = null;
+        //        int pos = -1;
+        //        if (!string.IsNullOrWhiteSpace(uidFotoC.Text))
+        //        {
+        //            IEnumerable<SucursalFotoC> dir = from i in fotos where i.UidFoto.ToString() == uidFotoC.Text select i;
+        //            foto = dir.First();
+        //            pos = fotos.IndexOf(foto);
+        //            fotos.Remove(foto);
+        //        }
+        //        else
+        //        {
+        //            foto = new SucursalFotoC();
+        //            foto.UidFoto = Guid.NewGuid();
+        //        }
+        //        //a partir de aqui agrega los datos al objeto
+        //        foto.UidImpresora = new Guid(ddImpresoraFotoC.SelectedValue);
+        //        foto.StrDescripcion = txtDescripcionFotoC.Text;
+        //        foto.StrPrecio = txtPrecioFotoC.Text;
+        //        foto.StrPrecioTicket = txtPrecioFotoTicketC.Text;
+        //        foto.StrPrecioServidor = txtPrecioFotoServidorC.Text;
+        //        foto.VchAlto = txtAltoFotoC.Text;
+        //        foto.VchAncho = txtAnchoFotoC.Text;
+        //        foto.VchAltoDesc = txtAltoFotoDescC.Text;
+        //        foto.VchAnchoDesc = txtAnchoFotoDescC.Text;
+        //        foto.UidStatus = new Guid(ddActivoFotoC.SelectedValue);
+        //        foto.StrStatus = ddActivoFotoC.SelectedItem.Text;
+        //        foto.BooRotarEnPapel = false;
+        //        foto.VchColumna = "";
+        //        foto.VchFila = "";
+        //        foto.UidMedida = new Guid(ddMedidaFotoC.SelectedValue);
+        //        foto.VchMedida = ddMedidaFotoC.SelectedItem.Text;
+        //        if (pos < 0)
+        //            fotos.Add(foto);
+        //        else
+        //            fotos.Insert(pos, foto);
+
+
+        //        ViewState["FotosC"] = fotos;
+        //        DatabindFotografiasC();
+        //        DataBindFotografiasPapelC();
+        //        LimpiarFormularioFotografiasC();
+        //        DesHabilitarFormularioFotografiasC();
+        //        btnOKFotoC.AddCssClass("hidden").AddCssClass("disabled");
+        //        btnOKFotoC.Enabled = false;
+        //        btnCancelarFotoC.AddCssClass("hidden").AddCssClass("disabled");
+        //        btnCancelarFotoC.Enabled = false;
+        //        btnEditarFotoC.AddCssClass("disabled").AddCssClass("hidden");
+        //        btnEditarFotoC.Enabled = false;
+        //        btnAgregarFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
+        //        btnAgregarFotoC.Enabled = true;
+
+
+        //        PnErrorFotoCSucursal.Visible = false;
+        //        lblErrorFotoC.Visible = false;
+        //        lblErrorFotoC.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorFotoCSucursal.Visible = true;
+        //        lblErrorFotoC.Visible = true;
+        //        lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+        //    }
+
+        //}
+        //protected void btnCancelarFotoC_Click(object sender, EventArgs e)//
+        //{
+        //    try
+        //    {
+
+        //        DesHabilitarFormularioFotografiasC();
+
+        //        btnOKFotoC.AddCssClass("hidden").AddCssClass("disabled");
+        //        btnOKFotoC.Enabled = false;
+        //        btnCancelarFotoC.AddCssClass("hidden").AddCssClass("disabled");
+        //        btnCancelarFotoC.Enabled = false;
+
+        //        btnAgregarFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
+        //        btnAgregarFotoC.Enabled = true;
+
+
+        //        if (uidFotoC.Text.Length == 0)
+        //        {
+        //            btnEditarFotoC.Disable();
+        //            LimpiarFormularioFotografiasC();
+        //        }
+        //        else
+        //        {
+        //            //btnEliminarFoto.Enable();
+        //            btnEditarFotoC.Enable();
+
+        //            List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+        //            SucursalFotoC foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == dgvFotosC.SelectedDataKey.Value.ToString()).First();
+
+        //            uidFotoC.Text = foto.UidFoto.ToString();
+
+        //            txtDescripcionFotoC.Text = foto.StrDescripcion;
+        //            txtPrecioFotoC.Text = foto.StrPrecio;
+        //            txtPrecioFotoTicketC.Text = foto.StrPrecioTicket;
+        //            txtPrecioFotoServidorC.Text = foto.StrPrecioServidor;
+        //            txtAltoFotoC.Text = foto.VchAlto.ToString();
+        //            txtAnchoFotoC.Text = foto.VchAncho.ToString();
+        //            txtAltoFotoDescC.Text = foto.VchAltoDesc.ToString();
+        //            txtAnchoFotoDescC.Text = foto.VchAnchoDesc.ToString();
+        //            txtFxColumnaC.Text = foto.VchColumna;
+        //            txtFxFilaC.Text = foto.VchFila;
+        //            CbRotarImagenPapelC.Checked = foto.BooRotarEnPapel;
+
+        //            ddActivoFotoC.SelectedValue = foto.UidStatus.ToString();
+        //            ddMedidaFotoC.SelectedValue = foto.UidMedida.ToString();
+        //        }
+
+
+        //        PnErrorFotoCSucursal.Visible = false;
+        //        lblErrorFotoC.Visible = false;
+        //        lblErrorFotoC.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorFotoCSucursal.Visible = true;
+        //        lblErrorFotoC.Visible = true;
+        //        lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+        //    }
+
+        //}
+        //protected void btnAceptarEliminarFotoC_Click(object sender, EventArgs e)//
+        //{
+        //    try
+        //    {
+
+        //        btnAgregarFotoC.Enabled = true;
+        //        btnAgregarFotoC.RemoveCssClass("disabled");
+
+        //        btnOKFotoC.Enabled = false;
+        //        btnOKFotoC.AddCssClass("hidden").AddCssClass("disabled");
+
+        //        btnCancelarFotoC.Enabled = false;
+        //        btnCancelarFotoC.AddCssClass("hidden").AddCssClass("disabled");
+
+        //        Guid uid = new Guid(uidFotoC.Text);
+
+        //        List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+        //        SucursalFotoC foto = fotos.Select(x => x).Where(x => x.UidFoto == uid).First();
+        //        fotos.Remove(foto);
+        //        FotoCRemoved.Add(foto);
+
+        //        LimpiarFormularioFotografias();
+
+        //        ViewState["FotosC"] = fotos;
+        //        DatabindFotografiasC();
+
+        //        btnCancelarEliminarFotoC.Visible = false;
+        //        btnAceptarEliminarFotoC.Visible = false;
+        //        lblAceptarEliminarFotoC.Visible = false;
+        //        ViewState["FotoCPreviousRow"] = null;
+
+
+        //        PnErrorFotoCSucursal.Visible = false;
+        //        lblErrorFotoC.Visible = false;
+        //        lblErrorFotoC.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorFotoCSucursal.Visible = true;
+        //        lblErrorFotoC.Visible = true;
+        //        lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+        //    }
+
+        //}
+        //protected void btnCancelarEliminarFotoC_Click(object sender, EventArgs e)//
+        //{
+        //    try
+        //    {
+        //        //esta funcion parece ser llamada por otras
+        //        btnCancelarEliminarFotoC.Visible = false;
+        //        btnAceptarEliminarFotoC.Visible = false;
+        //        lblAceptarEliminarFotoC.Visible = false;
+
+
+        //        PnErrorFotoCSucursal.Visible = false;
+        //        lblErrorFotoC.Visible = false;
+        //        lblErrorFotoC.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorFotoCSucursal.Visible = true;
+        //        lblErrorFotoC.Visible = true;
+        //        lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+        //    }
+
+        //}
+        //protected void dgvFotosC_RowDataBound(object sender, GridViewRowEventArgs e)//
+        //{
+        //    try
+        //    {
+
+        //        if (e.Row.RowType == DataControlRowType.DataRow)
+        //        {
+        //            e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(dgvFotosC, "Select$" + e.Row.RowIndex);
+        //        }
+
+
+        //        PnErrorFotoCSucursal.Visible = false;
+        //        lblErrorFotoC.Visible = false;
+        //        lblErrorFotoC.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorFotoCSucursal.Visible = true;
+        //        lblErrorFotoC.Visible = true;
+        //        lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+        //    }
+
+        //}
+        //protected void dgvFotosC_SelectedIndexChanged(object sender, EventArgs e)//
+        //{
+        //    try
+        //    {
+
+        //        List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+        //        SucursalFotoC foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == dgvFotosC.SelectedDataKey.Value.ToString()).First();
+
+        //        uidFotoC.Text = foto.UidFoto.ToString();
+        //        ddImpresoraFotoC.SelectedValue = foto.UidImpresora.ToString();
+        //        txtDescripcionFotoC.Text = foto.StrDescripcion;
+        //        txtPrecioFotoC.Text = foto.StrPrecio;
+        //        txtPrecioFotoTicketC.Text = foto.StrPrecioTicket;
+        //        txtPrecioFotoServidorC.Text = foto.StrPrecioServidor;
+        //        txtAltoFotoC.Text = foto.VchAlto.ToString();
+        //        txtAnchoFotoC.Text = foto.VchAncho.ToString();
+        //        txtAltoFotoDescC.Text = foto.VchAltoDesc.ToString();
+        //        txtAnchoFotoDescC.Text = foto.VchAnchoDesc.ToString();
+        //        ddActivoFotoC.SelectedValue = foto.UidStatus.ToString();//no se si se necesite seccionar tambien la uid
+        //        ddMedidaFotoC.SelectedValue = foto.UidMedida.ToString();
+
+
+        //        if (EditingMode)
+        //        {
+        //            btnEditarFotoC.RemoveCssClass("disabled").RemoveCssClass("hidden");
+        //            btnEditarFotoC.Enabled = true;
+        //            //btnEliminarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
+        //            //btnEliminarFoto.Enabled = true;
+        //            btnOKFotoC.AddCssClass("disabled").AddCssClass("hidden");
+        //            btnOKFotoC.Enabled = false;
+        //            btnCancelarFotoC.AddCssClass("disabled").AddCssClass("hidden");
+        //            btnCancelarFotoC.Enabled = false;
+        //        }
+
+        //        int pos = -1;
+        //        if (ViewState["FotoCPreviousRow"] != null)
+        //        {
+        //            pos = (int)ViewState["FotoCPreviousRow"];
+        //            GridViewRow previousRow = dgvFotosC.Rows[pos];
+        //            previousRow.RemoveCssClass("success");
+        //        }
+
+        //        ViewState["FotoCPreviousRow"] = dgvFotosC.SelectedIndex;
+        //        dgvFotosC.SelectedRow.AddCssClass("success");
+
+
+        //        PnErrorFotoCSucursal.Visible = false;
+        //        lblErrorFotoC.Visible = false;
+        //        lblErrorFotoC.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorFotoCSucursal.Visible = true;
+        //        lblErrorFotoC.Visible = true;
+        //        lblErrorFotoC.Text = "Error al editar fotografias: \n detalle del error...\n" + x;
+        //    }
+        //}
+        //void LimpiarFormularioFotografiasC()//
+        //{
+        //    //solo son texbox
+        //    uidFotoC.Text = string.Empty;
+        //    txtDescripcionFotoC.Text = string.Empty;
+        //    txtPrecioFotoC.Text = string.Empty;
+        //    txtPrecioFotoTicketC.Text = string.Empty;
+        //    txtPrecioFotoServidorC.Text = string.Empty;
+        //    txtAltoFotoC.Text = string.Empty;
+        //    txtAnchoFotoC.Text = string.Empty;
+        //    txtAltoFotoDescC.Text = string.Empty;
+        //    txtAnchoFotoDescC.Text = string.Empty;
+        //    ddActivoFotoC.SelectedIndex = 0;
+        //    ddMedidaFotoC.SelectedIndex = 0;
+        //}
+        //void DesHabilitarFormularioFotografiasC()//
+        //{
+        //    if (ddImpresoraFotoC.DataSource != null)
+        //    {
+        //        ddImpresoraFotoC.SelectedIndex = 0;
+        //    }
+        //    ddImpresoraFotoC.AddCssClass("disabled");
+        //    ddImpresoraFotoC.Enabled = false;
+
+        //    txtDescripcionFotoC.Enabled = false;
+        //    txtDescripcionFotoC.AddCssClass("disabled");
+
+        //    txtPrecioFotoC.Enabled = false;
+        //    txtPrecioFotoC.AddCssClass("disabled");
+
+        //    txtPrecioFotoTicketC.Enabled = false;
+        //    txtPrecioFotoTicketC.AddCssClass("disabled");
+
+        //    txtPrecioFotoServidorC.Enabled = false;
+        //    txtPrecioFotoServidorC.AddCssClass("disabled");
+
+        //    txtAltoFotoC.Enabled = false;
+        //    txtAltoFotoC.AddCssClass("disabled");
+
+        //    txtAnchoFotoC.Enabled = false;
+        //    txtAnchoFotoC.AddCssClass("disabled");
+
+        //    txtAltoFotoDescC.Enabled = false;
+        //    txtAltoFotoDescC.AddCssClass("disabled");
+
+        //    txtAnchoFotoDescC.Enabled = false;
+        //    txtAnchoFotoDescC.AddCssClass("disabled");
+
+        //    ddActivoFotoC.SelectedIndex = 0;
+        //    ddActivoFotoC.AddCssClass("disabled");
+        //    ddActivoFotoC.Enabled = false;
+
+        //    ddMedidaFotoC.SelectedIndex = 0;
+        //    ddMedidaFotoC.AddCssClass("disabled");
+        //    ddMedidaFotoC.Enabled = false;
+
+
+        //}
+        //void HabilitarFormularioFotografiasC()//
+        //{
+        //    ddImpresoraFotoC.SelectedIndex = 0;
+        //    ddImpresoraFotoC.RemoveCssClass("disabled");
+        //    ddImpresoraFotoC.Enabled = true;
+
+        //    txtDescripcionFotoC.Enabled = true;
+        //    txtDescripcionFotoC.RemoveCssClass("disabled");
+
+        //    txtPrecioFotoC.Enabled = true;
+        //    txtPrecioFotoC.RemoveCssClass("disabled");
+
+        //    txtPrecioFotoTicketC.Enabled = true;
+        //    txtPrecioFotoTicketC.RemoveCssClass("disabled");
+
+        //    txtPrecioFotoServidorC.Enabled = true;
+        //    txtPrecioFotoServidorC.RemoveCssClass("disabled");
+
+        //    txtAltoFotoC.Enabled = true;
+        //    txtAltoFotoC.RemoveCssClass("disabled");
+
+        //    txtAnchoFotoC.Enabled = true;
+        //    txtAnchoFotoC.RemoveCssClass("disabled");
+
+        //    txtAltoFotoDescC.Enabled = true;
+        //    txtAltoFotoDescC.RemoveCssClass("disabled");
+
+        //    txtAnchoFotoDescC.Enabled = true;
+        //    txtAnchoFotoDescC.RemoveCssClass("disabled");
+
+        //    ddActivoFotoC.SelectedIndex = 0;
+        //    ddActivoFotoC.RemoveCssClass("disabled");
+        //    ddActivoFotoC.Enabled = true;
+
+        //    ddMedidaFotoC.SelectedIndex = 0;
+        //    ddMedidaFotoC.RemoveCssClass("disabled");
+        //    ddMedidaFotoC.Enabled = true;
+
+        //}
+        //void DatabindFotografiasC()//
+        //{
+        //    List<SucursalFotoC> Fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+            
+        //    dgvFotosC.DataSource = Fotos;
+        //    dgvFotosC.DataBind();
+        //}
+        //#endregion Panel derecho (Fotografias Comercial)
+
+        //#region Panel derecho (Papel Comercial)
+        //void DesHabilitarFormularioPapelC()//
+        //{
+        //    txtNombrePapelC.Enabled = false;
+        //    txtAltoPapelC.Enabled = false;
+        //    txtAnchoPapelC.Enabled = false;
+        //    txtMargenSuperiorC.Enabled = false;
+        //    txtMargenInferiorC.Enabled = false;
+        //    txtMargenDerechoC.Enabled = false;
+        //    txtMargenIzquierdoC.Enabled = false;
+        //}
+        //void DesHabilitarFormularioFotoPapelC()//
+        //{
+
+        //    CbRotarImagenPapelC.AddCssClass("disabled");
+        //    CbRotarImagenPapelC.Enabled = false;
+
+        //    txtFxFilaC.Enabled = false;
+        //    txtFxFilaC.AddCssClass("disabled");
+
+        //    txtFxColumnaC.Enabled = false;
+        //    txtFxColumnaC.AddCssClass("disabled");
+        //}
+        //void HabilitarFormularioPapelC()//
+        //{
+        //    txtNombrePapelC.Enabled = true;
+        //    txtAltoPapelC.Enabled = true;
+        //    txtAnchoPapelC.Enabled = true;
+        //    txtMargenSuperiorC.Enabled = true;
+        //    txtMargenInferiorC.Enabled = true;
+        //    txtMargenDerechoC.Enabled = true;
+        //    txtMargenIzquierdoC.Enabled = true;
+
+
+        //}
+        //void HabilitarFormularioFotoPapelC()//
+        //{
+
+        //    CbRotarImagenPapelC.RemoveCssClass("disabled");
+        //    CbRotarImagenPapelC.Enabled = true;
+        //    txtFxFilaC.Enabled = true;
+        //    txtFxFilaC.RemoveCssClass("disabled");
+        //    txtFxColumnaC.Enabled = true;
+        //    txtFxColumnaC.RemoveCssClass("disabled");
+        //}
+        //void LimpiarFormularioPapelC()//
+        //{
+        //    txtNombrePapelC.Text = "";
+        //    txtAltoPapelC.Text = "";
+        //    txtAnchoPapelC.Text = "";
+        //    txtMargenSuperiorC.Text = "";
+        //    txtMargenInferiorC.Text = "";
+        //    txtMargenDerechoC.Text = "";
+        //    txtMargenIzquierdoC.Text = "";
+
+        //    txtNombrePapelC.BorderColor = Color.FromName("#FF3580BF");
+        //    txtAltoPapelC.BorderColor = Color.FromName("#FF3580BF");
+        //    txtAnchoPapelC.BorderColor = Color.FromName("#FF3580BF");
+        //    txtMargenSuperiorC.BorderColor = Color.FromName("#FF3580BF");
+        //    txtMargenInferiorC.BorderColor = Color.FromName("#FF3580BF");
+        //    txtMargenDerechoC.BorderColor = Color.FromName("#FF3580BF");
+        //    txtMargenIzquierdoC.BorderColor = Color.FromName("#FF3580BF");
+
+        //    lblErrorPapelC.Text = "";
+        //    lblErrorPapelC.Visible = false;
+
+        //    ToolAltoPapelC.Visible = false;
+        //    ToolAnchoPapelC.Visible = false;
+        //    ToolMSuperiorC.Visible = false;
+        //    ToolMInferiorC.Visible = false;
+        //    ToolMDerechoC.Visible = false;
+        //    ToolMIzquierdoC.Visible = false;
+
+        //    ToolAltoPapelC.HRef = "";
+        //    ToolAnchoPapelC.HRef = "";
+        //    ToolMSuperiorC.HRef = "";
+        //    ToolMInferiorC.HRef = "";
+        //    ToolMDerechoC.HRef = "";
+        //    ToolMIzquierdoC.HRef = "";
+        //}
+        //void LimpiarFormularioFotoPapelC()//
+        //{
+
+        //    txtFxColumnaC.Text = string.Empty;
+        //    txtFxFilaC.Text = string.Empty;
+        //    CbRotarImagenPapelC.Checked = false;
+
+        //    lblErrorFotoPapelC.Text = "";
+        //    lblErrorFotoPapelC.Visible = false;
+
+        //}
+        //public bool ValidarCamposPapelC()//
+        //{
+        //    bool PapelBIen = true;
+
+        //    #region vacios
+
+
+        //    if (string.IsNullOrWhiteSpace(txtNombrePapelC.Text))
+        //    {
+        //        txtNombrePapelC.Focus();
+        //        txtNombrePapelC.BorderColor = Color.FromName("#f00800");
+        //        PapelBIen = false;
+        //    }
+
+        //    if (string.IsNullOrWhiteSpace(txtAltoPapelC.Text))
+        //    {
+        //        txtAltoPapelC.Focus();
+        //        txtAltoPapelC.BorderColor = Color.FromName("#f00800");
+        //        PapelBIen = false;
+        //    }
+        //    if (string.IsNullOrWhiteSpace(txtAnchoPapelC.Text))
+        //    {
+        //        txtAnchoPapelC.Focus();
+        //        txtAnchoPapelC.BorderColor = Color.FromName("#f00800");
+        //        PapelBIen = false;
+        //    }
+
+
+        //    if (string.IsNullOrWhiteSpace(txtMargenSuperiorC.Text))
+        //    {
+        //        txtMargenSuperiorC.Focus();
+        //        txtMargenSuperiorC.BorderColor = Color.FromName("#f00800");
+        //        PapelBIen = false;
+        //    }
+
+
+        //    if (string.IsNullOrWhiteSpace(txtMargenInferiorC.Text))
+        //    {
+        //        txtMargenInferiorC.Focus();
+        //        txtMargenInferiorC.BorderColor = Color.FromName("#f00800");
+        //        PapelBIen = false;
+        //    }
+
+
+        //    if (string.IsNullOrWhiteSpace(txtMargenDerechoC.Text))
+        //    {
+        //        txtMargenDerechoC.Focus();
+        //        txtMargenDerechoC.BorderColor = Color.FromName("#f00800");
+        //        PapelBIen = false;
+        //    }
+
+
+        //    if (string.IsNullOrWhiteSpace(txtMargenIzquierdoC.Text))
+        //    {
+        //        txtMargenIzquierdoC.Focus();
+        //        txtMargenIzquierdoC.BorderColor = Color.FromName("#f00800");
+        //        PapelBIen = false;
+        //    }
+
+
+        //    if (PapelBIen == false)
+        //    {
+        //        _tabPapelC();
+        //        lblErrorPapelC.Text = "Ningun campo debe estar vacio";//va despues que tab papel
+        //        lblErrorPapelC.Visible = true;
+        //        PnErrorPapelCSucursal.Visible = true;
+        //        return PapelBIen;
+        //    }
+
+        //    #endregion vacios
+        //    lblErrorPapelC.Text = "";//va despues que tab papel
+        //    lblErrorPapelC.Visible = false;
+        //    PnErrorPapelCSucursal.Visible = false;
+        //    #region Es numero
+
+        //    //char[] charsRead = new char[txtAltoPapel.Text.Length];
+        //    foreach (char c in txtAltoPapelC.Text)
+        //    {
+        //        if (char.IsLetter(c) || char.IsWhiteSpace(c))
+        //        {
+
+        //            txtAltoPapelC.Focus();
+        //            txtAltoPapelC.BorderColor = Color.FromName("#f00800");
+        //            ToolAltoPapelC.HRef = "Solo debe contener 1 numero";
+        //            ToolAltoPapelC.Visible = true;
+        //            PapelBIen = false;
+        //        }
+        //    }
+        //    foreach (char c in txtAnchoPapelC.Text)
+        //    {
+        //        if (char.IsLetter(c) || char.IsWhiteSpace(c))
+        //        {
+
+        //            txtAnchoPapelC.Focus();
+        //            txtAnchoPapelC.BorderColor = Color.FromName("#f00800");
+        //            ToolAnchoPapelC.HRef = "Solo debe contener 1 numero";
+        //            ToolAnchoPapelC.Visible = true;
+        //            PapelBIen = false;
+        //        }
+        //    }
+        //    foreach (char c in txtMargenSuperiorC.Text)
+        //    {
+        //        if (char.IsLetter(c) || char.IsWhiteSpace(c))
+        //        {
+
+        //            txtMargenSuperiorC.Focus();
+        //            txtMargenSuperiorC.BorderColor = Color.FromName("#f00800");
+        //            ToolMSuperiorC.HRef = "Solo debe contener 1 numero";
+        //            ToolMSuperiorC.Visible = true;
+        //            PapelBIen = false;
+        //        }
+        //    }
+        //    foreach (char c in txtMargenInferiorC.Text)
+        //    {
+        //        if (char.IsLetter(c) || char.IsWhiteSpace(c))
+        //        {
+
+        //            txtMargenInferiorC.Focus();
+        //            txtMargenInferiorC.BorderColor = Color.FromName("#f00800");
+        //            ToolMInferiorC.HRef = "Solo debe contener 1 numero";
+        //            ToolMInferiorC.Visible = true;
+        //            PapelBIen = false;
+        //        }
+        //    }
+        //    foreach (char c in txtMargenDerechoC.Text)
+        //    {
+        //        if (char.IsLetter(c) || char.IsWhiteSpace(c))
+        //        {
+
+        //            txtMargenDerechoC.Focus();
+        //            txtMargenDerechoC.BorderColor = Color.FromName("#f00800");
+        //            ToolMDerechoC.HRef = "Solo debe contener 1 numero";
+        //            ToolMDerechoC.Visible = true;
+        //            PapelBIen = false;
+        //        }
+        //    }
+        //    foreach (char c in txtMargenIzquierdoC.Text)
+        //    {
+        //        if (char.IsLetter(c) || char.IsWhiteSpace(c))
+        //        {
+
+        //            txtMargenIzquierdoC.Focus();
+        //            txtMargenIzquierdoC.BorderColor = Color.FromName("#f00800");
+        //            ToolMIzquierdoC.HRef = "Solo debe contener 1 numero";
+        //            ToolMIzquierdoC.Visible = true;
+        //            PapelBIen = false;
+        //        }
+        //    }
+        //    if (PapelBIen == false)
+        //    {
+        //        _tabPapelC();
+        //        lblErrorPapelC.Text = "Todos los campos en formato correcto";//va despues que tab papel
+        //        lblErrorPapelC.Visible = true;
+        //        PnErrorPapelCSucursal.Visible = true;
+        //        return PapelBIen;
+        //    }
+        //    #endregion Es numero
+        //    lblErrorPapelC.Text = "";//va despues que tab papel
+        //    lblErrorPapelC.Visible = false;
+        //    PnErrorPapelCSucursal.Visible = false;
+        //    #region digitos
+        //    if (txtAltoPapelC.Text.Length < 3)
+        //    {
+        //        txtAltoPapelC.Focus();
+        //        txtAltoPapelC.BorderColor = Color.FromName("#f00800");
+        //        ToolAltoPapelC.HRef = "Minimo debe ser 1 numero de 3 digitos";
+        //        ToolAltoPapelC.Visible = true;
+        //        PapelBIen = false;
+        //    }
+        //    if (txtAnchoPapelC.Text.Length < 3)
+        //    {
+        //        txtAnchoPapelC.Focus();
+        //        txtAnchoPapelC.BorderColor = Color.FromName("#f00800");
+        //        ToolAnchoPapelC.HRef = "Minimo debe ser 1 numero de 3 digitos";
+        //        ToolAnchoPapelC.Visible = true;
+        //        PapelBIen = false;
+        //    }
+        //    if (PapelBIen == false)
+        //    {
+        //        _tabPapelC();
+        //        lblErrorPapelC.Text = "Alto y Ancho deben tener al menos 3 digitos";//va despues que tab papel
+        //        lblErrorPapelC.Visible = true;
+        //        PnErrorPapelCSucursal.Visible = true;
+        //        return PapelBIen;
+        //    }
+        //    #endregion digitos
+        //    lblErrorPapelC.Text = "";//va despues que tab papel
+        //    lblErrorPapelC.Visible = false;
+        //    PnErrorPapelCSucursal.Visible = false;
+        //    return PapelBIen;
+        //}
+        //void DataBindFotografiasPapelC()//
+        //{
+
+        //    List<SucursalFotoC> Fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+        //    List<SucursalFotoC> FotosX = new List<SucursalFotoC>();
+        //    SucursalFotoC fotox = new SucursalFotoC(); fotox.StrDescripcion = "[Selecciona]"; FotosX.Add(fotox);
+
+        //    // txtCantMaqLicencia.Text ="EnuOrden: "+ Licencias[0].EnuOrden.ToString() + " StrOrdenaPor: " + Licencias[0].StrOrdenaPor.ToString();
+        //    dvgFotosPapelC.DataSource = Fotos;
+        //    dvgFotosPapelC.DataBind();
+        //    int cant = dvgFotosPapelC.Rows.Count - 1; //el menos 1 es debido porque en el gridview se maneja a partir del 0 y  Licencias.Count a partir del 1
+        //    for (int i = 0; i <= cant; i++) // i comienza desde 0 porque recorre todo el gridview y el gridview comienza desde 0 igual que el Array aunque utilizando el count lo obtienes comenzando a partir del 1
+        //    {
+        //        if (Fotos[i].VchFila == "" && Fotos[i].VchColumna == "" && Fotos[i].BooRotarEnPapel == false)
+        //        {
+        //            dvgFotosPapelC.Rows[i].Visible = false;
+        //            FotosX.Add(Fotos[i]);
+        //        }
+        //        else
+        //        {
+        //            if (Fotos[i].BooRotarEnPapel == false)
+        //            {
+        //                ((Label)dvgFotosPapelC.Rows[i].FindControl("lbFotoRotadoPapel_icon")).Visible = false;
+        //                ((Label)dvgFotosPapelC.Rows[i].FindControl("lbFotoNoRotadoPapel_icon")).Visible = true;
+        //            }
+        //            else
+        //            {
+        //                ((Label)dvgFotosPapelC.Rows[i].FindControl("lbFotoRotadoPapel_icon")).Visible = true;
+        //                ((Label)dvgFotosPapelC.Rows[i].FindControl("lbFotoNoRotadoPapel_icon")).Visible = false;
+        //            }
+        //        }
+        //    }
+
+        //    DdlFotoC.DataSource = FotosX;
+        //    DdlFotoC.DataValueField = "UidFoto";
+        //    DdlFotoC.DataTextField = "StrDescripcion";
+        //    DdlFotoC.DataBind();
+        //}
+        //protected void dvgFotosPapelC_RowDataBound(object sender, GridViewRowEventArgs e)//
+        //{
+        //    try
+        //    {
+        //        if (e.Row.RowType == DataControlRowType.DataRow)
+        //        {
+        //            e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(dvgFotosPapelC, "Select$" + e.Row.RowIndex);
+        //        }
+        //        if (e.Row.RowType == DataControlRowType.Header)
+        //        {
+
+        //            switch (lbOrdenFPPorC.Text)
+        //            {
+        //                case "Descripcion":
+        //                    if (lbOrdenFPC.Text == "ASC")
+        //                    {
+        //                        ((HtmlGenericControl)e.Row.FindControl("IcoDescripcionFP")).Attributes["class"] = Global.OrdenDescendente;
+        //                    }
+        //                    else
+        //                    {
+        //                        ((HtmlGenericControl)e.Row.FindControl("IcoDescripcionFP")).Attributes["class"] = Global.OrdenAscendente;
+        //                    }
+        //                    break;
+        //            }
+        //        }
+
+        //        PnErrorFotoPapelCSucursal.Visible = false;
+        //        lblErrorFotoPapelC.Visible = false;
+        //        lblErrorFotoPapelC.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorFotoPapelCSucursal.Visible = true;
+        //        lblErrorFotoPapelC.Visible = true;
+        //        lblErrorFotoPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
+        //    }
+
+        //}
+        //protected void dvgFotosPapelC_SelectedIndexChanged(object sender, EventArgs e)//
+        //{
+        //    try
+        //    {
+        //        DataBindFotografiasPapelC();
+        //        List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+        //        SucursalFotoC foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == dvgFotosPapelC.SelectedDataKey.Value.ToString()).First();
+        //        UidFotoPapelC.Text = foto.UidFoto.ToString();
+        //        txtFxFilaC.Text = foto.VchFila.ToString();
+        //        txtFxColumnaC.Text = foto.VchColumna.ToString();
+        //        CbRotarImagenPapelC.Checked = foto.BooRotarEnPapel;
+        //        DdlFotoC.Items.Insert(0, new ListItem(foto.StrDescripcion, foto.UidFoto.ToString()));
+        //        btnEditarFotoPapelC.Text = "Editar";
+        //        DesHabilitarFormularioFotoPapelC();
+        //        if (EditingMode)
+        //        {
+        //            btnEditarFotoPapelC.RemoveCssClass("disabled").RemoveCssClass("hidden");
+        //            btnEditarFotoPapelC.Enabled = true;
+        //            //btnEliminarFoto.RemoveCssClass("disabled").RemoveCssClass("hidden");
+        //            //btnEliminarFoto.Enabled = true;
+        //            btnOKFotoPapelC.AddCssClass("disabled").AddCssClass("hidden");
+        //            btnOKFotoPapelC.Enabled = false;
+        //            btnCancelarFotoPapelC.AddCssClass("disabled").AddCssClass("hidden");
+        //            btnCancelarFotoPapelC.Enabled = false;
+        //        }
+
+        //        int pos = -1;
+        //        if (ViewState["FotoCPreviousRow"] != null)
+        //        {
+        //            pos = (int)ViewState["FotoCPreviousRow"];
+        //            GridViewRow previousRow = dvgFotosPapelC.Rows[pos];
+        //            previousRow.RemoveCssClass("success");
+        //        }
+
+        //        ViewState["FotoCPreviousRow"] = dvgFotosPapelC.SelectedIndex;
+        //        dvgFotosPapelC.SelectedRow.AddCssClass("success");
+
+
+        //        PnErrorFotoPapelCSucursal.Visible = false;
+        //        lblErrorFotoPapelC.Visible = false;
+        //        lblErrorFotoPapelC.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorFotoPapelCSucursal.Visible = true;
+        //        lblErrorFotoPapelC.Visible = true;
+        //        lblErrorFotoPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
+        //    }
+
+        //}
+        //protected void btnEditarFotoPapelC_Click(object sender, EventArgs e)//
+        //{
+        //    try
+        //    {
+        //        HabilitarFormularioFotoPapelC();
+        //        btnEditarFotoPapelC.AddCssClass("disabled");
+        //        btnCancelarFotoPapelC.Visible = true;
+        //        btnOKFotoPapelC.Visible = true;
+        //        btnCancelarFotoPapelC.RemoveCssClass("hidden").RemoveCssClass("disabled");
+        //        btnOKFotoPapelC.RemoveCssClass("hidden").RemoveCssClass("disabled");
+        //        btnOKFotoPapelC.Enabled = true;
+        //        btnCancelarFotoPapelC.Enabled = true;
+
+        //        PnErrorFotoPapelCSucursal.Visible = false;
+        //        lblErrorFotoPapelC.Visible = false;
+        //        lblErrorFotoPapelC.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorFotoPapelCSucursal.Visible = true;
+        //        lblErrorFotoPapelC.Visible = true;
+        //        lblErrorFotoPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
+        //    }
+
+        //}
+        //protected void btnOKFotoPapelC_Click(object sender, EventArgs e)//
+        //{
+        //    try
+        //    {
+        //        if (ValidarCamposPapelC() == false)
+        //        {
+        //            return;
+        //        }
+        //        ToolAltoPapelC.Visible = false;
+        //        ToolAnchoPapelC.Visible = false;
+        //        ToolMDerechoC.Visible = false;
+        //        ToolMInferiorC.Visible = false;
+        //        ToolMIzquierdoC.Visible = false;
+        //        ToolMSuperiorC.Visible = false;
+        //        List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+        //        SucursalFotoC foto = fotos.Select(x => x).Where(x => x.UidFoto.ToString() == DdlFotoC.SelectedValue.ToString()).First();
+        //        //dgvFotos.SelectedDataKey.Value.ToString()).First();
+        //        double CEspdisponible = ConMMColumnaC(foto);
+        //        double FEspdisponible = ConMMFilaC(foto);
+        //        NumberFormatInfo punto = new NumberFormatInfo(); punto.NumberDecimalSeparator = ".";
+
+        //        //tarea pendiente validar si estan vacios columna y fila
+        //        if (CbRotarImagenPapelC.Checked == false)
+        //        {
+        //            if (CEspdisponible - (double.Parse(txtFxColumnaC.Text, punto) * double.Parse(foto.VchAncho, punto)) <= 0)
+        //            {
+        //                txtFxColumnaC.BorderColor = Color.FromName("#f00800");
+        //                txtFxColumnaC.Focus();
+        //                ToolFxColumnaC.HRef = "Excede del espacio diponible";
+        //                ToolFxColumnaC.Visible = true;
+        //                return;
+        //            }
+        //            ToolFxColumnaC.HRef = "";
+        //            ToolFxColumnaC.Visible = false;
+        //            if (FEspdisponible - (double.Parse(txtFxFilaC.Text, punto) * double.Parse(foto.VchAlto, punto)) <= 0)
+        //            {
+        //                txtFxFilaC.BorderColor = Color.FromName("#f00800");
+        //                txtFxFilaC.Focus();
+        //                ToolFxFilaC.HRef = "Excede del espacio diponible";
+        //                ToolFxFilaC.Visible = true;
+        //                return;
+        //            }
+        //            ToolFxFilaC.HRef = "";
+        //            ToolFxFilaC.Visible = false;
+        //        }
+        //        else
+        //        {
+        //            if (CEspdisponible - (double.Parse(txtFxColumnaC.Text, punto) * double.Parse(foto.VchAlto, punto)) <= 0)
+        //            {
+        //                txtFxColumnaC.BorderColor = Color.FromName("#f00800");
+        //                txtFxColumnaC.Focus();
+        //                ToolFxColumnaC.HRef = "Excede del espacio diponible";
+        //                ToolFxColumnaC.Visible = true;
+        //                return;
+        //            }
+        //            ToolFxColumnaC.HRef = "";
+        //            ToolFxColumnaC.Visible = false;
+        //            if (FEspdisponible - (double.Parse(txtFxFilaC.Text, punto) * double.Parse(foto.VchAncho, punto)) <= 0)
+        //            {
+        //                txtFxFilaC.BorderColor = Color.FromName("#f00800");
+        //                txtFxFilaC.Focus();
+        //                ToolFxFilaC.HRef = "Excede del espacio diponible";
+        //                ToolFxFilaC.Visible = true;
+        //                return;
+        //            }
+        //            ToolFxFilaC.HRef = "";
+        //            ToolFxFilaC.Visible = false;
+        //        }
+        //        lblErrorFotoC.Visible = true;
+        //        //List<SucursalFoto> fotos = (List<SucursalFoto>)ViewState["Fotos"];
+        //        SucursalFotoC photo = null;
+        //        int pos = -1;
+        //        if (!string.IsNullOrWhiteSpace(UidFotoPapelC.Text))
+        //        {
+        //            IEnumerable<SucursalFotoC> dir = from i in fotos where i.UidFoto.ToString() == DdlFotoC.SelectedValue.ToString() select i;
+        //            photo = dir.First();
+        //            pos = fotos.IndexOf(photo);
+        //            fotos.Remove(photo);
+        //        }
+        //        else
+        //        {
+        //            photo = new SucursalFotoC();
+        //            photo.UidFoto = Guid.NewGuid();
+        //        }
+        //        photo.BooRotarEnPapel = CbRotarImagenPapelC.Checked;
+        //        photo.VchColumna = txtFxColumnaC.Text;
+        //        photo.VchFila = txtFxFilaC.Text;
+        //        photo.UidFoto = new Guid(UidFotoPapelC.Text);
+        //        photo.StrDescripcion = DdlFotoC.SelectedItem.Text;
+
+        //        if (pos < 0)
+        //            fotos.Add(photo);
+        //        else
+        //            fotos.Insert(pos, photo);
+
+        //        ViewState["FotosC"] = fotos;
+        //        DataBindFotografiasPapelC();
+        //        LimpiarFormularioFotoPapelC();
+        //        DesHabilitarFormularioFotoPapelC();
+        //        btnOKFotoPapelC.AddCssClass("hidden").AddCssClass("disabled");
+        //        btnOKFotoPapelC.Enabled = false;
+        //        btnCancelarFotoPapelC.AddCssClass("hidden").AddCssClass("disabled");
+        //        btnCancelarFotoPapelC.Enabled = false;
+        //        btnEditarFotoPapelC.AddCssClass("disabled").AddCssClass("hidden");
+        //        btnEditarFotoPapelC.Enabled = false;
+
+
+        //        PnErrorFotoPapelCSucursal.Visible = false;
+        //        lblErrorFotoPapelC.Visible = false;
+        //        lblErrorFotoPapelC.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorFotoPapelCSucursal.Visible = true;
+        //        lblErrorFotoPapelC.Visible = true;
+        //        lblErrorFotoPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
+        //    }
+
+        //}
+        //protected void btnCancelarFotoPapelC_Click(object sender, EventArgs e)//
+        //{
+        //    try
+        //    {
+        //        DesHabilitarFormularioFotoPapelC();
+        //        btnEditarFotoPapelC.RemoveCssClass("disabled");
+        //        btnCancelarFotoPapelC.Visible = false;
+        //        btnOKFotoPapelC.Visible = false;
+
+        //        PnErrorFotoPapelCSucursal.Visible = false;
+        //        lblErrorFotoPapelC.Visible = false;
+        //        lblErrorFotoPapelC.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorFotoPapelCSucursal.Visible = true;
+        //        lblErrorFotoPapelC.Visible = true;
+        //        lblErrorFotoPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
+        //    }
+
+        //}
+        //protected void btnEditarPapelC_Click(object sender, EventArgs e)//
+        //{
+        //    try
+        //    {
+        //        btnEditarPapelC.AddCssClass("disabled");
+        //        HabilitarFormularioPapelC();
+        //        //HabilitarFormularioFotoPapel();
+        //        LimpiarFormularioFotoPapelC();
+        //        LimpiarFormularioPapelC();
+        //        //btnOkPapel
+        //        //btnCancelarPapel.
+        //        List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+
+
+        //        foreach (SucursalFotoC f in fotos)
+        //        {
+        //            f.VchColumna = "";
+        //            f.VchFila = "";
+        //            f.BooRotarEnPapel = false;
+        //        }
+        //        ViewState["FotosC"] = fotos;
+        //        DataBindFotografiasPapelC();
+
+        //        //DdlFoto.DataSource = ViewState["Fotos"];
+        //        //DdlFoto.DataValueField = "UidFoto";
+        //        //DdlFoto.DataTextField = "StrDescripcion";
+        //        //DdlFoto.DataBind();
+
+
+        //        //  ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#VConfimacionNuevoPapel').modal('hide');", true);
+        //        //  ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#VConfimacionNuevoPapel').modal('hide');", true);
+        //        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#VConfimacionNuevoPapelC", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#VConfimacionNuevoPapelC').hide();", true);
+
+        //        PnErrorPapelCSucursal.Visible = false;
+        //        lblErrorPapelC.Visible = false;
+        //        lblErrorPapelC.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorPapelCSucursal.Visible = true;
+        //        lblErrorPapelC.Visible = true;
+        //        lblErrorPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
+        //    }
+
+        //}
+        //protected void btnOkPapelC_Click(object sender, EventArgs e)//
+        //{
+        //    try
+        //    {
+        //        DesHabilitarFormularioPapelC();
+        //        btnOkPapelC.Visible = false;
+        //        btnCancelarPapelC.Visible = false;
+
+        //        PnErrorPapelCSucursal.Visible = false;
+        //        lblErrorPapelC.Visible = false;
+        //        lblErrorPapelC.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorPapelCSucursal.Visible = true;
+        //        lblErrorPapelC.Visible = true;
+        //        lblErrorPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
+        //    }
+
+        //}
+        //protected void btnCancelarPapelC_Click(object sender, EventArgs e)//NO HAY NADA DE PORSI
+        //{
+
+        //}
+        //protected void DdlFotoC_SelectedIndexChanged(object sender, EventArgs e)//
+        //{
+        //    try
+        //    {
+
+        //        if (Guid.Empty != new Guid(DdlFotoC.SelectedValue.ToString()) && !String.IsNullOrWhiteSpace(DdlFotoC.SelectedValue.ToString()))
+        //        {
+        //            if (EditingMode)
+        //            {
+        //                btnEditarFotoPapelC.RemoveCssClass("disabled").RemoveCssClass("hidden");
+        //                btnEditarFotoPapelC.Enabled = true;
+        //            }
+        //            UidFotoPapelC.Text = DdlFotoC.SelectedValue.ToString();
+        //        }
+        //        else
+        //        {
+        //            btnEditarFotoPapelC.AddCssClass("disabled").RemoveCssClass("hidden");
+        //            btnEditarFotoPapelC.Enabled = false;
+        //            UidFotoPapelC.Text = "";
+        //        }
+        //        DesHabilitarFormularioFotoPapelC();
+        //        btnEditarFotoPapelC.Text = "Nuevo";
+        //        btnOKFotoPapelC.AddCssClass("disabled").AddCssClass("hidden");
+        //        btnOKFotoPapelC.Enabled = false;
+        //        btnCancelarFotoPapelC.AddCssClass("disabled").AddCssClass("hidden");
+        //        btnCancelarFotoPapelC.Enabled = false;
+
+        //        PnErrorFotoPapelCSucursal.Visible = false;
+        //        lblErrorFotoPapelC.Visible = false;
+        //        lblErrorFotoPapelC.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorFotoPapelCSucursal.Visible = true;
+        //        lblErrorFotoPapelC.Visible = true;
+        //        lblErrorFotoPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
+        //    }
+
+        //}
+        //public double ConMMColumnaC(SucursalFotoC foto)//
+        //{
+        //    double CEspDisponible;
+        //    SucursalPapelC Papel1 = new SucursalPapelC();
+        //    Papel1.VchAncho = txtAnchoPapel.Text;
+        //    Papel1.VchDerecho = txtMargenDerecho.Text;
+        //    Papel1.VchIzquierdo = txtMargenIzquierdo.Text;
+
+        //    double CEspDisponibleMilimetros = (double.Parse(Papel1.VchAncho) - (double.Parse(Papel1.VchDerecho) + double.Parse(Papel1.VchIzquierdo)));
+        //    CEspDisponible = ConversionMedidaMilimetros(CEspDisponibleMilimetros, foto.VchMedida);
+
+        //    return CEspDisponible;
+        //}
+        //public double ConMMFilaC(SucursalFotoC foto)
+        //{
+        //    double FEspDisponible;
+        //    SucursalPapelC Papel1 = new SucursalPapelC();
+        //    Papel1.VchAlto = txtAltoPapel.Text;
+        //    Papel1.VchSuperior = txtMargenSuperior.Text;
+        //    Papel1.VchInferior = txtMargenInferior.Text;
+        //    double FEspDisponibleMilimetros = (double.Parse(Papel1.VchAlto) - (double.Parse(Papel1.VchInferior) + double.Parse(Papel1.VchSuperior)));
+        //    FEspDisponible = ConversionMedidaMilimetros(FEspDisponibleMilimetros, foto.VchMedida);
+        //    return FEspDisponible;
+        //}
+        ////public double ConversionMedidaMilimetros(double Dou, String StrMedida)
+        ////{
+
+        ////    switch (StrMedida)
+        ////    {
+        ////        case "Centimetro":
+        ////            Dou = Dou * 0.1;
+        ////            break;
+        ////        case "Pulgada":
+        ////            Dou = Dou * 0.0393701;
+        ////            break;
+        ////        default:
+        ////            Dou = Dou * 0.1;
+        ////            break;
+        ////    }
+        ////    return Dou;
+        ////}
+        //protected void dvgFotosPapelC_Sorting(object sender, GridViewSortEventArgs e)
+        //{
+        //    try
+        //    {
+        //        List<SucursalFotoC> fotos = (List<SucursalFotoC>)ViewState["FotosC"];
+        //        if (e.SortExpression == lbOrdenFPPorC.Text)
+        //        {
+        //            if (lbOrdenFPC.Text == Orden.ASC.ToString())
+        //            {
+        //                lbOrdenFPC.Text = Orden.DESC.ToString();
+        //            }
+        //            else
+        //            {
+        //                lbOrdenFPC.Text = Orden.ASC.ToString();
+        //            }
+        //        }
+        //        else
+        //        {
+        //            lbOrdenFPPorC.Text = e.SortExpression;
+        //            lbOrdenFPC.Text = Orden.ASC.ToString();
+        //        }
+        //        Orden Ordenn = (Orden)Enum.Parse(typeof(Orden), lbOrdenFPC.Text, true);
+        //        //var txt = (HtmlInputText)dvgFotosPapel.FindControl("txt");
+        //        List<SucursalFotoC> fotosOrdenNueva = VM.OrdenarListaFPC(e.SortExpression, Ordenn, fotos);
+        //        ViewState["FotosC"] = fotosOrdenNueva;
+        //        DataBindFotografiasPapelC();
+
+        //        PnErrorFotoPapelCSucursal.Visible = false;
+        //        lblErrorFotoPapelC.Visible = false;
+        //        lblErrorFotoPapelC.Text = "";
+        //    }
+        //    catch (Exception x)
+        //    {
+        //        PnErrorFotoPapelCSucursal.Visible = true;
+        //        lblErrorFotoPapelC.Visible = true;
+        //        lblErrorFotoPapelC.Text = "Error al editar papel: \n detalle del error...\n" + x;
+        //    }
+
+        //}
+        //#endregion Panel derecho (Papel comercial)
     }
 
 }

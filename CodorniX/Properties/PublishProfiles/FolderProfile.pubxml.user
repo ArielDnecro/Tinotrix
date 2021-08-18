@@ -7,7 +7,8 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <_NewBackgroundProfile>False</_NewBackgroundProfile>
-    <_PublishTargetUrl>C:\Users\Iudex\Documents\TinoTrix\Clone\Tinotrix\CodorniX\bin\Release\PublishOutput</_PublishTargetUrl>
+    <_PublishTargetUrl>\\Mac\Home\Documents\GitHub\Clone\Tinotrix\CodorniX\bin\Release\PublishOutput</_PublishTargetUrl>
+    <History>True|2021-08-18T00:09:26.9967620Z;False|2021-08-17T18:50:39.4151680-05:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Assets/fonts/fontawesome-webfont.eot">
@@ -44,7 +45,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>09/02/2019 17:35:51</publishTime>
     </File>
     <File Include="Assets/Login/bootstrap.min.css">
-      <publishTime>11/12/2019 19:04:49</publishTime>
+      <publishTime>05/24/2019 13:14:11</publishTime>
     </File>
     <File Include="Assets/Login/bootstrap.min.js">
       <publishTime>05/24/2019 13:14:11</publishTime>
@@ -56,22 +57,22 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>05/24/2019 13:14:11</publishTime>
     </File>
     <File Include="Assets/Login/jquery-1.11.1.min.js">
-      <publishTime>08/07/2019 13:20:06</publishTime>
+      <publishTime>05/24/2019 13:14:12</publishTime>
     </File>
     <File Include="Assets/Login/jquery.backstretch.min.js">
       <publishTime>05/24/2019 13:14:12</publishTime>
     </File>
     <File Include="Assets/Login/scripts.js">
-      <publishTime>09/02/2019 14:51:54</publishTime>
+      <publishTime>07/15/2021 14:06:58</publishTime>
     </File>
     <File Include="Assets/Login/style.css">
       <publishTime>05/24/2019 13:14:11</publishTime>
     </File>
     <File Include="bin/CodorniX.Common.dll">
-      <publishTime>01/17/2020 18:08:51</publishTime>
+      <publishTime>08/17/2021 18:48:04</publishTime>
     </File>
     <File Include="bin/CodorniX.Common.pdb">
-      <publishTime>01/17/2020 18:08:51</publishTime>
+      <publishTime>08/17/2021 18:48:04</publishTime>
     </File>
     <File Include="bin/CodorniX.dll">
       <publishTime>06/13/2017 13:49:20</publishTime>
@@ -80,10 +81,10 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>06/13/2017 13:49:20</publishTime>
     </File>
     <File Include="bin/CodorniX.WebApp.dll">
-      <publishTime>01/17/2020 18:08:56</publishTime>
+      <publishTime>08/17/2021 19:08:51</publishTime>
     </File>
     <File Include="bin/CodorniX.WebApp.pdb">
-      <publishTime>01/17/2020 18:08:56</publishTime>
+      <publishTime>08/17/2021 19:08:51</publishTime>
     </File>
     <File Include="bin/de/Microsoft.ReportViewer.Common.resources.dll">
       <publishTime>05/24/2019 13:14:48</publishTime>
@@ -215,7 +216,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>05/24/2019 13:14:47</publishTime>
     </File>
     <File Include="bin/Microsoft.MSXML.dll">
-      <publishTime>06/21/2019 17:54:41</publishTime>
+      <publishTime>06/16/2021 18:36:13</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.Common.dll">
       <publishTime>05/24/2019 13:14:54</publishTime>
@@ -266,7 +267,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>06/21/2019 17:54:41</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.OLE.Interop.dll">
-      <publishTime>06/21/2019 17:54:41</publishTime>
+      <publishTime>06/16/2021 18:36:13</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.ProjectAggregator.dll">
       <publishTime>05/29/2019 18:51:18</publishTime>
@@ -290,13 +291,13 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>06/21/2019 17:54:41</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Shell.Interop.8.0.dll">
-      <publishTime>06/21/2019 17:54:41</publishTime>
+      <publishTime>06/16/2021 18:36:13</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Shell.Interop.9.0.dll">
       <publishTime>06/21/2019 17:54:41</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Shell.Interop.dll">
-      <publishTime>06/21/2019 17:54:41</publishTime>
+      <publishTime>06/16/2021 18:36:13</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.TemplateWizardInterface.dll">
       <publishTime>06/21/2019 17:54:41</publishTime>
@@ -305,16 +306,19 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>06/21/2019 17:54:41</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.TextManager.Interop.8.0.dll">
-      <publishTime>06/21/2019 17:54:41</publishTime>
+      <publishTime>06/16/2021 18:36:13</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.TextManager.Interop.dll">
-      <publishTime>06/21/2019 17:54:41</publishTime>
+      <publishTime>06/16/2021 18:36:13</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.VSHelp.dll">
       <publishTime>05/29/2019 18:51:18</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.WCFReference.Interop.dll">
       <publishTime>06/21/2019 17:54:41</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>07/25/2012 06:48:56</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>01/28/2016 14:22:24</publishTime>
@@ -408,6 +412,24 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
     </File>
     <File Include="bin/System.Collections.Immutable.dll">
       <publishTime>05/24/2019 13:14:48</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>06/26/2014 21:06:48</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>06/26/2014 21:03:40</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>06/26/2014 21:03:58</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>06/26/2014 21:06:48</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>06/26/2014 21:06:48</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>06/26/2014 21:06:48</publishTime>
     </File>
     <File Include="bin/VSLangProj.dll">
       <publishTime>05/29/2019 18:51:18</publishTime>
@@ -521,7 +543,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>05/24/2019 13:14:23</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
-      <publishTime>11/18/2019 18:42:37</publishTime>
+      <publishTime>07/15/2021 14:06:59</publishTime>
     </File>
     <File Include="Content/bootstrap.css.map">
       <publishTime>05/24/2019 13:14:23</publishTime>
@@ -542,25 +564,25 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>05/24/2019 13:14:23</publishTime>
     </File>
     <File Include="Content/style.css">
-      <publishTime>05/24/2019 13:14:23</publishTime>
+      <publishTime>07/15/2021 14:06:59</publishTime>
     </File>
     <File Include="Default.aspx">
       <publishTime>05/24/2019 13:14:23</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
-      <publishTime>09/03/2019 14:29:09</publishTime>
+      <publishTime>05/24/2019 13:14:23</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.svg">
-      <publishTime>09/03/2019 14:29:09</publishTime>
+      <publishTime>05/24/2019 13:14:23</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.ttf">
-      <publishTime>09/03/2019 14:29:10</publishTime>
+      <publishTime>05/24/2019 13:14:23</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.woff">
-      <publishTime>09/03/2019 14:29:10</publishTime>
+      <publishTime>05/24/2019 13:14:23</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.woff2">
-      <publishTime>09/03/2019 14:29:10</publishTime>
+      <publishTime>05/24/2019 13:14:23</publishTime>
     </File>
     <File Include="Images/BackGround/1%402x.jpg">
       <publishTime>05/24/2019 13:14:23</publishTime>
@@ -614,10 +636,10 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>05/24/2019 13:14:24</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>05/24/2019 13:14:24</publishTime>
+      <publishTime>07/15/2021 14:06:59</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>01/17/2020 18:09:06</publishTime>
+      <publishTime>08/17/2021 19:08:59</publishTime>
     </File>
     <File Include="script.sql">
       <publishTime>05/24/2019 13:14:24</publishTime>
@@ -866,7 +888,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>05/24/2019 13:14:27</publishTime>
     </File>
     <File Include="Scripts/scripts.js">
-      <publishTime>09/02/2019 14:02:21</publishTime>
+      <publishTime>07/15/2021 14:06:59</publishTime>
     </File>
     <File Include="SqlServerTypes/readme.htm">
       <publishTime>05/24/2019 13:14:27</publishTime>
@@ -919,8 +941,14 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
     <File Include="Vista/Encargados.aspx">
       <publishTime>05/24/2019 13:14:27</publishTime>
     </File>
+    <File Include="Vista/FotografiasComercial.aspx">
+      <publishTime>08/07/2021 19:13:45</publishTime>
+    </File>
+    <File Include="Vista/FotografiasTramite.aspx">
+      <publishTime>08/07/2021 19:13:17</publishTime>
+    </File>
     <File Include="Vista/HistoricoVentas.aspx">
-      <publishTime>01/04/2020 20:36:23</publishTime>
+      <publishTime>07/15/2021 14:06:59</publishTime>
     </File>
     <File Include="Vista/Home.aspx">
       <publishTime>05/24/2019 13:14:27</publishTime>
@@ -929,16 +957,16 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>05/24/2019 13:14:27</publishTime>
     </File>
     <File Include="Vista/Imagenes/logotipo2019.1.0.400x400.png">
-      <publishTime>08/30/2019 15:21:52</publishTime>
+      <publishTime>07/15/2021 14:06:59</publishTime>
     </File>
     <File Include="Vista/Imagenes/logotipo2019.3.0.150x150.png">
-      <publishTime>11/12/2019 15:51:15</publishTime>
+      <publishTime>07/15/2021 14:06:59</publishTime>
     </File>
     <File Include="Vista/Imagenes/logotiposerver2019.3.3.150x150.png">
-      <publishTime>11/12/2019 15:51:49</publishTime>
+      <publishTime>07/15/2021 14:06:59</publishTime>
     </File>
     <File Include="Vista/Login.aspx">
-      <publishTime>11/14/2019 02:29:39</publishTime>
+      <publishTime>07/15/2021 14:06:59</publishTime>
     </File>
     <File Include="Vista/Main.Master">
       <publishTime>05/30/2017 23:39:48</publishTime>
@@ -950,19 +978,19 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>05/24/2019 13:14:28</publishTime>
     </File>
     <File Include="Vista/Site1.Master">
-      <publishTime>11/18/2019 19:11:39</publishTime>
+      <publishTime>07/31/2021 17:12:07</publishTime>
     </File>
     <File Include="Vista/Sucursales.aspx">
-      <publishTime>01/17/2020 16:22:45</publishTime>
+      <publishTime>08/16/2021 14:37:43</publishTime>
     </File>
     <File Include="Vista/Tareas.aspx">
       <publishTime>07/14/2017 15:32:05</publishTime>
     </File>
     <File Include="Vista/Usuarios.aspx">
-      <publishTime>11/19/2019 19:13:45</publishTime>
+      <publishTime>07/15/2021 14:06:59</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/07/2019 13:50:58</publishTime>
+      <publishTime>08/17/2021 18:50:39</publishTime>
     </File>
   </ItemGroup>
 </Project>

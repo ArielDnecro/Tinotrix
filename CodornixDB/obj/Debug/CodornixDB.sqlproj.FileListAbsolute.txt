@@ -4,3 +4,13 @@ C:\Users\Iudex\Documents\TinoTrix\Clone\Tinotrix\CodornixDB\bin\Output\CodornixD
 C:\Users\Iudex\Documents\TinoTrix\Clone\Tinotrix\CodornixDB\obj\Debug\CodornixDB.dll
 C:\Users\Iudex\Documents\TinoTrix\Clone\Tinotrix\CodornixDB\obj\Debug\CodornixDB.pdb
 C:\Users\Iudex\Documents\TinoTrix\Clone\Tinotrix\CodornixDB\obj\Debug\CodornixDB.sqlprojAssemblyReference.cache
+\\Mac\Home\Documents\GitHub\Clone\Tinotrix\CodornixDB\bin\Output\CodornixDB.dacpac
+\\Mac\Home\Documents\GitHub\Clone\Tinotrix\CodornixDB\bin\Output\CodornixDB.dll
+\\Mac\Home\Documents\GitHub\Clone\Tinotrix\CodornixDB\bin\Output\CodornixDB.pdb
+\\Mac\Home\Documents\GitHub\Clone\Tinotrix\CodornixDB\obj\Debug\CodornixDB.sqlproj.AssemblyReference.cache
+\\Mac\Home\Documents\GitHub\Clone\Tinotrix\CodornixDB\obj\Debug\Model.xml
+\\Mac\Home\Documents\GitHub\Clone\Tinotrix\CodornixDB\obj\Debug\refactor.xml
+\\Mac\Home\Documents\GitHub\Clone\Tinotrix\CodornixDB\obj\Debug\postdeploy.sql
+\\Mac\Home\Documents\GitHub\Clone\Tinotrix\CodornixDB\obj\Debug\predeploy.sql
+\\Mac\Home\Documents\GitHub\Clone\Tinotrix\CodornixDB\obj\Debug\CodornixDB.dll
+\\Mac\Home\Documents\GitHub\Clone\Tinotrix\CodornixDB\obj\Debug\CodornixDB.pdb
